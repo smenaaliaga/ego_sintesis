@@ -1,7 +1,7 @@
 {
   "project_name": "Síntesis_M_CR18",
   "egp_path": "D:\\Projects\\Migraciones-SAS\\Síntesis_M_CR18\\input\\egp\\Síntesis_M_CR18.egp",
-  "generated_at": "2026-08-07T17:21:02.701455Z",
+  "generated_at": "2026-08-10T16:00:16.511677Z",
   "total_flows": 18,
   "migratable_flows": 17,
   "total_nodes": 84,
@@ -49,7 +49,7 @@
         "TABLAS"
       ],
       "notebook_slug": "autoexec",
-      "description": "El flujo descarga series de datos financieros del Banco Central de Chile (activos y pasivos en pesos y dólares, préstamo neto del gobierno general), realiza transformaciones de trimestres y conversiones a moneda nacional aplicando tipos de cambio, generando tablas consolidadas de balances públicos para análisis posterior."
+      "description": "El flujo descarga series de datos macroeconómicos (activos, pasivos en pesos y dólares, y préstamos neto del gobierno general) desde la API REST del Banco Central, realiza transformaciones de moneda a pesos chilenos, y define plantillas gráficas reutilizables para visualizar indicadores en barras apiladas y líneas."
     },
     {
       "pfd_id": "PFD-I32F27oZ8ICuby6y",
@@ -186,7 +186,7 @@
         "LIB"
       ],
       "notebook_slug": "controles_y_ajustes_iniciales",
-      "description": "El flujo carga, transforma e integra datos trimestrales de fuentes múltiples (SIFMI, intereses, cuentas nacionales, fondos de inversión, bonos externos) consolidando información de sectores económicos, transacciones financieras y transferencias de capital para alimentar las Cuentas Nacionales Satélites de Instituciones Financieras (CNSI)."
+      "description": "El flujo integra datos trimestrales de SIFMI (intereses bancarios), ingresos de factores del exterior, cuentas nacionales de CNT, dividendos de hogares, utilidades reinvertidas del sector financiero y bonos externos para construir la base de síntesis de cuentas nacionales según SCN 2008."
     },
     {
       "pfd_id": "PFD-qSlM5lap8p2JfvZN",
@@ -216,7 +216,7 @@
       ],
       "libraries": [],
       "notebook_slug": "revision_tablas_dcv",
-      "description": "El flujo valida la consistencia contable de certificados de depósitos y tenencias de activos y pasivos del banco central, filtrando diferencias significativas y comparando saldos iniciales versus finales por trimestre, instrumento y sector. Adicionalmente, extrae un subconjunto de datos del año 2025 de la base consolidada."
+      "description": "Valida la consistencia contable de múltiples tablas de certificados de depósito y fondos del banco central, comparando saldos iniciales (BI) con saldos finales (BF) por instrumento y emisor/tenedor, generando reportes de diferencias detectadas y filtrando datos de años específicos para auditoría interna."
     },
     {
       "pfd_id": "PFD-9xOO9Nj6dXtUnawt",
@@ -1498,7 +1498,7 @@
       ],
       "libraries": [],
       "notebook_slug": "sintesis_reajustes",
-      "description": "Proceso de síntesis de datos de transacciones financieras de la Central Bank of Chile (BCCH). Normaliza, reclasifica y concilia información de diferentes sectores económicos (gobierno, bancos, empresas, hogares, resto del mundo) consolidando activos financieros, depósitos, bonos, créditos, participaciones accionarias y rentas en una base datos unificada para reportes de cuentas nacionales."
+      "description": "El flujo procesa y consolida la tabla de cuentas nacionales de flujos financieros (BD_CTSI) mediante 12 fases de transformación que reclasifican sectores, instrumentos y contrapartidas según estándares de contabilidad nacional, reconciliando datos de fuentes internas y DCV para generar balances financieros consistentes por sector institucional."
     },
     {
       "pfd_id": "PFD-FzVr69cJ7GUTkjGn",
@@ -2791,7 +2791,7 @@
       ],
       "libraries": [],
       "notebook_slug": "sintesis_final",
-      "description": "El flujo procesa y estructura la Cuenta de Transacciones Internacionales de Servicios (BD_CTSI) para el Banco Central, consolidando datos de múltiples fuentes (cuentas de inversión, instrumentos financieros, reajustes) mediante operaciones de SQL y transformaciones de datos para generar estadísticas de balanza de pagos y cuentas nacionales."
+      "description": "Proceso de síntesis de cuentas financieras nacional e intersectorial: carga de datos iniciales desde presíntesis, realiza cálculos de conciliación entre sectores y contrapartes, reclasifica instrumentos financieros, valora a mercado activos financieros (bonos, fondos, derivados) y cierra patrimonios y cuentas de distribución para producir matriz de cuentas financieras y de distribución secundarias en moneda nacional."
     },
     {
       "pfd_id": "PFD-cykKkMX4tZ6yssv9",
@@ -2831,7 +2831,7 @@
       ],
       "libraries": [],
       "notebook_slug": "ajuste_bonos",
-      "description": "Ajuste contable de posiciones en bonos (corto y largo plazo) para evitar distorsiones en las emisiones sectoriales causadas por tenencias negativas, imputando los saldos negativos a emisiones con revalorización correspondiente."
+      "description": "Proceso de ajuste de bonos a largo y corto plazo que identifica y redistribuye tenencias negativas para evitar distorsiones en las emisiones por sector, imputando los saldos negativos en la cuenta de reconocimiento de precio."
     },
     {
       "pfd_id": "PFD-Xo33OSMWhvsM3DGl",
@@ -2879,7 +2879,7 @@
       ],
       "libraries": [],
       "notebook_slug": "hogares_cierre_anual",
-      "description": "El flujo extrae, ajusta y reconcilia la posición neta de deuda (PTMO NETO) de hogares entre cuentas financiera y no financiera, aplica benchmarking Cholette-Dagum para distribuir restricciones anuales de dividendos, y genera ajustes finales para cuadrar ambas cuentas."
+      "description": "Cierre trimestral y anual de hogares del Sistema de Cuentas Nacionales: calcula activos financieros netos ajustados, distribuye indicadores mediante benchmarking Cholette-Dagum y cierra dividendos para reconciliar cuentas financiera y no financiera."
     },
     {
       "pfd_id": "PFD-5ljUKZBVNXa8kUqw",
@@ -2924,7 +2924,7 @@
       ],
       "libraries": [],
       "notebook_slug": "salidas",
-      "description": "Genera bases de datos consolidadas de activos y pasivos financieros según clasificaciones institucionales (sectorizaciones, contrapartidas, instrumentos) para producir síntesis operativas en formato de reportes detallados y resumidos, con filtros por año y dimensiones contables."
+      "description": "El flujo procesa y consolida datos de estadísticas de inversión y sectorización para generar reportes financieros de síntesis y notas técnicas, filtrando por año y período contable, con agregaciones por sector, instrumento y contrapartida."
     },
     {
       "pfd_id": "PFD-8utfxKBTd7ScRLgg",
@@ -3019,7 +3019,7 @@
       ],
       "libraries": [],
       "notebook_slug": "revisiones",
-      "description": "Proceso de validación de consistencia en cuentas nacionales y financieras: genera análisis de equilibrio entre cuentas de capital y financiera (B.9), balance (BF/BI), ingresos/gastos, y detecta anomalías en saldos negativos de instrumentos financieros por sector."
+      "description": "Flujo de análisis de consistencia de cuentas nacionales del sistema de información de cuentas satélite (CNSI), que valida la coherencia entre múltiples enfoques macroeconómicos (capacidad/necesidad de financiamiento, balances de cuenta financiera, cuentas de capital) y genera reportes de discrepancias en valores agregados trimestral y anualmente."
     },
     {
       "pfd_id": "PFD-u2VLTIPsf4glVezB",
@@ -3496,7 +3496,7 @@
       ],
       "libraries": [],
       "notebook_slug": "analisis",
-      "description": "El flujo genera análisis macroeconómico integral de la economía chilena (2003-presente) mediante tablas de cuentas financieras de sectores institucionales (empresas, hogares, gobierno, financiero) proyectadas a PIB, con cálculos de ahorro, inversión, deuda, flujos financieros e indicadores de solvencia y capacidad de financiamiento para monitoreo de equilibrios macroeconómicos."
+      "description": "Genera múltiples análisis de cuentas nacionales (CNF) para sectores institucionales chilenos (empresas, hogares, gobierno, sector financiero), calculando ahorro bruto, formación de capital, posición financiera neta y deuda, generando reportes y gráficos comparativos sobre PIB."
     },
     {
       "pfd_id": "ProcessFlowContainer-BaoHMMx47LaLek4a",
@@ -3557,7 +3557,7 @@
       ],
       "libraries": [],
       "notebook_slug": "analisis_varios",
-      "description": "El flujo genera análisis e informes de datos financieros y de saldos por sector, instrumento y contrapartida, produciendo gráficos comparativos y cálculos de carga financiera (intereses pagados y percibidos) para monitoreo trimestral de la cartera de activos y pasivos."
+      "description": "El proceso integra información de cuentas financieras, instrumentos y sectores económicos para producir series trimestrales de saldos, flujos financieros e indicadores de carga de intereses, generando reportes gráficos segmentados por sector, instrumento y contrapartida que alimentan análisis de posiciones y rentabilidad del sistema financiero."
     },
     {
       "pfd_id": "ProcessFlowContainer-2o1NZYl9FKnoVXKH",
@@ -3605,7 +3605,7 @@
       ],
       "libraries": [],
       "notebook_slug": "analisis_wtw",
-      "description": "Genera reportes de saldos de instrumentos financieros segmentados por sector, contraparte y tipo de instrumento, con tablas de validación cruzada y gráficos comparativos entre saldos finales y operaciones financieras."
+      "description": "El flujo consolida saldos de instrumentos financieros por sector, instrumento y contraparte desde una base de datos de transacciones, y genera tablas de análisis y gráficos comparativos de balances versus operaciones financieras para supervisión regulatoria."
     },
     {
       "pfd_id": "ProcessFlowContainer-vwVNwxtc3fjh2kaj",
@@ -3699,7 +3699,7 @@
       ],
       "libraries": [],
       "notebook_slug": "versiones",
-      "description": "El flujo compara dos versiones de cuentas nacionales (anterior y nueva) de un sector específico, calculando deltas trimestrales y anuales de series económicas como producción, ingresos, capital y balances financieros para identificar cambios metodológicos o de datos."
+      "description": "Compara series de datos contables (producción, ingresos/gastos, capital, financiera) entre dos versiones metodológicas de cuentas nacionales por sector, generando tablas y gráficos de diferencias y variaciones en términos de millones de pesos y porcentaje del PIB."
     },
     {
       "pfd_id": "PFD-gbN8RIHt1JrlbC3w",
@@ -3748,7 +3748,7 @@
       ],
       "libraries": [],
       "notebook_slug": "cuadros",
-      "description": "Genera el Cuadro Económico Integrado (CEI) consolidando datos de cuentas nacionales desde múltiples tablas de dimensión con transformaciones de conceptos contables, recodificaciones de flujos de ingreso (primario, secundario, redistribución) y desagregación por sectores económicos, produciendo finalmente un reporte tabular de cuentas con distribución por tipo de entrada (débito/haber)."
+      "description": "Genera el Cuadro Económico Integrado (CEI) que consolida datos de cuentas nacionales (producción, distribución de ingresos, utilización) agrupando sectores institucionales y categorías de entrada/salida, con agregaciones y transformaciones de clasificaciones SCN."
     },
     {
       "pfd_id": "Report-DjyiqMhW44NS3RkF",
@@ -3846,7 +3846,7 @@
         "DCNIDATA"
       ],
       "notebook_slug": "cargadores",
-      "description": "Este flujo consolida información de saldos de instrumentos financieros por sector, instrumento y contrapartida desde múltiples fuentes de datos de la Central Bank de Chile, agrupando y transformando datos de cuentas corrientes, depósitos, títulos y otras operaciones financieras para generar reportes resumidos y series de deuda (hogares, bancaria, hipotecaria)."
+      "description": "Proceso de consolidación y transformación de datos de saldos de instrumentos financieros por sector, instrumento y contraparte para reportes de síntesis del sistema nacional de información de cuentas financieras (CNSI), generando tablas de salida con información de deuda de hogares, oferentes de crédito no bancario y posiciones en activos financieros."
     },
     {
       "pfd_id": "PFD-8QK2aWopOwZuokzE",
@@ -4134,7 +4134,7 @@
       ],
       "libraries": [],
       "notebook_slug": "anuario",
-      "description": "Genera cargadores de datos financieros (CNF, BCE, WTW) consolidando información de cuentas nacionales, sectores y activos para alimentar un sistema de análisis de flujos y balances económicos trimestral."
+      "description": "El flujo genera estados financieros consolidados (cuenta de flujos de fondos, balance financiero y matriz de transferencias de activos) para múltiples sectores económicos en base a datos contables de cuentas nacionales, con códigos FAME para carga en sistemas de información financiera."
     },
     {
       "pfd_id": "ProcessFlowContainer-J3t3lB9nS5yuVyLR",
@@ -4198,7 +4198,7 @@
         "LIB"
       ],
       "notebook_slug": "varios",
-      "description": "Flujo de extracción, transformación y consolidación de datos macroeconómicos nacionales de cuentas nacionales y balanza de pagos desde APIs del Banco Central, generando bases de datos de salida para reportes estadísticos de ingreso nacional, inversión del sector financiero y formatos OECD."
+      "description": "El flujo extrae series macroeconómicas de una API del Banco Central sobre factores de producción, transferencias, inversión y comercio exterior, consolida los datos en una base de datos CNT, y genera salidas estructuradas por instrumento, sector y agente contrapartida para análisis de cuentas nacionales según metodología de cuentas satélite (SCN)."
     }
   ],
   "unassigned_nodes": []

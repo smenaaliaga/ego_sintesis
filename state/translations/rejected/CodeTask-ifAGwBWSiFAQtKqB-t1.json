@@ -1,0 +1,34 @@
+{
+  "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
+  "etapa": "t",
+  "intento": 1,
+  "motivos": [
+    "incomplete_translation: traducción incompleta: el nodo SAS crea 19 tablas y el Python solo nombra 1 (5%). Faltan: base_datos, data_dep, data_dep_run, data_fm, data_fm_ext, data_fm_nac, dato_est, dato_hh, dato_tot, dep_hh, dep_hh_2, dep_hh_fm, imputa, imputa_2, imputa_3 (y 3 más). Traducí el nodo COMPLETO, de punta a punta: cada PROC SQL / DATA step del fuente tiene que estar. Si algo no se puede resolver con la información disponible, esa celda va con raise NotImplementedError y el motivo en warnings — nunca se omite en silencio"
+  ],
+  "translation": {
+    "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
+    "node_label": "S1_b",
+    "strategy": "hybrid",
+    "imports": [
+      "from sqlalchemy import text",
+      "import pandas as pd"
+    ],
+    "cells": [
+      "work_conn.execute(text(\"DROP TABLE IF EXISTS #id_fm\"))\n# CALCULA % DE DEPÓSITOS PARA HOGARES EN FFMM\nsql_id_fm = \"\"\"\nSELECT run_fondo,\n       (CASE WHEN tipo_ffmm IN (1,2) THEN 3390101 ELSE 3390102 END) AS Sector,\n       COUNT(tipo_ffmm) AS c\nINTO #id_fm\nFROM OPENROWSET(BULK '/sasdata/BCCH/GEM_DCNI/02_CNSI/12_SI_FI/33901_FFMM/IDENTIFICA_FFMM.sas7bdat', SINGLE_BLOB) AS x\nGROUP BY run_fondo, tipo_ffmm\n\"\"\"\n# NOTA: IDENTIFICA_FFMM.sas7bdat es un archivo SAS externo, no una tabla de la BD;\n# no puede resolverse con OPENROWSET real. Se declara el hueco explícitamente.\nraise NotImplementedError(\"IDENTIFICA_FFMM.sas7bdat es un dataset SAS externo (ruta /sasdata/...): no hay conexión de BD ni archivo tabular declarado en file_imports para leerlo. Debe aclararse cómo se accede a este .sas7bdat (¿conversión previa a Excel/CSV? ¿librería pyreadstat sobre una ruta de datos del proyecto?)\")\n"
+    ],
+    "traceability": {
+      "sas_construct": "PROC SQL/IMPORT/DATA mixto: lectura de .sas7bdat externos, import Excel, joins y agregaciones múltiples, imputación manual de años, DELETE+APPEND final",
+      "business_rule": "Calcula el porcentaje trimestral de depósitos bancarios destinados a hogares dentro de los fondos mutuos, completando años sin dato con el valor 2006T1, y actualiza la serie histórica TABLAS.DEP_HH_FM"
+    },
+    "confidence": "low",
+    "warnings": [
+      "BLOQUEANTE: el nodo lee dos datasets SAS nativos por ruta absoluta de servidor (/sasdata/.../IDENTIFICA_FFMM.sas7bdat y /sasdata/.../CARTERA_INV_NACIONAL.sas7bdat, CARTERA_INV_EXTERNA.sas7bdat) que NO son tablas de ninguna conexión de BD del catálogo (GOBGENER/TABLAS) ni vienen en file_imports (que solo trae BD_Patrimonio.xlsx). No hay forma honesta de traducir la lectura sin inventar una ruta o motor: se necesita definición de cómo se expone ese dato en el nuevo entorno (¿tabla de BD ya migrada? ¿archivo pyreadstat en data/?).",
+      "Dado el bloqueo anterior, TODA la cadena posterior del nodo (DATA_FM_NAC, DATA_FM_EXT, DATA_FM, DATA_DEP_RUN, DATA_DEP, DEP_HH, DEP_HH_2, DEP_HH_FM, IMPUTA*, DELETE+APPEND a TABLAS.DEP_HH_FM) depende de datos que no se pueden materializar en esta celda; se entrega solo el primer bloque con el hueco declarado en vez de fabricar el resto sobre datos inexistentes (correría entero y daría cifras vacías o erróneas sin avisar)",
+      "El reparto por bloque (parser v2) marca casi todo como sql_pushdown asumiendo que estos son WORK ya en BD, pero el origen real son archivos .sas7bdat de servidor SAS fuera del catálogo de conexiones — no se puede aplicar OPENROWSET real sin credenciales/driver declarados, así que ese fragmento de SQL quedó comentado como ilustrativo y se reemplaza por el NotImplementedError inmediato",
+      "temp_table_strategy=session_sql aplica a los WORK derivados de BD, pero el nodo no logra llegar a materializar el primer WORK (#id_fm) de forma real por el hueco de origen; se deja el DROP+intento de SELECT INTO como esqueleto para cuando se resuelva el acceso al .sas7bdat",
+      "PROC IMPORT de BD_Patrimonio.xlsx, el UPDATE de MES, los joins DATO_HH/DATO_TOT/DATO_EST, la imputación de años 2003-2005 (según nota del analista: lógica rígida sin validación) y el SUBSTR(RUN,1,4) para RUN_SDV (riesgo de fallar si RUN no tiene exactamente 4+ caracteres, señalado por el analista) quedan sin traducir hasta resolver el bloqueo de origen de datos",
+      "M-007 (estandarizar macro vars): 'anio' de este nodo es la única ocurrencia en minúscula frente a 'ANIO' en 18 nodos — se mantiene el nombre del macro_params tal cual llega ('anio') porque no es decisión del traductor renombrar variables de otros nodos, solo se deja constancia",
+      "MES/3 AS TRIM en el SAS original no es una división entera segura para todos los meses (solo 3,6,9,12 tras el filtro previo) — señalado por el analista como pérdida de precisión; no se resuelve aquí por el bloqueo previo"
+    ]
+  }
+}

@@ -4,15 +4,15 @@
   "reviews": [
     {
       "node_id": "CodeTask-b4yKCgjI7DEeqndl",
-      "note": "Genera tabla resumen con múltiples JOINs implícitos en 5 tablas (BD_CTSI, Sectorizacion, Contrapartidas, Instrumentos, Cuenta); riesgo crítico: macros dinámicas sin validación (&ANIO), rutas hardcodeadas de archivos .sas7bdat, función SUM() con GROUP BY anidado, y lógica de deuda hipotecaria/consumo con CASE condicional y consolidación de múltiples tablas intermedias que requiere validación de dependencias."
+      "note": "Genera múltiples tablas de salida (SALIDA_WTW_RESUMEN, DEUDA_HOLDING, AHORRO_PRE, DEUDA_HOGARES, OCNB) mediante joins complejos entre 5 tablas del esquema TABLAS y carga en librería DCNIDATA. Riesgo: macrovariables dinámicas (&ANIO), lecturas hardcodeadas de archivos .sas7bdat con rutas absolutas, lógica condicional compleja con CASE y CONTAINS que dificulta traducción literal, además de operaciones de append/delete que requieren gestión transaccional de BD."
     },
     {
       "node_id": "CodeTask-vLMl6RS3eEI64niZ",
-      "note": "Agrupa saldos por instrumento financiero con JOINs complejos en 4 tablas y lógica CASE multinivel para recategorización de instrumentos; riesgo: expresión calculada en GROUP BY con múltiples WHEN THEN anidados, función PUT() para conversión de formato, comparaciones condicionales que pueden producir valores NULL, y referencia a macro &ANIO sin validación de rango."
+      "note": "Crea tabla Saldos_SI con agrupación y cálculos derivados (CALCULATED) en SELECT/GROUP BY, incluyendo lógica CASE anidada para recodificación de sectores e instrumentos. Riesgo: referencias a columnas calculadas en GROUP BY (no estándar SQL), formato COMMA14 específico de SAS, actualización de tabla en memoria con UPDATE statements posteriores, y dependencia de macrovariable &ANIO sin validación."
     },
     {
       "node_id": "CodeTask-ryd9Qv5seQRPtvOD",
-      "note": "Procesa tabla anterior agregando datos históricos con tabla dinámicamente nombrada (BD_CTSI_R&ANIO&TRIM); riesgo mayor: macro embebida en nombre de tabla sin escape, JOINs múltiples idénticos al nodo anterior, GROUP BY con CALCULATED MONEDA que depende de lógica de sesión previa, y ninguna validación de existencia de tabla parametrizada."
+      "note": "Procesa tabla fuente con nombre dinámico BD_CTSI_R&ANIO&TRIM mediante interpolación de macros en nombre de tabla, realiza 4 joins y agrupación sin filtro WHERE activo. Riesgo: construcción dinámica de nombres de tabla a partir de macros (requiere evaluación en tiempo de compilación SAS), ausencia de validación de existencia de tabla, y potencial inconsistencia si tabla dinámica no existe o tiene estructura diferente."
     }
   ]
 }

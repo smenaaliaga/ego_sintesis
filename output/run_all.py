@@ -11,9 +11,6 @@ import argparse, os, subprocess, sys
 
 NOTEBOOKS = [
     'NB-02_controles_y_ajustes_iniciales.ipynb',
-    'NB-03_revision_tablas_dcv.ipynb',
-    'NB-04_sintesis_reajustes.ipynb',
-    'NB-05_sintesis_final.ipynb',
 ]
 
 def main():

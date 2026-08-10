@@ -4,11 +4,11 @@
   "reviews": [
     {
       "node_id": "CodeTask-uRMT7rfFsM7wFmZJ",
-      "note": "Auditoría repetitiva de 9 tablas SAS7BDAT (certificados, activos fondos bonos corto plazo, pasivos, activos y pasivos offshore y HC, oficinas, auxiliares y CCAF) mediante PROC SQL + PROC TABULATE con lógica de inversión de signos (CASE WHEN c_Cuenta), cálculos de diferencias BI-BF con shifts trimestrales hardcodeados (TRIM IN 1,2,3) y formatos SAS7BDAT (COMMA14.3/COMMA14.1) que requieren traducción a pandas/polars, gestión de rutas absolutas de archivo y reconstrucción del formato de números con miles; riesgo alto: múltiples dependencias de BD externas, campos de cálculo derivado (CALCULATED) y coincidencias de nombres entre fuentes (AÑO, Trimestre vs TRIM)."
+      "note": "Ejecuta validación de nueve tablas SAS7BDAT con lógica repetida de agregación condicional (CASE WHEN c_Cuenta) e inversión de signos; riesgo: rutas hardcodeadas en /sasdata, formatos COMMA14 específicos de SAS, cálculos de trimestre con aritmética fecha-período, y PROC TABULATE con structure de filas/columnas anidadas sin equivalente directo en pandas."
     },
     {
       "node_id": "CodeTask-sQvjLjeo2WC15iXs",
-      "note": "Lectura simple de SAS7BDAT con filtro de año 2025 creando tabla de trabajo; riesgo bajo técnicamente pero dependencia de ruta absoluta de base consolidada y necesidad de verificar que campo 'año' sea numérico/string en lectura binaria SAS."
+      "note": "Carga subset filtrado de tabla base (año=2025) desde ruta SAS7BDAT; riesgo: dependencia de archivo externo en path específico del servidor, lectura directa sin validación de existencia, y simplicidad engañosa que oculta posible contexto de preprocesamiento para el flujo completo."
     }
   ]
 }

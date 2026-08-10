@@ -1,0 +1,47 @@
+{
+  "node_id": "CodeTask-7nH3fwOy4hErZFqh",
+  "etapa": "r",
+  "intento": 1,
+  "motivos": [
+    "forbidden_pattern: SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BONOS_EXT_PRECIO ({…}) {…} — el valor va como bind param (`text(\"... WHERE x = :x\")` + `params={'x': x}`). Interpolar el NOMBRE de una tabla sí está permitido (`f\"... FROM TABLAS.BD_R{ANIO}{TRIM}\"`): el SAS lo arma con la macro var y ningún driver parametriza identificadores"
+  ],
+  "translation": {
+    "node_id": "CodeTask-7nH3fwOy4hErZFqh",
+    "node_label": "Bonos_Ext",
+    "strategy": "hybrid",
+    "imports": [
+      "import pandas as pd",
+      "from pathlib import Path",
+      "from sqlalchemy import text"
+    ],
+    "cells": [
+      "# 1. IMPORTA DATA\n# DATA DE BONOS DE LA BALANZA DE PAGOS PARA CALCULAR PRECIOS IMPLÍCITOS A USAR EN LAS CUENTAS DE GOBIERNO, EMPRESAS Y HOLDINGS\nbonos_ext = pd.read_excel(Path(\"data\") / \"INFO_AUX\" / \"bonos_ext_cdr18.xlsx\", sheet_name=\"DATA\")\n_log(\"bonos_ext\", bonos_ext)\n",
+      "bonos_ext.loc[bonos_ext[\"CNSI\"] == 5102, \"CNSI\"] = 51021\nbonos_ext.loc[bonos_ext[\"CNSI\"] == 322, \"CNSI\"] = 321\nbonos_ext.loc[~bonos_ext[\"C_CAGENTE\"].isin([\"6\"]), \"C_CAGENTE\"] = \"6\"\n# incorporado cierre 2025q2\nbonos_ext.loc[bonos_ext[\"CNSI\"] == 33, \"CNSI\"] = 36\n_log(\"bonos_ext\", bonos_ext)\n",
+      "bonos_ext_est = pd.read_excel(Path(\"data\") / \"INFO_AUX\" / \"bonos_ext_cdr18.xlsx\", sheet_name=\"DATA_EST\")\nbonos_ext_est = bonos_ext_est[bonos_ext_est[\"año\"].notna()]\n_log(\"bonos_ext_est\", bonos_ext_est)\n",
+      "work_conn.execute(text(\"DROP TABLE IF EXISTS #bonos_ext\"))\nbonos_ext.to_sql(\"#bonos_ext\", work_conn, if_exists=\"replace\", index=False)\nwork_conn.execute(text(\"DROP TABLE IF EXISTS #bonos_ext_est\"))\nbonos_ext_est.to_sql(\"#bonos_ext_est\", work_conn, if_exists=\"replace\", index=False)\n",
+      "# CALCULA PRECIOS PARA GOBIERNO, EMPRESAS Y HOLDINGS\n# CIERRE 2021: INCORPORA TMB BANCOS\n# CIERRE 2022Q2: INCORPORA PRECIO DE BNOS EMITIDOS EN EL EXTERIOR DE AUXILIARES (36)\nwork_conn.execute(text(\"DROP TABLE IF EXISTS #bonos_ext_precio\"))\n# Balance Final\nsql_precio = \"\"\"\nSELECT Año, Trim, CNSI as Sector, C_CAGENTE, C_SCN, C_CUENTA,\n    SUM(Valor_Mercado) / SUM(Valor_par) as Precio\nINTO #bonos_ext_precio\nFROM #bonos_ext\nWHERE fuente in ('Mercado Externo','Mercado Externo (Recompras)') AND cnsi in (41,37,5101,51021,5102,321,36)\nGROUP BY Año, Trim, CNSI, C_CAGENTE, C_SCN, C_CUENTA\n\"\"\"\nwork_conn.execute(text(sql_precio))\n",
+      "work_conn.execute(text(\"DROP TABLE IF EXISTS #bonos_ext_recompra\"))\n# Balance Final, para recompras en empresas\nsql_recompra = \"\"\"\nSELECT Año, Trim, CNSI as Sector, '54' as C_CAGENTE, C_SCN, C_CUENTA,\n    SUM(Valor_Mercado) / SUM(Valor_par) as Precio\nINTO #bonos_ext_recompra\nFROM #bonos_ext\nWHERE fuente in ('Mercado Externo (Recompras)') AND cnsi in (5101,51021)\nGROUP BY Año, Trim, CNSI, C_CAGENTE, C_SCN, C_CUENTA\n\"\"\"\nwork_conn.execute(text(sql_recompra))\nwork_conn.execute(text(\"UPDATE #bonos_ext_recompra SET Precio = 1 WHERE Precio IS NULL\"))\n",
+      "# data Bonos_Ext_Precio; set Bonos_Ext_Recompra Bonos_Ext_Precio BONOS_EXT_EST;\n# El SAS reasigna el nombre Bonos_Ext_Precio a esta unión (que alimenta Bonos_Ext_Precio_2 y la tabla final) —\n# la #tmp final #bonos_ext_precio_all es el WORK.BONOS_EXT_PRECIO real y post-union\nwork_conn.execute(text(\"DROP TABLE IF EXISTS #bonos_ext_precio_all\"))\ncols_union = \"Año, Trim, Sector, C_CAGENTE, C_SCN, C_CUENTA, Precio\"\nsql_union = f\"\"\"\nSELECT {cols_union}\nINTO #bonos_ext_precio_all\nFROM #bonos_ext_recompra\nUNION ALL\nSELECT {cols_union}\nFROM #bonos_ext_precio\nUNION ALL\nSELECT {cols_union}\nFROM #bonos_ext_est\n\"\"\"\nwork_conn.execute(text(sql_union))\nbonos_ext_precio = pd.read_sql(text(\"SELECT * FROM #bonos_ext_precio_all\"), work_conn)\n_log(\"bonos_ext_precio\", bonos_ext_precio)\n",
+      "work_conn.execute(text(\"DROP TABLE IF EXISTS #bonos_ext_precio_2\"))\n# Balance Inicio\nsql_precio_2 = \"\"\"\nSELECT\n    CASE WHEN Trim = 4 THEN Año + 1 ELSE Año END AS Año,\n    CASE WHEN Trim = 4 THEN 1 ELSE Trim + 1 END AS Trim,\n    Sector, C_CAGENTE, C_SCN, 'Bce Inicio' as C_CUENTA, Precio\nINTO #bonos_ext_precio_2\nFROM #bonos_ext_precio_all\n\"\"\"\nwork_conn.execute(text(sql_precio_2))\nbonos_ext_precio_2 = pd.read_sql(text(\"SELECT * FROM #bonos_ext_precio_2\"), work_conn)\n_log(\"bonos_ext_precio_2\", bonos_ext_precio_2)\n",
+      "# DATA tablas.Bonos_Ext_Precio; SET Bonos_Ext_Precio_2 Bonos_Ext_Precio; RUN;\n# Reemplaza el contenido de la tabla permanente TABLAS.BONOS_EXT_PRECIO (union de balance inicio + balance final/estimados)\ncols_final = \"Año, Trim, Sector, C_CAGENTE, C_SCN, C_CUENTA, Precio\"\nsql_final_union = f\"\"\"\nSELECT {cols_final} FROM #bonos_ext_precio_2\nUNION ALL\nSELECT {cols_final} FROM #bonos_ext_precio_all\n\"\"\"\nres_del = work_conn.execute(text(\"DELETE FROM TABLAS.dbo.BONOS_EXT_PRECIO\"))\n_log(\"DELETE TABLAS.dbo.BONOS_EXT_PRECIO\", res_del.rowcount)\nsql_insert_final = f\"\"\"\nINSERT INTO TABLAS.dbo.BONOS_EXT_PRECIO ({cols_final})\n{sql_final_union}\n\"\"\"\nres_ins = work_conn.execute(text(sql_insert_final))\n_log(\"INSERT TABLAS.dbo.BONOS_EXT_PRECIO\", res_ins.rowcount)\n",
+      "work_conn.execute(text(\"UPDATE TABLAS.dbo.BONOS_EXT_PRECIO SET Sector = 36912 WHERE Sector = 36\"))\n",
+      "# drop table Bonos_Ext_Precio, BONOS_EXT_EST, Bonos_Ext_Precio_2, bonos_ext, Bonos_Ext_Recompra\nfor t in [\"#bonos_ext_precio\", \"#bonos_ext_est\", \"#bonos_ext_precio_2\", \"#bonos_ext\", \"#bonos_ext_recompra\"]:\n    work_conn.execute(text(f\"DROP TABLE IF EXISTS {t}\"))\n"
+    ],
+    "traceability": {
+      "sas_construct": "PROC IMPORT + PROC SQL (UPDATE/CREATE TABLE/DELETE) con #tmp de sesión y unión final",
+      "business_rule": "Calcula precios implícitos de bonos externos (mercado y recompras) por sector/agente/trimestre, agrega balance de inicio derivado del balance final y consolida en TABLAS.BONOS_EXT_PRECIO"
+    },
+    "confidence": "medium",
+    "warnings": [
+      "Corrección de iteración: WORK.BONOS_EXT_PRECIO (output_dataset) ahora es la unión post-DATA step (#bonos_ext_precio_all), no el resultado pre-union del primer CREATE TABLE; se mantuvo #bonos_ext_precio como la tabla base del cálculo y #bonos_ext_precio_all como la unión final, replicando la reasignación de nombre que hace el DATA step del SAS",
+      "cociente SUM(Valor_Mercado)/SUM(Valor_par) puede ser indefinido (división por cero) si Valor_par suma 0 por grupo; el SAS no lo controla explícitamente salvo en Bonos_Ext_Recompra (Precio=1 si es NULL) y se replica igual",
+      "C_CAGENTE='54' en Bonos_Ext_Recompra queda fijo, desacoplado del mapeo de sectores, tal como en el SAS original",
+      "los filtros por fuente ('Mercado Externo', 'Mercado Externo (Recompras)') dependen de la nomenclatura exacta del Excel de origen; no se normalizan",
+      "ruta original '/samba/BCCH/GEM_DCNI/02_CNSI/01_SINTESIS/INFO_AUX/bonos_ext_cdr18.xlsx' truncada a Path('data')/'INFO_AUX'/'bonos_ext_cdr18.xlsx' según convención del proyecto",
+      "TABLAS.BONOS_EXT_PRECIO se trata como reemplazo completo (DELETE sin WHERE + INSERT), replicando que el DATA step SAS sobrescribía la tabla permanente completa",
+      "el UPDATE final de Sector 36->36912 y los DROP de #tmp se aplican después del reemplazo completo, igual que en el orden del SAS",
+      "PROC IMPORT DATA_EST: 'delete from BONOS_EXT_EST where año=.' se tradujo como filtro de notna() en pandas antes de subir a #bonos_ext_est",
+      "el UPDATE de C_CAGENTE en BONOS_EXT ('NOT IN (6)' -> '6') se aplicó en pandas antes de subir a #tmp, siguiendo el reparto del bloque como hybrid/pandas previo al pushdown"
+    ]
+  }
+}

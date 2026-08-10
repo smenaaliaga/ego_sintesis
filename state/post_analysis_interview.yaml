@@ -53,13 +53,11 @@ blocks:
     - 'flow_graph.json: S5_AjBonos (CodeTask-ajjSEkh77FcmV2ov) sin aristas'
   answers:
   - question_id: Q-B2-1L
-    value: Controles y ajustes iniciales (4 nodos) · PFD-I32F27oZ8ICuby6y; Revisión
-      tablas DCV (2 nodos) · PFD-qSlM5lap8p2JfvZN; Síntesis_Reajustes (12 nodos) ·
-      PFD-9xOO9Nj6dXtUnawt; Síntesis_Final (12 nodos) · PFD-FzVr69cJ7GUTkjGn
-    answered_at: '2026-08-07T17:50:43.307185Z'
+    value: Controles y ajustes iniciales (4 nodos) · PFD-I32F27oZ8ICuby6y
+    answered_at: '2026-08-10T16:07:21.990880Z'
   - question_id: Q-B2-2
     value: Excluirlos
-    answered_at: '2026-08-07T17:50:43.307185Z'
+    answered_at: '2026-08-10T16:07:21.990880Z'
 - block_id: B4-macro-params
   title: Parámetros del SAS sin valor (2)
   description: ''
@@ -82,7 +80,7 @@ blocks:
   answers:
   - question_id: Q-B4-1P
     value: dejarlas sin valor (supuestos visibles en el plan)
-    answered_at: '2026-08-07T17:50:43.352549Z'
+    answered_at: '2026-08-10T16:07:22.068415Z'
 - block_id: B4b-db-connections
   title: 'Prefijo sin confirmar: GOBGENER'
   description: ''
@@ -200,25 +198,25 @@ blocks:
   answers:
   - question_id: Q-B4b-R-GOBGENER
     value: Es una base de datos
-    answered_at: '2026-08-07T17:50:43.359637Z'
+    answered_at: '2026-08-10T16:07:22.074414Z'
   - question_id: Q-B4b-R-LIB
     value: No sé
-    answered_at: '2026-08-07T17:50:43.359637Z'
+    answered_at: '2026-08-10T16:07:22.074414Z'
   - question_id: Q-B4b-R-TABLAS
     value: Es una base de datos
-    answered_at: '2026-08-07T17:50:43.359637Z'
+    answered_at: '2026-08-10T16:07:22.074414Z'
   - question_id: Q-B4b-1
     value: Sí, conectar a la base de datos
-    answered_at: '2026-08-07T17:50:45.322425Z'
+    answered_at: '2026-08-10T16:07:24.006379Z'
   - question_id: Q-B4b-2
     value: Usar la conexión por defecto del proyecto
-    answered_at: '2026-08-07T17:50:45.325424Z'
+    answered_at: '2026-08-10T16:07:24.008376Z'
   - question_id: Q-B4b-4
     value: Lectura y escritura
-    answered_at: '2026-08-07T17:50:45.325424Z'
+    answered_at: '2026-08-10T16:07:24.008376Z'
   - question_id: Q-B4b-5
     value: Mantener todos los nombres
-    answered_at: '2026-08-07T17:50:45.325424Z'
+    answered_at: '2026-08-10T16:07:24.009379Z'
 - block_id: B4d-execution-target
   title: Motor de ejecución por defecto
   description: ''
@@ -244,7 +242,7 @@ blocks:
   answers:
   - question_id: Q-B4d-1
     value: En la base de datos (SQL)
-    answered_at: '2026-08-07T17:50:44.751107Z'
+    answered_at: '2026-08-10T16:07:23.431851Z'
 - block_id: B4c-api-connections
   title: 'Conexión externa: si3.bcentral.cl'
   description: ''
@@ -270,17 +268,16 @@ blocks:
   answers:
   - question_id: Q-B4c-si3.bcentral.cl
     value: Usar una librería/SDK oficial (indico el paquete en texto libre)
-    answered_at: '2026-08-07T17:50:45.325424Z'
+    answered_at: '2026-08-10T16:07:24.009379Z'
   - question_id: B4c:api:si3.bcentral.cl#texto-libre
     value: bcchapi
-    answered_at: '2026-08-07T17:50:45.366433Z'
+    answered_at: '2026-08-10T16:07:24.042956Z'
 - block_id: B5-improvements
-  title: 'Mejora M-001: Eliminar rutas hardcodeadas y crear framework de configuración'
+  title: 'Mejora M-001: Eliminar rutas de archivo hardcodeadas'
   description: ''
   questions:
   - id: Q-M-001
-    text: 'Propuesta: Eliminar rutas hardcodeadas y crear framework de configuración.
-      ¿Qué decides?'
+    text: 'Propuesta: Eliminar rutas de archivo hardcodeadas. ¿Qué decides?'
     question_type: approval
     required: true
     options:
@@ -291,25 +288,27 @@ blocks:
     context: ''
     recommended_default: Aprobar
     evidence:
-    - 'problema: Se detectaron 21 nodos con rutas absolutas hardcodeadas a `/sasdata/BCCH/GEM_DCNI/...`.
-      Evidencia: CS-0001 (CodeTask-1luvy2zX48vyTm18), CS-0005 (CodeTask-1MZt2MbPkdLUOvbC),
-      CS-0010 (CodeTask-6NFJPkCu6mSpiJT9), CS-0013 (CodeTask-6SjSzoc2tRAmj3bg), CS-0020
-      (CodeTask-a5fupJ8fUrKfjLpj), CS-0025 (CodeTask-b4yKCgjI7DEeqndl), CS-0033 (CodeTask-dYzl6IKuUE5lnGRx),
-      CS-0038 (CodeTask-eEgfNiAdcXrWGWaj), CS-0043 (CodeTask-EiTHWvhqkY9b3Los), CS-0053
-      (CodeTask-ifAGwBWSiFAQtKqB), CS-0063 (CodeTask-KbgIzRrZ11b3kVse), CS-0072 (CodeTask-LbbQOdnOflsfHI1p),
-      CS-0078 (CodeTask-lVG5feJnCetjgbtL), CS-0082 (CodeTask-M7Kq8x8xCBjt8NWW), CS-0095
-      (CodeTask-PctehnQmgLccQ4yN), CS-0103 (CodeTask-PV6f6Wo5zpk123T2), CS-0111 (CodeTask-rVgcAFrUWf36VVj6),
-      CS-0125 (CodeTask-uEJMdbfEYJHVR2af), CS-0128 (CodeTask-uRMT7rfFsM7wFmZJ), CS-0137
-      (CodeTask-XkoygblbmDJ46M1C), CS-0138 (CodeTask-yh5u6Xv3BMVagLtW). Impacta portabilidad,
-      debugging y cambios de entorno.'
+    - 'problema: Se han identificado 22 instancias de rutas absolutas hardcodeadas
+      en nodos críticos: CS-0001 (CodeTask-1luvy2zX48vyTm18), CS-0005 (CodeTask-1MZt2MbPkdLUOvbC),
+      CS-0013 (CodeTask-6SjSzoc2tRAmj3bg), CS-0020 (CodeTask-a5fupJ8fUrKfjLpj), CS-0025
+      (CodeTask-b4yKCgjI7DEeqndl), CS-0033 (CodeTask-dYzl6IKuUE5lnGRx), CS-0038/CS-0138
+      (CodeTask-eEgfNiAdcXrWGWaj, CodeTask-yh5u6Xv3BMVagLtW), CS-0043 (CodeTask-EiTHWvhqkY9b3Los),
+      CS-0053 (CodeTask-ifAGwBWSiFAQtKqB), CS-0063 (CodeTask-KbgIzRrZ11b3kVse), CS-0072
+      (CodeTask-LbbQOdnOflsfHI1p), CS-0078 (CodeTask-lVG5feJnCetjgbtL), CS-0082 (CodeTask-M7Kq8x8xCBjt8NWW),
+      CS-0095/CS-0111 (CodeTask-PctehnQmgLccQ4yN, CodeTask-rVgcAFrUWf36VVj6), CS-0103/CS-0125
+      (CodeTask-PV6f6Wo5zpk123T2, CodeTask-uEJMdbfEYJHVR2af), CS-0120 (CodeTask-sQvjLjeo2WC15iXs),
+      CS-0128 (CodeTask-uRMT7rfFsM7wFmZJ), CS-0137 (CodeTask-XkoygblbmDJ46M1C). Ejemplos:
+      ''/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/BD_CTSI_CIERRE.sas7bdat'',
+      ''/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/t_aj_cd_321_6_af32.sas7bdat''.'
     - impacto high · esfuerzo high · riesgo medium
     - afecta 21 nodo(s)
-    - 'justificación: Las rutas hardcodeadas impiden reutilización de código en entornos
-      de desarrollo, testing y producción. Imposibilita migración de datos o cambios
-      en infraestructura sin editar múltiples nodos. Genera deuda técnica crítica.'
-  - id: Q-M-003
-    text: 'Propuesta: Extraer expresiones CASE repetidas a funciones/macros reutilizables.
-      ¿Qué decides?'
+    - 'justificación: Las rutas hardcodeadas impiden portabilidad entre entornos,
+      complican el mantenimiento y generan duplicación de configuración. Un cambio
+      de estructura de directorios requiere editar múltiples nodos. El refactoring
+      a macro variables centralizadas mejora la trazabilidad y reduce el riesgo de
+      inconsistencias.'
+  - id: Q-M-006
+    text: 'Propuesta: Externalizar credenciales hardcodeadas en PROC HTTP. ¿Qué decides?'
     question_type: approval
     required: true
     options:
@@ -320,20 +319,19 @@ blocks:
     context: ''
     recommended_default: Aprobar
     evidence:
-    - 'problema: Se detectaron 6 expresiones CASE complejas repetidas en 25 nodos
-      con similar patrón de inversión de signos: ''CASE WHEN T1.C_ENTRADA=''D'' THEN
-      T1.DATO*-1 ELSE T1.DATO END'' (25 nodos), ''CASE WHEN T1.C_ENTRADA=''H'' THEN
-      T1.DATO*-1 ELSE T1.DATO END'' (16 nodos), ''CASE WHEN T1.C_CUENTA=''REC PRECIO
-      REAJ'' THEN ''REC PRECIO'' ELSE T1.C_CUENTA END'' (8 nodos). Evidencia: repeated_expressions
-      en analysis_evidence, node_ids: CodeTask-2Qnp37e99kvQSM9m, CodeTask-6SjSzoc2tRAmj3bg,
-      CodeTask-Ix7ilK7RK3FKfDEH, CodeTask-KbHRFnaoSR2Bq6wI (y 21 más).'
-    - impacto high · esfuerzo medium · riesgo medium
-    - afecta 25 nodo(s)
-    - 'justificación: La repetición de lógica CASE compleja aumenta complejidad cognitiva,
-      introduce riesgo de errores de copia-pega, y dificulta cambios en reglas de
-      negocio. Centralizar en macro/función facilita auditoría y mantenimiento.'
-  - id: Q-M-004
-    text: 'Propuesta: Eliminar números mágicos y definir constantes nombradas. ¿Qué
+    - 'problema: Se han identificado credenciales en texto plano en 3 nodos: CodeTask-6NFJPkCu6mSpiJT9
+      (Program), CodeTask-PctehnQmgLccQ4yN (Program), CodeTask-rVgcAFrUWf36VVj6 (S1).
+      Fragmento: ''PROC HTTP URL = "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote(...)"''.
+      Macro variables &user y &password expuestas.'
+    - impacto high · esfuerzo medium · riesgo high
+    - afecta 3 nodo(s)
+    - 'justificación: Las credenciales hardcodeadas o en variables macro legibles
+      generan riesgo de seguridad crítico: exposición en logs, control de versiones,
+      y acceso no autorizado a datos. Implementar (1) archivo de configuración encriptado,
+      (2) lectura desde variable de entorno o bóveda de secretos, (3) auditoría de
+      acceso.'
+  - id: Q-M-007
+    text: 'Propuesta: Documenter y estandarizar variables macro inconsistentes. ¿Qué
       decides?'
     question_type: approval
     required: true
@@ -345,22 +343,23 @@ blocks:
     context: ''
     recommended_default: Aprobar
     evidence:
-    - 'problema: Se detectaron 18 números mágicos reiterados sin documentación: 511
-      (27 nodos), 321 (27 nodos), 1000 (24 nodos), 51022 (23 nodos), 51021 (22 nodos),
-      5101 (20 nodos), 3390101 (20 nodos), 3390102 (20 nodos), 339011 (17 nodos),
-      341 (17 nodos), 412 (16 nodos), 334 (15 nodos), 33901 (15 nodos), 322 (15 nodos),
-      352 (14 nodos), 411 (14 nodos), 331 (13 nodos), 361 (13 nodos). Evidencia: repeated_magic_numbers
-      en analysis_evidence. Estos valores se infieren como códigos de sector/producto/instrumento
-      según contexto BD_CTSI.'
-    - impacto high · esfuerzo medium · riesgo low
-    - afecta 35 nodo(s)
-    - 'justificación: Los números mágicos sin significado explícito impiden comprensión
-      del código, facilitan errores de transcripción, y complican cambios en clasificaciones
-      (si sector 511 cambia de código, impacta múltiples nodos). Usar constantes con
-      nombre semántico (ej: SECTOR_SOCIEDADES_NO_FINANCIERAS = 511) mejora legibilidad
-      y mantenibilidad.'
-  - id: Q-M-006
-    text: 'Propuesta: Revisar y documentar dependencias de variables macro. ¿Qué decides?'
+    - 'problema: Se han identificado 12 macro variables con inconsistencias de nombrado
+      y alcance: (1) ''ANIO'' (18 nodos: CodeTask-2Qnp37e99kvQSM9m, CodeTask-LbbQOdnOflsfHI1p,
+      ..., CodeTask-vLMl6RS3eEI64niZ) vs ''anio'' (1 nodo: CodeTask-ifAGwBWSiFAQtKqB)
+      — inconsistencia mayúsculas; (2) ''Sector'' (9 nodos) sin definición centralizada;
+      (3) ''TRIM'' (6 nodos); (4) ''Entrada'' (4 nodos); (5) ''C_WTW'', ''user'',
+      ''password'', ''Codigo'', ''Cuenta'', ''rho'' con baja frecuencia y scopings
+      no documentados.'
+    - impacto medium · esfuerzo medium · riesgo medium
+    - afecta 18 nodo(s)
+    - 'justificación: Las macro variables inconsistentes generan fragilidad en reproducibilidad:
+      valores por defecto no documentados, confusión entre contextos locales/globales,
+      y dificultad en debugging. Crear registry centralizado (ej. MACROVAR_REGISTRY)
+      con {VAR_NAME, TYPE, SCOPE, DEFAULT, LAST_MODIFIED, OWNER} mejora trazabilidad
+      y facilita auditoría.'
+  - id: Q-M-008
+    text: 'Propuesta: Verificar y documentar dependencias de bases de datos. ¿Qué
+      decides?'
     question_type: approval
     required: true
     options:
@@ -371,61 +370,32 @@ blocks:
     context: ''
     recommended_default: Aprobar
     evidence:
-    - 'problema: Se detectaron 12 variables macro con scope incorrecto/no documentado:
-      ANIO (18 nodos), Sector (9 nodos), TRIM (6 nodos), Entrada (4 nodos), C_WTW
-      (4 nodos), user (3 nodos), password (3 nodos), Codigo (3 nodos), Cuenta (2 nodos),
-      rho (1 nodo), anio (1 nodo), Inst_nf (1 nodo). Evidencia: macro_variables en
-      analysis_evidence. Nodos críticos: CodeTask-2Qnp37e99kvQSM9m (ANIO), CodeTask-LbbQOdnOflsfHI1p
-      (ANIO, Sector), CodeTask-Lf2OAAam1xLYVxj4 (ANIO, C_WTW), CodeTask-6NFJPkCu6mSpiJT9
-      (user, password).'
-    - impacto high · esfuerzo medium · riesgo high
-    - afecta 26 nodo(s)
-    - 'justificación: Las variables macro sin inicialización explícita en autoexec
-      o en llamada hacen código no reproducible. Diferentes ejecutores obtienen resultados
-      distintos. Credenciales (user, password) en macro variables exponen seguridad.
-      Se requiere declaración centralizada, inicialización condicional y documentación
-      de alcance.'
-  - id: Q-M-007
-    text: 'Propuesta: Versionar datos de entrada y crear catálogo de dependencias
-      de tablas. ¿Qué decides?'
-    question_type: approval
-    required: true
-    options:
-    - Aprobar
-    - Rechazar
-    - Explicar más
-    source_finding: ''
-    context: ''
-    recommended_default: Aprobar
-    evidence:
-    - 'problema: Se detectaron 8 tablas de entrada sin versionado en 62 nodos. Tabla
-      crítica BD_CTSI (20+ nodos) referenciada como BD_CTSI_CIERRE.sas7bdat. Otras:
-      SALIDA_WTW_RESUMEN, IDENTIFICA_FFMM.sas7bdat (CodeTask-ifAGwBWSiFAQtKqB), base_af3_total_v2.sas7bdat
-      (20 nodos: CodeTask-1luvy2zX48vyTm18, CodeTask-eEgfNiAdcXrWGWaj, CodeTask-yh5u6Xv3BMVagLtW).
-      Base de datos TABLAS contiene 34 tablas en 62 nodos. Evidencia: db_dependencies
-      en analysis_evidence (libref: DCNIDATA, TABLAS, GOBGENER, LIB).'
-    - impacto high · esfuerzo high · riesgo high
-    - afecta 45 nodo(s)
-    - 'justificación: Sin versionado de datos de entrada, ejecuciones en fechas distintas
-      producen resultados diferentes. Imposible auditar, reproducir análisis históricos
-      ni rollback. Tabla BD_CTSI está presente en 25 nodos con rutas hardcodeadas;
-      cambio de ruta o estructura corrompe 25 procesos simultáneamente.'
+    - 'problema: Se han detectado 4 librerías con estado no verificado (verified_db=false):
+      (1) DCNIDATA (8 tablas, 4 nodos): AHORRO_PRE_0, AHORRO_PRE_1, DEUDA_HOGARES,
+      DEUDA_HOLDING, FBCF_SF, SALDOS_WTW_SI, SALIDA_WTW_RESUMEN, SALIDA_WTW_RESUMEN_ANT;
+      (2) GOBGENER (2 tablas, 1 nodo): CR18_T_SCN_2, EJECUCION; (3) LIB (1 tabla,
+      3 nodos): SERIES_OBS; (4) TABLAS (34 tablas, 62 nodos): BD_CTSI (20 nodos),
+      T_CONTRAPARTIDAS (19 nodos), T_INSTRUMENTOS (21 nodos), T_SECTORIZACION (20
+      nodos), etc. Sin información de engine ni ubicación física.'
+    - impacto high · esfuerzo high · riesgo medium
+    - afecta 4 nodo(s)
+    - 'justificación: Las dependencias no verificadas generan fragilidad: ruptura
+      silenciosa si tabla se remueve/renombra, dificultad en rastreo de impacto, y
+      falta de gobernanza. Documentar schema (campos, tipos, restricciones), verificar
+      existencia en CI/CD, y versionar cambios es crítico para reproducibilidad.'
   answers:
   - question_id: Q-M-001
-    value: Aprobar
-    answered_at: '2026-08-07T17:50:45.341434Z'
-  - question_id: Q-M-003
     value: Rechazar
-    answered_at: '2026-08-07T17:50:45.341434Z'
-  - question_id: Q-M-004
-    value: Rechazar
-    answered_at: '2026-08-07T17:50:45.341434Z'
+    answered_at: '2026-08-10T16:07:24.024387Z'
   - question_id: Q-M-006
-    value: Rechazar
-    answered_at: '2026-08-07T17:50:45.341434Z'
+    value: Aprobar
+    answered_at: '2026-08-10T16:07:24.024387Z'
   - question_id: Q-M-007
-    value: Rechazar
-    answered_at: '2026-08-07T17:50:45.341434Z'
+    value: Aprobar
+    answered_at: '2026-08-10T16:07:24.024387Z'
+  - question_id: Q-M-008
+    value: Aprobar
+    answered_at: '2026-08-10T16:07:24.024387Z'
 - block_id: B5b-cell-logging
   title: Logging de resultados en los notebooks
   description: ''
@@ -447,14 +417,14 @@ blocks:
   answers:
   - question_id: Q-B5b-1
     value: Sí, agregar logging de resultados
-    answered_at: '2026-08-07T17:50:45.343435Z'
+    answered_at: '2026-08-10T16:07:24.027404Z'
 - block_id: B6-closure
   title: Cierre de la entrevista
   description: ''
   questions:
   - id: Q-B6-1
-    text: 'Resumen: este lote traduce 30 nodo(s); en todo el proyecto migraremos 81
-      nodo(s), excluiremos 3, aplicaremos 1 mejora(s) y quedan 3 supuesto(s) visibles.
+    text: 'Resumen: este lote traduce 4 nodo(s); en todo el proyecto migraremos 81
+      nodo(s), excluiremos 3, aplicaremos 3 mejora(s) y quedan 3 supuesto(s) visibles.
       ¿Procedemos con el plan de traducción?'
     question_type: approval
     required: true
@@ -468,6 +438,6 @@ blocks:
   answers:
   - question_id: Q-B6-1
     value: Sí, proceder al plan de traducción
-    answered_at: '2026-08-07T17:50:45.366433Z'
+    answered_at: '2026-08-10T16:07:24.042956Z'
 started_at: null
 completed_at: null

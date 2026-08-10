@@ -4,7 +4,7 @@
   "reviews": [
     {
       "node_id": "CodeTask-LbbQOdnOflsfHI1p",
-      "note": "Agrupa y calcula resúmenes de CNF por sector (S.1–S.14) aplicando CASE condicionales complejos y múltiples PROC SQL anidados con OUTER UNION CORR; riesgo: coincidencia entre claves de join implícitas (AÑO, TRIM, C_SI_SCN), dependencia de tablas TABLAS.SALIDA_WTW_RESUMEN y TABLAS.C_FAME, y uso de CALCULATED para renombrar dinámicamente columnas derivadas que deben replicarse en Python con lógica de diccionarios y DataFrames agrupados."
+      "note": "Realiza 70+ PROC SQL anidados con múltiples transformaciones de datos financieros (agregaciones, joins a tablas de referencia, casos condicionales, formatos numéricos y cálculos de signo). Riesgos críticos: validación de integridad referencial en joins (especialmente con TABLAS.C_FAME y TABLAS.CODIGOS), tratamiento de valores NULL en sumas (COALESCE), dependencia de tabla PERIODO no definida en el flujo, formato SAS COMMA14.2 y BEST12.2 que requieren conversión de formato, lógica de signos condicional (inversión de datos según C_ENTRADA='D'), y acumulación de datos en múltiples cruces cartesianos (PERIODO t2) que amplían significativamente el volumen sin validar cardinalidad."
     }
   ]
 }

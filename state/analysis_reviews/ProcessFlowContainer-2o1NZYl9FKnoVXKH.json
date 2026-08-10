@@ -4,27 +4,27 @@
   "reviews": [
     {
       "node_id": "CodeTask-Lf2OAAam1xLYVxj4",
-      "note": "Construcción de tabla base de saldos (Saldos_SI) con 4 LEFT JOINs, CASE anidados y formato de período hardcodeado mediante SUBSTR+CHAR. Riesgo: macros dinámicas (&ANIO, &C_WTW) sin validación, lógica booleana compleja en cláusulas WHERE combinando c_entrada y N_SCN_wtw, múltiples UPDATE inline sobre misma tabla, y dependencia crítica de diccionarios de datos SAS (TABLAS.*)."
+      "note": "Extrae y consolida datos transaccionales con lógica de negocio compleja (mapeos condicionales de sectores e instrumentos, normalización de contraparte, cálculos de chequeo de doble entrada). Riesgo: múltiples CASE WHEN anidados y sustituciones de macros SAS (&ANIO, &C_WTW) sin validación; la lógica de agregación debe replicarse exactamente en SQL/Pandas."
     },
     {
       "node_id": "Query-VQ29h8krzaqVLkki",
-      "note": "Extrae valores únicos de columna N_SCN_wtw de tabla Saldos_SI. Riesgo: simple pero dependiente del resultado anterior; en Python requiere asegurar que Saldos_SI esté materializado y validar que la columna exista."
+      "note": "Consulta de valores únicos de instrumentos (N_SCN_wtw) desde la tabla consolidada para alimentar lista de filtro/selector. Riesgo: depende críticamente de que Saldos_SI esté correctamente procesada en el nodo anterior."
     },
     {
       "node_id": "Query-BLk9lewZ7zj2cQFo",
-      "note": "Extrae valores únicos de columna N_SI_C_AGENTE de tabla Saldos_SI. Riesgo: igual que Query anterior; utilizado para poblar dimensión de acreedor/emisor, cualquier cambio en lógica de CASE del nodo anterior impacta estos resultados."
+      "note": "Consulta de valores únicos de emisores/acreedores (N_SI_C_AGENTE) para selector de usuario. Riesgo: misma dependencia de Saldos_SI y la lógica de normalización de claves ('S.123','S.124' → 'OFIs+Auxiliares') debe estar correcta."
     },
     {
       "node_id": "CodeTask-ziOqjdQngJ3iTiRS",
-      "note": "Genera gráfico dinámico de barras agregando SALDOS_SI por PERIODO, C_CUENTA y c_Sector_pub, filtrando por c_entrada y N_SCN_wtw. Riesgo: usa macro dinámico &C_WTW dentro de CASE en WHERE, lógica condicional de c_entrada invierte según si instrumento es 'Préstamos', ODS GRAPHICS con templates (template_chart4) requiere definición externa, PROC SGRENDER con BY statement necesita sincronización de datos previos."
+      "note": "Genera gráfico de barras agregado para balances (cuenta 'Bce Final') por emisor/acreedor usando template SAS sgrender. Riesgo: depende de macro &C_WTW para filtrar instrumento y de template propietario (template_chart4) que no será portátil a Python; ODS Graphics requiere reimplementación con librerías como matplotlib/plotly."
     },
     {
       "node_id": "CodeTask-PTl7dbnx3tB9LNaa",
-      "note": "Duplica lógica de CodeTask-Lf2OAAam1xLYVxj4 pero lee tabla dinámicamente nombrada (BD_CTSI_R&ANIO&TRIM) e incluye tabla de cálculos parciales omitiendo validación WTW. Riesgo: macro en nombre de tabla fuente sin delimitadores, PERIOD genera formato año.trimestre distinto (sin SUBSTR), UPDATE menos exhaustivo, genera dos PROC TABULATE idénticas produciendo redundancia de código."
+      "note": "Duplica consolidación principal pero desde tabla con nombre dinámico (BD_CTSI_R&ANIO&TRIM) sin validación de año/trimestre en WHERE; genera tablas TABULATE de balances para ambos tipos de entrada. Riesgo: macro &ANIO está comentada en WHERE, creando inconsistencia lógica; formato COMMA14 de SAS debe convertirse a formato Python nativo."
     },
     {
       "node_id": "CodeTask-Dn53X4xCKNDMzlYP",
-      "note": "Genera segundo gráfico filtrando por c_Cuenta='Financiera' (operación vs balance). Riesgo: casi idéntico a CodeTask-ziOqjdQngJ3iTiRS pero con variables de salida renombradas (_F sufijo), reutiliza macro &C_WTW con misma lógica condicional, requiere template externo, BY statement necesita orden de datos garantizado."
+      "note": "Genera gráfico de barras para operaciones financieras (cuenta 'Financiera') filtrando por el mismo instrumento. Riesgo: mismo problema que CodeTask-ziOqjdQngJ3iTiRS con template SAS y ODS Graphics; además, la lógica CASE para entrada (H/D) depende de strings de macro sin tipado."
     }
   ]
 }

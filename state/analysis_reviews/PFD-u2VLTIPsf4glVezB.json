@@ -4,31 +4,31 @@
   "reviews": [
     {
       "node_id": "CodeTask-jPjrJizeiaHvjreh",
-      "note": "Procesa cuentas netas SNF: manipulación de signos, agregaciones por componentes SNA (rentas, impuestos, transferencias), cálculo de ingreso empresarial, ahorro bruto y deuda. Riesgos: lógica condicional compleja con múltiples CASE anidados, LEFT JOINs implícitos (relaciones muchos-a-muchos sin clave única), macros de formato dinámico, joins sobre dimensiones que pueden faltar registros."
+      "note": "S7_01_SNF (Empresas): Manipula signos de cuentas y calcula CNF mediante PROC SQL con joins implícitos (LEFT JOIN sobre tablas de referencias normalizadas), manejo de formatos SAS (CHAR4, COMMA14), y cálculos de rentas netas que dependen de condiciones implícitas en C_ENTRADA/C_CUENTA. Riesgo: joins implícitos complejos, macros de formato SAS, divisiones por cero potencial en ratios."
     },
     {
       "node_id": "CodeTask-KbHRFnaoSR2Bq6wI",
-      "note": "Calcula cuentas de ingresos y ahorro de hogares: ingreso disponible bruto, ahorro previsional vs no previsional, riqueza financiera neta e incidencias. Riesgos: asimetrías en signos por tipo de cuenta, referencias a fondos de pensiones por código sectorial fijo (511, 34, 341), falta de validación de sumas de control, PIB anualizado puede fallar si datos incompletos."
+      "note": "S7_02_Hogares: Calcula CNF para sector hogares mediante OUTER UNION CORR (sintaxis SAS específica para uniones no normalizadas), con cálculos de ahorro previsional/no previsional y riqueza financiera. Riesgo: OUTER UNION CORR no existe en SQL estándar, dependencia de sintaxis SAS pura, manejo de datos faltantes en comparativas depositos-fondos."
     },
     {
       "node_id": "CodeTask-mCE2amv2UM7gUEki",
-      "note": "Construcción de cuentas de gobierno: ingreso, ahorro, gasto en consumo, deuda implícita vs CNSI, capacidad de financiamiento. Riesgos: comparación con datos administrativos DIPRES que puede no alinearse en definiciones, lógica de tipo de deuda compleja (bonos reconocimiento), joins a contrapartidas filtrados por código hardcodeado de sector público/externo."
+      "note": "S7_05_Gobierno: Genera CNF gobierno con gasto de consumo y ahorro anualizado, compara con datos DIPRES externos mediante joins complejos y cálculos de incidencias. Riesgo: integración con tabla PTMO_G externa (posible dependencia BD), CONTAINS en donde implícito, LAG4 para variaciones anuales requiere ordenamiento específico."
     },
     {
       "node_id": "CodeTask-kVJViJGgbJOLVelr",
-      "note": "Análisis del sector financiero: cuentas de ingresos, rentas de propiedad, activos/pasivos por instrumento y flujos. Riesgos: UPDATE en marcha de códigos (D.41r→D.41), cálculos dependientes de orden de PROC SQL, renombramiento dinámico de códigos (D.443→D.44), riesgo de duplicados si LEFT JOINs no son restrictivos."
+      "note": "S7_06_SF (Sector Financiero): Calcula CNF para sector financiero con énfasis en rentas de propiedad, ahorro y deuda, usando múltiples PROC SQL con CASE complejos y CONTAINS sobre códigos. Riesgo: CONTAINS como filtro implícito no es SQL estándar, joins en cascada (T1-T7) aumentan complejidad, manejo inconsistente de B.9."
     },
     {
       "node_id": "CodeTask-eHcgu5CrdT7hHfZQ",
-      "note": "Desagregación de deuda y PFN por subsectores SF: replica cálculos filtrados por código de subsector. Riesgos: duplicación de lógica sin funciones reutilizables, referencias a códigos de subsectores que cambian entre versiones de bases, validaciones de PIB acumulado que descartan silenciosamente registros."
+      "note": "S7_06_SF SubSector: Desglosa análisis de sector financiero por subsector (Bancos, Aseguradoras, Fondos), genera gráficos de posición financiera y deuda. Riesgo: macros &Sector sin inicialización explícita (posible error runtime), reutilización de tablas globales (CF_PIB_SF_SubS) sin garantía de existencia previa."
     },
     {
       "node_id": "CodeTask-sGAwObcilp5c3zVx",
-      "note": "Gráficos de zoom por subsector SF mediante macro &Sector: replica filtros sin validación. Riesgos: macro sin validación de existencia, referencias globales a tablas RFN_PIB_SF_SubS/CF_PIB_SF_SubS que deben preexistir, cálculos sobre C_Sector_pub string propenso a inconsistencias de espacios y codificación."
+      "note": "S7_06_SF SubSector_Zoom: Filtra y grafica datos de subsector específico usando macro &Sector para dinámica. Riesgo: dependencia de macro global no controlada, referencias a tablas (AF_PIB_SF_sUBs, PF_PIB_SF_SubS) creadas en nodo anterior sin validación, CONTAINS implícito en WHERE."
     },
     {
       "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
-      "note": "Integración panorámica de sectores: consolida cuentas de capital y PFN mediante OUTER UNION CORR con conversión de códigos en tiempo de ejecución. Riesgos: OUTER UNION CORR asume compatibilidad de columnas sin validación, renombramiento in-situ de componentes (K.21/D.9/P.51/P.52), pérdida de trazabilidad, acumulación de DROP TABLE sin control de dependencias."
+      "note": "S7_00_Panorama: Consolida datos de todos los sectores (S.11, S.12, S.13, S.14) mediante DATA steps y PROC SQL, genera análisis comparativos de ahorro, FBC y posición neta nacional. Riesgo: fusión de múltiples tablas con esquemas heterogéneos (CNF_G_ANUAL, CNF_SF_ANUAL, CNF_ANUAL_HH), lógica condicional sobre C_CUENTA y C_SCN frágil, SET con drop selectivo puede perder contexto."
     }
   ]
 }

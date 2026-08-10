@@ -4,51 +4,51 @@
   "reviews": [
     {
       "node_id": "CodeTask-1luvy2zX48vyTm18",
-      "note": "Carga tabla base BD_CTSI desde archivo SAS 7BDAT y aplica >50 UPDATE/DELETE en PROC SQL para reclasificaciones masivas de contragentes y códigos de instrumentos (AF.29, AF.42, AF.5, etc.) con lógica condicional compleja dependiente del año/trimestre — riesgo: cambios de reglas entre cierres generan inconsistencias retroactivas sin versionado."
+      "note": "Carga tabla principal desde presíntesis y aplica 50+ actualizaciones de clasificación (sectores, contragentes, instrumentos AF) mediante PROC SQL con cambios condicionales complejos; riesgo: cambios de contragente en cascada (e.g., 36912→36) pueden causar desalineaciones si lógica de actualización no es idempotente, y PROC APPEND sin validación previa de duplicados."
     },
     {
       "node_id": "CodeTask-6SjSzoc2tRAmj3bg",
-      "note": "Executa >80 creaciones de tablas temporales con PROC SQL y DATA STEP para conciliación cruzada de depósitos (AF.22, AF.29), títulos (AF.31, AF.32) y cuotas de fondos entre sectores — riesgo: LEFT/RIGHT join implícitos en CASE WHEN sin explicitar relaciones, SELECT CASE complejidad O(n²) con cálculos de diferenciales que requieren auditoría de contrapartidas."
+      "note": "Ejecuta 100+ operaciones de reconciliación bilateral (depósitos AF22/AF29, dinero AF21, bonos AF31/AF32, fondos AF521/AF522) impactando activo y pasivo de múltiples sectores; riesgo crítico: cálculos de diferencias acumuladas sin validación de balances intermedios y asunción de que contragentes específicos siempre existen en datos de origen."
     },
     {
       "node_id": "CodeTask-1MZt2MbPkdLUOvbC",
-      "note": "Imputa reservas fondos pensiones (AF.62) distribuyendo en 4 sectores con ratios fijos (0.2, 0.45, 0.02, 0.33) y calcula valor de mercado de acciones (AF.5) en holdings usando tablas externas de ratios — riesgo: ratios hardcodeados sin documentación de origen, referencias a archivos SAS externos (/ratio_*.sas7bdat) no versionadas."
+      "note": "Imputa reservas (AF.62) distribuyéndola en 4 sectores con pesos fijos (20%, 45%, 2%, 33%), calcula valor de mercado de AF5 holdings con ratios externos y ajusta patrimonio usando divisiones por ratios sin manejo de división por cero; riesgo: ratios pueden ser nulos/negativos causando MISSING o infinitos."
     },
     {
       "node_id": "CodeTask-zVjjleFBA72oSeFU",
-      "note": "Reclasifica patrimonio empresas/hogares (AF.5 H→D) con múltiples UPDATE condicionales + 2 procesos de distribución del 33.3% en AF.5 sector 36912 — riesgo: splits de porcentajes sin validación de suma=100%, cambios sucesivos de C_CAGENTE crean trazabilidad difusa."
+      "note": "Imputa activo/pasivo de hogares desde contrapartidas, divide patrimonio de empresas en 3 porciones (1/3 cada una para sectores 36912, 36, 53) con lógica multiplicativa; riesgo: divisiones hardcodeadas (1/3, 0.36281) son frágiles ante cambios en estructura de empresas y pérdida de precisión aritmética."
     },
     {
       "node_id": "CodeTask-c5JoNhJJnZiM91gN",
-      "note": "Procesa >40 conciliaciones de préstamos (AF.41, AF.42) entre sectores con PROC SQL SUM/GROUP BY y cálculo de deltas para imputaciones en sector 51022 — riesgo: donde se imputa el diferencial depende del orden de ejecución y de valores NULL/missing en C_CUENTA (Rec Precio vs Rec Precio Reaj)."
+      "note": "Reconcilia préstamos de corto y largo plazo (AF41/AF42) entre 8 pares de sectores usando diferencias acumuladas y ajustes en AF7 con lógica de casos mutuamente excluyentes; riesgo: lógica de cambio sectorial (51022 vs 51021) depende de moneda ('D') pero validación incompleta puede enrutar datos incorrectamente."
     },
     {
       "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
-      "note": "Ajusta bonos (AF.31, AF.32) a valor de mercado leyendo tabla externa t_aj_mdo_af* y aplicando cálculos de revalorización + imputa cartera desde DCV con SELECT GROUP BY complejos — riesgo: tabla DCV (t_aj_dcv_af31_act_c21.sas7bdat) no incluida en versión actual, precio de mercado puede ser nulo/desactualizado."
+      "note": "Imputa bonos de corto y largo plazo (AF31/AF32) integrando datos DCV con valor par y valor mercado usando ratios de precio variable; riesgo: joins con tabla DCV externa sin validación de cobertura temporal y conversión de sector DCV (3321→33212) con hardcoding de valores depende de datos futuros consistentes."
     },
     {
       "node_id": "CodeTask-SGvXxdgboVasDeiV",
-      "note": "Reclasifica cuotas fondos (AF.521 → AF.522) con ~15 UPDATE condicionales por sector/instrumento y realiza 2 grandes conciliaciones activo-pasivo imputando diferencia en sector 51022 — riesgo: reglas de reclasificación específicas por sector (FI, FFMM, AFP, etc.) fragmentadas, sin tabla de decisión centralizada."
+      "note": "Reclasifica 30+ tipos de cuotas de fondos (AF.521/AF.522) entre money market y no money market según sector con cambios condicionales en cadena; riesgo: actualización iterativa de contragentes (339→3390101/3390102) sin transaccionalidad y validación de exclusividad mutua entre categorías."
     },
     {
       "node_id": "CodeTask-s2iKVLUIFegPxhYS",
-      "note": "Genera activos netos de derivados (AF.34) eliminando pasivos y reestructurando como activo con inversión cruzada entre bancos/fondos/RM — riesgo: lógica de neteado asume simetría de información entre sectores, join implícito INPUT(C_CAGENTE,BEST.) sin validar rango de valores."
+      "note": "Imputa pasivos netos de derivados (AF.34) anulando pasivos y duplicando como activos netos con factores de diferenciación por contrapartida y sector; riesgo: lógica de anulación y neteado asume simetría perfecta entre activos y pasivos que puede no existir en datos fuente."
     },
     {
       "node_id": "CodeTask-TYjddV77Ba6raW6K",
-      "note": "Imputa capital/patrimonio (AF.5) de 7 sectores recursivamente distribuyendo según estructura de inversión cruzada + ajustes por valor libro/mercado usando ratios externos — riesgo: dependencia circular entre sectores (36↔51022↔321↔31), orden de ejecución crítico, ratios desactualizados generan divergencias."
+      "note": "Reconcilia patrimonio (AF.5) de 7 categorías de sectores mediante impacción sectorizada de patrimonios de bancos, seguros, auxiliares y ofis restando diferencias en contragentes 53; riesgo: múltiples DROP TABLE dentro de PROC DATASETS sin confirmación previa y lógica de cambio CONTAINS en comparación de strings de sectores puede fallar si almacenamientos varían."
     },
     {
       "node_id": "CodeTask-fuWrePKSkcUXvfZF",
-      "note": "Concilia créditos comerciales (AF.7) entre 8 pares de sectores con 50+ INSERT/imputa, distribuyendo pasivos 55%-45% entre hogares/empresas basado en fórmulas históricas — riesgo: fórmulas (0.55, 0.45, 0.036281) sin versionado, contrapartida implícita entre activos D y pasivos H puede romper si falta registros."
+      "note": "Concilia créditos comerciales (AF.7) entre 6 pares sectoriales usando imputaciones bilaterales desde pasivos a activos con ajustes en contragentes 53 y 321; riesgo: asume que saldos negativos en sectores nunca ocurren y dependencia de orden de ejecución de 100+ PROC SQL sin validación de idempotencia."
     },
     {
       "node_id": "CodeTask-uEJMdbfEYJHVR2af",
-      "note": "Reclasifica rentas (D.41→D.44, D.443, D.42) por sector con ~20 UPDATE + 5 INSERT/SELECT distribuyendo dividendos según estructura de AF.5 activo — riesgo: estructura AF.5 calculada sin agregar pueden cambiar entre cierres, imputaciones usan proporciones calculadas en subqueries que pueden returnó cero divisiones."
+      "note": "Transforma rentas de propiedad (D.4x) entre cuentas de sectores (D.41→D.44, D.42→D.443) con apertura por contrapartida usando estructuras porcentuales del AF5; riesgo: cálculos de porcentajes de tenencia pueden generar MISSING si saldos totales de AF.5 son cero y cambios de C_SCN sin validación de integridad referencial."
     },
     {
       "node_id": "CodeTask-9OqX3kaymboJVh4I",
-      "note": "Calcula reajustes (D.41 desde Rec Precio Reaj en AF.29/AF.42) cruzando 5 tablas con estructura de fondos mutuos + imputa en D.443/D.44 — riesgo: tablas externas (DEP_HH_FM, T_AJUSTE_CONCILIACION) no encontradas en código, multiplicaciones de estructura pueden amplificar errores de redondeo."
+      "note": "Calcula reajustes de depósitos y préstamos (AF.29/AF.42) impactando D.41 con sectorización de fondos mutuos usando pesos dinámicos desde tabla DEP_HH_FM; riesgo: dependencia de tabla externa DEP_HH_FM que puede no estar sincronizada con BD_CTSI y divisiones por cero implícitas si totales son cero."
     }
   ]
 }

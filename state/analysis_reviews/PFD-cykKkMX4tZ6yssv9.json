@@ -4,7 +4,7 @@
   "reviews": [
     {
       "node_id": "CodeTask-ajjSEkh77FcmV2ov",
-      "note": "Limpieza inicial y múltiples PROC SQL complejos con LEFT JOINs sobre tablas de dimensiones (T_Sectorizacion, T_Contrapartidas, T_Sectorizacion_N2/N3) y lógica de CASE condicional; riesgos: mapeeos implícitos entre claves de sectorización (S.124→S.123), formatos SAS (PUT con NUMX5), filtros hardcodeados por año (>2002), variables macro dinámicas (&ANIO, &TRIM) comentadas, y cuatro APPEND secuenciales a tabla persistente que requieren garantía de transaccionalidad y sin duplicados."
+      "note": "Ejecuta múltiples PROC SQL con joins implícitos (LEFT JOIN sobre tablas de sectorización y contrapartidas), transformaciones condicionales (CASE WHEN con sustituciones de códigos S.124→S.123), agregaciones por múltiples dimensiones y cálculos de deltas de precio; riesgo principal: lógica de mapeo de códigos hardcoded y dependencia de estructura de tablas dimensionales (T_Sectorizacion, T_Sectorizacion_N2/N3, T_Contrapartidas) que debe validarse en migración, además de variable de macro &ANIO sin documentación de rango de validez."
     }
   ]
 }

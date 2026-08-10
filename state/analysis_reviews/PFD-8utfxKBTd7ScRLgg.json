@@ -4,27 +4,27 @@
   "reviews": [
     {
       "node_id": "CodeTask-R47QCuhcMSIJeuMG",
-      "note": "Extrae datos de capacidad/necesidad de financiamiento (B.9) con múltiples PROC SQL secuenciales que generan la misma tabla; riesgo: lógica de JOIN implícito en cláusula FROM con alias dinámicos (T1-T5), substring de campos especiales ('AÑO'n) y cálculos con sintaxis SAS CALCULATE que deben mapearse a window functions de SQL estándar."
+      "note": "Genera tabla B9 de capacidad/necesidad de financiamiento con múltiples PROC SQL secuenciales y joins implícitos en donde cláusulas; riesgo principal: lógica de filtrado compleja y comentada con GROUP BY selectivo que podría introducir valores nulos o duplicados en la migración si no se preserva el orden de ejecución."
     },
     {
       "node_id": "CodeTask-m47i4alOB19ERHFp",
-      "note": "Valida consistencias de balance (BF=BI+OF+RP+RV) y comparativa D=H por instrumento; riesgo: múltiples OUTER UNION CORR y transformaciones condicionales complejas con CASE WHEN anidados, además de referencias a campos de fecha en formato SAS ('AÑO'n) que requieren desquote y conversión."
+      "note": "Valida consistencia de balances (BF=BI+OF+RP+RV) mediante PROC SQL con CASE WHEN dinámico que invierte signos según condiciones de cuenta; riesgo: conversión de lógica condicional de signos y nombres de columnas entre comillas pueden generar ambigüedad en identificadores después de la migración."
     },
     {
       "node_id": "CodeTask-OBQXqokTpv23CnGn",
-      "note": "Calcula ratios de ajuste de conciliación (AF.71/AF.9) respecto a PIB con agregaciones trimestrales y gráficos GCHART; riesgo: depende de tabla PIB pre-calculada, use de macrovariables (&ANIO, &TRIM) sin definición visible, y sintaxis de gráficos (AXIS, SYMBOL, LEGEND) que no tiene equivalente directo en Python."
+      "note": "Calcula ratios de ajuste de conciliación (AF.71, AF.9) respecto a PIB acumulado con divisiones potencialmente por cero (T3.DATO<>.) y referencias a variables de macro (&ANIO, &TRIM) no definidas; riesgo crítico: dependencia de macros globales y manejo de valores nulos que debe replicarse exactamente."
     },
     {
       "node_id": "CodeTask-q9OPgdkf3WcKIpbW",
-      "note": "Extiende ratios de conciliación a nivel acumulado anual y segmenta por empresas/hogares; riesgo: depende de AF71 y PIB de tareas anteriores, deletea datos dinámicamente con macrovariables, y genera salidas GCHART con filtros WHERE en KEEP statement que es sintaxis poco portátil."
+      "note": "Procesa datos AF71 acumulados con conversiones de trimestre a año fiscal y referencias a macros (&ANIO, &TRIM); riesgo: lógica de cambio de período fiscal (TRIM IN 1,2,3) requiere traducción cuidadosa y las eliminaciones condicionales pueden generar inconsistencias en índices de tiempo."
     },
     {
       "node_id": "CodeTask-Ix7ilK7RK3FKfDEH",
-      "note": "Valida consistencias macroeconómicas: FBC vs ahorro, PIB por tres enfoques, D8/D6 sector financiero; riesgo: múltiples tablas intermedias creadas y destruidas, lógica de signos invertida con CASE WHEN condicionales según sectores/cuentas hardcodeados (SECTOR IN 34,341,342), alto acoplamiento con estructura específica de BD_CTSI."
+      "note": "Realiza múltiples validaciones de consistencia (FBC vs Ahorro, PIB por enfoques origen/gasto/ingreso, D8 vs D6) con UNIONes de datos y operaciones aritméticas inversas; riesgo: acumulación de errores en concatenación de tablas (DATA SET) y la lógica de actualización condicional de DATO con PROC SQL UPDATE."
     },
     {
       "node_id": "CodeTask-FqwyEcVSHGBw3z1q",
-      "note": "Reporta saldos negativos de instrumentos financieros por sector y contraparte; riesgo: uso de CONTAINS en filtro de cadenas para detección de 'AF.52', campos derivados con lógica CASE compleja (N_SCN_N2), y dependencia de jerarquía dimensional estricta (C_SCN_N0, C_SCN_N1, N_SCN_N2) que puede ser frágil en migración."
+      "note": "Identifica saldos negativos de instrumentos financieros con LEFT JOINs en cuatro tablas, sintaxis CONTAINS en CASE y cálculos de escala (/1000); riesgo: operador CONTAINS no es estándar SQL y podría no tener equivalente directo en Python; manejo de instrumentos con categorización condicional."
     }
   ]
 }

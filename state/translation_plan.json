@@ -2,7 +2,7 @@
   "project_name": "Síntesis_M_CR18",
   "egp_file": "D:\\Projects\\Migraciones-SAS\\Síntesis_M_CR18\\input\\egp\\Síntesis_M_CR18.egp",
   "output_strategy": "notebook-flow",
-  "generated_at": "2026-08-08T16:16:26.865923+00:00",
+  "generated_at": "2026-08-10T16:07:27.135607+00:00",
   "targets": [
     {
       "node_id": "CodeTask-XkoygblbmDJ46M1C",
@@ -20,9 +20,7 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
@@ -66,7 +64,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
-        "M-001"
+        "M-006"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -366,7 +364,8 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-001"
+        "M-006",
+        "M-007"
       ],
       "preprocess_steps": [],
       "dependencies": [],
@@ -1039,7 +1038,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-001"
+        "M-008"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -1111,7 +1110,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-001"
+        "M-007"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -1677,9 +1676,7 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
@@ -2673,9 +2670,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
@@ -3584,9 +3579,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-1luvy2zX48vyTm18"
@@ -5351,9 +5344,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-1luvy2zX48vyTm18",
@@ -6390,9 +6381,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-1MZt2MbPkdLUOvbC",
@@ -9919,9 +9908,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-1MZt2MbPkdLUOvbC",
@@ -14759,9 +14746,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
@@ -15922,9 +15907,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-a5fupJ8fUrKfjLpj"
@@ -17689,9 +17672,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-KbgIzRrZ11b3kVse",
@@ -18728,9 +18709,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-EiTHWvhqkY9b3Los",
@@ -22257,9 +22236,7 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-EiTHWvhqkY9b3Los",
@@ -27305,7 +27282,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [
@@ -27463,7 +27442,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
-        "M-001"
+        "M-007"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -27850,7 +27829,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-R47QCuhcMSIJeuMG",
@@ -27981,7 +27962,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-OBQXqokTpv23CnGn",
@@ -30449,7 +30432,9 @@
         "TABLAS.FILTROS"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [
@@ -30619,7 +30604,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-7lh12aT9AnDfJenj"
@@ -30863,7 +30850,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [
@@ -31050,7 +31039,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-Lf2OAAam1xLYVxj4",
@@ -31256,7 +31247,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-vKSNOED9VpSvBnYB"
@@ -31321,7 +31314,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-2Qnp37e99kvQSM9m",
@@ -31366,7 +31361,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-2Qnp37e99kvQSM9m",
@@ -31405,7 +31402,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-2Qnp37e99kvQSM9m",
@@ -31446,7 +31445,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-2Qnp37e99kvQSM9m",
@@ -31544,7 +31545,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-001"
+        "M-008"
       ],
       "preprocess_steps": [],
       "dependencies": [],
@@ -31917,7 +31918,9 @@
         "DCNIDATA.SALDOS_WTW_SI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-008"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-b4yKCgjI7DEeqndl"
@@ -32020,7 +32023,9 @@
         "DCNIDATA.SALIDA_WTW_RESUMEN_ANT"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-007"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-b4yKCgjI7DEeqndl",
@@ -32104,7 +32109,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-001"
+        "M-006"
       ],
       "preprocess_steps": [],
       "dependencies": [],
@@ -32354,9 +32359,7 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-001"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-PctehnQmgLccQ4yN"
@@ -32423,7 +32426,9 @@
         "DCNIDATA.FBCF_SF"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-008"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-PctehnQmgLccQ4yN",
