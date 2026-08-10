@@ -5,29 +5,20 @@
       "verdict": "approve",
       "issues": [],
       "confidence": "medium",
-      "revised": true
+      "revised": false
     },
     {
       "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
       "verdict": "approve",
       "issues": [],
       "confidence": "high",
-      "revised": false
+      "revised": true
     },
     {
       "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
-      "verdict": "revise",
-      "issues": [
-        {
-          "kind": "missing_logic",
-          "detail": "El bloque 'create table data_dep' del SAS (`select año,mes/3 as trim,sector,sum(dato) as dato from data_dep_run group by año,mes,sector`) queda sin materializar: la traducción hace `data_dep_run.assign(trim=...).groupby(['año','sector'],as_index=False)` (sin .agg() ni asignación a `data_dep`) y a continuación dispara `raise NotImplementedError`, dejando `data_dep` indefinido. Todo el resto del nodo (dep_hh_fm final, imputaciones, escritura a TABLAS.DEP_HH_FM) depende de `data_dep` y queda bloqueado en cascada por esta decisión."
-        },
-        {
-          "kind": "wrong_semantics",
-          "detail": "En el bloque de `data_dep` la traducción usa un condicional inline `'sector' if 'sector' in data_dep_run.columns else 'Sector'` que evidencia incertidumbre sobre el nombre real de la columna de sector producida por el paso anterior (`data_dep_run`), lo que puede romper por mismatch de nombres el merge posterior de `dep_hh_fm = dep_hh.merge(data_dep, on=['año','trim','Sector'], ...)` si finalmente `data_dep` terminara usando 'sector' en minúscula."
-        }
-      ],
-      "confidence": "medium",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "low",
       "revised": false
     },
     {

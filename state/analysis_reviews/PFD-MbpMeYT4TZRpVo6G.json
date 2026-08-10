@@ -4,15 +4,15 @@
   "reviews": [
     {
       "node_id": "CodeTask-b4yKCgjI7DEeqndl",
-      "note": "Genera múltiples tablas de salida (SALIDA_WTW_RESUMEN, DEUDA_HOLDING, AHORRO_PRE, DEUDA_HOGARES, OCNB) mediante joins complejos entre 5 tablas del esquema TABLAS y carga en librería DCNIDATA. Riesgo: macrovariables dinámicas (&ANIO), lecturas hardcodeadas de archivos .sas7bdat con rutas absolutas, lógica condicional compleja con CASE y CONTAINS que dificulta traducción literal, además de operaciones de append/delete que requieren gestión transaccional de BD."
+      "note": "Extrae y consolida múltiples flujos de datos financieros (deuda hipotecaria, previsional, bancaria de hogares, crédito no bancario) mediante PROC SQL con LEFT JOINs sobre 5 tablas de dimensiones, realizando interpolaciones con contiene-en ('contains') y cálculos condicionales complejos; riesgos: macro &ANIO sin validación, rutas hardcodeadas de archivos .sas7bdat, operaciones de DELETE/APPEND cíclicas sin manejo de duplicados, cambio de estructura de tablas entre 2022/2017 requiere lógica condicional explícita en Python."
     },
     {
       "node_id": "CodeTask-vLMl6RS3eEI64niZ",
-      "note": "Crea tabla Saldos_SI con agrupación y cálculos derivados (CALCULATED) en SELECT/GROUP BY, incluyendo lógica CASE anidada para recodificación de sectores e instrumentos. Riesgo: referencias a columnas calculadas en GROUP BY (no estándar SQL), formato COMMA14 específico de SAS, actualización de tabla en memoria con UPDATE statements posteriores, y dependencia de macrovariable &ANIO sin validación."
+      "note": "Genera tabla de saldos consolidados (Saldos_SI) con JOIN cuádruple y transformaciones de categorías anidadas en CASE WHEN sobre códigos SCN/SI; actualiza descriptores mediante UPDATE condicional post-creación; riesgos: lógica de recategorización ad hoc hardcodeada (ej. 'S.123','S.124' → 'S.123+4'), ausencia de validación de joins, formato COMMA14 SAS específico, tabla intermedia nunca se persiste explícitamente en DCNIDATA pese a estructura de DROP comentada."
     },
     {
       "node_id": "CodeTask-ryd9Qv5seQRPtvOD",
-      "note": "Procesa tabla fuente con nombre dinámico BD_CTSI_R&ANIO&TRIM mediante interpolación de macros en nombre de tabla, realiza 4 joins y agrupación sin filtro WHERE activo. Riesgo: construcción dinámica de nombres de tabla a partir de macros (requiere evaluación en tiempo de compilación SAS), ausencia de validación de existencia de tabla, y potencial inconsistencia si tabla dinámica no existe o tiene estructura diferente."
+      "note": "Replica estructura idéntica de S9_00 pero lee desde tabla con sufijo dinámico BD_CTSI_R&ANIO&TRIM, generando resumen histórico de período anterior; riesgos: macro nested (&ANIO&TRIM) construye nombre de tabla en tiempo de ejecución sin validación de existencia, WHERE comentado oculta lógica de filtrado, dependencia de nomenclatura exacta de fuente de datos, riesgo alto de fallos silenciosos si tabla no existe."
     }
   ]
 }

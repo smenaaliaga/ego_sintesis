@@ -1,14 +1,14 @@
 # Node Translation Audit
 
-Generated at: 2026-08-10T16:15:00.616549+00:00
+Generated at: 2026-08-10T20:25:36.680716+00:00
 
 - Nodes total: 84
 - Nodes in scope: 4 (ignored by user: 3, deferred to a later batch: 77)
 - Mappings total: 4
 - Missing mapping: 0
 - Extra mapping: 0
-- Issues total: 1
-- High: 0 | Medium: 1 | Low: 0
+- Issues total: 0
+- High: 0 | Medium: 0 | Low: 0
 
 ## Ignored nodes (user decision, excluded from coverage)
 
@@ -96,6 +96,4 @@ Generated at: 2026-08-10T16:15:00.616549+00:00
 - Query-wQdkUdHpZzXcootN (Query Builder 3) — flujo Salidas
 - Query-yJlzWiFrCH19inhY (Query Builder 1) — flujo Salidas
 
-## Top issues (first 30)
-
-- [MEDIUM] CodeTask-ifAGwBWSiFAQtKqB (S1_b) @ output/NB-02_controles_y_ajustes_iniciales.ipynb: verificador LLM pidió revisión: El bloque 'create table data_dep' del SAS (`select año,mes/3 as trim,sector,sum(dato) as dato from data_dep_run group by año,mes,sector`) queda sin materializar: la traducción hace `data_dep_run.assign(trim=...).groupby(['año','sector'],as_index=False)` (sin .agg() ni asignación a `data_dep`) y a continuación dispara `raise NotImplementedError`, dejando `data_dep` indefinido. Todo el resto del nodo (dep_hh_fm final, imputaciones, escritura a TABLAS.DEP_HH_FM) depende de `data_dep` y queda bloqueado en cascada por esta decisión.; En el bloque de `data_dep` la traducción usa un condicional inline `'sector' if 'sector' in data_dep_run.columns else 'Sector'` que evidencia incertidumbre sobre el nombre real de la columna de sector producida por el paso anterior (`data_dep_run`), lo que puede romper por mismatch de nombres el merge posterior de `dep_hh_fm = dep_hh.merge(data_dep, on=['año','trim','Sector'], ...)` si finalmente `data_dep` terminara usando 'sector' en minúscula.
+No issues found.

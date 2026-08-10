@@ -4,11 +4,11 @@
   "reviews": [
     {
       "node_id": "CodeTask-uRMT7rfFsM7wFmZJ",
-      "note": "Ejecuta validación de nueve tablas SAS7BDAT con lógica repetida de agregación condicional (CASE WHEN c_Cuenta) e inversión de signos; riesgo: rutas hardcodeadas en /sasdata, formatos COMMA14 específicos de SAS, cálculos de trimestre con aritmética fecha-período, y PROC TABULATE con structure de filas/columnas anidadas sin equivalente directo en pandas."
+      "note": "Validación de balances (BF=BI+OF+RP+RV) en 9 tablas SAS7BDAT mediante PROC SQL repetitivos con CASE WHEN para inversión de signos según cuenta; riesgo: hardcoding de rutas absolutas y valores literales ('Bce Final', 'Bce Inicio') sin parametrización, filtrado por AÑO>2002 inconsistente, y dependencia de jerarquía de columnas (Trimestre vs TRIM) entre fuentes."
     },
     {
       "node_id": "CodeTask-sQvjLjeo2WC15iXs",
-      "note": "Carga subset filtrado de tabla base (año=2025) desde ruta SAS7BDAT; riesgo: dependencia de archivo externo en path específico del servidor, lectura directa sin validación de existencia, y simplicidad engañosa que oculta posible contexto de preprocesamiento para el flujo completo."
+      "note": "Extracción simple de datos de año 2025 de tabla consolidada base_af3_total_v2.sas7bdat; riesgo bajo pero requiere verificación de existencia de registros para 2025 y compatibilidad de ruta de red con entorno destino."
     }
   ]
 }

@@ -4,7 +4,7 @@
   "reviews": [
     {
       "node_id": "CodeTask-ajjSEkh77FcmV2ov",
-      "note": "Ejecuta múltiples PROC SQL con joins implícitos (LEFT JOIN sobre tablas de sectorización y contrapartidas), transformaciones condicionales (CASE WHEN con sustituciones de códigos S.124→S.123), agregaciones por múltiples dimensiones y cálculos de deltas de precio; riesgo principal: lógica de mapeo de códigos hardcoded y dependencia de estructura de tablas dimensionales (T_Sectorizacion, T_Sectorizacion_N2/N3, T_Contrapartidas) que debe validarse en migración, además de variable de macro &ANIO sin documentación de rango de validez."
+      "note": "Calcula ajuste de bonos integrando múltiples tablas de referencia (BD_CTSI, T_Sectorizacion, T_Contrapartidas, T_Sectorizacion_N2/N3) con CASE statements para remapeo de clasificaciones, LEFT JOINs implícitos por contrapartida, y macros de año que requieren parameterización en Python; riesgo alto en validación de joins nulos y traducción de formatos SAS (NUMX5., PUT) a pandas/polars."
     }
   ]
 }

@@ -4,31 +4,31 @@
   "reviews": [
     {
       "node_id": "CodeTask-jPjrJizeiaHvjreh",
-      "note": "S7_01_SNF (Empresas): Manipula signos de cuentas y calcula CNF mediante PROC SQL con joins implícitos (LEFT JOIN sobre tablas de referencias normalizadas), manejo de formatos SAS (CHAR4, COMMA14), y cálculos de rentas netas que dependen de condiciones implícitas en C_ENTRADA/C_CUENTA. Riesgo: joins implícitos complejos, macros de formato SAS, divisiones por cero potencial en ratios."
+      "note": "Calcula cuenta de distribución del ingreso de empresas (SNF) mediante PROC SQL con múltiples JOINs a tablas de dimensiones (sectorizacion, instrumentos) y recodificación de clasificaciones SAS (N_SCN) con lógica anidada de CASE WHEN; riesgo: queries complejas con variables derivadas calculadas que dependen de formato de entrada exacto ('AÑO'n con comillas) y relaciones implícitas entre fuentes de datos que pueden no trasladarse directamente a pandas groupby."
     },
     {
       "node_id": "CodeTask-KbHRFnaoSR2Bq6wI",
-      "note": "S7_02_Hogares: Calcula CNF para sector hogares mediante OUTER UNION CORR (sintaxis SAS específica para uniones no normalizadas), con cálculos de ahorro previsional/no previsional y riqueza financiera. Riesgo: OUTER UNION CORR no existe en SQL estándar, dependencia de sintaxis SAS pura, manejo de datos faltantes en comparativas depositos-fondos."
+      "note": "Procesa estado de ingresos y gasto de hogares (S.14) agregando componentes de YD, ahorro y consumo trimestral con operaciones de variación anual (LAG4) y cálculo de incidencias de rentas; riesgo: cálculo de variaciones relativas (SUM(t1.DATO)/SUM(t2.DATO)*100-100) requiere correspondencia exacta de períodos entre tablas T y T1, macros dinámicas en PROC SGRENDER con templates no legibles en Python."
     },
     {
       "node_id": "CodeTask-mCE2amv2UM7gUEki",
-      "note": "S7_05_Gobierno: Genera CNF gobierno con gasto de consumo y ahorro anualizado, compara con datos DIPRES externos mediante joins complejos y cálculos de incidencias. Riesgo: integración con tabla PTMO_G externa (posible dependencia BD), CONTAINS en donde implícito, LAG4 para variaciones anuales requiere ordenamiento específico."
+      "note": "Produce cuenta nacional de gobierno (S.13) incluyendo YD, gasto en consumo colectivo, ahorro bruto e inversión con comparativas contra baseline DIPRES y cálculo de deuda separada en implícita y CNSI; riesgo: variable derivada 'tipo' combina condicionales sobre fuente y sector con formato específico SAS, PROC GPLOT genera gráficos cuya migración a Python requiere replicación de formatos de ejes y leyendas, desencadenamiento de tablas ad-hoc con DROP múltiple."
     },
     {
       "node_id": "CodeTask-kVJViJGgbJOLVelr",
-      "note": "S7_06_SF (Sector Financiero): Calcula CNF para sector financiero con énfasis en rentas de propiedad, ahorro y deuda, usando múltiples PROC SQL con CASE complejos y CONTAINS sobre códigos. Riesgo: CONTAINS como filtro implícito no es SQL estándar, joins en cascada (T1-T7) aumentan complejidad, manejo inconsistente de B.9."
+      "note": "Analiza estado de ingresos y gasto del sector financiero (S.12) con recodificación de clasificaciones (D.41r→D.41) y cálculo de incidencias de rentas de propiedad; riesgo: UPDATE statement post-creación de tabla para estandarizar códigos, OUTER UNION CORR en SAS sin equivalente directo en pandas (requiere concat con manejo de columnas faltantes), templates gráficos con parámetros dinámicos."
     },
     {
       "node_id": "CodeTask-eHcgu5CrdT7hHfZQ",
-      "note": "S7_06_SF SubSector: Desglosa análisis de sector financiero por subsector (Bancos, Aseguradoras, Fondos), genera gráficos de posición financiera y deuda. Riesgo: macros &Sector sin inicialización explícita (posible error runtime), reutilización de tablas globales (CF_PIB_SF_SubS) sin garantía de existencia previa."
+      "note": "Desglosa posición financiera neta y deuda del sector financiero por subsector (S.121, S.122, etc.) con variables derivadas condicionales sobre atributo público; riesgo: variable parametrizada &Sector en PROC SGRENDER no migrable automáticamente, referencias a tablas de trabajo creadas en nodos anteriores (RFN_PIB_SF_SubS) que requieren asegurar persistencia en sesión Python, condicionales sobre C_SI_PUBL en lógica de clasificación de mercado."
     },
     {
       "node_id": "CodeTask-sGAwObcilp5c3zVx",
-      "note": "S7_06_SF SubSector_Zoom: Filtra y grafica datos de subsector específico usando macro &Sector para dinámica. Riesgo: dependencia de macro global no controlada, referencias a tablas (AF_PIB_SF_sUBs, PF_PIB_SF_SubS) creadas en nodo anterior sin validación, CONTAINS implícito en WHERE."
+      "note": "Genera visualizaciones por subsector de sector financiero con zoom sobre RFN, flujos y deuda por instrumento y origen mediante PROC SGRENDER con macro variable &Sector inyectada en títulos; riesgo: lógica parametrizada requiere ejecución iterativa para cada subsector (no incluida en código base), dependencia crítica de tabla CF_PIB_SF_SubS creada en nodo anterior, referencias a variables no definidas explícitamente en DATA step."
     },
     {
       "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
-      "note": "S7_00_Panorama: Consolida datos de todos los sectores (S.11, S.12, S.13, S.14) mediante DATA steps y PROC SQL, genera análisis comparativos de ahorro, FBC y posición neta nacional. Riesgo: fusión de múltiples tablas con esquemas heterogéneos (CNF_G_ANUAL, CNF_SF_ANUAL, CNF_ANUAL_HH), lógica condicional sobre C_CUENTA y C_SCN frágil, SET con drop selectivo puede perder contexto."
+      "note": "Consolida indicadores agregados de panorama macroeconómico mediante DATA step que apila horizontalmente tablas de sectores (S.11, S.13, S.12, S.14) y genera cuatro gráficos comparativos de PTMO neto, FBC, ahorro y posición financiera neta nacional; riesgo: recodificación de C_SCN mediante UPDATE statement, uso de variables globales pn_sectores que requieren asegurar persistencia entre nodos, DROP sin verificación previa de existencia de tablas puede generar errores si ejecución es no secuencial."
     }
   ]
 }

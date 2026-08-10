@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-08-10T16:15:00.851247+00:00",
+  "checked_at": "2026-08-10T20:25:36.894333+00:00",
   "status": "blocked",
   "note": "Sin acceso a la BD (GOBGENER): (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')\n(Background on this error at: https://sqlalche.me/e/20/rvf5)",
   "exists": [],

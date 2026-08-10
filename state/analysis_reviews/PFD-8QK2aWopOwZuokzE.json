@@ -4,7 +4,7 @@
   "reviews": [
     {
       "node_id": "CodeTask-LbbQOdnOflsfHI1p",
-      "note": "Realiza 70+ PROC SQL anidados con múltiples transformaciones de datos financieros (agregaciones, joins a tablas de referencia, casos condicionales, formatos numéricos y cálculos de signo). Riesgos críticos: validación de integridad referencial en joins (especialmente con TABLAS.C_FAME y TABLAS.CODIGOS), tratamiento de valores NULL en sumas (COALESCE), dependencia de tabla PERIODO no definida en el flujo, formato SAS COMMA14.2 y BEST12.2 que requieren conversión de formato, lógica de signos condicional (inversión de datos según C_ENTRADA='D'), y acumulación de datos en múltiples cruces cartesianos (PERIODO t2) que amplían significativamente el volumen sin validar cardinalidad."
+      "note": "Procesa cuentas nacionales con múltiples transformaciones SQL complejas (CASE anidados en columnas calculadas, OUTER UNION CORR sobre 11+ tablas, LEFT JOINs con aritmética condicional): riesgo crítico de traducción por lógica de negocio implícita en códigos FAME dependientes de sector (S.1-S.14, S.99, S.123/24), manejo de signos contables (C_ENTRADA=D/H invierte valores), y referencias cruzadas entre tablas intermedias eliminadas al final; la omisión parcial del código (71k+ caracteres) impide verificar completitud pero indica magnitud extrema de transformaciones."
     }
   ]
 }

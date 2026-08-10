@@ -4,27 +4,27 @@
   "reviews": [
     {
       "node_id": "CodeTask-R47QCuhcMSIJeuMG",
-      "note": "Genera tabla B9 de capacidad/necesidad de financiamiento con múltiples PROC SQL secuenciales y joins implícitos en donde cláusulas; riesgo principal: lógica de filtrado compleja y comentada con GROUP BY selectivo que podría introducir valores nulos o duplicados en la migración si no se preserva el orden de ejecución."
+      "note": "Genera tabla B9 con datos de capacidad/necesidad de financiamiento por sector e instrumento. Riesgo: múltiples PROC SQL y PROC TABULATE concatenados; conversión de formatos SAS (CHAR4, CHAR1) y funciones de fecha (substr/PUT) requieren traducción a Python; joins implícitos en la cláusula WHERE comparando T4.C_SCN_N1='B.9' y lógica condicional CASE sobre C_ENTRADA."
     },
     {
       "node_id": "CodeTask-m47i4alOB19ERHFp",
-      "note": "Valida consistencia de balances (BF=BI+OF+RP+RV) mediante PROC SQL con CASE WHEN dinámico que invierte signos según condiciones de cuenta; riesgo: conversión de lógica condicional de signos y nombres de columnas entre comillas pueden generar ambigüedad en identificadores después de la migración."
+      "note": "Valida consistencia de balance (BF=BI+OF+RP+RV) mediante tres queries PROC SQL que calculan diferencias ponderadas por entrada de datos. Riesgo: lógica de cálculos diferenciados con CASE WHEN (invirtiendo signo para 'Bce Final') y joins LEFT en cascada; la columna C_Cuenta contiene valores textuales hardcodeados que pueden variar; OUTER UNION CORR no tiene equivalente directo en pandas."
     },
     {
       "node_id": "CodeTask-OBQXqokTpv23CnGn",
-      "note": "Calcula ratios de ajuste de conciliación (AF.71, AF.9) respecto a PIB acumulado con divisiones potencialmente por cero (T3.DATO<>.) y referencias a variables de macro (&ANIO, &TRIM) no definidas; riesgo crítico: dependencia de macros globales y manejo de valores nulos que debe replicarse exactamente."
+      "note": "Calcula ratios de ajuste de conciliación (AF71/AF9 a PIB) con agregación trimestral y genera gráficos de barras. Riesgo: macros SAS no resuelta (&ANIO, &TRIM); conversión de PROC GCHART a Python (matplotlib/plotly); filtro dinámico en WHERE (T3.DATO<>.) requiere manejo de valores nulos; ratio porcentual con PERCENT.2 formato."
     },
     {
       "node_id": "CodeTask-q9OPgdkf3WcKIpbW",
-      "note": "Procesa datos AF71 acumulados con conversiones de trimestre a año fiscal y referencias a macros (&ANIO, &TRIM); riesgo: lógica de cambio de período fiscal (TRIM IN 1,2,3) requiere traducción cuidadosa y las eliminaciones condicionales pueden generar inconsistencias en índices de tiempo."
+      "note": "Extiende análisis de conciliación a nivel acumulado anual, filtrando períodos posteriores mediante macros. Riesgo: dependencia de tabla AF71 generada en nodo anterior (acoplamiento); macros dinámicas &ANIO y &TRIM sin definición; drop tables al final requiere control de dependencias; PROC GCHART con referencias (LREF, CREF) complejas."
     },
     {
       "node_id": "CodeTask-Ix7ilK7RK3FKfDEH",
-      "note": "Realiza múltiples validaciones de consistencia (FBC vs Ahorro, PIB por enfoques origen/gasto/ingreso, D8 vs D6) con UNIONes de datos y operaciones aritméticas inversas; riesgo: acumulación de errores en concatenación de tablas (DATA SET) y la lógica de actualización condicional de DATO con PROC SQL UPDATE."
+      "note": "Valida consistencias de macromagnitudes: FBC vs ahorro, PIB por tres enfoques, y D8 vs D6 del sector financiero. Riesgo: múltiples vistas temporales con IDs calculados ('FBC', 'TEST', 'PIB_ORIGEN', etc.); uniones múltiples de datasets (DATA PIB; SET ...) sin clave explícita; operaciones condicionales de signo (DATO*-1) según ID sin garantía de orden; drop tables al final referencia tablas no existentes."
     },
     {
       "node_id": "CodeTask-FqwyEcVSHGBw3z1q",
-      "note": "Identifica saldos negativos de instrumentos financieros con LEFT JOINs en cuatro tablas, sintaxis CONTAINS en CASE y cálculos de escala (/1000); riesgo: operador CONTAINS no es estándar SQL y podría no tener equivalente directo en Python; manejo de instrumentos con categorización condicional."
+      "note": "Genera saldos de instrumentos financieros por sector y contrapartida, identificando saldos negativos anómalos. Riesgo: lógica CASE compleja con CONTAINS y IN para clasificación de instrumentos (AF.52, AF.612); agregaciones en cascada (primero con contrapartida, luego sin ella); filtro exclusión de B.90 hardcodeado; formato COMMA14 sin decimales vs tabla anterior con decimales."
     }
   ]
 }

@@ -4,19 +4,19 @@
   "reviews": [
     {
       "node_id": "CodeTask-rVgcAFrUWf36VVj6",
-      "note": "Importación y transformación de datos SIFMI desde Excel con múltiples UNION ALL y consultas SQL que multiplican por sectores (51, 511, 41, 35, 36, 321) aplicando negación de signos. Riesgos: formatos de fechas SAS (FORMAT=DATE7.), variables calculadas en SELECT que pueden no llevarse bien a Python, filtros en LIBNAME JSON para series de API que requieren parseo manual de índices de cadena, y macros dinámicas (&ANIO, &TRIM) sin definición visible en nodo."
+      "note": "Importa SIFMI desde Excel y ejecuta múltiples PROC SQL CON UNION ALL que expanden una única tabla en 12 registros por row. Riesgo: transformación manual de UNION ALL a pandas.concat() requiere cuidado con tipos de datos; las macros &ANIO, &TRIM y TODAY() deben reemplazarse; limpieza de tablas temporales con DROP TABLE al final."
     },
     {
       "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
-      "note": "Cálculo de transferencias de capital desde gobierno a empresas mediante LEFT JOIN implícito sobre tabla de gobierno y mapeo de partidas contables a SCN (D.9). Riesgos: join sobre 8 columnas entre entidad gubernamental y tabla de clasificación de cuentas, uso de macros (&ANIO) no visibles, conversión de mes a trimestre con CASE WHEN, y conversión de formato de dinero (DEVENG/1000000)."
+      "note": "Calcula transferencias de capital desde gobierno a empresas usando PROC SQL con LEFT JOIN y lectura de libname externo (GOBGENER). Riesgo: la macro &ANIO aparece en cláusula WHERE; la lógica de agrupación con CASE WHEN para trimestres debe validarse; DELETE condicional sobre tabla persistente (tablas.t_tk_gg_epu) requiere transacción."
     },
     {
       "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
-      "note": "Cálculo de porcentaje de depósitos destinados a hogares en fondos de inversión mediante importación de Excel, agrupaciones múltiples y auto-join entre tablas de cartera nacional y externa. Riesgos: generación manual de años faltantes mediante series IMPUTA duplicadas (2003-2005), lógica de imputación rígida sin validación, substring en RUN para SDV que puede fallar si no es exactamente 4 caracteres, y conversión MES/3 como trimestre que pierde precisión."
+      "note": "Calcula porcentaje de depósitos en fondos mutuos para hogares mediante importación Excel, PROC SQL con agregaciones y generación de años faltantes por interpolación. Riesgo: lógica de imputación (copiar 2006T1 a 2003–2005, T2–T4) es manual y frágil; múltiples PROC SQL con SUBSTR() y transformaciones de trim; append condicional con macro &ANIO."
     },
     {
       "node_id": "CodeTask-7nH3fwOy4hErZFqh",
-      "note": "Importación de bonos externos en dos hojas Excel para calcular precios implícitos por dividing valor de mercado entre valor par agrupado por sector, agente y trimestre. Riesgos: cociente SUMA(VM)/SUMA(VP) puede ser indefinido si VP es cero, lógica de recompras con C_CAGENTE fijo='54' desacoplada del mapeo de sectores, transformación trimestral con CASE WHEN anidado para balance de inicio, y filtros de fuente endógena ('Mercado Externo (Recompras)') que dependen de nomenclatura exacta del origen de datos."
+      "note": "Importa bonos externos desde Excel, calcula precios implícitos por sector y trimestre (Mercado Externo, Recompras) y genera balance de inicio desplazando trim y año. Riesgo: cálculo de Precio como razón (Valor_Mercado / Valor_par) puede generar divisiones por cero o valores faltantes sin validación; UPDATE SET para valores faltantes (Precio=1); transformación de sector 36→36912 ocurre al final."
     }
   ]
 }

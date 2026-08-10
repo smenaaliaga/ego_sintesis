@@ -4,15 +4,15 @@
   "reviews": [
     {
       "node_id": "CodeTask-rRgEeqwSRMAQaeHB",
-      "note": "Extrae y ajusta patrimonio neto trimestral de cuentas financiera/capital de hogares (S.14) con múltiples CASE anidados por año/trimestre. Riesgos: nombres de tablas/columnas con acentos (BD_CTSI, 'AÑO'n), joins implícitos sobre dos tablas (BD_CTSI, T_SECTORIZACION) sin ON explícito, literales CHAR4/CHAR1 en formato SAS, APPEND con FORCE, referencias hardcodeadas a años 2015-2024 en lógica condicional que requieren mantenimiento."
+      "note": "Extrae y calcula patrimonio neto (PTMO) de cuentas financiera y capital de hogares con correcciones específicas para AF.71, e imputa factor de ajuste P.4 trimestral hardcodeado con tablas de rho y lambda variables por año/trimestre (2015-2024). Riesgos: lógica CASE compleja con años explícitos (mantenibilidad), conversión de formato PUT(CHARx) para período, joins implícitos sin ON explícito (TABLAS.BD_CTSI y T_SECTORIZACION), APPEND FORCE sin reconciliación, field de texto 'AÑO'n con delimitadores especiales."
     },
     {
       "node_id": "CodeTask-H2hhzkdf4aoXG9Pw",
-      "note": "Implementa algoritmo Cholette-Dagum/Denton en PROC IML para distribuir series de referencia anuales sobre indicadores trimestrales; parámetro macro rho=0.9999 y lógica condicional por número de observaciones (12 mensual, 4 trimestral). Riesgos: código matemático-estadístico complejo con operaciones matriciales (GINV, SWEEP), tablas de entrada (IND, RES) sin validación de schema, parámetro rho hardcodeado, interpolación numérica sensible a precisión flotante."
+      "note": "Implementa algoritmo Cholette-Dagum en PROC IML con matriz generalizada de agregación (J), proceso AR(1) y cálculo de sesgo histórico (d), extrapolando series cuando np>mna. Parámetro &rho=0.9999 (casi Denton) se refiere mediante macro. Riesgos: PROC IML es dialecto SAS avanzado sin equivalente directo en pandas/numpy, lógica de condicionales noa=12 vs noa=4 (mensuales vs trimestrales) no paramétrica, sweep() para inversión de matriz, operaciones de matriz dispersa (J2 no usada sugiere deuda técnica), lectura directa use/read SAS sin validación de estructura."
     },
     {
       "node_id": "CodeTask-ECZCZZvMxTO7sdpQ",
-      "note": "Tres consultas SQL secuenciales: (1) extrae dividendos de hogares con join implícito entre BD_CTSI y T_SECTORIZACION filtrando por sector S.14 y concepto D.42; (2) calcula delta restando valores del BENCH y aplica formato DATE7 dinámico en SAS; (3) append a tabla persistente RP_HH. Riesgos: nombres de columnas con comillas simples ('AÑO'n), join sin ON explícito, referencia a BENCH sin definición visible, DROP dentro de PROC SQL, y dependencia de formato DATE7 que debe replicarse en Python."
+      "note": "Extrae dividendos D.42 de hogares (MONEDA, C_CUENTA, C_ENTRADA='H'), resta con tabla BENCH previamente procesada para generar delta de ajuste (DI_RP_H), e imputa en tabla destino RP_HH con TODAY() y APPEND FORCE. Riesgos: join T1-T2 implícito WHERE sin ON (MONEDA/AÑO/TRIM), estructura RP_HH asume preexistencia, APPEND sin validación de duplicados, literal 'DI_RP_H' y MONEDA/SECTOR='511'/'53' como constantes magic numbers, dependencia crítica de existencia de WORK.BENCH del nodo anterior sin validación."
     }
   ]
 }

@@ -4,27 +4,27 @@
   "reviews": [
     {
       "node_id": "CodeTask-PctehnQmgLccQ4yN",
-      "note": "Extrae 9 series trimestrales de API web del Banco Central usando PROC HTTP y genera tablas serie_1 a serie_9 con transformaciones de substring y conversiones numéricas. Riesgo: dependencia crítica de URL y formato de respuesta JSON de API externa; parsing manual de fechas con SUBSTR puede fallar si estructura de datos cambia; autenticación parametrizada en URL expone credenciales en código."
+      "note": "Ingesta de 9 series de API con transformación de fechas y unidades (multiplicación por 1000) y combina resultados en tabla CNT. Riesgo: autenticación dinámica en URLs (&user, &password macrovariables), parsing de fecha por substring propenso a fallas con formatos inesperados, reinicialización repetida de libname JSON sin verificar errores, y conversión xlnum. que puede fallar silenciosamente."
     },
     {
       "node_id": "CodeTask-lVG5feJnCetjgbtL",
-      "note": "Consolida datos de inversión pública en transferencias corrientes desde tabla BD_CTSI con LEFT JOINs a 4 tablas de dimensiones (Sectorizacion, Instrumentos, Cuenta). Riesgo: variablex &ANIO sin definición visible en este nodo; múltiples JOINs combinan información de diferentes dominios (sectores, instrumentos, cuentas) con riesgo de duplicación si las claves no son únicas; ausencia de validación de integridad referencial."
+      "note": "Genera salida de transferencias RM con múltiples LEFT JOINs sobre tablas de referencia (Sectorizacion, Instrumentos, Cuenta) y filtros implícitos por SCN. Riesgo: macrovariable &ANIO sin default definido, JOINs sin ON ambiguos pueden causar duplicados silenciosos, supuesto que T2.C_SI_SCN='S.2' tenga registros únicos no validado."
     },
     {
       "node_id": "CodeTask-GT6PneNaAuUXLt8o",
-      "note": "Filtra datos de FBCF (formación bruta de capital fijo) del sector financiero (S.12) de tabla BD_CTSI mediante LEFT JOINs a 3 tablas lookup. Riesgo: agregación por 11 dimensiones sin verificación de valores nulos en las claves de join; jerárquía de sectores con sufijos _N0, _N1 requiere validación de consistencia; omisión de valores faltantes puede sesgar agregados."
+      "note": "Extrae FBCF sector financiero (P.51, S.12) con GROUP BY sobre múltiples dimensiones y luego persiste en librería META DCNIDATA. Riesgo: filtro C_SI_SCN_N1='S.12' aplicado solo en WHERE pero no en GROUP BY explícitamente (podría haber rollups silenciosos), acceso a librería META no validado, dependencia de jerarquías de tablas de referencia sin verificación."
     },
     {
       "node_id": "CodeTask-2S7FV1OytGj5U2Fw",
-      "note": "Genera salida OECD Formulario 7II con agregaciones complejas desde BD_CTSI uniendo 5 tablas de dimensiones, incluyendo contrapartidas (C_CAGENTE). Riesgo: filtro de año >= 2014 pero definición de &ANIO no visible; LEFT JOINs encadenados pueden producir filas nulas multiplicativas si tablas lookup incompletas; no hay control de duplicidad de llaves compuestas en GROUP BY."
+      "note": "Genera tabla SALIDA_WTW_7II con 5 LEFT JOINs y GROUP BY de 21 dimensiones para formulario OECD 7II (datos desde 2014). Riesgo: número extremo de columnas en SELECT sin validar que todos los T3/T4 campos existan, commented-out línea de WHERE hace que no filtren sectores/SCN esperados, T3 (Contrapartidas) podría no hacer match en C_CAGENTE generando NULLs masivos."
     },
     {
       "node_id": "CodeTask-3nmOBIFhUk8bJDyw",
-      "note": "Código comentado mayoritariamente que define 3 templates SAS/GRAPH (overlay_graph, template_chart1, template_chart2, template_chart3) para visualización de componentes de ingreso disponible, ahorro y FBCF. Riesgo: solo 2 líneas activas (sgrender) referencia datos no creados en nodos previos (CNF_Anual_graph, fbcf_snf, BD_ICA_C1); el nodo no genera salidas de datos, solo gráficos; desacople con flujo de datos principal."
+      "note": "Código mayormente comentado con fragmentos de templates SGPLOT/SGRENDER para gráficos. Riesgo: referencias a datasets no creados en flujo (BD_INC_YD, CNF_Anual_graph, fbcf_snf, BD_ICA_C1), sintaxis obsoleta con quoted names ('AÑO'n), y if no hay datos en esos datasets los renders fallarán sin depuración evidente."
     },
     {
       "node_id": "CodeTask-jQdpbNMiLHrmwvzY",
-      "note": "Extrae datos de producción (C_CUENTA='Producción') del sector financiero (S.122, S.124) y sectores específicos (321, 322, 361, 362) desde BD_CTSI con JOINs a 4 tablas de dimensiones. Riesgo: variable &ANIO sin definición visible; filtros hardcodeados en C_CUENTA y C_SCN_SCN tienen correspondencia implícita con estructura de lookup tables; agregación por 16 dimensiones sin documentación de validez de combinaciones."
+      "note": "Genera salida de producción con filtros complejos (C_CUENTA='Producción', FUENTE='CI', 4 sectores específicos) y 4 LEFT JOINs. Riesgo: macrovariable &ANIO sin default, filtro sector IN (321,322,361,362) codificado sin documentación, supuesto que combinación de filtros genera datos únicos no verificado, ausencia de UNION ALL si se espera combinar con otras series."
     }
   ]
 }

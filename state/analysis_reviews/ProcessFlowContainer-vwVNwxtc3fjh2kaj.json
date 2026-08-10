@@ -4,31 +4,31 @@
   "reviews": [
     {
       "node_id": "CodeTask-vKSNOED9VpSvBnYB",
-      "note": "Crea respaldo de tabla base BD_CTSI mediante SET-DATA: riesgo bajo. Verificar que las macros &ANIO y &TRIM se resuelvan correctamente en tiempo de ejecución."
+      "note": "Respalda la tabla base de cuentas nacionales antes de procesamiento: depende de macro dinámicas (TABLAS.BD_CTSI_R&ANIO&TRIM) y requiere validación de la tabla fuente existente."
     },
     {
       "node_id": "CodeTask-2Qnp37e99kvQSM9m",
-      "note": "SQL masivo con 50+ operaciones de CREATE/DELETE/UPDATE en secuencia: riesgo alto de joins dinámicos (LEFT JOIN con dos tablas de referencia), macros sin validación (&Sector, &ANIO, &TRIM), manejo de formatos SAS (CHAR4., COMMA14.), subcadenas calculadas (SUBSTR, CASE anidados), y gestión de datos temporales. Requiere refactor a transacciones explícitas en Python."
+      "note": "Núcleo de transformación: múltiples joins implícitos entre tablas de dimensiones (Sectorizacion, Instrumentos), lógica de recodificación de agentes con 12 UPDATES secuenciales, y cálculos de PIB con CALCULATED fields—requiere verificación de integridad referencial y dependencia de referencia temporal (TABLAS.tiempo)."
     },
     {
       "node_id": "CodeTask-em3EefKlkASf9L3q",
-      "note": "Genera PROC TABULATE con 6 reportes sobre V_DELTA_SC (trimestral): depende de tabla derivada del nodo anterior. Riesgo: consumo de tabla temporal sin indexación, formato COMMA14, y etiquetas en español con caracteres acentuados. Traducción requiere uso de matplotlib/plotly en lugar de PROC TABULATE."
+      "note": "Genera reportes tabulares anuales sin lógica de transformación: depende completamente de V_DELTA_SC creada en nodo anterior, usar PROC TABULATE requiere datos pre-agregados validados."
     },
     {
       "node_id": "CodeTask-bilvsdL51BAnsUEr",
-      "note": "DATA STEP + SQL: transforma COMPARA_SC_PIBF (renombra/filtra campos, actualiza versiones con cadenas literales, recalcula datos con condicionales). Riesgo: múltiples UPDATE con lógica de negocio embebida (mapeo C_CAGENTE_N1, C_SCN_N1), CONTAINS para substring. Traducción a pandas requiere vectorización cuidadosa."
+      "note": "Reacomoda datos a escala de PIB y recodifica categorías de ingreso: múltiples UPDATEs condicionales con lógica de negocio (Ingreso empresarial, disponible, deuda), cambios de signo por entrada (D/H)—requiere revisión de impacto de transformaciones y correlación con nodo anterior."
     },
     {
       "node_id": "CodeTask-Ns4cmh4hITlllpAk",
-      "note": "SQL con PROC TABULATE y gráficos PROC GBARLINE + SGPLOT: 30+ visualizaciones con parámetros macro (&Sector, &Cuenta, &Entrada, &Codigo). Riesgo: formato dinámico de gráficos (PATTERN, SYMBOL), dependencia de vistas temporales WORK.SORTTempTableSorted, ods graphics settings. Alto volumen de código duplicado."
+      "note": "Calcula variaciones anuales de ingreso disponible en hogares y genera gráficos por cuenta con PROC GBARLINE y SGPLOT: depende de V_DELTA_SC y COMPARA_SC_PIBF, manejo de macros de parámetros (&Sector, &Cuenta, &Entrada, &Codigo) requiere escape especial en traducción."
     },
     {
       "node_id": "CodeTask-ie1zFOWtqc6EvbAr",
-      "note": "Genera reportes por instrumento financiero: PROC TABULATE + gráficos GBARLINE/SGPLOT con macros &Codigo, &Entrada. Riesgo: vistas SQL con SUM(CASE WHEN), parámetros sin validación, índices de color hardcodeados (PATTERN1-15, COLOR=...), eje dual y leyenda condicional en gráficos."
+      "note": "Análisis detallado por instrumento financiero: depende de COMPARA y COMPARA_SC_PIBF, múltiples PROC GBARLINE y SGPLOT con lógica de filtros parametrizados (&Codigo, &Entrada)—requiere verificación de coherencia de vistas SQL temporales."
     },
     {
       "node_id": "CodeTask-TkgG8t5JCMJVDoVb",
-      "note": "Reportes cuenta no financiera: SGPLOT con macros &Inst_nf, &Cuenta, &Entrada. Riesgo: similar al nodo anterior pero con filtrado adicional y formateo COMMA14. Duplicación de lógica gráfica. Requiere consolidación."
+      "note": "Análisis de cuentas no financieras por instrumento: similar al nodo anterior pero filtra by (&Inst_nf, &Cuenta), genera gráficos con parametrización—dependencia de datos previos y riesgo de incompatibilidad de macros entre sesiones."
     }
   ]
 }

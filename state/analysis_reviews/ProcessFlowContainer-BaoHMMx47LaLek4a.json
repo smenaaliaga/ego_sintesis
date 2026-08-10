@@ -4,15 +4,15 @@
   "reviews": [
     {
       "node_id": "CodeTask-7lh12aT9AnDfJenj",
-      "note": "Agregación multidimensional de movimientos financieros (saldos, revaluaciones, volúmenes) con reclasificación de cuentas CASE y cálculo de acumulados trimestrales. Riesgo: macros &Sector, &Codigo, &Entrada usadas en filtros PROC SQL (vulnerable a inyección SQL); joins implícitos en FIN_ACUM requieren que tabla TIEMPO esté cargada y sincronizada; conversiones de formatos SAS (CHAR4, PUT, SUBSTR) deben replicarse exactamente en Python; joins múltiples sobre claves débiles (C_CUENTA comofiltrante) pueden fallar si cardinalidad cambia."
+      "note": "Extrae y transforma datos de cuentas financieras con múltiples JOINs a tablas maestras (Sectorizacion, Instrumentos) y lógica CASE para reclasificación de cuentas. Riesgo: cálculos con CALCULATED en WHERE/GROUP BY y divisiones implícitas (DATO/1000); posibles NULL en LEFT JOINs a tablas de catálogos sin validación previa."
     },
     {
       "node_id": "CodeTask-v2KL58W1Ordii4kk",
-      "note": "Réplica del nodo anterior agregando dimensión de contrapartidas con lógica de remapeo (S.99→S.11) en CASE. Riesgo: mismos problemas de macros y joins que nodo anterior; LEFT JOIN adicional a T_Contrapartidas puede generar nulls no contemplados en la lógica de agregación; procesamiento de CASE WHEN anidado con CALCULATED (C_CUENTA, C_CAG_N0) es frágil ante cambios de esquema; templates sgrender (template_chart1) son dependencias externas de SAS EG no documentadas en código."
+      "note": "Replica análisis anterior incorporando tabla de Contrapartidas con conversión hardcodeada (S.99→S.11) en CASE WHEN. Riesgo: CASE anidados complejos en SELECT difíciles de traducir directamente; dependencia de variables macro (&Sector, &Codigo, &Entrada) cuyo alcance y validación es crítica."
     },
     {
       "node_id": "CodeTask-KZWptJSqYlZ3fYLu",
-      "note": "Cálculo de indicadores de carga financiera (ratio intereses/saldo promedio en %) con reclasificación de flujos (D→H) y lógica de spread. Riesgo: filtro C_SCN IN('D.41') en tabla INT vs IN('AF.29','AF.31',...) en tabla SALDOS introduce asimetría en cobertura; OUTER UNION CORR entre CARGA_FIN_ y SFIN puede duplicar registros si S.12 aparece en ambas; macros de chart size (%_sas_pushchartsize, %_sas_popchartsize) son específicas de SAS EG; WHERE en PROC GPLOT depende de orden de ejecución previa."
+      "note": "Calcula cargas financieras (intereses pagados/percibidos como porcentaje) y spread del sector financiero mediante tres JOINs y ratio entre tablas (DATO/T2.DATO)*100. Riesgo: OUTER UNION CORR y divisiones por saldo promedio sin control de división por cero; sintaxis heredada (GPLOT, SYMBOL, AXIS) y macros SAS internas (%_sas_pushchartsize) requieren reimplementación gráfica completa."
     }
   ]
 }

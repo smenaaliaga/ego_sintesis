@@ -4,31 +4,31 @@
   "reviews": [
     {
       "node_id": "CodeTask-MkeeAoZmCaYLJwXL",
-      "note": "Limpia y crea tablas SALIDA_WTW y SALIDA_WTW_RESUMEN mediante PROC SQL con múltiples LEFT JOINs sobre dimensiones y SUM agregado; riesgo: macro &ANIO no inyectada dinámicamente, cálculo CALCULATED MONEDA en GROUP BY, y posible inconsistencia en eliminaciones comentadas (año>2024 vs >2025)."
+      "note": "Genera dos tablas de salida agregadas (SALIDA_WTW y SALIDA_WTW_RESUMEN) mediante múltiples LEFT JOINs contra tablas de dimensiones; riesgo: macro dinámica &ANIO sin inicialización explícita y CALCULATED en GROUP BY que puede no traducirse directamente a pandas/SQL estándar."
     },
     {
       "node_id": "Query-ro8uUmeLxREuG2um",
-      "note": "Filtra SALIDA_WTW_RESUMEN para año 2024 exacto; riesgo: hard-coded year value dificulta adaptación temporal y el nombre de columna 'AÑO'n con comillas y sufijo n requiere validación de sintaxis en Python."
+      "note": "Filtra SALIDA_WTW_RESUMEN por año 2024 específico; riesgo: referencia a columna con nombre especial ('AÑO'n) que requiere comillas—dependencia de nomenclatura SAS y conversión de tipos de datos numéricos."
     },
     {
       "node_id": "Query-H6bd6GULUeGKQkjU",
-      "note": "Crea tabla t_inst_nf con concatenación de campos para ID y conteo de años, filtrando cuentas específicas ('YG', 'Producción', 'Capital'); riesgo: concatenación con cadenas vacías ('\"\"'), uso de CALCULATED en GROUP BY, e identificador compuesto sin validación de unicidad."
+      "note": "Crea tabla de instrumentos con agregación por cuenta (YG, Producción, Capital) y concatena campos para generar ID sintético; riesgo: operador || para concatenación en SAS no es estándar SQL, interpretación de valores literales y lógica de filtro hardcodeada."
     },
     {
       "node_id": "Query-yJlzWiFrCH19inhY",
-      "note": "Proyecta completa SALIDA_WTW filtrando año >= 2005; riesgo: año hard-coded en WHERE dificulta parametrización futura y la cantidad de columnas proyectadas (31) favorece drift de esquema."
+      "note": "Consulta base SALIDA_WTW con filtro temporal desde 2005 y selección de ~30 columnas incluyendo niveles jerárquicos; riesgo: filtro por año puede resultar en conjunto de datos muy voluminoso—necesita validación de índices y materialización eficiente."
     },
     {
       "node_id": "Query-wQdkUdHpZzXcootN",
-      "note": "Agregación por C_SI_SCN='S.13' con SUM(DATO) y múltiples GROUP BY; riesgo: filtro sectorial hard-coded, lista extensa de dimensiones en GROUP BY sin índices, y potencial desequilibrio en distribución de datos."
+      "note": "Aplica agregación (SUM) y filtro por sector específico (C_SI_SCN='S.13') con GROUP BY extenso de 30+ columnas; riesgo: query no agrega todas las columnas de resultados (falta en GROUP BY)—comportamiento indefinido en SQL estándar vs SAS."
     },
     {
       "node_id": "CodeTask-M7Kq8x8xCBjt8NWW",
-      "note": "Crea SALIDA_RESUMEN_SNF filtrando C_SI_SCN='S.11' y carga tabla externa ratio desde ruta absolutaSAS; riesgo: ruta /sasdata/... hardcodeada no portable, macro &ANIO sin inyección, lectura directa de .sas7bdat requiere conversión a formato tabular."
+      "note": "Genera tabla de resumen para datos que cumplan sector S.11 y carga tabla externa de ratios desde ruta SAS7BDAT literal; riesgo: lectura directa de archivo binario SAS requiere conversión, rutas hardcodeadas, macro &ANIO no inicializada."
     },
     {
       "node_id": "Query-aIf7aYkl8XlQRx15",
-      "note": "Extrae años y trimestres únicos de RATIO con DISTINCT; riesgo: tabla ratio puede no existir si carga anterior falló, sin manejo de valores NULL ni validación de integridad referencial."
+      "note": "Extrae años y trimestres únicos de tabla RATIO para referencia temporal; riesgo: DISTINCT sobre tabla cargada desde archivo binario—dependencia de formato SAS y conversión de tipos de datos de fecha."
     }
   ]
 }

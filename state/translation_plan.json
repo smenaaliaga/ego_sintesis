@@ -2,7 +2,7 @@
   "project_name": "Síntesis_M_CR18",
   "egp_file": "D:\\Projects\\Migraciones-SAS\\Síntesis_M_CR18\\input\\egp\\Síntesis_M_CR18.egp",
   "output_strategy": "notebook-flow",
-  "generated_at": "2026-08-10T16:07:27.135607+00:00",
+  "generated_at": "2026-08-10T20:19:19.478502+00:00",
   "targets": [
     {
       "node_id": "CodeTask-XkoygblbmDJ46M1C",
@@ -63,9 +63,7 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-006"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-XkoygblbmDJ46M1C"
@@ -364,8 +362,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-006",
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [],
@@ -1038,7 +1035,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-008"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -1109,9 +1106,7 @@
         "TABLAS.DEP_HH_FM"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-007"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-dYzl6IKuUE5lnGRx",
@@ -27283,7 +27278,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [],
@@ -27442,7 +27437,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -27830,7 +27825,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -27963,7 +27958,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -30433,7 +30428,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [],
@@ -30604,9 +30599,7 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-007"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-7lh12aT9AnDfJenj"
@@ -30851,7 +30844,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [],
@@ -31040,7 +31033,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -31248,7 +31241,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -31315,7 +31308,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -31361,9 +31354,7 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-007"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-2Qnp37e99kvQSM9m",
@@ -31402,9 +31393,7 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-007"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-2Qnp37e99kvQSM9m",
@@ -31445,9 +31434,7 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-007"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-2Qnp37e99kvQSM9m",
@@ -31545,7 +31532,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-008"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [],
@@ -31919,7 +31906,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-008"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -32024,7 +32011,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-007"
+        "M-004"
       ],
       "preprocess_steps": [],
       "dependencies": [
@@ -32108,9 +32095,7 @@
         "TABLAS.CNT"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-006"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
@@ -32359,7 +32344,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-004"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-PctehnQmgLccQ4yN"
@@ -32426,9 +32413,7 @@
         "DCNIDATA.FBCF_SF"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-008"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-PctehnQmgLccQ4yN",
@@ -32558,7 +32543,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-004"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-2S7FV1OytGj5U2Fw",

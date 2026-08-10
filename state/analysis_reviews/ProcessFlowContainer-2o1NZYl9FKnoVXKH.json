@@ -4,27 +4,27 @@
   "reviews": [
     {
       "node_id": "CodeTask-Lf2OAAam1xLYVxj4",
-      "note": "Extrae y consolida datos transaccionales con lógica de negocio compleja (mapeos condicionales de sectores e instrumentos, normalización de contraparte, cálculos de chequeo de doble entrada). Riesgo: múltiples CASE WHEN anidados y sustituciones de macros SAS (&ANIO, &C_WTW) sin validación; la lógica de agregación debe replicarse exactamente en SQL/Pandas."
+      "note": "Crea tabla principal de saldos agregados por múltiples dimensiones con lógica de negocio en CASE anidados y acceso a cuatro tablas de referencia (Sectorizacion, Instrumentos, Contrapartidas); riesgo: macros dinámicas (&ANIO), UPDATEs post-CREATE complejos, y normalizaciones boilerplate en SQL que requieren conversión a operaciones DataFrames en pandas."
     },
     {
       "node_id": "Query-VQ29h8krzaqVLkki",
-      "note": "Consulta de valores únicos de instrumentos (N_SCN_wtw) desde la tabla consolidada para alimentar lista de filtro/selector. Riesgo: depende críticamente de que Saldos_SI esté correctamente procesada en el nodo anterior."
+      "note": "Consulta DISTINCT simple que extrae valores únicos de N_SCN_wtw desde SALDOS_SI; bajo riesgo, migración directa a pandas.unique()."
     },
     {
       "node_id": "Query-BLk9lewZ7zj2cQFo",
-      "note": "Consulta de valores únicos de emisores/acreedores (N_SI_C_AGENTE) para selector de usuario. Riesgo: misma dependencia de Saldos_SI y la lógica de normalización de claves ('S.123','S.124' → 'OFIs+Auxiliares') debe estar correcta."
+      "note": "Consulta DISTINCT simple que extrae valores únicos de N_SI_C_AGENTE desde SALDOS_SI; bajo riesgo, migración directa a pandas.unique()."
     },
     {
       "node_id": "CodeTask-ziOqjdQngJ3iTiRS",
-      "note": "Genera gráfico de barras agregado para balances (cuenta 'Bce Final') por emisor/acreedor usando template SAS sgrender. Riesgo: depende de macro &C_WTW para filtrar instrumento y de template propietario (template_chart4) que no será portátil a Python; ODS Graphics requiere reimplementación con librerías como matplotlib/plotly."
+      "note": "Genera tabla de selección filtrada, ordena datos y renderiza gráfico con PROC SGRENDER usando template dinámico; riesgos: dependencia de template externo (template_chart4), output gráfico ODS, y macros en título dinámico (&C_WTW)."
     },
     {
       "node_id": "CodeTask-PTl7dbnx3tB9LNaa",
-      "note": "Duplica consolidación principal pero desde tabla con nombre dinámico (BD_CTSI_R&ANIO&TRIM) sin validación de año/trimestre en WHERE; genera tablas TABULATE de balances para ambos tipos de entrada. Riesgo: macro &ANIO está comentada en WHERE, creando inconsistencia lógica; formato COMMA14 de SAS debe convertirse a formato Python nativo."
+      "note": "Duplica lógica de creación de Saldos_SI pero con tabla fuente parametrizada (BD_CTSI_R&ANIO&TRIM) sin fecha mínima; riesgos: macros concatenadas en nombre de tabla, lógica CASE idéntica pero sin UPDATEs de normalización completos, y PROC TABULATE con formato condicional que requiere mapeo a herramienta de reporting Python."
     },
     {
       "node_id": "CodeTask-Dn53X4xCKNDMzlYP",
-      "note": "Genera gráfico de barras para operaciones financieras (cuenta 'Financiera') filtrando por el mismo instrumento. Riesgo: mismo problema que CodeTask-ziOqjdQngJ3iTiRS con template SAS y ODS Graphics; además, la lógica CASE para entrada (H/D) depende de strings de macro sin tipado."
+      "note": "Similar a ziOqjdQngJ3iTiRS pero filtra por cuenta='Financiera' en vez de 'Bce Final'; riesgo: idéntica dependencia de template, ODS gráfico, y marco dinámico, con agregación similar pero en rama diferente del negocio."
     }
   ]
 }

@@ -30,7 +30,7 @@ llm:
   # mismo párrafo. Un verificador débil gasta presupuesto y da falsa calma.
   # Requiere que claude-sonnet-5 esté desplegado en el recurso bc-pibot.
   models_by_task:
-    translation: "claude-sonnet-5"
+    translation: "claude-opus-5"
     verify: "claude-sonnet-5"
     mismatch_diagnosis: "claude-sonnet-5"
   # Explícito, no heredado: en Sonnet 5 omitir `thinking` corre adaptive igual,

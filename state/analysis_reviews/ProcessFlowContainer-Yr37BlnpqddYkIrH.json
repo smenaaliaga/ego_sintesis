@@ -4,15 +4,15 @@
   "reviews": [
     {
       "node_id": "CodeTask-XkoygblbmDJ46M1C",
-      "note": "Asignación de librería SAS V9 a ruta física de datos. Riesgo: la ruta `/sasdata/BCCH/GEM_DCNI/02_CNSI/01_SINTESIS` debe existir y ser accesible en el entorno Python; requiere validación de rutas y permisos de acceso."
+      "note": "Libname estática que define la ruta base del catálogo de tablas SAS v9 — Riesgo: la ruta '/sasdata/BCCH/GEM_DCNI/02_CNSI/01_SINTESIS' debe mapearse a variable de entorno Python o configuración; verificar disponibilidad en ambiente destino."
     },
     {
       "node_id": "CodeTask-6NFJPkCu6mSpiJT9",
-      "note": "Ingesta de datos desde API REST del Banco Central, parsing JSON, transformación de trimestres (conversión 4→2, 7→3, 10→4), joins por año-trimestre-moneda, y conversión a moneda única (pesos) con lookup de tipos de cambio. Riesgos: credenciales de API embebidas, parsing manual de fechas con substr/input, lógica de reasignación de trimestres requiere validación funcional, join left que puede generar nulos si no hay coincidencia de moneda-trimestre."
+      "note": "Extrae 4 series JSON de API del Banco Central (activo/pasivo en pesos/USD), parsea fechas mediante SUBSTR + INPUT, une con tabla estática de tipos de cambio, normaliza trimestres y convierte montos a pesos — Riesgos: credenciales &user &password en URL requiere inyección de variables globales; parseo manual de fecha es frágil; JOIN implícito por año-trimestre-moneda puede generar nulls silenciosos; tabla MONEDAS_MENSUAL.sas7bdat debe exportarse como CSV/Parquet."
     },
     {
       "node_id": "CodeTask-2mdU6L71g42MYPd6",
-      "note": "Definición de cuatro templates gráficos estáticos (proc template) con especificaciones de ejes, paletas de colores hardcodeadas, y dinámicos de variables. Riesgo: sintaxis ODS Graphics de SAS no tiene equivalente directo en Python; requiere recreación manual con matplotlib/plotly o uso de librerías especializadas; paleta de colores y formatos de eje deben adaptarse manualmente."
+      "note": "Define 4 templates ODS Graphics (proc template) con colores, ejes duales y leyendas para gráficos de barras apiladas, líneas y combinadas — Riesgo: ODS Graphics no tiene equivalente directo en Python (matplotlib/plotly requieren reescritura manual de paletas, tipografías y layout); los parámetros dinámicos (TITLE, VAR, GRUPO) deben mapearse a variables de contexto en lugar de macros SAS."
     }
   ]
 }

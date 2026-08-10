@@ -4,7 +4,7 @@
   "reviews": [
     {
       "node_id": "CodeTask-PrxMUTlg9rE9nnWS",
-      "note": "Orquestación de múltiples PROC SQL con JOINs izquierdos contra 4 tablas de dimensiones (T_Sectorizacion, T_Instrumentos, T_Cuenta, T_Cuenta_CEI), UPDATEs condicionales por combinaciones de códigos, lógica de reasignación de sectores (reclasificación dinámicas de filas entre 'CK'/'GY'→'CC'), creación de tablas intermedias derivadas (SIP, ID, ID_a, D4, D7), y concatenación iterativa de resultados — riesgos: dependencia fuerte de integridad referencial de las tablas maestras, macros de parámetro (&ANIO), lógica de CASE con signos invertidos que requieren mapeo exacto a Python, y el DROP final asume limpieza de WORK que en Python requiere gestión explícita de ciclo de vida de datos intermedios."
+      "note": "Procesa 4 tablas relacionales (BD_CTSI, T_Sectorizacion, T_Instrumentos, T_Cuenta) con LEFT JOINs implícitos sobre claves de negocio (SECTOR, C_SCN, C_CUENTA) y macro &ANIO no declarada; aplica 15+ operaciones UPDATE/DELETE con lógica condicional sobre C_Cuenta_SCN y C_SCN_N1; genera 9 tablas temporales con CASE WHEN sobre C_ENTRADA; integra resultados mediante DATA SET concatenación manual y PROC TABULATE con ordenes de formato y relaciones jerárquicas (C_Cuenta_CEI→N_Cuenta_CEI→C_SCN_N1); riesgos: dependencia de esquema BD exacto, macros no visibles, CONTAINS en substr, orden de ejecución de UPDATEs y relaciones transitivas entre tablas derivadas."
     }
   ]
 }
