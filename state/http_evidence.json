@@ -1,0 +1,30 @@
+{
+ "generated_at": "2026-08-07T17:21:04.463490+00:00",
+ "hosts": [
+  {
+   "host": "si3.bcentral.cl",
+   "node_ids": [
+    "CodeTask-6NFJPkCu6mSpiJT9",
+    "CodeTask-PctehnQmgLccQ4yN",
+    "CodeTask-rVgcAFrUWf36VVj6"
+   ],
+   "methods": [
+    "GET"
+   ],
+   "sample_urls": [
+    "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote(&)timeseries=F051.D1.FLU.C.Z.CLP.T%bquote(&)function=GetSeries",
+    "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote(&)timeseries=F051.D2.FLU.C.Z.CLP.T%bquote(&)function=GetSeries",
+    "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote(&)timeseries=F051.D4.FLU.C.Z.USD.T%bquote(&)function=GetSeries"
+   ],
+   "sources": [
+    "proc_http"
+   ]
+  }
+ ],
+ "nodes_with_dynamic_url": [],
+ "detection_notes": [
+  "hosts leídos del URL= literal del propio SAS (PROC HTTP / FILENAME URL)",
+  "el código comentado no cuenta: un PROC HTTP dentro de /* */ no es una conexión",
+  "URLs armadas con macro variables quedan declaradas en nodes_with_dynamic_url, nunca inferidas"
+ ]
+}

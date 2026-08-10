@@ -1,0 +1,45 @@
+{
+  "id": "CodeTask-lVG5feJnCetjgbtL",
+  "label": "Datos_BdP",
+  "node_type": "PROC_SQL",
+  "pfd_id": "ProcessFlowContainer-J3t3lB9nS5yuVyLR",
+  "pfd_label": "Varios",
+  "inputs": [
+    "TABLAS.BD_CTSI",
+    "TABLAS.T_CUENTA",
+    "TABLAS.T_INSTRUMENTOS",
+    "TABLAS.T_SECTORIZACION",
+    "WORK.ENTREGA_D7_RM"
+  ],
+  "outputs": [
+    "WORK.ENTREGA_D7_RM"
+  ],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL"
+    ],
+    "classification": "transform",
+    "complexity": "medium",
+    "migration_priority": "medium"
+  },
+  "code_lines": [
+    "﻿/*GENERA BASE DE SALIDA PARA ARCHIVO NOTA*/",
+    "",
+    "PROC SQL;",
+    "CREATE TABLE Entrega_D7_RM AS",
+    "SELECT T1.AÑO, T1.TRIM, T2.C_SI_SCN,T2.N_SI_SCN,T1.C_SCN AS C_INSTRUMENTO_SCN,T4.N_SCN AS N_INSTRUMENTO_SCN, T1.C_CUENTA, T1.C_ENTRADA, SUM(T1.DATO) AS DATO, T5.C_Cuenta_SCN",
+    "FROM TABLAS.BD_CTSI T1 ",
+    "LEFT JOIN TABLAS.T_Sectorizacion T2 ON (T1.SECTOR=T2.C_SI) ",
+    "/*LEFT JOIN TABLAS.T_Contrapartidas T3 ON (T1.C_CAGENTE=T3.C_CAGENTE) */",
+    "LEFT JOIN TABLAS.T_Instrumentos T4 ON (T1.C_SCN=T4.C_SCN) ",
+    "LEFT JOIN TABLAS.T_Cuenta T5 ON (T1.C_CUENTA=T5.C_CUENTA)",
+    "WHERE \tT1.AÑO>=&ANIO and T2.C_SI_SCN='S.2' and T1.C_SCN  in ('D.71','D.72','D.75')",
+    "GROUP BY T1.AÑO, T1.TRIM, T2.C_SI_SCN,T2.N_SI_SCN,T1.C_SCN,T4.N_SCN,T1.C_CUENTA, T1.C_ENTRADA,T5.C_Cuenta_SCN;",
+    "QUIT;",
+    "",
+    "data \"/sasdata/BCCH/GEM_DCNI/99_DCNI_DBP/Transferencias_RM.sas7bdat\"; set Entrega_D7_RM;run;",
+    "",
+    ""
+  ]
+}

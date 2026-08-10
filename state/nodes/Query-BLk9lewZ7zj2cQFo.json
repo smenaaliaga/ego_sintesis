@@ -1,0 +1,33 @@
+{
+  "id": "Query-BLk9lewZ7zj2cQFo",
+  "label": "Query Builder 1",
+  "node_type": "QUERY",
+  "pfd_id": "ProcessFlowContainer-2o1NZYl9FKnoVXKH",
+  "pfd_label": "Análisis WTW",
+  "inputs": [
+    "WORK.SALDOS_SI"
+  ],
+  "outputs": [
+    "WORK.QUERY_FOR_SALDOS_SI_0000"
+  ],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL"
+    ],
+    "code_source": "eg_log",
+    "code_from_last_run": true,
+    "query_preview": true,
+    "requires_manual_review": true,
+    "classification": "transform",
+    "complexity": "low",
+    "migration_priority": "high"
+  },
+  "code_lines": [
+    "PROC SQL;",
+    "   CREATE TABLE WORK.QUERY_FOR_SALDOS_SI_0000 AS",
+    "   SELECT DISTINCT t1.N_SI_C_AGENTE",
+    "      FROM WORK.SALDOS_SI t1;",
+    "QUIT;"
+  ]
+}

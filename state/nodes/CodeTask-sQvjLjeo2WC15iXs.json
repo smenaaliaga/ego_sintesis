@@ -1,0 +1,27 @@
+{
+  "id": "CodeTask-sQvjLjeo2WC15iXs",
+  "label": "Program",
+  "node_type": "PROC_SQL",
+  "pfd_id": "PFD-qSlM5lap8p2JfvZN",
+  "pfd_label": "Revisión tablas DCV",
+  "inputs": [],
+  "outputs": [
+    "WORK.FFF"
+  ],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL"
+    ],
+    "classification": "transform",
+    "complexity": "low",
+    "migration_priority": "high"
+  },
+  "code_lines": [
+    "﻿proc sql; create table fff as select *\r",
+    "FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/base_af3_total_v2.sas7bdat\" t1\r",
+    "where año=2025\r",
+    ";quit;\r",
+    ""
+  ]
+}

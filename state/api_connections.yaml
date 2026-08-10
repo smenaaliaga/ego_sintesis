@@ -1,0 +1,9 @@
+connections:
+- host: si3.bcentral.cl
+  mode: sdk
+  package: bcchapi
+  node_ids:
+  - CodeTask-6NFJPkCu6mSpiJT9
+  - CodeTask-PctehnQmgLccQ4yN
+  - CodeTask-rVgcAFrUWf36VVj6
+  notes: ''

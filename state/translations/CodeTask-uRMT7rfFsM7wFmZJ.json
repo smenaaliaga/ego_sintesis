@@ -1,0 +1,21 @@
+{
+  "node_id": "CodeTask-uRMT7rfFsM7wFmZJ",
+  "node_label": "S1_01_RevDCV",
+  "strategy": "hybrid",
+  "imports": [],
+  "cells": [
+    "raise NotImplementedError(\n    \"Nodo S1_01_RevDCV: auditoria repetitiva (9 tablas SAS7BDAT) que lee directamente \"\n    \"archivos .sas7bdat por ruta absoluta hardcodeada \"\n    \"'/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/*.sas7bdat' via PROC SQL \"\n    \"'FROM <ruta>.sas7bdat' -- este patron de lectura NO esta en la tabla de \"\n    \"patrones (no es PROC IMPORT ni tabla de BD del catalogo de conexiones: \"\n    \"GOBGENER/TABLAS no incluyen estos archivos DCVRES). Requiere pyreadstat.read_sas7bdat \"\n    \"sobre una ruta relativa del workspace (M-001) que el proyecto aun no ha definido \"\n    \"para estos 9 archivos: t_aj_cd_321_6_AF32, t_aj_dcv_af31_act_c21, t_aj_dcv_af31_pas, \"\n    \"t_aj_dcv_af32_act_ao, t_aj_dcv_af32_act_hc, t_aj_dcv_af32_act_ofis, t_aj_dcv_af32_pas_ao, \"\n    \"t_aj_dcv_af32_pas_hc, t_aj_dcv_aux_oif_af32, t_aj_dcv_ccaf_af32_pas. Ademas el nodo \"\n    \"solo produce salidas PROC TABULATE (reportes de consistencia BF=BI, sin escritura a \"\n    \"tablas de salida persistentes: WORK.T1/P_BF_T1/P_BI_T1/P_DIF_T1 se recrean y se \"\n    \"DROPean en cada bloque, son de solo diagnostico). Falta: (1) la ruta relativa real \"\n    \"donde deben vivir estos 9 .sas7bdat en el workspace del proyecto, (2) confirmar si \"\n    \"los reportes PROC TABULATE deben materializarse como DataFrames de salida o solo \"\n    \"como impresion/logging de diagnostico.\"\n)"
+  ],
+  "traceability": {
+    "sas_construct": "PROC SQL CREATE TABLE leyendo archivos .sas7bdat por ruta absoluta + PROC TABULATE de diagnostico, repetido 9 veces sobre distintos archivos",
+    "business_rule": "Audita la consistencia contable Balance Final = Balance Inicio para 9 tablas de posiciones DCV (certificados, activos/pasivos de fondos de bonos, offshore, HC, oficinas, auxiliares y CCAF), invirtiendo signo salvo en el Balance Final y reportando diferencias mayores a 0.05 por año/trimestre/sector/instrumento"
+  },
+  "confidence": "low",
+  "warnings": [
+    "El nodo lee 9 archivos .sas7bdat directamente desde una ruta absoluta hardcodeada (M-001 aplica: eliminar ruta absoluta), pero el patron 'PROC SQL FROM <ruta>.sas7bdat' no tiene equivalente en la tabla de patrones (no es PROC IMPORT XLSX/CSV ni una tabla del catalogo GOBGENER/TABLAS) -- se necesita pyreadstat.read_sas7bdat(ruta) y la ruta relativa real del proyecto para estos 9 archivos, que no vino en el contexto",
+    "El reparto por bloque marca los tramos PROC SQL como 'hybrid' (mezcla BD con archivos) pero en realidad NINGUNA de las 9 iteraciones toca GOBGENER ni TABLAS: todas las fuentes son archivos .sas7bdat locales -- no hay tablas de BD involucradas en este nodo pese al alias db_aliases declarado",
+    "Todo el output del nodo son reportes PROC TABULATE (consola/listado SAS de diferencias BF/BI) -- WORK.T1, WORK.P_BF_T1, WORK.P_BI_T1, WORK.P_DIF_T1 se recrean y se DROPean en cada uno de los 9 bloques (no persisten entre bloques ni se escriben a BD); no quedo claro si el plan espera que estos reportes se materialicen como DataFrames devueltos/logueados o son puramente de diagnostico visual, dato que tampoco vino especificado",
+    "El bloque comentado con 'proc sql; create table ff as select * from ...' y el bloque 'PROC SQL; CREATE TABLE tt AS SELECT * FROM ...' estan anulados en el SAS original (comentados) -- no se tradujeron, tal como indica la regla de no arrastrar codigo SAS comentado",
+    "temp_table_strategy=session_sql no aplica de forma directa: el WORK no nace de una tabla de BD (GOBGENER/TABLAS) sino de un archivo .sas7bdat leido directo, por lo que no hay SELECT INTO #tmp posible sin antes tener el archivo en pandas/BD"
+  ]
+}

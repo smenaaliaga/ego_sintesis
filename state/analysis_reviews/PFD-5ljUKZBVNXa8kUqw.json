@@ -1,0 +1,34 @@
+{
+  "pfd_id": "PFD-5ljUKZBVNXa8kUqw",
+  "pfd_label": "Salidas",
+  "reviews": [
+    {
+      "node_id": "CodeTask-MkeeAoZmCaYLJwXL",
+      "note": "Crea dos tablas de salida (SALIDA_WTW y SALIDA_WTW_RESUMEN) con 5 LEFT JOINs implícitos sobre tablas de referencia; riesgo: macrovariables &ANIO sin definición visible y lógica de borrados comentada que puede ser conflictiva en migración."
+    },
+    {
+      "node_id": "Query-ro8uUmeLxREuG2um",
+      "note": "Filtra SALIDA_WTW_RESUMEN por año 2024 mediante Query Builder; riesgo: referencia a columna con nombre entrecomillado ('AÑO'n) requiere manejo especial en Python y garantía de que SALIDA_WTW_RESUMEN existe previamente."
+    },
+    {
+      "node_id": "Query-H6bd6GULUeGKQkjU",
+      "note": "Genera tabla t_inst_nf con agregación y concatenación de claves (ID con ||); riesgo: filtro IN de 3 valores en C_CUENTA es duro, y la construcción de ID depende de precisión en espacios y tipos de datos al pasar a Python."
+    },
+    {
+      "node_id": "Query-yJlzWiFrCH19inhY",
+      "note": "Selecciona datos de SALIDA_WTW con filtro por año >= 2005; riesgo: Query Builder genera 31 columnas con nombres de referencia cruzada (N0, N1, C_CAG_N0) que requieren mapeo exacto desde tabla origen."
+    },
+    {
+      "node_id": "Query-wQdkUdHpZzXcootN",
+      "note": "Agrupa SALIDA_WTW por múltiples dimensiones y filtra C_SI_SCN='S.13'; riesgo: el SUM(DATO) y GROUP BY con 29 columnas es complejo; la agregación debe garantizar que no hay datos huérfanos en la clasificación SCN."
+    },
+    {
+      "node_id": "CodeTask-M7Kq8x8xCBjt8NWW",
+      "note": "Crea SALIDA_RESUMEN_SNF filtrando BD_CTSI por C_SI_SCN='S.11' y carga tabla externa (ratio_pat_hc_c.sas7bdat) desde ruta hardcoded; riesgo: ruta absoluta a .sas7bdat no es portable, y filtro S.11 es opuesto al S.13 anterior (ambigüedad en lógica de negocio)."
+    },
+    {
+      "node_id": "Query-aIf7aYkl8XlQRx15",
+      "note": "Extrae DISTINCT de AÑO y TRIM desde tabla RATIO; riesgo: depende de que tabla RATIO esté en WORK (variable de sesión SAS), y la lectura de .sas7bdat debe replicarse correctamente en Python (formato binario SAS)."
+    }
+  ]
+}

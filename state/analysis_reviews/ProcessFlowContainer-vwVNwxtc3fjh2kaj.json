@@ -1,0 +1,34 @@
+{
+  "pfd_id": "ProcessFlowContainer-vwVNwxtc3fjh2kaj",
+  "pfd_label": "Versiones",
+  "reviews": [
+    {
+      "node_id": "CodeTask-vKSNOED9VpSvBnYB",
+      "note": "Respalda tabla base BD_CTSI. Riesgo: Las macros dinámicas &ANIO y &TRIM en el nombre del dataset generan referencias a tablas parametrizadas que deben existir en tiempo de ejecución."
+    },
+    {
+      "node_id": "CodeTask-2Qnp37e99kvQSM9m",
+      "note": "Núcleo del flujo: construye V_NUEVA y V_ANTERIOR con JOINs implícitos a T_Sectorizacion y T_Instrumentos, recategoriza agentes mediante múltiples UPDATE repetitivos, calcula PIB, y genera tablas de comparación y deltas. Riesgos principales: (1) Macros &Sector y &ANIO&TRIM en nombres/filtros, (2) Joins sin ON explícitos, (3) Substring y CASE dinámicos, (4) 30+ tablas intermedias que requieren cleanup explícito, (5) Formatos SAS COMMA14 y referencias a fechas con PUT."
+    },
+    {
+      "node_id": "CodeTask-em3EefKlkASf9L3q",
+      "note": "Genera tablas PROC TABULATE anuales a partir de V_DELTA_SC con filtros y formatos SAS. Riesgo: Dependencia de V_DELTA_SC generada en nodo anterior; si esa tabla no existe o cambia estructura, todos estos reportes fallan sin validación previa."
+    },
+    {
+      "node_id": "CodeTask-bilvsdL51BAnsUEr",
+      "note": "Transforma COMPARA_SC_PIBF en COMPARA_RES con 14 UPDATE secuenciales que modifican N_SCN_a e invierten signos según cuenta/entrada. Riesgo: Orden de UPDATEs crítico; cambio de lógica condicional o eliminación de sentencias puede propagar errores silenciosos en recategorización."
+    },
+    {
+      "node_id": "CodeTask-Ns4cmh4hITlllpAk",
+      "note": "Calcula YD_TRIM (ingreso disponible hogares) e YD_VA (variación anual) mediante JOINs con TABLAS.TIEMPO, además de múltiples gráficos PROC GBARLINE y SGPLOT parametrizados. Riesgos: (1) Macros &Sector, &Cuenta en WHERE, (2) Conversión de TIEMPO requiere tabla TABLAS.TIEMPO correctamente estructurada, (3) Formatos y patrones hardcodeados."
+    },
+    {
+      "node_id": "CodeTask-ie1zFOWtqc6EvbAr",
+      "note": "Genera tablas de instrumento por cuenta con filtros &Codigo y &Entrada, más 7 gráficos SGPLOT y GBARLINE complejos con JOINs a COMPARA. Riesgo: Dependencia de macros &Codigo, &Entrada, &Sector; vistas SQL con WHERE dinámicos susceptibles a inyección de parámetros; formatos heredados PATTERN."
+    },
+    {
+      "node_id": "CodeTask-TkgG8t5JCMJVDoVb",
+      "note": "Similar a ie1zFOWtqc6EvbAr pero para cuentas no financieras con macro &Inst_nf. Riesgos: (1) Filtros por &Cuenta, &Entrada, &Inst_nf, (2) Dependencia de COMPARA y COMPARA_SC_PIBF, (3) Gráficos con hardcodes de color y formato que pueden no adaptarse a datos nuevos."
+    }
+  ]
+}

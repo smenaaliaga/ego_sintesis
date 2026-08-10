@@ -1,0 +1,18 @@
+{
+  "pfd_id": "PFD-Xo33OSMWhvsM3DGl",
+  "pfd_label": "Hogares cierre anual",
+  "reviews": [
+    {
+      "node_id": "CodeTask-rRgEeqwSRMAQaeHB",
+      "note": "Extrae PTMO neto de hogares, excluye AF.71, calcula discrepancias trimestrales y aplica tabla de factores de ajuste año-trimestre hardcodeados (2015-2024) para indicador P4. Riesgos: múltiples PROC SQL con JOINs implícitos (TABLAS.BD_CTSI × TABLAS.T_SECTORIZACION), nombres de columnas con espacios y caracteres especiales (AÑO, TRIM), lógica de filtrado compleja con OR/AND anidados, factores de ajuste dispersos en CASE statement difícil de migrar a tabla de parámetros."
+    },
+    {
+      "node_id": "CodeTask-H2hhzkdf4aoXG9Pw",
+      "note": "Implementa algoritmo Cholette-Dagum en PROC IML para benchmarking de series con matriz de restricciones y autocorrelación (rho=0.9999). Riesgos: código matricial complejo con operaciones lineales (SWEEP, GINV, operador Kronecker @), parámetros globales de macro (&rho), lógica condicional dependiente de número de observaciones por año (12 vs 4), no hay validación de convergencia ni manejo de matrices singulares."
+    },
+    {
+      "node_id": "CodeTask-ECZCZZvMxTO7sdpQ",
+      "note": "Extrae dividendos D.42 de hogares, calcula delta contra tabla BENCH y lo imputa en tabla RP_HH. Riesgos: JOIN implícito entre D42_HH y BENCH sin condiciones de match explícitas (solo AÑO y TRIM), función TODAY() con formato DATE7. genera FECHA dinámica, APPEND con FORCE puede perder tipos de datos, sin validación de integridad referencial ni manejo de registros duplicados."
+    }
+  ]
+}

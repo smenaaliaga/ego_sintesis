@@ -1,0 +1,18 @@
+{
+  "pfd_id": "ProcessFlowContainer-Yr37BlnpqddYkIrH",
+  "pfd_label": "Autoexec",
+  "reviews": [
+    {
+      "node_id": "CodeTask-XkoygblbmDJ46M1C",
+      "note": "Inicializa libname v9 con ruta local a repositorio SAS. Riesgo: equivalente directo en Python requiere validar que ruta exista y permisos de acceso; no hay dependencias dinámicas, pero la migración debe garantizar que el directorio sea accesible en el entorno destino."
+    },
+    {
+      "node_id": "CodeTask-6NFJPkCu6mSpiJT9",
+      "note": "Realiza 4 llamadas HTTP a API REST del banco central con autenticación (user/password), parsea JSON a tablas, extrae fecha/trimestre/valor con INPUT() y SUBSTR(), aplica join con tabla de tipos de cambio y UPDATEs secuenciales para normalizar trimestres. Riesgos: credentials dinámicas en URL (%bquote), parsing manual de fechas, joins implícitos, múltiples UPDATE secuenciales (debe reescribirse con lógica merge única en Python), manejo de libname JSON automap (requiere equivalente json.load/pandas en Python)."
+    },
+    {
+      "node_id": "CodeTask-2mdU6L71g42MYPd6",
+      "note": "Define 4 templates gráficos SAS (PROC TEMPLATE statgraph) con barras apiladas, líneas, ejes duales y dinámicas hardcodeadas. Riesgo: no tiene equivalente directo; requiere reescritura completa a matplotlib/plotly/altair con lógica de construcción condicional; los colores hexadecimales y atributos de eje (tickvaluepriority, lineextent) necesitan mapeo manual."
+    }
+  ]
+}

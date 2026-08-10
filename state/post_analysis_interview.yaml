@@ -1,0 +1,473 @@
+interview_type: post_analysis
+phase: 4
+blocks:
+- block_id: B2-scope
+  title: Alcance de la migración
+  description: ''
+  questions:
+  - id: Q-B2-1L
+    text: 'El .egp contiene 17 Process Flow(s) migrable(s) (84 nodos en total). Cada
+      flujo es un notebook independiente. ¿Cuáles traducimos en este primer lote?
+      Los demás quedan pendientes: `sas-migrator resume` los vuelve a ofrecer y no
+      se descarta ninguno.'
+    question_type: multi_choice
+    required: false
+    options:
+    - Autoexec (3 nodos) · ProcessFlowContainer-Yr37BlnpqddYkIrH
+    - Controles y ajustes iniciales (4 nodos) · PFD-I32F27oZ8ICuby6y
+    - Revisión tablas DCV (2 nodos) · PFD-qSlM5lap8p2JfvZN
+    - Síntesis_Reajustes (12 nodos) · PFD-9xOO9Nj6dXtUnawt
+    - Síntesis_Final (12 nodos) · PFD-FzVr69cJ7GUTkjGn
+    - Ajuste bonos (1 nodos) · PFD-cykKkMX4tZ6yssv9
+    - Hogares cierre anual (3 nodos) · PFD-Xo33OSMWhvsM3DGl
+    - Salidas (7 nodos) · PFD-5ljUKZBVNXa8kUqw
+    - Revisiones (6 nodos) · PFD-8utfxKBTd7ScRLgg
+    - Análisis (7 nodos) · PFD-u2VLTIPsf4glVezB
+    - Análisis_varios (3 nodos) · ProcessFlowContainer-BaoHMMx47LaLek4a
+    - Análisis WTW (6 nodos) · ProcessFlowContainer-2o1NZYl9FKnoVXKH
+    - Versiones (7 nodos) · ProcessFlowContainer-vwVNwxtc3fjh2kaj
+    - Cuadros (1 nodos) · PFD-gbN8RIHt1JrlbC3w
+    - Cargadores (3 nodos) · PFD-MbpMeYT4TZRpVo6G
+    - Anuario (1 nodos) · PFD-8QK2aWopOwZuokzE
+    - Varios (6 nodos) · ProcessFlowContainer-J3t3lB9nS5yuVyLR
+    source_finding: ''
+    context: ''
+    recommended_default: todos
+    evidence:
+    - 'flow_summary.json: resumen por flujo (tipos de nodo, entradas y salidas)'
+    - 'flow_graph.json: ningún flujo depende de otro'
+  - id: Q-B2-2
+    text: Estos 3 nodo(s) no tienen aristas en el DAG (posibles obsoletos). ¿Los excluimos
+      de la migración inicial?
+    question_type: approval
+    required: true
+    options:
+    - Excluirlos
+    - Mantenerlos
+    source_finding: ''
+    context: ''
+    recommended_default: Excluirlos
+    evidence:
+    - 'flow_graph.json: A1 (CodeTask-LbbQOdnOflsfHI1p) sin aristas'
+    - 'flow_graph.json: S5_Cuadros (CodeTask-PrxMUTlg9rE9nnWS) sin aristas'
+    - 'flow_graph.json: S5_AjBonos (CodeTask-ajjSEkh77FcmV2ov) sin aristas'
+  answers:
+  - question_id: Q-B2-1L
+    value: Controles y ajustes iniciales (4 nodos) · PFD-I32F27oZ8ICuby6y; Revisión
+      tablas DCV (2 nodos) · PFD-qSlM5lap8p2JfvZN; Síntesis_Reajustes (12 nodos) ·
+      PFD-9xOO9Nj6dXtUnawt; Síntesis_Final (12 nodos) · PFD-FzVr69cJ7GUTkjGn
+    answered_at: '2026-08-07T17:50:43.307185Z'
+  - question_id: Q-B2-2
+    value: Excluirlos
+    answered_at: '2026-08-07T17:50:43.307185Z'
+- block_id: B4-macro-params
+  title: Parámetros del SAS sin valor (2)
+  description: ''
+  questions:
+  - id: Q-B4-1P
+    text: Si conoces el valor de alguna, escríbelo como «Year=2024, Trim=4» (solo
+      las que sepas). Las que queden sin valor se registran como supuestos visibles
+      en el plan y se pueden declarar después en project_config.yaml → run.macro_params.
+    question_type: free_text
+    required: false
+    options: []
+    source_finding: ''
+    context: ''
+    recommended_default: dejarlas sin valor (supuestos visibles en el plan)
+    evidence:
+    - '&ANIO — sin valor, en 3 nodo(s)'
+    - '&TRIM — sin valor, en 1 nodo(s)'
+    - sin valor, el notebook las deja en None y aborta al ejecutar diciendo cuál falta
+      (celda 'parameters')
+  answers:
+  - question_id: Q-B4-1P
+    value: dejarlas sin valor (supuestos visibles en el plan)
+    answered_at: '2026-08-07T17:50:43.352549Z'
+- block_id: B4b-db-connections
+  title: 'Prefijo sin confirmar: GOBGENER'
+  description: ''
+  questions:
+  - id: Q-B4b-R-GOBGENER
+    text: '''GOBGENER'' se usa como LIBREF.TABLA pero ningún LIBNAME lo declara. ¿De
+      dónde salen esos datos?'
+    question_type: single_choice
+    required: true
+    options:
+    - Es una base de datos
+    - Es un archivo Excel
+    - Es una ruta de archivos (no BD)
+    - No sé
+    source_finding: ''
+    context: ''
+    recommended_default: No sé
+    evidence:
+    - 'db_evidence.json: prefijo GOBGENER (flow_summary_library) — tablas: CR18_T_SCN_2,
+      EJECUCION'
+    - 'nodos afectados: CodeTask-dYzl6IKuUE5lnGRx'
+  - id: Q-B4b-R-LIB
+    text: '''LIB'' se usa como LIBREF.TABLA pero ningún LIBNAME lo declara. ¿De dónde
+      salen esos datos?'
+    question_type: single_choice
+    required: true
+    options:
+    - Es una base de datos
+    - Es un archivo Excel
+    - Es una ruta de archivos (no BD)
+    - No sé
+    source_finding: ''
+    context: ''
+    recommended_default: No sé
+    evidence:
+    - 'db_evidence.json: prefijo LIB (flow_summary_library) — tablas: SERIES_OBS'
+    - 'nodos afectados: CodeTask-6NFJPkCu6mSpiJT9, CodeTask-PctehnQmgLccQ4yN, CodeTask-rVgcAFrUWf36VVj6'
+  - id: Q-B4b-R-TABLAS
+    text: '''TABLAS'' se usa como LIBREF.TABLA pero ningún LIBNAME lo declara. ¿De
+      dónde salen esos datos?'
+    question_type: single_choice
+    required: true
+    options:
+    - Es una base de datos
+    - Es un archivo Excel
+    - Es una ruta de archivos (no BD)
+    - No sé
+    source_finding: ''
+    context: ''
+    recommended_default: Es una base de datos
+    evidence:
+    - 'db_evidence.json: prefijo TABLAS (flow_summary_library) — tablas: ACC_COT,
+      AJUSTE_BONOS, AJ_TCORR, AJ_VARIOS, BD_CTSI, BD_CTSI_AJPTMOS_CP'
+    - 'nodos afectados: CodeTask-1MZt2MbPkdLUOvbC, CodeTask-1luvy2zX48vyTm18, CodeTask-2Qnp37e99kvQSM9m,
+      CodeTask-2S7FV1OytGj5U2Fw, CodeTask-6SjSzoc2tRAmj3bg, CodeTask-7lh12aT9AnDfJenj,
+      CodeTask-7nH3fwOy4hErZFqh, CodeTask-9OqX3kaymboJVh4I'
+  - id: Q-B4b-1
+    text: El flujo SAS lee y escribe tablas vía librerías (LIBNAME/LIBREF). ¿Los notebooks
+      resultantes accederán a esas tablas en una base SQL Server?
+    question_type: single_choice
+    required: true
+    options:
+    - Sí, conectar a la base de datos
+    - No, usar otra fuente (solo archivos)
+    source_finding: ''
+    context: ''
+    recommended_default: Sí, conectar a la base de datos
+    evidence:
+    - 'db_evidence.json: DCNIDATA — 8 tabla(s) en 4 nodo(s) (flow_summary_library)'
+    - 'db_evidence.json: GOBGENER — 2 tabla(s) en 1 nodo(s) (flow_summary_library)'
+    - 'db_evidence.json: LIB — 1 tabla(s) en 3 nodo(s) (flow_summary_library)'
+    - 'db_evidence.json: TABLAS — 34 tabla(s) en 62 nodo(s) (flow_summary_library)'
+  - id: Q-B4b-2
+    text: ¿Qué servidor SQL Server usarán los notebooks? El proyecto trae 'PLATDAT'
+      como default.
+    question_type: single_choice
+    required: true
+    options:
+    - Usar la conexión por defecto del proyecto
+    - Especificar otra conexión
+    source_finding: ''
+    context: ''
+    recommended_default: Usar la conexión por defecto del proyecto
+    evidence:
+    - 'project_config.yaml: default_server = PLATDAT'
+  - id: Q-B4b-4
+    text: ¿La conexión se usa como fuente, destino o ambos?
+    question_type: single_choice
+    required: true
+    options:
+    - Solo lectura (fuente)
+    - Solo escritura (destino)
+    - Lectura y escritura
+    source_finding: ''
+    context: ''
+    recommended_default: Lectura y escritura
+    evidence:
+    - 'db_evidence.json: hay tablas con escritura detectada'
+  - id: Q-B4b-5
+    text: Propongo mantener el nombre de cada librería SAS como nombre de base (esquema
+      dbo, tablas sin cambio). ¿Mantenemos todos los nombres? Para renombrar, escribí
+      `LIB -> NUEVA` (varios separados por coma) o `todas -> NUEVA` para mandarlas
+      todas a la misma base.
+    question_type: single_choice
+    required: true
+    options:
+    - Mantener todos los nombres
+    - Renombrar alguna base
+    source_finding: ''
+    context: ''
+    recommended_default: Mantener todos los nombres
+    evidence:
+    - GOBGENER.TABLA → GOBGENER.dbo.TABLA (2 tabla(s))
+    - TABLAS.TABLA → TABLAS.dbo.TABLA (34 tabla(s))
+  answers:
+  - question_id: Q-B4b-R-GOBGENER
+    value: Es una base de datos
+    answered_at: '2026-08-07T17:50:43.359637Z'
+  - question_id: Q-B4b-R-LIB
+    value: No sé
+    answered_at: '2026-08-07T17:50:43.359637Z'
+  - question_id: Q-B4b-R-TABLAS
+    value: Es una base de datos
+    answered_at: '2026-08-07T17:50:43.359637Z'
+  - question_id: Q-B4b-1
+    value: Sí, conectar a la base de datos
+    answered_at: '2026-08-07T17:50:45.322425Z'
+  - question_id: Q-B4b-2
+    value: Usar la conexión por defecto del proyecto
+    answered_at: '2026-08-07T17:50:45.325424Z'
+  - question_id: Q-B4b-4
+    value: Lectura y escritura
+    answered_at: '2026-08-07T17:50:45.325424Z'
+  - question_id: Q-B4b-5
+    value: Mantener todos los nombres
+    answered_at: '2026-08-07T17:50:45.325424Z'
+- block_id: B4d-execution-target
+  title: Motor de ejecución por defecto
+  description: ''
+  questions:
+  - id: Q-B4d-1
+    text: 46 nodo(s) leen y escriben SOLO tablas de la base y su lógica es expresable
+      en SQL. ¿Dónde corre su procesamiento?
+    question_type: single_choice
+    required: true
+    options:
+    - En la base de datos (SQL)
+    - En pandas (extraer con el filtro en el WHERE y procesar en Python)
+    source_finding: ''
+    context: ''
+    recommended_default: En la base de datos (SQL)
+    evidence:
+    - 'elegibles: 46 nodo(s) trabajan íntegramente sobre tablas de GOBGENER, TABLAS
+      y pueden correr en cualquiera de los dos lados'
+    - 'no cambia con esta respuesta: 27 nodo(s) mixto(s) (archivos/Excel, PROCs de
+      orden o lógica procedural): sus bloques SQL sí siguen la respuesta; 7 nodo(s)
+      con prefijos sin resolver siguen ambiguous'
+    - 'project_config.yaml: translation.default_target = sql'
+  answers:
+  - question_id: Q-B4d-1
+    value: En la base de datos (SQL)
+    answered_at: '2026-08-07T17:50:44.751107Z'
+- block_id: B4c-api-connections
+  title: 'Conexión externa: si3.bcentral.cl'
+  description: ''
+  questions:
+  - id: Q-B4c-si3.bcentral.cl
+    text: 'El SAS consulta si3.bcentral.cl por HTTP. ¿Cómo migramos esa conexión:
+      replicar la llamada con requests (mismo host y método), o usar una librería/SDK
+      oficial? Si eliges SDK, indica el nombre de import del paquete en la misma línea
+      (ej: «2 bcchapi» para la API BDE del Banco Central).'
+    question_type: single_choice
+    required: true
+    options:
+    - Replicar la llamada HTTP con requests
+    - Usar una librería/SDK oficial (indico el paquete en texto libre)
+    source_finding: ''
+    context: ''
+    recommended_default: Replicar la llamada HTTP con requests
+    evidence:
+    - 'http_evidence.json: si3.bcentral.cl — método(s): GET (proc_http)'
+    - 'nodos afectados: CodeTask-6NFJPkCu6mSpiJT9, CodeTask-PctehnQmgLccQ4yN, CodeTask-rVgcAFrUWf36VVj6'
+    - 'URL: https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote(&)timeseries=F051.D1.FLU.C.Z.CLP.T%bquote(&)function=GetSeries'
+    - 'URL: https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote(&)timeseries=F051.D2.FLU.C.Z.CLP.T%bquote(&)function=GetSeries'
+  answers:
+  - question_id: Q-B4c-si3.bcentral.cl
+    value: Usar una librería/SDK oficial (indico el paquete en texto libre)
+    answered_at: '2026-08-07T17:50:45.325424Z'
+  - question_id: B4c:api:si3.bcentral.cl#texto-libre
+    value: bcchapi
+    answered_at: '2026-08-07T17:50:45.366433Z'
+- block_id: B5-improvements
+  title: 'Mejora M-001: Eliminar rutas hardcodeadas y crear framework de configuración'
+  description: ''
+  questions:
+  - id: Q-M-001
+    text: 'Propuesta: Eliminar rutas hardcodeadas y crear framework de configuración.
+      ¿Qué decides?'
+    question_type: approval
+    required: true
+    options:
+    - Aprobar
+    - Rechazar
+    - Explicar más
+    source_finding: ''
+    context: ''
+    recommended_default: Aprobar
+    evidence:
+    - 'problema: Se detectaron 21 nodos con rutas absolutas hardcodeadas a `/sasdata/BCCH/GEM_DCNI/...`.
+      Evidencia: CS-0001 (CodeTask-1luvy2zX48vyTm18), CS-0005 (CodeTask-1MZt2MbPkdLUOvbC),
+      CS-0010 (CodeTask-6NFJPkCu6mSpiJT9), CS-0013 (CodeTask-6SjSzoc2tRAmj3bg), CS-0020
+      (CodeTask-a5fupJ8fUrKfjLpj), CS-0025 (CodeTask-b4yKCgjI7DEeqndl), CS-0033 (CodeTask-dYzl6IKuUE5lnGRx),
+      CS-0038 (CodeTask-eEgfNiAdcXrWGWaj), CS-0043 (CodeTask-EiTHWvhqkY9b3Los), CS-0053
+      (CodeTask-ifAGwBWSiFAQtKqB), CS-0063 (CodeTask-KbgIzRrZ11b3kVse), CS-0072 (CodeTask-LbbQOdnOflsfHI1p),
+      CS-0078 (CodeTask-lVG5feJnCetjgbtL), CS-0082 (CodeTask-M7Kq8x8xCBjt8NWW), CS-0095
+      (CodeTask-PctehnQmgLccQ4yN), CS-0103 (CodeTask-PV6f6Wo5zpk123T2), CS-0111 (CodeTask-rVgcAFrUWf36VVj6),
+      CS-0125 (CodeTask-uEJMdbfEYJHVR2af), CS-0128 (CodeTask-uRMT7rfFsM7wFmZJ), CS-0137
+      (CodeTask-XkoygblbmDJ46M1C), CS-0138 (CodeTask-yh5u6Xv3BMVagLtW). Impacta portabilidad,
+      debugging y cambios de entorno.'
+    - impacto high · esfuerzo high · riesgo medium
+    - afecta 21 nodo(s)
+    - 'justificación: Las rutas hardcodeadas impiden reutilización de código en entornos
+      de desarrollo, testing y producción. Imposibilita migración de datos o cambios
+      en infraestructura sin editar múltiples nodos. Genera deuda técnica crítica.'
+  - id: Q-M-003
+    text: 'Propuesta: Extraer expresiones CASE repetidas a funciones/macros reutilizables.
+      ¿Qué decides?'
+    question_type: approval
+    required: true
+    options:
+    - Aprobar
+    - Rechazar
+    - Explicar más
+    source_finding: ''
+    context: ''
+    recommended_default: Aprobar
+    evidence:
+    - 'problema: Se detectaron 6 expresiones CASE complejas repetidas en 25 nodos
+      con similar patrón de inversión de signos: ''CASE WHEN T1.C_ENTRADA=''D'' THEN
+      T1.DATO*-1 ELSE T1.DATO END'' (25 nodos), ''CASE WHEN T1.C_ENTRADA=''H'' THEN
+      T1.DATO*-1 ELSE T1.DATO END'' (16 nodos), ''CASE WHEN T1.C_CUENTA=''REC PRECIO
+      REAJ'' THEN ''REC PRECIO'' ELSE T1.C_CUENTA END'' (8 nodos). Evidencia: repeated_expressions
+      en analysis_evidence, node_ids: CodeTask-2Qnp37e99kvQSM9m, CodeTask-6SjSzoc2tRAmj3bg,
+      CodeTask-Ix7ilK7RK3FKfDEH, CodeTask-KbHRFnaoSR2Bq6wI (y 21 más).'
+    - impacto high · esfuerzo medium · riesgo medium
+    - afecta 25 nodo(s)
+    - 'justificación: La repetición de lógica CASE compleja aumenta complejidad cognitiva,
+      introduce riesgo de errores de copia-pega, y dificulta cambios en reglas de
+      negocio. Centralizar en macro/función facilita auditoría y mantenimiento.'
+  - id: Q-M-004
+    text: 'Propuesta: Eliminar números mágicos y definir constantes nombradas. ¿Qué
+      decides?'
+    question_type: approval
+    required: true
+    options:
+    - Aprobar
+    - Rechazar
+    - Explicar más
+    source_finding: ''
+    context: ''
+    recommended_default: Aprobar
+    evidence:
+    - 'problema: Se detectaron 18 números mágicos reiterados sin documentación: 511
+      (27 nodos), 321 (27 nodos), 1000 (24 nodos), 51022 (23 nodos), 51021 (22 nodos),
+      5101 (20 nodos), 3390101 (20 nodos), 3390102 (20 nodos), 339011 (17 nodos),
+      341 (17 nodos), 412 (16 nodos), 334 (15 nodos), 33901 (15 nodos), 322 (15 nodos),
+      352 (14 nodos), 411 (14 nodos), 331 (13 nodos), 361 (13 nodos). Evidencia: repeated_magic_numbers
+      en analysis_evidence. Estos valores se infieren como códigos de sector/producto/instrumento
+      según contexto BD_CTSI.'
+    - impacto high · esfuerzo medium · riesgo low
+    - afecta 35 nodo(s)
+    - 'justificación: Los números mágicos sin significado explícito impiden comprensión
+      del código, facilitan errores de transcripción, y complican cambios en clasificaciones
+      (si sector 511 cambia de código, impacta múltiples nodos). Usar constantes con
+      nombre semántico (ej: SECTOR_SOCIEDADES_NO_FINANCIERAS = 511) mejora legibilidad
+      y mantenibilidad.'
+  - id: Q-M-006
+    text: 'Propuesta: Revisar y documentar dependencias de variables macro. ¿Qué decides?'
+    question_type: approval
+    required: true
+    options:
+    - Aprobar
+    - Rechazar
+    - Explicar más
+    source_finding: ''
+    context: ''
+    recommended_default: Aprobar
+    evidence:
+    - 'problema: Se detectaron 12 variables macro con scope incorrecto/no documentado:
+      ANIO (18 nodos), Sector (9 nodos), TRIM (6 nodos), Entrada (4 nodos), C_WTW
+      (4 nodos), user (3 nodos), password (3 nodos), Codigo (3 nodos), Cuenta (2 nodos),
+      rho (1 nodo), anio (1 nodo), Inst_nf (1 nodo). Evidencia: macro_variables en
+      analysis_evidence. Nodos críticos: CodeTask-2Qnp37e99kvQSM9m (ANIO), CodeTask-LbbQOdnOflsfHI1p
+      (ANIO, Sector), CodeTask-Lf2OAAam1xLYVxj4 (ANIO, C_WTW), CodeTask-6NFJPkCu6mSpiJT9
+      (user, password).'
+    - impacto high · esfuerzo medium · riesgo high
+    - afecta 26 nodo(s)
+    - 'justificación: Las variables macro sin inicialización explícita en autoexec
+      o en llamada hacen código no reproducible. Diferentes ejecutores obtienen resultados
+      distintos. Credenciales (user, password) en macro variables exponen seguridad.
+      Se requiere declaración centralizada, inicialización condicional y documentación
+      de alcance.'
+  - id: Q-M-007
+    text: 'Propuesta: Versionar datos de entrada y crear catálogo de dependencias
+      de tablas. ¿Qué decides?'
+    question_type: approval
+    required: true
+    options:
+    - Aprobar
+    - Rechazar
+    - Explicar más
+    source_finding: ''
+    context: ''
+    recommended_default: Aprobar
+    evidence:
+    - 'problema: Se detectaron 8 tablas de entrada sin versionado en 62 nodos. Tabla
+      crítica BD_CTSI (20+ nodos) referenciada como BD_CTSI_CIERRE.sas7bdat. Otras:
+      SALIDA_WTW_RESUMEN, IDENTIFICA_FFMM.sas7bdat (CodeTask-ifAGwBWSiFAQtKqB), base_af3_total_v2.sas7bdat
+      (20 nodos: CodeTask-1luvy2zX48vyTm18, CodeTask-eEgfNiAdcXrWGWaj, CodeTask-yh5u6Xv3BMVagLtW).
+      Base de datos TABLAS contiene 34 tablas en 62 nodos. Evidencia: db_dependencies
+      en analysis_evidence (libref: DCNIDATA, TABLAS, GOBGENER, LIB).'
+    - impacto high · esfuerzo high · riesgo high
+    - afecta 45 nodo(s)
+    - 'justificación: Sin versionado de datos de entrada, ejecuciones en fechas distintas
+      producen resultados diferentes. Imposible auditar, reproducir análisis históricos
+      ni rollback. Tabla BD_CTSI está presente en 25 nodos con rutas hardcodeadas;
+      cambio de ruta o estructura corrompe 25 procesos simultáneamente.'
+  answers:
+  - question_id: Q-M-001
+    value: Aprobar
+    answered_at: '2026-08-07T17:50:45.341434Z'
+  - question_id: Q-M-003
+    value: Rechazar
+    answered_at: '2026-08-07T17:50:45.341434Z'
+  - question_id: Q-M-004
+    value: Rechazar
+    answered_at: '2026-08-07T17:50:45.341434Z'
+  - question_id: Q-M-006
+    value: Rechazar
+    answered_at: '2026-08-07T17:50:45.341434Z'
+  - question_id: Q-M-007
+    value: Rechazar
+    answered_at: '2026-08-07T17:50:45.341434Z'
+- block_id: B5b-cell-logging
+  title: Logging de resultados en los notebooks
+  description: ''
+  questions:
+  - id: Q-B5b-1
+    text: ¿Agregamos una línea de log al final de las celdas con resultados importantes?
+      Imprime filas/shape en pantalla y lo persiste en output/log/<notebook>.log,
+      con marca de cada corrida.
+    question_type: approval
+    required: true
+    options:
+    - Sí, agregar logging de resultados
+    - No, notebooks sin logging
+    source_finding: ''
+    context: ''
+    recommended_default: No, notebooks sin logging
+    evidence:
+    - 'project_config.yaml: translation.cell_logging = false'
+  answers:
+  - question_id: Q-B5b-1
+    value: Sí, agregar logging de resultados
+    answered_at: '2026-08-07T17:50:45.343435Z'
+- block_id: B6-closure
+  title: Cierre de la entrevista
+  description: ''
+  questions:
+  - id: Q-B6-1
+    text: 'Resumen: este lote traduce 30 nodo(s); en todo el proyecto migraremos 81
+      nodo(s), excluiremos 3, aplicaremos 1 mejora(s) y quedan 3 supuesto(s) visibles.
+      ¿Procedemos con el plan de traducción?'
+    question_type: approval
+    required: true
+    options:
+    - Sí, proceder al plan de traducción
+    - No, detener aquí
+    source_finding: ''
+    context: ''
+    recommended_default: Sí, proceder al plan de traducción
+    evidence: []
+  answers:
+  - question_id: Q-B6-1
+    value: Sí, proceder al plan de traducción
+    answered_at: '2026-08-07T17:50:45.366433Z'
+started_at: null
+completed_at: null

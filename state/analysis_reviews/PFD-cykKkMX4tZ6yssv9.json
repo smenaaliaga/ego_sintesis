@@ -1,0 +1,10 @@
+{
+  "pfd_id": "PFD-cykKkMX4tZ6yssv9",
+  "pfd_label": "Ajuste bonos",
+  "reviews": [
+    {
+      "node_id": "CodeTask-ajjSEkh77FcmV2ov",
+      "note": "Limpieza inicial y múltiples PROC SQL complejos con LEFT JOINs sobre tablas de dimensiones (T_Sectorizacion, T_Contrapartidas, T_Sectorizacion_N2/N3) y lógica de CASE condicional; riesgos: mapeeos implícitos entre claves de sectorización (S.124→S.123), formatos SAS (PUT con NUMX5), filtros hardcodeados por año (>2002), variables macro dinámicas (&ANIO, &TRIM) comentadas, y cuatro APPEND secuenciales a tabla persistente que requieren garantía de transaccionalidad y sin duplicados."
+    }
+  ]
+}

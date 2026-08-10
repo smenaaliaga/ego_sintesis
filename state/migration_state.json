@@ -1,0 +1,25 @@
+{
+  "project_name": "Síntesis_M_CR18",
+  "egp_file": "D:\\Projects\\Migraciones-SAS\\Síntesis_M_CR18\\input\\egp\\Síntesis_M_CR18.egp",
+  "framework_mode": "generic",
+  "current_phase": 8,
+  "output_strategy": "notebook-flow",
+  "phases_completed": [],
+  "artifacts": {},
+  "decisions": [],
+  "open_questions": [],
+  "improvements_proposed": 0,
+  "improvements_approved": 0,
+  "improvements_rejected": 0,
+  "improvements_postponed": 0,
+  "iteration_cycle": 0,
+  "iteration_log": [],
+  "tokens_consumed": {
+    "analysis_reviews": 586675,
+    "improvements": 29951,
+    "translation": 16773614,
+    "verify": 2008232
+  },
+  "created_at": "2026-08-10T13:53:20.458080Z",
+  "updated_at": "2026-08-10T13:53:20.458080Z"
+}

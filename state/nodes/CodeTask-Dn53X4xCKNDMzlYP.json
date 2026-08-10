@@ -1,0 +1,59 @@
+{
+  "id": "CodeTask-Dn53X4xCKNDMzlYP",
+  "label": "S8_wt_graph_OF",
+  "node_type": "PROC_SQL",
+  "pfd_id": "ProcessFlowContainer-2o1NZYl9FKnoVXKH",
+  "pfd_label": "Análisis WTW",
+  "inputs": [
+    "WORK.SALDOS_SELECT_F2",
+    "WORK.SALDOS_SEL_F",
+    "WORK.SALDOS_SI"
+  ],
+  "outputs": [
+    "WORK.SALDOS_SELECT_F2",
+    "WORK.SALDOS_SEL_F"
+  ],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL",
+      "PROC SORT",
+      "PROC SGRENDER"
+    ],
+    "classification": "transform",
+    "complexity": "medium",
+    "migration_priority": "high"
+  },
+  "code_lines": [
+    "﻿ods graphics on / imagemap=on;\r",
+    "\r",
+    "/*CREA GRÁFICO DE BARRAS PARA AHORRO Y COMPONENTES COMO % PIB*/\r",
+    "PROC SQL;\r",
+    "\tCREATE TABLE SALDOS_SEL_F AS\r",
+    "\t\tSELECT T.PERIODO, T.C_CUENTA,T.c_Sector_pub as GRUPO, T.N_SCN_wtw,T.N_SI_C_AGENTE label \"Emisor/Acreedor\",SUM(T.DATO)FORMAT=COMMA20. AS DATO\r",
+    "\tFROM SALDOS_SI as T\r",
+    "\tWHERE T.c_entrada=(case when \"&C_WTW\"='Préstamos' then 'H' else 'D' end) AND T.N_SCN_wtw=\"&C_WTW\" and t.c_cuEnta='Financiera'\r",
+    "\tGROUP BY T.PERIODO, T.C_CUENTA,T.c_Sector_pub, T.N_SCN_wtw,T.N_SI_C_AGENTE;\r",
+    "QUIT;\r",
+    "\r",
+    "PROC SORT\r",
+    "\tDATA=SALDOS_SEL_f\r",
+    "\tOUT=SALDOS_SELECT_F2;\r",
+    "\tBY N_SI_C_AGENTE;\r",
+    "RUN;\r",
+    "options nobyline;\r",
+    "ods graphics/byline=nobyline;\r",
+    "ods graphics/width=6in;\r",
+    "proc sgrender data=SALDOS_SELECT_F2 template=template_chart4;\r",
+    "\tdynamic VAR=\"DATO\" varlabel=\"Dato\" normal=\"yes\"\r",
+    "\t\t\ttitle=\"Instrumento (Operación financiera): &C_WTW\";\r",
+    "by N_SI_C_AGENTE;\r",
+    "run;\r",
+    "ods graphics/byline=title;\r",
+    "options nobyline;\r",
+    "ods graphics / reset;\r",
+    "\r",
+    "proc sql;drop table SALDOS_SEL_F,SALDOS_SELECT_F2;quit;\r",
+    ""
+  ]
+}

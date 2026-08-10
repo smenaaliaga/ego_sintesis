@@ -1,0 +1,21 @@
+{
+  "id": "CodeTask-vKSNOED9VpSvBnYB",
+  "label": "v1_respaldo",
+  "node_type": "OTHER",
+  "pfd_id": "ProcessFlowContainer-vwVNwxtc3fjh2kaj",
+  "pfd_label": "Versiones",
+  "inputs": [],
+  "outputs": [],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [],
+    "classification": "utility",
+    "complexity": "low",
+    "migration_priority": "low"
+  },
+  "code_lines": [
+    "﻿/*GENERA RESPALDO BASE \r",
+    "DATA TABLAS.BD_CTSI_R&ANIO&TRIM; SET TABLAS.BD_CTSI;RUN;\r",
+    "*/"
+  ]
+}

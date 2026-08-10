@@ -1,0 +1,10 @@
+{
+  "pfd_id": "PFD-8QK2aWopOwZuokzE",
+  "pfd_label": "Anuario",
+  "reviews": [
+    {
+      "node_id": "CodeTask-LbbQOdnOflsfHI1p",
+      "note": "Agrupa y calcula resúmenes de CNF por sector (S.1–S.14) aplicando CASE condicionales complejos y múltiples PROC SQL anidados con OUTER UNION CORR; riesgo: coincidencia entre claves de join implícitas (AÑO, TRIM, C_SI_SCN), dependencia de tablas TABLAS.SALIDA_WTW_RESUMEN y TABLAS.C_FAME, y uso de CALCULATED para renombrar dinámicamente columnas derivadas que deben replicarse en Python con lógica de diccionarios y DataFrames agrupados."
+    }
+  ]
+}

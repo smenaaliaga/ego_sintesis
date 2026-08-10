@@ -1,0 +1,15 @@
+version: 1
+batches:
+- number: 1
+  pfd_ids:
+  - PFD-I32F27oZ8ICuby6y
+  - PFD-qSlM5lap8p2JfvZN
+  - PFD-9xOO9Nj6dXtUnawt
+  - PFD-FzVr69cJ7GUTkjGn
+  labels:
+  - Controles y ajustes iniciales
+  - Revisión tablas DCV
+  - Síntesis_Reajustes
+  - Síntesis_Final
+  status: open
+  closed_at: null

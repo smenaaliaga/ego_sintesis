@@ -1,0 +1,7 @@
+# Entorno destino de los notebooks generados — emitido por el ensamblador
+bcchapi
+numpy
+pandas
+pyreadstat
+requests
+sqlalchemy

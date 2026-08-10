@@ -1,0 +1,22 @@
+{
+  "id": "CodeTask-XkoygblbmDJ46M1C",
+  "label": "Autoexec",
+  "node_type": "OTHER",
+  "pfd_id": "ProcessFlowContainer-Yr37BlnpqddYkIrH",
+  "pfd_label": "Autoexec",
+  "inputs": [],
+  "outputs": [],
+  "libraries": [
+    "TABLAS"
+  ],
+  "metadata": {
+    "sas_constructs": [],
+    "classification": "utility",
+    "complexity": "low",
+    "migration_priority": "critical"
+  },
+  "code_lines": [
+    "﻿libname tablas v9 \"/sasdata/BCCH/GEM_DCNI/02_CNSI/01_SINTESIS\";",
+    ""
+  ]
+}

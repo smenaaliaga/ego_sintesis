@@ -1,0 +1,78 @@
+{
+  "id": "CodeTask-dYzl6IKuUE5lnGRx",
+  "label": "S1_d",
+  "node_type": "PROC_SQL",
+  "pfd_id": "PFD-I32F27oZ8ICuby6y",
+  "pfd_label": "Controles y ajustes iniciales",
+  "inputs": [
+    "GOBGENER.CR18_T_SCN_2",
+    "GOBGENER.EJECUCION",
+    "TABLAS.T_TK_GG_EPU",
+    "WORK.EJEC_CGR",
+    "WORK.TK_EJEC"
+  ],
+  "outputs": [
+    "TABLAS.T_TK_GG_EPU",
+    "WORK.EJEC_CGR",
+    "WORK.TK_EJEC"
+  ],
+  "libraries": [
+    "GOBGENER"
+  ],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL",
+      "PROC DATASETS"
+    ],
+    "classification": "transform",
+    "complexity": "medium",
+    "migration_priority": "high"
+  },
+  "code_lines": [
+    "﻿/******************TRANSFERENCIAS DE CAPITAL DESDE GOBIERNO A EMPRESAS********************/\r",
+    "\r",
+    "/*obtiene transferencias de capital a empresas para imputar en la síntesis*/\r",
+    "libname GOBGENER v9 \"/sasdata/BCCH/GEM_DCNI/02_CNSI/14_SI_GOB/4_GOBIERNOGENERAL\";\r",
+    "\r",
+    "PROC SQL;/*año debe ser mayor o igual a 2005 en cierre de año y el corriente en coyuntura*/\r",
+    "CREATE TABLE EJEC_CGR AS \r",
+    "SELECT *\r",
+    "FROM GOBGENER.EJECUCION WHERE AÑO>=&ANIO;\r",
+    "QUIT;\r",
+    "\r",
+    "PROC SQL;\r",
+    "CREATE TABLE TK_EJEC AS \r",
+    "SELECT\t  t1.'AÑO'n, \r",
+    "\t\t (CASE WHEN t1.MES IN(1,2,3) THEN 1\r",
+    "\t\t\tWHEN t1.MES IN(4,5,6) THEN 2\r",
+    "\t\t\tWHEN t1.MES IN(7,8,9) THEN 3\r",
+    "\t\t\tELSE 4 END) AS TRIM,\r",
+    "\t\t\t5101 AS C_SI,\r",
+    "\t\t\t'D.9' AS C_INSTRUMENTO_SCN,\r",
+    "\t\t\t'Capital' AS C_CUENTA,\r",
+    "\t\t\t'H' as C_ENTRADA,\r",
+    "       \t\t SUM(t1.DEVENG/1000000) FORMAT=COMMAX12.2 AS Dato\r",
+    "FROM \tEJEC_CGR t1\r",
+    "LEFT JOIN \tGOBGENER.CR18_T_SCN_2 t2 ON (t1.C_PARTIDA = t2.C_PARTIDA AND t1.C_CAPITULO = t2.C_CAPITULO AND t1.C_PROGRAMA = t2.C_PROGRAMA\r",
+    "           AND t1.C_ENTIDAD = t2.ENTIDAD AND t1.C_TIPO_CUENTA = t2.T_CUENTA AND t1.C_CUENTA = t2.C_CUENTA AND t1.C_ITEM = t2.C_ITEM\r",
+    "           AND t1.C_ASIGNACION = t2.C_ASIGNACION AND t1.C_ANALITICO = t2.C_ANALITICO)\r",
+    "WHERE t1.C_CUENTA IN ('05','13','24','33') AND t2.OBS NOT IN ('CR18_difcoy','CR18_difact') AND t1.C_ENTIDAD NOT IN (5601,10201) AND t2.C_SCN NOT IN ('TC') \r",
+    "\t\tAND T1.MONEDA='P' AND T2.C_SCN IN('D91','D92','D93','D99') AND T1.C_TIPO_CUENTA='G' AND T2.C_CAGENTE IN('S11','S11_EPU','tkemppúb')\r",
+    "\t\tAND T2.N_CUENTA='capital'\r",
+    "GROUP BY t1.'AÑO'n,CALCULATED TRIM;\r",
+    "QUIT;\r",
+    "\r",
+    "/*ELIMINA DATOS DE AÑO DE COYUNTURA EN TABLA PRINCIPAL*/\r",
+    "proc sql; delete from tablas.t_tk_gg_epu where AÑO>=&ANIO;quit;\r",
+    "proc sql;  delete from TK_EJEC where AÑO<&ANIO;quit;\r",
+    "\r",
+    "/*ANEXA TK DE COYUNTURA A TABLA PRINCIPAL*/\r",
+    "proc datasets;\r",
+    "append base=tablas.t_tk_gg_epu data=TK_EJEC force;\r",
+    "run;\r",
+    "\r",
+    "proc sql; delete EJEC_CGR,TK_EJEC;quit;\r",
+    "\r",
+    ""
+  ]
+}

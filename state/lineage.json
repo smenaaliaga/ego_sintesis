@@ -1,0 +1,736 @@
+{
+  "generated_at": "2026-08-07T17:20:59.017499+00:00",
+  "node_count": 84,
+  "entry_count": 91,
+  "covered_nodes": 48,
+  "lineage": [
+    {
+      "node_id": "CodeTask-6SjSzoc2tRAmj3bg",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-1MZt2MbPkdLUOvbC",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-zVjjleFBA72oSeFU",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-c5JoNhJJnZiM91gN",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-c5JoNhJJnZiM91gN",
+      "source_dataset": "WORK.AF7_AJUSTE",
+      "source_column": "*",
+      "target_dataset": "WORK.AF7_AJUSTE",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-c5JoNhJJnZiM91gN",
+      "source_dataset": "WORK.AF71_6_31",
+      "source_column": "*",
+      "target_dataset": "WORK.AF71_6_31",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "source_dataset": "WORK.AF71_31_6",
+      "source_column": "*",
+      "target_dataset": "WORK.AF71_31_6",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "source_dataset": "WORK.AF32_DIF",
+      "source_column": "*",
+      "target_dataset": "WORK.AF32_DIF",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "source_dataset": "WORK.AF32_D_DCV",
+      "source_column": "*",
+      "target_dataset": "WORK.AF32_D_DCV",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-SGvXxdgboVasDeiV",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-s2iKVLUIFegPxhYS",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-TYjddV77Ba6raW6K",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-fuWrePKSkcUXvfZF",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-fuWrePKSkcUXvfZF",
+      "source_dataset": "WORK.AF7_51",
+      "source_column": "*",
+      "target_dataset": "WORK.AF7_51",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-uEJMdbfEYJHVR2af",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-uEJMdbfEYJHVR2af",
+      "source_dataset": "WORK.SALDOS",
+      "source_column": "*",
+      "target_dataset": "WORK.SALDOS",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-9OqX3kaymboJVh4I",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-KbgIzRrZ11b3kVse",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-EiTHWvhqkY9b3Los",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-moKZZAfdPtMvO2Za",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-vXwkDE8f2OcjOwky",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-vXwkDE8f2OcjOwky",
+      "source_dataset": "WORK.AF7_AJUSTE",
+      "source_column": "*",
+      "target_dataset": "WORK.AF7_AJUSTE",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-vXwkDE8f2OcjOwky",
+      "source_dataset": "WORK.AF71_6_31",
+      "source_column": "*",
+      "target_dataset": "WORK.AF71_6_31",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "source_dataset": "WORK.AF71_31_6",
+      "source_column": "*",
+      "target_dataset": "WORK.AF71_31_6",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "source_dataset": "WORK.AF32_DIF",
+      "source_column": "*",
+      "target_dataset": "WORK.AF32_DIF",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "source_dataset": "WORK.AF32_D_DCV",
+      "source_column": "*",
+      "target_dataset": "WORK.AF32_D_DCV",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-jo2ncH7bTsseLYP8",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-YoYrhsTHidYHYT2P",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-X1NjQIiqHvgmq4z5",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-VGRo6vNwmbm39953",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-VGRo6vNwmbm39953",
+      "source_dataset": "WORK.AF7_51",
+      "source_column": "*",
+      "target_dataset": "WORK.AF7_51",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-PV6f6Wo5zpk123T2",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-PV6f6Wo5zpk123T2",
+      "source_dataset": "WORK.SALDOS",
+      "source_column": "*",
+      "target_dataset": "WORK.SALDOS",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-eF7cHe3ofCVn7nWp",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-H2hhzkdf4aoXG9Pw",
+      "source_dataset": "WORK.IND",
+      "source_column": "*",
+      "target_dataset": "WORK.IND",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "Query-ro8uUmeLxREuG2um",
+      "source_dataset": "WORK.SALIDA_WTW_RESUMEN",
+      "source_column": "*",
+      "target_dataset": "WORK.SALIDA_WTW_RESUMEN",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "Query-H6bd6GULUeGKQkjU",
+      "source_dataset": "WORK.SALIDA_WTW",
+      "source_column": "*",
+      "target_dataset": "WORK.SALIDA_WTW",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "Query-yJlzWiFrCH19inhY",
+      "source_dataset": "WORK.SALIDA_WTW",
+      "source_column": "*",
+      "target_dataset": "WORK.SALIDA_WTW",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "Query-wQdkUdHpZzXcootN",
+      "source_dataset": "WORK.SALIDA_WTW",
+      "source_column": "*",
+      "target_dataset": "WORK.SALIDA_WTW",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-M7Kq8x8xCBjt8NWW",
+      "source_dataset": "TABLAS.BD_CTSI",
+      "source_column": "*",
+      "target_dataset": "TABLAS.BD_CTSI",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "Query-aIf7aYkl8XlQRx15",
+      "source_dataset": "WORK.RATIO",
+      "source_column": "*",
+      "target_dataset": "WORK.RATIO",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-OBQXqokTpv23CnGn",
+      "source_dataset": "WORK.SORTTEMPTABLESORTED",
+      "source_column": "*",
+      "target_dataset": "WORK.SORTTEMPTABLESORTED",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-q9OPgdkf3WcKIpbW",
+      "source_dataset": "WORK.AF71",
+      "source_column": "*",
+      "target_dataset": "WORK.AF71",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-q9OPgdkf3WcKIpbW",
+      "source_dataset": "WORK.SORTTEMPTABLESORTED",
+      "source_column": "*",
+      "target_dataset": "WORK.SORTTEMPTABLESORTED",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-Ix7ilK7RK3FKfDEH",
+      "source_dataset": "WORK.PIB",
+      "source_column": "*",
+      "target_dataset": "WORK.PIB",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-KbHRFnaoSR2Bq6wI",
+      "source_dataset": "WORK.CNF_VAR",
+      "source_column": "*",
+      "target_dataset": "WORK.CNF_VAR",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-KbHRFnaoSR2Bq6wI",
+      "source_dataset": "WORK.PIB_ACUM",
+      "source_column": "*",
+      "target_dataset": "WORK.PIB_ACUM",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-KbHRFnaoSR2Bq6wI",
+      "source_dataset": "WORK.T_MAX",
+      "source_column": "*",
+      "target_dataset": "WORK.T_MAX",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-mCE2amv2UM7gUEki",
+      "source_dataset": "WORK.PIB_ACUM",
+      "source_column": "*",
+      "target_dataset": "WORK.PIB_ACUM",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-mCE2amv2UM7gUEki",
+      "source_dataset": "WORK.T_MAX",
+      "source_column": "*",
+      "target_dataset": "WORK.T_MAX",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-kVJViJGgbJOLVelr",
+      "source_dataset": "WORK.PIB_ACUM",
+      "source_column": "*",
+      "target_dataset": "WORK.PIB_ACUM",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-kVJViJGgbJOLVelr",
+      "source_dataset": "WORK.T_MAX",
+      "source_column": "*",
+      "target_dataset": "WORK.T_MAX",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-eHcgu5CrdT7hHfZQ",
+      "source_dataset": "WORK.CF_PIB_SF",
+      "source_column": "*",
+      "target_dataset": "WORK.CF_PIB_SF",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-eHcgu5CrdT7hHfZQ",
+      "source_dataset": "WORK.PIB_ACUM",
+      "source_column": "*",
+      "target_dataset": "WORK.PIB_ACUM",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-eHcgu5CrdT7hHfZQ",
+      "source_dataset": "WORK.T_MAX",
+      "source_column": "*",
+      "target_dataset": "WORK.T_MAX",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sGAwObcilp5c3zVx",
+      "source_dataset": "WORK.AF_PIB_SF_SUBS",
+      "source_column": "*",
+      "target_dataset": "WORK.AF_PIB_SF_SUBS",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-sGAwObcilp5c3zVx",
+      "source_dataset": "WORK.AF_PIB_SF_SUBS2",
+      "source_column": "*",
+      "target_dataset": "WORK.AF_PIB_SF_SUBS2",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-sGAwObcilp5c3zVx",
+      "source_dataset": "WORK.CF_PIB_SF_SUBS",
+      "source_column": "*",
+      "target_dataset": "WORK.CF_PIB_SF_SUBS",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-sGAwObcilp5c3zVx",
+      "source_dataset": "WORK.D_SF_PIB_SS",
+      "source_column": "*",
+      "target_dataset": "WORK.D_SF_PIB_SS",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-sGAwObcilp5c3zVx",
+      "source_dataset": "WORK.RFN_PIB_SF_SUBS",
+      "source_column": "*",
+      "target_dataset": "WORK.RFN_PIB_SF_SUBS",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-sGAwObcilp5c3zVx",
+      "source_dataset": "WORK.RFN_SF_SUBS",
+      "source_column": "*",
+      "target_dataset": "WORK.RFN_SF_SUBS",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.CNF_SF_ANUAL",
+      "source_column": "*",
+      "target_dataset": "WORK.CNF_SF_ANUAL",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.RFN_PIB_SF",
+      "source_column": "*",
+      "target_dataset": "WORK.RFN_PIB_SF",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.CNF_G_ANUAL",
+      "source_column": "*",
+      "target_dataset": "WORK.CNF_G_ANUAL",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.RFN_PIB_GOB",
+      "source_column": "*",
+      "target_dataset": "WORK.RFN_PIB_GOB",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.CNF_HH",
+      "source_column": "*",
+      "target_dataset": "WORK.CNF_HH",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.RFN_PIB",
+      "source_column": "*",
+      "target_dataset": "WORK.RFN_PIB",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.CNF_ANUAL",
+      "source_column": "*",
+      "target_dataset": "WORK.CNF_ANUAL",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.PFN_SNF_PIB",
+      "source_column": "*",
+      "target_dataset": "WORK.PFN_SNF_PIB",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.PIB_ACUM",
+      "source_column": "*",
+      "target_dataset": "WORK.PIB_ACUM",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "source_dataset": "WORK.T_MAX",
+      "source_column": "*",
+      "target_dataset": "WORK.T_MAX",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-em3EefKlkASf9L3q",
+      "source_dataset": "WORK.V_DELTA_SC",
+      "source_column": "*",
+      "target_dataset": "WORK.V_DELTA_SC",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-bilvsdL51BAnsUEr",
+      "source_dataset": "WORK.COMPARA_SC_PIBF",
+      "source_column": "*",
+      "target_dataset": "WORK.COMPARA_SC_PIBF",
+      "target_column": "*",
+      "transformation": "derive"
+    },
+    {
+      "node_id": "CodeTask-Ns4cmh4hITlllpAk",
+      "source_dataset": "WORK.COMPARA_SC",
+      "source_column": "*",
+      "target_dataset": "WORK.COMPARA_SC",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-Ns4cmh4hITlllpAk",
+      "source_dataset": "WORK.COMPARA_SC_PIBF",
+      "source_column": "*",
+      "target_dataset": "WORK.COMPARA_SC_PIBF",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-Ns4cmh4hITlllpAk",
+      "source_dataset": "WORK.V_DELTA_SC",
+      "source_column": "*",
+      "target_dataset": "WORK.V_DELTA_SC",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-ie1zFOWtqc6EvbAr",
+      "source_dataset": "WORK.SORTTEMPTABLESORTED",
+      "source_column": "*",
+      "target_dataset": "WORK.SORTTEMPTABLESORTED",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-ie1zFOWtqc6EvbAr",
+      "source_dataset": "WORK.COMPARA",
+      "source_column": "*",
+      "target_dataset": "WORK.COMPARA",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-ie1zFOWtqc6EvbAr",
+      "source_dataset": "WORK.COMPARA_SC",
+      "source_column": "*",
+      "target_dataset": "WORK.COMPARA_SC",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-ie1zFOWtqc6EvbAr",
+      "source_dataset": "WORK.COMPARA_SC_PIBF",
+      "source_column": "*",
+      "target_dataset": "WORK.COMPARA_SC_PIBF",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-TkgG8t5JCMJVDoVb",
+      "source_dataset": "WORK.SORTTEMPTABLESORTED",
+      "source_column": "*",
+      "target_dataset": "WORK.SORTTEMPTABLESORTED",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-TkgG8t5JCMJVDoVb",
+      "source_dataset": "WORK.COMPARA",
+      "source_column": "*",
+      "target_dataset": "WORK.COMPARA",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-TkgG8t5JCMJVDoVb",
+      "source_dataset": "WORK.COMPARA_SC",
+      "source_column": "*",
+      "target_dataset": "WORK.COMPARA_SC",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-TkgG8t5JCMJVDoVb",
+      "source_dataset": "WORK.COMPARA_SC_PIBF",
+      "source_column": "*",
+      "target_dataset": "WORK.COMPARA_SC_PIBF",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "Query-VQ29h8krzaqVLkki",
+      "source_dataset": "WORK.SALDOS_SI",
+      "source_column": "*",
+      "target_dataset": "WORK.SALDOS_SI",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "Query-BLk9lewZ7zj2cQFo",
+      "source_dataset": "WORK.SALDOS_SI",
+      "source_column": "*",
+      "target_dataset": "WORK.SALDOS_SI",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-ziOqjdQngJ3iTiRS",
+      "source_dataset": "WORK.SALDOS_SI",
+      "source_column": "*",
+      "target_dataset": "WORK.SALDOS_SI",
+      "target_column": "*",
+      "transformation": "pass_through"
+    },
+    {
+      "node_id": "CodeTask-PTl7dbnx3tB9LNaa",
+      "source_dataset": "WORK.SALDOS_SI",
+      "source_column": "*",
+      "target_dataset": "WORK.SALDOS_SI",
+      "target_column": "*",
+      "transformation": "join"
+    },
+    {
+      "node_id": "CodeTask-Dn53X4xCKNDMzlYP",
+      "source_dataset": "WORK.SALDOS_SI",
+      "source_column": "*",
+      "target_dataset": "WORK.SALDOS_SI",
+      "target_column": "*",
+      "transformation": "pass_through"
+    }
+  ]
+}

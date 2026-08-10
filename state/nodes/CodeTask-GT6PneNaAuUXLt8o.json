@@ -1,0 +1,48 @@
+{
+  "id": "CodeTask-GT6PneNaAuUXLt8o",
+  "label": "Datos FBCF_SF",
+  "node_type": "PROC_SQL",
+  "pfd_id": "ProcessFlowContainer-J3t3lB9nS5yuVyLR",
+  "pfd_label": "Varios",
+  "inputs": [
+    "TABLAS.BD_CTSI",
+    "TABLAS.T_INSTRUMENTOS",
+    "TABLAS.T_SECTORIZACION",
+    "WORK.FBCF_SF"
+  ],
+  "outputs": [
+    "DCNIDATA.FBCF_SF",
+    "WORK.FBCF_SF"
+  ],
+  "libraries": [
+    "DCNIDATA"
+  ],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL",
+      "DATA"
+    ],
+    "classification": "transform",
+    "complexity": "medium",
+    "migration_priority": "high"
+  },
+  "code_lines": [
+    "﻿\r",
+    "/*salida fbcf sector financiero para inversión trimestral por actividad*/\r",
+    "PROC SQL;\r",
+    "CREATE TABLE FBCF_SF AS\r",
+    "SELECT T1.AÑO, T1.TRIM, T1.SECTOR,T2.N_SI,T2.C_SI_publ,T2.N_SI_publ,T2.C_SI_SCN,T2.N_SI_SCN,T1.C_SCN ,T4.N_SCN AS N_INSTRUMENTO_SCN,\r",
+    "\t T1.C_CUENTA, T1.C_ENTRADA, SUM(T1.DATO) AS DATO, T2.C_SI_SCN_N1, T1.FUENTE\r",
+    "FROM TABLAS.BD_CTSI T1 \r",
+    "LEFT JOIN TABLAS.T_Sectorizacion T2 ON (T1.SECTOR=T2.C_SI) \r",
+    "LEFT JOIN TABLAS.T_Instrumentos T4 ON (T1.C_SCN=T4.C_SCN) \r",
+    "WHERE \tT1.C_SCN='P.51' and T2.C_SI_SCN_N1='S.12'\r",
+    "GROUP BY T1.AÑO, T1.TRIM, T1.SECTOR,T2.N_SI,T2.C_SI_publ,T2.N_SI_publ,T2.C_SI_SCN,T2.N_SI_SCN,T1.C_SCN ,T4.N_SCN,T1.C_CUENTA,T1.C_ENTRADA,T2.C_SI_SCN_N1, T1.FUENTE;\r",
+    "QUIT;\r",
+    "\r",
+    "LIBNAME DCNIDATA META LIBRARY='DCNIDATA' METAOUT=DATA;\r",
+    "\r",
+    "data DCNIDATA.FBCF_SF;SET FBCF_SF;RUN;\r",
+    ""
+  ]
+}

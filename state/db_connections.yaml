@@ -1,0 +1,57 @@
+connections:
+- alias: GOBGENER
+  server: ''
+  port: 1433
+  database: GOBGENER
+  schema_name: dbo
+  auth_method: active_directory_integrated
+  driver: ODBC Driver 17 for SQL Server
+  role: both
+  tables:
+  - CR18_T_SCN_2
+  - EJECUCION
+  assumed: false
+- alias: TABLAS
+  server: ''
+  port: 1433
+  database: TABLAS
+  schema_name: dbo
+  auth_method: active_directory_integrated
+  driver: ODBC Driver 17 for SQL Server
+  role: both
+  tables:
+  - ACC_COT
+  - AJUSTE_BONOS
+  - AJ_TCORR
+  - AJ_VARIOS
+  - BD_CTSI
+  - BD_CTSI_AJPTMOS_CP
+  - BD_CTSI_R
+  - BONOS_EXT_PRECIO
+  - CNT
+  - CODIGOS
+  - C_FAME
+  - DEP_HH_FM
+  - FBCF_SF
+  - FILTROS
+  - INFO_ADICIONAL
+  - PIB
+  - REAJUSTES
+  - RP_HH
+  - SALIDA_WTW_RESUMEN
+  - SIFMI
+  - TIEMPO
+  - T_AJUSTE_CONCILIACION
+  - T_CCAST
+  - T_CONTRAPARTIDAS
+  - T_CUENTA
+  - T_CUENTA_CEI
+  - T_EST_DCV_AF32_PROMEDIOS
+  - T_INSTRUMENTOS
+  - T_INST_NF
+  - T_SECTORIZACION
+  - T_SECTORIZACION_N2
+  - T_SECTORIZACION_N3
+  - T_TK_GG_EPU
+  - UR_SF_CR18
+  assumed: false

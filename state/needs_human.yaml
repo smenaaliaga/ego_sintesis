@@ -1,0 +1,1010 @@
+items:
+- id: NH-001
+  phase: 6
+  task: translation
+  node_id: CodeTask-1MZt2MbPkdLUOvbC
+  node_label: S2_03_Reservas&Capital
+  reason: static_check_failed
+  detail: 'forbidden_pattern: SQL con un VALOR interpolado por f-string: INSERT INTO
+    TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM {…} — el valor va como bind param (`text("...
+    WHERE x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está
+    permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro
+    var y ningún driver parametriza identificadores; forbidden_pattern: SQL con un
+    VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…}
+    FROM #af62_41_321 — el valor va como bind param (`text("... WHERE x = :x")` +
+    `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido (`f"...
+    FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún driver
+    parametriza identificadores'
+  attempts: 3
+  created_at: '2026-08-07T18:07:10.224490Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-002
+  phase: 6
+  task: translation
+  node_id: CodeTask-zVjjleFBA72oSeFU
+  node_label: S2_04_HH&Dep
+  reason: static_check_failed
+  detail: 'forbidden_pattern: bind '':cagente'' dentro de un SELECT ... INTO #tmp:
+    pyodbc ejecuta el statement con binds vía sp_prepexec y la #tmp muere con ese
+    scope — la celda siguiente revienta con ''Invalid object name''. En el statement
+    que CREA la #tmp el valor va interpolado como literal controlado (f-string con
+    `{int(Year)}` para números, `''{Analista}''` para macro params string) más el
+    comentario `# interpolado como literal (no :param) para que la #tmp sobreviva`.
+    Los statements que solo LEEN o modifican una #tmp ya creada siguen usando binds;
+    forbidden_pattern: SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI
+    ({…}) SELECT {…} FROM {…} — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: bind '':entrada'' dentro
+    de un SELECT ... INTO #tmp: pyodbc ejecuta el statement con binds vía sp_prepexec
+    y la #tmp muere con ese scope — la celda siguiente revienta con ''Invalid object
+    name''. En el statement que CREA la #tmp el valor va interpolado como literal
+    controlado (f-string con `{int(Year)}` para números, `''{Analista}''` para macro
+    params string) más el comentario `# interpolado como literal (no :param) para
+    que la #tmp sobreviva`. Los statements que solo LEEN o modifican una #tmp ya creada
+    siguen usando binds; forbidden_pattern: SQL con un VALOR interpolado por f-string:
+    INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #activo_hh — el valor va
+    como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar
+    el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #pasivo_hh — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: bind '':sector'' dentro
+    de un SELECT ... INTO #tmp: pyodbc ejecuta el statement con binds vía sp_prepexec
+    y la #tmp muere con ese scope — la celda siguiente revienta con ''Invalid object
+    name''. En el statement que CREA la #tmp el valor va interpolado como literal
+    controlado (f-string con `{int(Year)}` para números, `''{Analista}''` para macro
+    params string) más el comentario `# interpolado como literal (no :param) para
+    que la #tmp sobreviva`. Los statements que solo LEEN o modifican una #tmp ya creada
+    siguen usando binds; forbidden_pattern: SQL con un VALOR interpolado por f-string:
+    INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af29_42_321 — el valor va
+    como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar
+    el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    bind '':entrada_d'' dentro de un SELECT ... INTO #tmp: pyodbc ejecuta el statement
+    con binds vía sp_prepexec y la #tmp muere con ese scope — la celda siguiente revienta
+    con ''Invalid object name''. En el statement que CREA la #tmp el valor va interpolado
+    como literal controlado (f-string con `{int(Year)}` para números, `''{Analista}''`
+    para macro params string) más el comentario `# interpolado como literal (no :param)
+    para que la #tmp sobreviva`. Los statements que solo LEEN o modifican una #tmp
+    ya creada siguen usando binds; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_total
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af29_total — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores'
+  attempts: 3
+  created_at: '2026-08-07T18:09:04.748265Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-003
+  phase: 6
+  task: translation
+  node_id: CodeTask-1luvy2zX48vyTm18
+  node_label: S2_01_Inicio
+  reason: static_check_failed
+  detail: 'unknown_table: ''TABLAS.dbo'': el alias TABLAS está declarado en db_connections.yaml
+    y esa tabla no figura en su catálogo (34 tablas conocidas). Si el dato lo dejó
+    otro nodo, está en memoria (usá el DataFrame) o en una tabla temporal ''#tmp''
+    — no en la BD de negocio. Si la tabla existe de verdad, falta declararla; forbidden_pattern:
+    bind '':sector'' dentro de un SELECT ... INTO #tmp: pyodbc ejecuta el statement
+    con binds vía sp_prepexec y la #tmp muere con ese scope — la celda siguiente revienta
+    con ''Invalid object name''. En el statement que CREA la #tmp el valor va interpolado
+    como literal controlado (f-string con `{int(Year)}` para números, `''{Analista}''`
+    para macro params string) más el comentario `# interpolado como literal (no :param)
+    para que la #tmp sobreviva`. Los statements que solo LEEN o modifican una #tmp
+    ya creada siguen usando binds; forbidden_pattern: bind '':entrada'' dentro de
+    un SELECT ... INTO #tmp: pyodbc ejecuta el statement con binds vía sp_prepexec
+    y la #tmp muere con ese scope — la celda siguiente revienta con ''Invalid object
+    name''. En el statement que CREA la #tmp el valor va interpolado como literal
+    controlado (f-string con `{int(Year)}` para números, `''{Analista}''` para macro
+    params string) más el comentario `# interpolado como literal (no :param) para
+    que la #tmp sobreviva`. Los statements que solo LEEN o modifican una #tmp ya creada
+    siguen usando binds; forbidden_pattern: bind '':c1'' dentro de un SELECT ... INTO
+    #tmp: pyodbc ejecuta el statement con binds vía sp_prepexec y la #tmp muere con
+    ese scope — la celda siguiente revienta con ''Invalid object name''. En el statement
+    que CREA la #tmp el valor va interpolado como literal controlado (f-string con
+    `{int(Year)}` para números, `''{Analista}''` para macro params string) más el
+    comentario `# interpolado como literal (no :param) para que la #tmp sobreviva`.
+    Los statements que solo LEEN o modifican una #tmp ya creada siguen usando binds;
+    forbidden_pattern: bind '':scn'' dentro de un SELECT ... INTO #tmp: pyodbc ejecuta
+    el statement con binds vía sp_prepexec y la #tmp muere con ese scope — la celda
+    siguiente revienta con ''Invalid object name''. En el statement que CREA la #tmp
+    el valor va interpolado como literal controlado (f-string con `{int(Year)}` para
+    números, `''{Analista}''` para macro params string) más el comentario `# interpolado
+    como literal (no :param) para que la #tmp sobreviva`. Los statements que solo
+    LEEN o modifican una #tmp ya creada siguen usando binds'
+  attempts: 3
+  created_at: '2026-08-07T18:11:10.063300Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-004
+  phase: 6
+  task: translation
+  node_id: CodeTask-s2iKVLUIFegPxhYS
+  node_label: S2_08_Derivados
+  reason: static_check_failed
+  detail: 'forbidden_pattern: SQL con un VALOR interpolado por f-string: INSERT INTO
+    TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af34_6_321 — el valor va como bind param
+    (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una
+    tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma
+    con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af34_31_321 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af34_321_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af71_339011_6 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af34_34_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af34_sect_321 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af34_cierre
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af34_elimina — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores'
+  attempts: 3
+  created_at: '2026-08-07T18:21:23.535327Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-005
+  phase: 6
+  task: translation
+  node_id: CodeTask-6SjSzoc2tRAmj3bg
+  node_label: S2_02_Din&Dep
+  reason: static_check_failed
+  detail: 'forbidden_pattern: SQL con un VALOR interpolado por f-string: INSERT INTO
+    TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af31_6_fi — el valor va como bind param
+    (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una
+    tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma
+    con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af31_6_41 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af31_sect_6_imp
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_6_41_2 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_41_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af29_6_41 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af21_31_321_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af21_5111 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af21_511 —
+    el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_31_321 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_31_41
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_31_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_321_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_34_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_6_33901
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_53_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_42_321
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_5111_321 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af_5111_321
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_6_31 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores'
+  attempts: 3
+  created_at: '2026-08-07T18:23:14.550583Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-006
+  phase: 6
+  task: translation
+  node_id: CodeTask-c5JoNhJJnZiM91gN
+  node_label: S2_05_Ptmos
+  reason: static_check_failed
+  detail: 'forbidden_pattern: SQL con un VALOR interpolado por f-string: INSERT INTO
+    TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_6_41 — el valor va como bind param
+    (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una
+    tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma
+    con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af71_41_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_6_5101
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_321_5101 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_6_37
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_6_53 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af4_rabo —
+    el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af4_36 — el valor va como bind param (`text("... WHERE x = :x")`
+    + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido (`f"...
+    FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún driver
+    parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado por
+    f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af4_33_imp — el
+    valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar
+    el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af4_33_aj — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af4_51022_aj
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af41_6_51021 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_6_51022
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_321_51022 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_6_31
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af71_6_31 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af71_41_31
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_41_31 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_41_31_2
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af71_41_31_2 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_333_31
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_332_51 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_51022_321
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_3324_51022 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_51022_321_
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_v_51022 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_51022_v
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_339011 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_33212
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_351_352 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_51022_351
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_35_36 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_51022_351_2
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_41_37 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_41_53
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_51_51 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af7_51_51
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_41_51 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_51022_41
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_42_51 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_42_321
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_321_41 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_31_41
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_41_342 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af7_41_53
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_51021_9 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af42_emp_fp
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af42_total — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores'
+  attempts: 3
+  created_at: '2026-08-07T18:30:48.752885Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-007
+  phase: 6
+  task: translation
+  node_id: CodeTask-fuWrePKSkcUXvfZF
+  node_label: S2_10_CCom
+  reason: static_check_failed
+  detail: 'forbidden_pattern: SQL con un VALOR interpolado por f-string: INSERT INTO
+    TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM {…} — el valor va como bind param (`text("...
+    WHERE x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está
+    permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro
+    var y ningún driver parametriza identificadores; forbidden_pattern: SQL con un
+    VALOR interpolado por f-string: INSERT INTO #af7_pasivo ({…}) SELECT {…} FROM
+    #af7_activo — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'':
+    x}`). Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af7_delta — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #saldos — el
+    valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar
+    el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores'
+  attempts: 3
+  created_at: '2026-08-07T18:32:27.007509Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-008
+  phase: 6
+  task: translation
+  node_id: CodeTask-TYjddV77Ba6raW6K
+  node_label: S2_09_Capital_Cierre
+  reason: static_check_failed
+  detail: 'forbidden_pattern: SQL con un VALOR interpolado por f-string: INSERT INTO
+    TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af5_delta — el valor va como bind param
+    (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una
+    tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma
+    con la macro var y ningún driver parametriza identificadores'
+  attempts: 3
+  created_at: '2026-08-07T18:34:33.819153Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-009
+  phase: 6
+  task: translation
+  node_id: CodeTask-yh5u6Xv3BMVagLtW
+  node_label: S2_06_Bonos
+  reason: static_check_failed
+  detail: 'import_in_cell: celda 173: import dentro de la celda — va en el campo `imports`
+    del NodeTranslation, no en el código; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af31_rp_2
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af31_d_ci — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_31_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_321_6 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_rp_2
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_vm_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_41_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_5101_6 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_51021_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_37_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_31_6_a
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_321_6_a — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_351_6_a
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_33_6_a — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_34_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_51022_6 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM {…} — el valor
+    va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar
+    el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_dif — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af3_aj_tot2
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_51_del — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_ofi_aj
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_6_37 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_6_51021
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_36_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af7_36_51
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_51_2 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_ca53
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_51 — el valor va como bind param (`text("... WHERE x = :x")`
+    + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido (`f"...
+    FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún driver
+    parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado por
+    f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_53 — el valor
+    va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar
+    el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af31_51_70 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af31_8_70
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_51_30 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_51_30_
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af31_ca31 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_ca31
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af31_41_ca31 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_41_ca31
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_hh — el valor va como bind param (`text("... WHERE x = :x")`
+    + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido (`f"...
+    FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún driver
+    parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado por
+    f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af32_hh_aj — el
+    valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar
+    el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores'
+  attempts: 3
+  created_at: '2026-08-07T18:35:45.042261Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-010
+  phase: 6
+  task: translation
+  node_id: CodeTask-a5fupJ8fUrKfjLpj
+  node_label: S2_13_Inicio_2
+  reason: static_check_failed
+  detail: 'unknown_table: ''TABLAS.dbo'': el alias TABLAS está declarado en db_connections.yaml
+    y esa tabla no figura en su catálogo (34 tablas conocidas). Si el dato lo dejó
+    otro nodo, está en memoria (usá el DataFrame) o en una tabla temporal ''#tmp''
+    — no en la BD de negocio. Si la tabla existe de verdad, falta declararla'
+  attempts: 3
+  created_at: '2026-08-07T18:47:11.019018Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-011
+  phase: 6
+  task: translation
+  node_id: CodeTask-KbgIzRrZ11b3kVse
+  node_label: S2_02_Din&Dep
+  reason: static_check_failed
+  detail: 'forbidden_pattern: SQL con un VALOR interpolado por f-string: INSERT INTO
+    TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af31_6_fi — el valor va como bind param
+    (`text("... WHERE x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una
+    tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma
+    con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af31_6_41 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af31_sect_6_imp
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af32_6_41_2 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_41_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af29_6_41 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af21_31_321_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af21_5111 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af21_511 —
+    el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_31_321 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_31_41
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_31_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_321_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_34_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_6_33901
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_5101_6 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_53_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af22_42_321 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_5111_321
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af_5111_321 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af22_6_31
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af29_resto_6 — el valor va como bind param (`text("... WHERE
+    x = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO #af29_6_51022 ({…}) SELECT {…} FROM #af29_mineras —
+    el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af29_6_511 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af5_351_6
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af29_31_321 — el valor va como bind param (`text("... WHERE x
+    = :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af29_31_41
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores; forbidden_pattern:
+    SQL con un VALOR interpolado por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…})
+    SELECT {…} FROM #af29_31_6 — el valor va como bind param (`text("... WHERE x =
+    :x")` + `params={''x'': x}`). Interpolar el NOMBRE de una tabla sí está permitido
+    (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`): el SAS lo arma con la macro var y ningún
+    driver parametriza identificadores; forbidden_pattern: SQL con un VALOR interpolado
+    por f-string: INSERT INTO TABLAS.dbo.BD_CTSI ({…}) SELECT {…} FROM #af29_34_361
+    — el valor va como bind param (`text("... WHERE x = :x")` + `params={''x'': x}`).
+    Interpolar el NOMBRE de una tabla sí está permitido (`f"... FROM TABLAS.BD_R{ANIO}{TRIM}"`):
+    el SAS lo arma con la macro var y ningún driver parametriza identificadores'
+  attempts: 3
+  created_at: '2026-08-07T18:57:07.846815Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-012
+  phase: 6
+  task: translation
+  node_id: CodeTask-uEJMdbfEYJHVR2af
+  node_label: S2_11_CNF
+  reason: node_budget_exhausted
+  detail: el nodo CodeTask-uEJMdbfEYJHVR2af ya consumió 10 llamadas (tope llm.max_calls_per_node=10).
+    Revisarlo a mano o subir el tope.
+  attempts: 10
+  created_at: '2026-08-07T19:02:10.263706Z'
+  resolved: true
+  resolution: el nodo se re-tradujo y pasa los chequeos estáticos
+- id: NH-013
+  phase: 6
+  task: translation
+  node_id: CodeTask-eEgfNiAdcXrWGWaj
+  node_label: S2_06_Bonos
+  reason: incomplete_translation
+  detail: 'incomplete_translation: traducción incompleta: el nodo SAS crea 114 tablas
+    y el Python solo nombra 27 (24%). Faltan: af31_41_ca31, af31_51_70, af31_51_8,
+    af31_8_70, af31_ca31, af31_d_ci, af31_d_dcv, af31_dcv, af31_rp, af31_rp_2, af31_vm_bf,
+    af31_vm_bi, af32_31_53, af32_31_6, af32_31_6_a (y 72 más). Traducí el nodo COMPLETO,
+    de punta a punta: cada PROC SQL / DATA step del fuente tiene que estar. Si algo
+    no se puede resolver con la información disponible, esa celda va con raise NotImplementedError
+    y el motivo en warnings — nunca se omite en silencio'
+  attempts: 3
+  created_at: '2026-08-07T20:58:24.176530Z'
+  resolved: true
+  resolution: el intento rechazado por el import en la celda y por las listas de columnas
+    mal leídas pasa los chequeos con las reglas corregidas; se promovió sin re-traducir
+    (queda sin verificador semántico)
+- id: NH-014
+  phase: 6
+  task: translation
+  node_id: CodeTask-PV6f6Wo5zpk123T2
+  node_label: S2_11_CNF
+  reason: node_budget_exhausted
+  detail: el nodo CodeTask-PV6f6Wo5zpk123T2 ya consumió 10 llamadas (tope llm.max_calls_per_node=10).
+    Revisarlo a mano o subir el tope.
+  attempts: 10
+  created_at: '2026-08-07T21:34:06.623665Z'
+  resolved: true
+  resolution: el intento rechazado por el import en la celda y por las listas de columnas
+    mal leídas pasa los chequeos con las reglas corregidas; se promovió sin re-traducir
+    (queda sin verificador semántico)
+- id: NH-015
+  phase: 6
+  task: assembly
+  node_id: CodeTask-rVgcAFrUWf36VVj6
+  node_label: S1
+  reason: static_check_failed
+  detail: 'undefined_name: usa 1 nombre(s) que ninguna celda anterior define: bcchapi.
+    Si vienen de otro nodo, ese nodo los dejó en la base (hay que leerlos con pd.read_sql)
+    o no existen'
+  attempts: 0
+  created_at: '2026-08-07T21:34:07.905473Z'
+  resolved: true
+  resolution: el ensamblado de esta corrida ya no reporta el fallo
+- id: NH-016
+  phase: 6
+  task: assembly
+  node_id: CodeTask-1luvy2zX48vyTm18
+  node_label: S2_01_Inicio
+  reason: static_check_failed
+  detail: 'undefined_name: usa 1 nombre(s) que ninguna celda anterior define: pyreadstat.
+    Si vienen de otro nodo, ese nodo los dejó en la base (hay que leerlos con pd.read_sql)
+    o no existen'
+  attempts: 0
+  created_at: '2026-08-07T21:34:07.972985Z'
+  resolved: true
+  resolution: el ensamblado de esta corrida ya no reporta el fallo
+- id: NH-017
+  phase: 6
+  task: assembly
+  node_id: CodeTask-6SjSzoc2tRAmj3bg
+  node_label: S2_02_Din&Dep
+  reason: static_check_failed
+  detail: 'undefined_name: usa 1 nombre(s) que ninguna celda anterior define: pyreadstat.
+    Si vienen de otro nodo, ese nodo los dejó en la base (hay que leerlos con pd.read_sql)
+    o no existen'
+  attempts: 0
+  created_at: '2026-08-07T21:34:08.046378Z'
+  resolved: true
+  resolution: el ensamblado de esta corrida ya no reporta el fallo
+- id: NH-018
+  phase: 6
+  task: assembly
+  node_id: CodeTask-a5fupJ8fUrKfjLpj
+  node_label: S2_13_Inicio_2
+  reason: static_check_failed
+  detail: 'undefined_name: usa 1 nombre(s) que ninguna celda anterior define: pyreadstat.
+    Si vienen de otro nodo, ese nodo los dejó en la base (hay que leerlos con pd.read_sql)
+    o no existen'
+  attempts: 0
+  created_at: '2026-08-07T21:34:08.116887Z'
+  resolved: true
+  resolution: el ensamblado de esta corrida ya no reporta el fallo
+- id: NH-019
+  phase: 6
+  task: translation
+  node_id: CodeTask-PV6f6Wo5zpk123T2
+  node_label: S2_11_CNF
+  reason: incomplete_translation
+  detail: 'incomplete_translation: traducción incompleta: el nodo SAS crea 210 tablas
+    y el Python solo nombra 94 (45%). Faltan: af71_cf_51, af71_rv_51, aj_b8, aj_b8_ck,
+    aj_b9_ck, aj_d4d7, aux_bco_delta, aux_dcv, aux_dcv_delta, b_est_ofi, b_est_seg,
+    b_h_ofi, b_h_ofi_2, b_h_seg, b_h_seg_2 (y 101 más). Traducí el nodo COMPLETO,
+    de punta a punta: cada PROC SQL / DATA step del fuente tiene que estar. Si algo
+    no se puede resolver con la información disponible, esa celda va con raise NotImplementedError
+    y el motivo en warnings — nunca se omite en silencio; forbidden_pattern: bind
+    '':cuentas'' dentro de un SELECT ... INTO #tmp: pyodbc ejecuta el statement con
+    binds vía sp_prepexec y la #tmp muere con ese scope — la celda siguiente revienta
+    con ''Invalid object name''. En el statement que CREA la #tmp el valor va interpolado
+    como literal controlado (f-string con `{int(Year)}` para números, `''{Analista}''`
+    para macro params string) más el comentario `# interpolado como literal (no :param)
+    para que la #tmp sobreviva`. Los statements que solo LEEN o modifican una #tmp
+    ya creada siguen usando binds'
+  attempts: 3
+  created_at: '2026-08-08T17:39:23.462958Z'
+  resolved: true
+  resolution: el intento rechazado por el import en la celda y por las listas de columnas
+    mal leídas pasa los chequeos con las reglas corregidas; se promovió sin re-traducir
+    (queda sin verificador semántico)

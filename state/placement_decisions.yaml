@@ -1,0 +1,174 @@
+decisions:
+- node_id: CodeTask-1MZt2MbPkdLUOvbC
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-1luvy2zX48vyTm18
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-2Qnp37e99kvQSM9m
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-2S7FV1OytGj5U2Fw
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-6SjSzoc2tRAmj3bg
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-7lh12aT9AnDfJenj
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-7nH3fwOy4hErZFqh
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-9OqX3kaymboJVh4I
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-ECZCZZvMxTO7sdpQ
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-EiTHWvhqkY9b3Los
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-FqwyEcVSHGBw3z1q
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-Ix7ilK7RK3FKfDEH
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-KZWptJSqYlZ3fYLu
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-KbHRFnaoSR2Bq6wI
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-KbgIzRrZ11b3kVse
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-LbbQOdnOflsfHI1p
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-Lf2OAAam1xLYVxj4
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-M7Kq8x8xCBjt8NWW
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-MkeeAoZmCaYLJwXL
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-OBQXqokTpv23CnGn
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-PTl7dbnx3tB9LNaa
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-PV6f6Wo5zpk123T2
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-PrxMUTlg9rE9nnWS
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-R47QCuhcMSIJeuMG
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-SGvXxdgboVasDeiV
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-TYjddV77Ba6raW6K
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-VGRo6vNwmbm39953
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-X1NjQIiqHvgmq4z5
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-YoYrhsTHidYHYT2P
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-a5fupJ8fUrKfjLpj
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-ajjSEkh77FcmV2ov
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-c5JoNhJJnZiM91gN
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-dYzl6IKuUE5lnGRx
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: GOBGENER, TABLAS'
+- node_id: CodeTask-eEgfNiAdcXrWGWaj
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-eF7cHe3ofCVn7nWp
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-eHcgu5CrdT7hHfZQ
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-fuWrePKSkcUXvfZF
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-ifAGwBWSiFAQtKqB
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-jPjrJizeiaHvjreh
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-jQdpbNMiLHrmwvzY
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-jo2ncH7bTsseLYP8
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-kVJViJGgbJOLVelr
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-lVG5feJnCetjgbtL
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-m47i4alOB19ERHFp
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-mCE2amv2UM7gUEki
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-moKZZAfdPtMvO2Za
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-rRgEeqwSRMAQaeHB
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-s2iKVLUIFegPxhYS
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-sDGqIvcGbhZj7g4p
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-uEJMdbfEYJHVR2af
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-v2KL58W1Ordii4kk
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-vXwkDE8f2OcjOwky
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-yh5u6Xv3BMVagLtW
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-zVjjleFBA72oSeFU
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: Query-H6bd6GULUeGKQkjU
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: TABLAS'
+confirmed_prefixes:
+- GOBGENER
+- TABLAS
+noise_prefixes: []
+execution_target: sql
+temp_table_strategy: ''
+temp_table_overrides: []
+excel_prefixes: []

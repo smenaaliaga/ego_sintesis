@@ -1,0 +1,330 @@
+{
+  "reviews": [
+    {
+      "node_id": "CodeTask-1MZt2MbPkdLUOvbC",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "wrong_semantics",
+          "detail": "El SAS calcula VM_AF5_HC_D con SUM((T1.DATO*T2.RATIO)-T1.DATO) uniendo BD_CTSI con ratio_inv_hc_c.sas7bdat por AÑO,TRIM,SECTOR,C_CAGENTE,C_ENTRADA,C_CUENTA,C_SCN (join exacto, sin swap SECTOR/C_CAGENTE ni formatos CHAR6/BEST5). Ese swap de formato solo aparece más adelante en VM_AF5_HC_INTRA y VM_AF5_HC_ES. Sin embargo, el bloque de VM_AF5_HC_D en la traducción se limita a decir que falta el archivo de ratios, lo cual es correcto y suficiente; el problema real está en los mensajes de VM_AF5_HC_INTRA y VM_AF5_HC_ES, que sí mezclan justificaciones correctamente. Al revisar de nuevo, el bloqueo de VM_AF5_HC_D no contiene esa mezcla engañosa; el issue no aplica y se retira."
+        }
+      ],
+      "confidence": "medium",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-1luvy2zX48vyTm18",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "wrong_semantics",
+          "detail": "En el bloque WORK.AF32_BCOS (celda de DCV/bancos), el SAS hace SELECT ... 'PS' AS FUENTE, '0015' AS PROC ... GROUP BY CALCULATED MONEDA,...,CALCULATED FUENTE,T1.SECTOR,CALCULATED PROC — es decir la tabla original tiene 10+ columnas incluyendo PROC='0015'. La traducción construye sql_af32_bcos con 'SELECT ... 'PS' AS FUENTE, '0015' AS PROC ... INTO #af32_bcos ... GROUP BY T1.AÑO, T1.TRIM, T1.C_CUENTA, T1.C_ENTRADA, T1.C_SCN, T1.N_SCN, T1.C_CAGENTE, T1.SECTOR' — revisando el código, el SELECT sí declara '0015' AS PROC pero el GROUP BY no incluye PROC ni FUENTE (que son constantes, válido en SQL Server al ser literales agregadas implícitamente vía SUM/constant, esto es aceptable). Sin embargo el verdadero problema es que luego 'cols_af32' (usado para el INSERT de #af32_d_dcv hacia #af32_bcos y para los INSERT hacia BD_CTSI) asume que #af32_bcos tiene exactamente las columnas MONEDA, AÑO, TRIM, SECTOR, C_CAGENTE, C_CUENTA, C_ENTRADA, DATO, C_SCN, N_SCN, FUENTE, PROC — pero el DDL 'INTO #af32_bcos' definido por el SELECT no lista explícitamente C_CAGENTE con ese nombre después de T1.C_CAGENTE (sí lo hace, revisando de nuevo está bien), por lo que este issue específico no aplica; se retira."
+        }
+      ],
+      "confidence": "low",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-6SjSzoc2tRAmj3bg",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-7nH3fwOy4hErZFqh",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-9OqX3kaymboJVh4I",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "wrong_semantics",
+          "detail": "En el join de EST_REAJ (SAS): 'FROM BCE_DEP_FM T1, BCE_DEP_TOT T2, TABLAS.T_CONTRAPARTIDAS T3 WHERE T1.AÑO=T2.AÑO AND T1.TRIM=T2.TRIM AND T1.SECTOR=T2.SECTOR AND T1.C_CAGENTE=T3.C_CAGENTE' no incluye C_CUENTA ni C_ENTRADA ni C_SCN en el join entre T1 y T2. La traducción Python hace 'bce_dep_fm.merge(bce_dep_tot, on=[\"MONEDA\",\"AÑO\",\"TRIM\",\"SECTOR\",\"C_CUENTA\",\"C_ENTRADA\",\"C_SCN\"])' agregando claves extra que el SAS no usa, cambiando la cardinalidad del cruce y el valor de EST resultante."
+        },
+        {
+          "kind": "missing_logic",
+          "detail": "La celda de REAJ_FMMM (depende de TABLAS.DEP_HH_FM) quedó como 'raise NotImplementedError', pero celdas posteriores referencian 'reaj_fmmm' que nunca se define (p.ej. 'reaj_fmmm = pd.concat([reaj_fmmm, d41_fmnm], ...)' y 'fm_sect = reaj_fmmm.merge(est_reaj, ...)'), produciendo NameError en cascada. Más de la mitad del pipeline (REAJ_FMMM, D41_FMNM append, FM_SECT_HH, FM_HH_RESTA, FM_SECT y sus APPEND a TABLAS.REAJUSTES) no se ejecuta, dejando TABLAS.REAJUSTES incompleta respecto al SAS."
+        },
+        {
+          "kind": "wrong_write",
+          "detail": "El UPDATE final SAS 'UPDATE TABLAS.REAJUSTES SET sector=51022 WHERE sector=53' se aplica en el original sobre la tabla ya poblada con TODOS los APPEND (incluyendo filas sector=53 de FM_HH_RESTA/REAJ_FMMM). En la traducción, como esas celdas quedan bloqueadas por NotImplementedError, el UPDATE se ejecuta sobre una TABLAS.REAJUSTES incompleta (sin las filas de sector=53 de FM_HH_RESTA/D41_FMNM), por lo que el resultado final no refleja el conjunto de datos que el SAS produce antes de la reclasificación."
+        }
+      ],
+      "confidence": "high",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-EiTHWvhqkY9b3Los",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "missing_logic",
+          "detail": "19 de los 24 output_datasets declarados (WORK.VM_AF5_HC_D, VM_AF5_HC_RP, VM_AF5_HC_P, VL_AF5_HC_P, RP_AF5_HC_P, AG_AF5_HC_P, INV_AF5_HC_HC, IMP_AF5_HC_HC, IMP_AF5_HC_2, VM_AF5_HC_INTRA, RP_AF5_HC_INTRA, VM_AF5_HC_EMP, VL_AF5_HC_EMP, RP_AF5_HC_EMP, AG_AF5_HC_EMP, INV_AF5_HC_EMP, IMP_AF5_HC_EMP, VM_AF5_HC_ES, RP_AF5_HC_ES) no se calculan: la traducción reemplaza los 5 bloques PROC SQL correspondientes del SAS (los que hacen JOIN con ratio_inv_hc_c.sas7bdat, ratio_pat_hc_c.sas7bdat x2 y ratio_AF5_emp_hold_n.sas7bdat x2, y sus APPEND a TABLAS.BD_CTSI con PROC 0300/0303/0304/0304b/0304c/0305/0305b/0305c) por `raise NotImplementedError(...)`. Esto detiene la ejecución del nodo (o deja de escribir esas filas si se captura el error), por lo que TABLAS.BD_CTSI queda sin las imputaciones de valor de mercado y ajuste de inversiones en AF5 de holdings/casas matrices que el SAS sí calcula y appendea; la cifra final de BD_CTSI saldría distinta (faltarían todos los registros PROC 0300-0305c)."
+        }
+      ],
+      "confidence": "high",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-KbgIzRrZ11b3kVse",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "wrong_semantics",
+          "detail": "[tramo 2/2] En varios bloques (AF29_6_511, AF29_31_321, AF29_31_6, AF29_34_361) el SAS agrupa por T1.C_CUENTA original en el GROUP BY (ej: 'GROUP BY t1.\\u00a1AÑO\\u00a1n, T1.TRIM, T1.C_CUENTA, CALCULATED C_ENTRADA, t1.C_SCN,T1.N_SCN' en AF29_6_511), pero la traducción agrupa por la expresión CASE calculada (renombrada como C_CUENTA), por ejemplo en sql_af29_6_511: 'GROUP BY t1.[AÑO], t1.TRIM, CASE WHEN t1.C_CUENTA=\\'Rec Precio Reaj\\' THEN \\'Rec Precio\\' ELSE t1.C_CUENTA END, t1.C_SCN, t1.N_SCN'. Si existen filas con C_CUENTA='Rec Precio' y C_CUENTA='Rec Precio Reaj' para el mismo AÑO/TRIM/C_SCN/N_SCN, el SAS las mantiene en grupos separados (agrupa por el valor original antes del CASE) mientras que el Python las colapsa en un solo grupo tras aplicar el CASE, sumando montos que en SAS quedarían en filas distintas. Esto puede cambiar el DATO resultante y el número de filas en AF29_6_511, AF29_31_321, AF29_31_6 y AF29_34_361."
+        }
+      ],
+      "confidence": "medium",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-SGvXxdgboVasDeiV",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-TYjddV77Ba6raW6K",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "missing_logic",
+          "detail": "[tramo 2/2] El SAS inicia con `PROC SQL; DELETE FROM AF5_53_IMP WHERE SECTOR IN (4,41,42,412,413,331); QUIT;` seguido de `APPEND BASE=TABLAS.BD_CTSI DATA=AF5_SECT_IMP FORCE` y `APPEND BASE=TABLAS.BD_CTSI DATA=AF5_53_IMP FORCE`, y luego `DROP TABLE AF5_51_PAS, AF5_SECT_51, AF5_SECT_IMP, AF5_53_IMP`. La traducción no incluye ninguna de estas sentencias (DELETE, dos APPEND, DROP), justificándolo como 'Tramo 2 de 2' que 'no recrea tablas de ese tramo'. Sin embargo, el nodo recibido es completo y estas sentencias son parte de su lógica: acumulan AF5_SECT_IMP y AF5_53_IMP (ya filtrado por el DELETE) en TABLAS.BD_CTSI. Si esta lógica no está garantizada en otro nodo, la traducción pierde dos APPEND completos hacia la tabla de salida, cambiando el resultado final acumulado en TABLAS.BD_CTSI."
+        }
+      ],
+      "confidence": "medium",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-VGRo6vNwmbm39953",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-X1NjQIiqHvgmq4z5",
+      "verdict": "unverified",
+      "issues": [
+        {
+          "kind": "missing_logic",
+          "detail": "[tramo 1/2] El nodo se corta a mitad del bloque 'CONCILIA PATRIMONIO DE EMPRESAS': el SAS crea AF5_53_IMP (última CREATE TABLE del fragmento) pero nunca aparecen los APPEND ni DROP finales en el SAS que se muestra completo hasta ese punto -- de hecho el SAS termina justo después de crear AF5_53_IMP sin APPEND/DROP, mientras que la traducción declara explícitamente en warnings que 'el tramo 2 continúa con su APPEND y DROP correspondientes', es decir, el output_tables declarado (TABLAS.BD_CTSI) para este node_id NO recibe el resultado final de af5_53_imp7/af5_sect_imp en esta traducción. Si este nodo es el único que se ejecutará (según los output_datasets listados, que incluyen AF5_SECT_51, AF5_51_PAS, AF5_SECT_IMP como si fueran datasets de este nodo), falta la lógica de APPEND de af5_sect_imp y af5_53_imp7 hacia TABLAS.BD_CTSI y el DROP de las tablas temporales correspondientes (#af5_51_pas, #af5_sect_51, #af5_sect_imp, #af5_53_imp7), dejando el patrimonio de empresas sin conciliar en la tabla final."
+        },
+        {
+          "kind": "wrong_semantics",
+          "detail": "[tramo 2/2] El SAS crea AF5_PASIVO y AF5_ACTIVO leyendo `FROM TABLAS.BD_CTSI t1` (la base histórica completa, incluyendo lo recién insertado por los APPEND de AF5_SECT_IMP y AF5_53_IMP), no desde `#af5_53_imp`. La traducción usa `FROM #af5_53_imp t1` en ambas consultas (sql_af5_pasivo y sql_af5_activo), restringiendo el cálculo de pasivo/activo total solo a los registros de esa tabla temporal (ya filtrada por el DELETE de sectores 4,41,42,412,413,331) en vez de sobre toda TABLAS.BD_CTSI. Esto cambia el universo de datos agregado y por lo tanto el resultado de AF5_PASIVO, AF5_ACTIVO y AF5_DELTA."
+        }
+      ],
+      "confidence": "high",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-YoYrhsTHidYHYT2P",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-a5fupJ8fUrKfjLpj",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "wrong_semantics",
+          "detail": "En REAJ_AF52_H y REAJ_AF52_R (SAS: SELECT ... (T1.DATO*T2.DATO) AS DATO ... GROUP BY t1.MONEDA,...,T1.PROC), la traduccion en #reaj_af52_h y #reaj_af52_r calcula DATO = T1.DATO * T2.DATO (columna derivada, no agregada) pero incluye un GROUP BY con las mismas columnas del SELECT sin agregar DATO. En T-SQL una columna no agregada y no incluida en el GROUP BY causa error de sintaxis/ejecucion, a diferencia del SAS donde el PROC SQL con GROUP BY sin funcion de agregacion simplemente conserva el valor fila a fila. Falta ajustar el SQL para que sea ejecutable replicando el comportamiento del SAS."
+        },
+        {
+          "kind": "wrong_semantics",
+          "detail": "En AF32_3324 y AF321_41 (SAS: SELECT ... T1.DATO ... GROUP BY t1.MONEDA, t1.'AÑO'n, T1.TRIM, T1.C_CUENTA, CALCULATED C_ENTRADA, t1.C_SCN, t1.N_SCN -- sin agregar DATO ni incluirlo en el GROUP BY), la traduccion en #af32_3324 y #af321_41 agrega T1.DATO al GROUP BY (GROUP BY T1.MONEDA, T1.AÑO, T1.TRIM, T1.C_CUENTA, T1.C_SCN, T1.N_SCN, T1.SECTOR, T1.DATO). Esto cambia la granularidad del resultado: si existen multiples registros con las mismas claves de agrupacion pero distinto DATO, el SQL Server traducido generaria una fila por cada valor distinto de DATO, produciendo mas filas y potencialmente duplicando montos en los INSERT posteriores hacia BD_CTSI."
+        }
+      ],
+      "confidence": "medium",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-c5JoNhJJnZiM91gN",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "wrong_semantics",
+          "detail": "[tramo 1/3] En el bloque final SAS 'AF42_6_41' (proc '0225'): 'GROUP BY CALCULATED MONEDA, AÑO, TRIM, T1.C_CUENTA, CALCULATED SECTOR, CALCULATED C_CAGENTE, t1.C_SCN, t1.N_SCN' agrupa por los ALIAS CALCULADOS SECTOR=41 y C_CAGENTE='6' (constantes fijas para AMBAS ramas del WHERE, sector=41/ca=6 y sector=6/ca=41), es decir, colapsa ambas ramas en un solo grupo por combinación MONEDA/AÑO/TRIM/C_CUENTA/C_SCN/N_SCN. La traducción Python usa 'GROUP BY AÑO, TRIM, C_CUENTA, SECTOR, C_CAGENTE, C_SCN, N_SCN' referenciando las columnas ORIGINALES de BD_CTSI (no las constantes), lo que separa el agregado en dos grupos distintos (uno por cada rama del OR: sector=41/ca=321... en realidad sector=41,ca=6 vs sector=6,ca=41), produciendo sumas parciales por rama en vez de la suma total combinada que hace el SAS. Esto cambiaría el DATO resultante en la tabla temporal #af42_6_41."
+        },
+        {
+          "kind": "wrong_write",
+          "detail": "[tramo 2/3] Al inicio del SAS aparece: `PROC SQL; CREATE TABLE WORK.AF71_41_6 AS SELECT ... FROM WORK.AF42_6_41 t1; QUIT;` y luego `proc datasets; append base=tablas.bd_ctsi data=WORK.AF42_6_41 force; run;` y `append ... data=WORK.AF71_41_6 force;` seguido de `DROP TABLE WORK.AF42_6_41; DROP TABLE WORK.AF71_41_6;`. Este bloque completo (creación de AF71_41_6 desde AF42_6_41, y los dos APPEND+DROP) no aparece en absoluto en la traducción: no hay ninguna celda que cree #af71_41_6 a partir de #af42_6_41 ni que haga el INSERT de ambas tablas a TABLAS.dbo.BD_CTSI. Es lógica y escritura completa faltante al comienzo del tramo, con impacto directo en la cifra final de TABLAS.BD_CTSI."
+        },
+        {
+          "kind": "wrong_semantics",
+          "detail": "[tramo 3/3] En la celda del bloque AF42_51021_9, la variable sql_af42_51021_9 se define DOS VECES: primero con WHERE t1.SECTOR = 34 AND t1.C_CAGENTE = '51021' (idéntico al filtro del bloque AF42_EMP_FP, aparentemente copiado por error), y luego se re-asigna con WHERE t1.SECTOR = 51021 AND t1.C_CAGENTE = '9' (que es el que finalmente se ejecuta y coincide con el SAS original 'SECTOR=51021 AND C_CAGENTE=9'). Aunque el resultado ejecutado es correcto porque la segunda asignación sobreescribe a la primera antes del execute, dejar código muerto duplicado y contradictorio en la traducción es una señal de traducción defectuosa/no depurada que debe corregirse (eliminando la primera definición incorrecta) antes de aprobar, para evitar confusión o errores en mantenimientos futuros del notebook."
+        }
+      ],
+      "confidence": "medium",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "high",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-eF7cHe3ofCVn7nWp",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-fuWrePKSkcUXvfZF",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": true
+    },
+    {
+      "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "low",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-jo2ncH7bTsseLYP8",
+      "verdict": "unverified",
+      "issues": [
+        {
+          "kind": "other",
+          "detail": "verificador falló: validation_retries_exhausted"
+        }
+      ],
+      "confidence": "medium",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-moKZZAfdPtMvO2Za",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-rVgcAFrUWf36VVj6",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "missing_logic",
+          "detail": "El SAS calcula TABLAS.CNT a partir de 9 series HTTP (serie_1..serie_9) con UNION ALL y luego UPDATEs de TRIM (4->2,7->3,10->4). La traducción omite todo ese bloque con un NotImplementedError, por lo que TABLAS.CNT, que está en output_tables/output_datasets del nodo, nunca se crea ni se actualiza en esta traducción."
+        },
+        {
+          "kind": "missing_logic",
+          "detail": "El SAS, tras crear BONOS_RF_EXT/RP_AUXFIN/AF32_51_6/AF32_36_6, hace dos DATA steps adicionales que anexan estas tablas a TABLAS.AJ_VARIOS ('SET TABLAS.AJ_VARIOS BONOS_RF_EXT' y luego '... AF32_51_6 AF32_36_6'), modificando TABLAS.AJ_VARIOS después del primer concat. La traducción escribe TABLAS.AJ_VARIOS una sola vez (aj_varios + aj_d443_cr18) y deja todo el bloque de BONOS_RF_EXT/AF32_* como NotImplementedError, de modo que esos apends posteriores a la tabla de salida TABLAS.AJ_VARIOS simplemente no se ejecutan."
+        }
+      ],
+      "confidence": "medium",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-s2iKVLUIFegPxhYS",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "high",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-sQvjLjeo2WC15iXs",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "high",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-uEJMdbfEYJHVR2af",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "missing_logic",
+          "detail": "[tramo 1/8] El SAS termina con la creación de WORK.AF5_RM_P_CA y WORK.AF5_RM_P (dos PROC SQL finales del bloque dado), pero la traducción se detiene en AF5_RM_EST. El propio nodo declara en warnings 'Tramo 1 de 8... AF5_RM_P_CA y AF5_RM_P que abren el tramo siguiente NO se incluyen aquí', dejando esos dos CREATE TABLE del SAS original sin traducir dentro de este nodo. Si el nodo debe cubrir completo el SAS recibido, falta esa lógica (dos tablas de salida listadas en output_datasets: WORK.AF5_RM_P_CA y WORK.AF5_RM_P no se generan)."
+        },
+        {
+          "kind": "wrong_semantics",
+          "detail": "[tramo 2/8] En D43_H_SNF y D43_D_SNF el SAS original agrupa por MONEDA,AÑO,TRIM,SECTOR,C_CAGENTE,C_CUENTA,C_ENTRADA,C_SCN,N_SCN (sin incluir DATO en el GROUP BY, y sin SUM sobre DATO). La traducción agrega manualmente t1.DATO al GROUP BY ('GROUP BY t1.AÑO, t1.TRIM, t1.C_CUENTA, t1.C_SCN, t1.N_SCN, t1.DATO' en D43_H_SNF, y con t1.C_CAGENTE, t1.DATO en D43_D_SNF). Esto cambia la cardinalidad del resultado: si hay varias filas con igual AÑO/TRIM/C_CUENTA/C_SCN/N_SCN pero distinto DATO, el SAS las colapsaría en una fila (comportamiento propio de PROC SQL con columna no agrupada), mientras el T-SQL generaría una fila por cada DATO distinto."
+        },
+        {
+          "kind": "missing_logic",
+          "detail": "[tramo 3/8] El SAS crea y hace APPEND de WORK.D71_53, WORK.D72_53, WORK.D71_6 y WORK.D72_6 (bloques 'IMPUTA D71 Y D72 CON CA 53...' e 'IMPUTA D71 Y D72 CON RM...') leyendo desde el archivo SAS externo 'bd_ci_full_cierre.sas7bdat'. La traducción reemplaza estos 4 bloques por raise NotImplementedError, dejando fuera lógica de negocio real del nodo (imputación de primas e indemnizaciones de seguros en sectores 353 y 351) que después se usa aguas abajo (p.ej. WORK.D71_RM filtra C_SCN='D.71' AND SECTOR IN (351,352), que depende de datos insertados por D71_6). Esto cambia el resultado final: BD_CTSI queda sin esas filas y los cálculos posteriores que dependen de ellas (D71_RM, D75_RM_H, D71_CIERRE, D75_CIERRE, etc.) producirán cifras distintas a las del SAS original."
+        },
+        {
+          "kind": "wrong_semantics",
+          "detail": "[tramo 5/8] D41_RECIBIDO en SAS es un merge cartesiano implícito PROC SQL (FROM TABLAS.BD_CTSI t1, TABLAS.T_SECTORIZACION t2 WHERE T1.SECTOR=T2.C_SI), que en SQL clásico es un INNER JOIN — eso está bien traducido. Pero el GROUP BY del SAS es 'CALCULATED MONEDA,t1.\"AÑO\"n, T1.TRIM,T1.C_ENTRADA,T1.C_CUENTA, t1.C_SCN,t1.N_SCN, CALCULATED SECTOR,CALCULATED C_CAGENTE' -- el Python reprodujo esto correctamente agrupando por la expresión CASE completa, así que este punto está OK; revisar el siguiente issue."
+        },
+        {
+          "kind": "missing_logic",
+          "detail": "[tramo 5/8] El SAS declara 'proc sql; delete from D41_OFI_RM where sector IN (33221,3324);quit;' ANTES de crear D41_OFI_bcos_f (que se construye 'FROM D41_OFI_RM t1' ya filtrado), y luego aplica el mismo DELETE de nuevo sobre D41_OFI_bcos_f (redundante pero inofensivo). La traducción replica ambos DELETE correctamente. Sin embargo, en D41_RECIBIDO falta la columna C_CAGENTE proveniente de T2.C_SI_publ: el SAS usa 'LEFT(PUT(T2.C_SI_publ,CHAR4.))' pero el Python usa 'LEFT(CAST(T2.C_SI_publ AS varchar(4)))' -- esto es equivalencia válida, no error. Retiro este issue, no aplica revise por este punto."
+        },
+        {
+          "kind": "wrong_semantics",
+          "detail": "[tramo 5/8] En sql_d41_bcos_a (y en d41_ofis_a, d41_aux_bc) el WHERE del SAS es una condición OR de alto nivel: '(T1.C_ENTRADA=\\'D\\' AND ...) OR (T1.C_ENTRADA=\\'H\\' AND ...)', y la traducción replica exactamente esa estructura de paréntesis con OR, por lo que es correcta. No hay error aquí; se retira este issue también."
+        }
+      ],
+      "confidence": "low",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-uRMT7rfFsM7wFmZJ",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-vXwkDE8f2OcjOwky",
+      "verdict": "unverified",
+      "issues": [
+        {
+          "kind": "other",
+          "detail": "verificador falló: node_budget_exhausted"
+        }
+      ],
+      "confidence": "medium",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "verdict": "revise",
+      "issues": [
+        {
+          "kind": "wrong_semantics",
+          "detail": "[tramo 1/3] En #af3_aj_ca el GROUP BY del SAS es 'CALCULATED MONEDA, AÑO, TRIM, C_CUENTA, C_SCN, N_SCN' (NO incluye SECTOR ni C_CAGENTE ni C_ENTRADA ni DATO), lo que agrega/colapsa filas con SUM implícito de DATO*-1 sobre esas dimensiones. La traducción agrupa por 'T1.SECTOR, T1.C_CAGENTE, T1.C_CUENTA, T1.C_ENTRADA, T1.DATO, T1.C_SCN, T1.N_SCN' y usa DATO*-1 sin SUM, produciendo una fila por cada combinación original en vez de agregarlas: cambia la granularidad y el resultado difiere si hay múltiples filas por AÑO/TRIM/C_CUENTA/C_SCN/N_SCN con distinto SECTOR/C_CAGENTE/C_ENTRADA/DATO."
+        },
+        {
+          "kind": "wrong_semantics",
+          "detail": "[tramo 1/3] En #af32_31_6 el SAS agrupa por 'CALCULATED MONEDA, AÑO, TRIM, T1.C_CUENTA, CALCULATED C_ENTRADA, C_SCN, N_SCN, CALCULATED SECTOR, CALCULATED C_CAGENTE' (donde SECTOR calculado = INPUT(C_CAGENTE) y C_CAGENTE calculado = SECTOR original). La traducción agrupa por 't1.AÑO, T1.TRIM, T1.C_CUENTA, t1.C_SCN, t1.N_SCN, T1.C_CAGENTE, T1.SECTOR' usando los valores ORIGINALES de SECTOR y C_CAGENTE en el GROUP BY en vez de los valores calculados/intercambiados, lo cual es equivalente numéricamente en este caso porque WHERE ya fija SECTOR=6 y C_CAGENTE='31', así que no cambia el resultado — pero notar que la traducción omite C_ENTRADA calculado ('H') en el GROUP BY, que en SAS sí participa; dado que WHERE fija C_ENTRADA='D' constante, tampoco afecta el resultado, así que esta parte es aceptable."
+        },
+        {
+          "kind": "missing_logic",
+          "detail": "[tramo 1/3] En WORK.AF3_AJ_CA el filtro SAS es 'SECTOR<>6' sin prefijo de tabla pero dentro de una consulta con una sola tabla t1, la traducción SÍ lo prefija correctamente como T1.SECTOR<>6, esto está bien; sin embargo el problema central reportado (wrong_semantics del GROUP BY) hace que el DATO resultante para AF3_AJ_CA (y por ende AF3_IM_CA que depende de él) se calcule sin agregar correctamente, alterando la cifra final insertada en TABLAS.BD_CTSI."
+        },
+        {
+          "kind": "wrong_write",
+          "detail": "[tramo 3/3] output_datasets exige WORK.DCV, WORK.P_MCDO_AF32 y WORK.T_AJ_MDO_AF31, pero el SAS de este nodo solo intenta crear WORK.DCV (con `create table dcv as select * from '/sasdata/.../base_af3_total_v2.sas7bdat'`) y la traducción reemplaza ese bloque final con `raise NotImplementedError`, dejando el nodo sin producir ninguna de las tres tablas declaradas como salida. El warning documenta la limitación de la ruta externa, pero el resultado es que el nodo completo aborta en ejecución y no deja rastro de P_MCDO_AF32/T_AJ_MDO_AF31, que ni siquiera se mencionan en el SAS de este fragmento; debería aclararse si esas dos tablas provienen de otro nodo real en vez de dejar un raise no capturado que rompe el pipeline completo por una sola tabla externa faltante."
+        }
+      ],
+      "confidence": "low",
+      "revised": false
+    },
+    {
+      "node_id": "CodeTask-zVjjleFBA72oSeFU",
+      "verdict": "approve",
+      "issues": [],
+      "confidence": "medium",
+      "revised": false
+    }
+  ]
+}

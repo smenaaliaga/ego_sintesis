@@ -1,0 +1,18 @@
+{
+  "pfd_id": "PFD-MbpMeYT4TZRpVo6G",
+  "pfd_label": "Cargadores",
+  "reviews": [
+    {
+      "node_id": "CodeTask-b4yKCgjI7DEeqndl",
+      "note": "Genera tabla resumen con múltiples JOINs implícitos en 5 tablas (BD_CTSI, Sectorizacion, Contrapartidas, Instrumentos, Cuenta); riesgo crítico: macros dinámicas sin validación (&ANIO), rutas hardcodeadas de archivos .sas7bdat, función SUM() con GROUP BY anidado, y lógica de deuda hipotecaria/consumo con CASE condicional y consolidación de múltiples tablas intermedias que requiere validación de dependencias."
+    },
+    {
+      "node_id": "CodeTask-vLMl6RS3eEI64niZ",
+      "note": "Agrupa saldos por instrumento financiero con JOINs complejos en 4 tablas y lógica CASE multinivel para recategorización de instrumentos; riesgo: expresión calculada en GROUP BY con múltiples WHEN THEN anidados, función PUT() para conversión de formato, comparaciones condicionales que pueden producir valores NULL, y referencia a macro &ANIO sin validación de rango."
+    },
+    {
+      "node_id": "CodeTask-ryd9Qv5seQRPtvOD",
+      "note": "Procesa tabla anterior agregando datos históricos con tabla dinámicamente nombrada (BD_CTSI_R&ANIO&TRIM); riesgo mayor: macro embebida en nombre de tabla sin escape, JOINs múltiples idénticos al nodo anterior, GROUP BY con CALCULATED MONEDA que depende de lógica de sesión previa, y ninguna validación de existencia de tabla parametrizada."
+    }
+  ]
+}

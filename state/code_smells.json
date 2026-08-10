@@ -1,0 +1,1298 @@
+{
+  "generated_at": "2026-08-07T17:20:59.017499+00:00",
+  "total_smells": 143,
+  "summary": {
+    "error": 22,
+    "warning": 92,
+    "info": 29
+  },
+  "smells": [
+    {
+      "id": "CS-0001",
+      "node_id": "CodeTask-1luvy2zX48vyTm18",
+      "category": "maintainability",
+      "description": "[S2_01_Inicio] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "s.BD_CTSI AS\r SELECT *\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/BD_CTSI_CIERRE.sas7bdat';\r RUN;\r /*COMPRIME",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-1luvy2zX48vyTm18."
+    },
+    {
+      "id": "CS-0002",
+      "node_id": "CodeTask-1luvy2zX48vyTm18",
+      "category": "quality",
+      "description": "[S2_01_Inicio] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "EATE TABLE tablas.BD_CTSI AS\r SELECT *\r FROM '/sasdata/BCCH/GEM_DCNI",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-1luvy2zX48vyTm18."
+    },
+    {
+      "id": "CS-0003",
+      "node_id": "CodeTask-1luvy2zX48vyTm18",
+      "category": "quality",
+      "description": "[S2_01_Inicio] PROC SQL sin QUIT explícito",
+      "severity": "info",
+      "line_hint": "a=WORK.AF321_41 force;\r run;\r PROC SQL;\r DROP TABLE WORK.AF321_41;",
+      "recommendation": "Refactorizar patrón 'no_proc_quit' en nodo CodeTask-1luvy2zX48vyTm18."
+    },
+    {
+      "id": "CS-0004",
+      "node_id": "CodeTask-1luvy2zX48vyTm18",
+      "category": "maintainability",
+      "description": "[S2_01_Inicio] Números mágicos repetidos en varios nodos: ['0015', '0071', '321', '331', '332']",
+      "severity": "warning",
+      "line_hint": "0015",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0005",
+      "node_id": "CodeTask-1MZt2MbPkdLUOvbC",
+      "category": "maintainability",
+      "description": "[S2_03_Reservas&Capital] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "DATO FROM TABLAS.BD_CTSI t1,\"/sasdata/BCCH/GEM_DCNI/02_CNSI/08_SI_EMP/36907_37_HOLDING/ratio_inv_hc_c.sas7bdat\" T2  WHER",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-1MZt2MbPkdLUOvbC."
+    },
+    {
+      "id": "CS-0006",
+      "node_id": "CodeTask-1MZt2MbPkdLUOvbC",
+      "category": "maintainability",
+      "description": "[S2_03_Reservas&Capital] Números mágicos repetidos en varios nodos: ['321', '352', '36907', '412', '5101']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0007",
+      "node_id": "CodeTask-2Qnp37e99kvQSM9m",
+      "category": "quality",
+      "description": "[V2_1] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "roc sql; create table b8_b as select * from V_NUEVA where C_CUENTA I",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-2Qnp37e99kvQSM9m."
+    },
+    {
+      "id": "CS-0008",
+      "node_id": "CodeTask-2Qnp37e99kvQSM9m",
+      "category": "maintainability",
+      "description": "[V2_1] Números mágicos repetidos en varios nodos: ['100', '331', '334', '339', '33901']",
+      "severity": "warning",
+      "line_hint": "100",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0009",
+      "node_id": "CodeTask-2Qnp37e99kvQSM9m",
+      "category": "reproducibility",
+      "description": "[V2_1] Variables macro dinámicas: ['ANIO', 'Sector', 'TRIM'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0010",
+      "node_id": "CodeTask-6NFJPkCu6mSpiJT9",
+      "category": "maintainability",
+      "description": "[Program] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "pesos*/\r PROC HTTP URL = \"https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-6NFJPkCu6mSpiJT9."
+    },
+    {
+      "id": "CS-0011",
+      "node_id": "CodeTask-6NFJPkCu6mSpiJT9",
+      "category": "quality",
+      "description": "[Program] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "QL;\r CREATE TABLE MONEDAS AS\r SELECT *\r FROM \"/sasdata/BCCH/GEM_DCNI",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-6NFJPkCu6mSpiJT9."
+    },
+    {
+      "id": "CS-0012",
+      "node_id": "CodeTask-6NFJPkCu6mSpiJT9",
+      "category": "reproducibility",
+      "description": "[Program] Variables macro dinámicas: ['password', 'user'].",
+      "severity": "warning",
+      "line_hint": "&password",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0013",
+      "node_id": "CodeTask-6SjSzoc2tRAmj3bg",
+      "category": "maintainability",
+      "description": "[S2_02_Din&Dep] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "UENTE, '0119a' AS PROC\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/t_aj_cd_321_6_af32.sas7bdat' T1;\r QUIT;\r",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-6SjSzoc2tRAmj3bg."
+    },
+    {
+      "id": "CS-0014",
+      "node_id": "CodeTask-6SjSzoc2tRAmj3bg",
+      "category": "quality",
+      "description": "[S2_02_Din&Dep] PROC SQL sin QUIT explícito",
+      "severity": "info",
+      "line_hint": "RK.AF29_361_321 force;\r run;\r PROC SQL;\r DROP TABLE WORK.AF29_34_361",
+      "recommendation": "Refactorizar patrón 'no_proc_quit' en nodo CodeTask-6SjSzoc2tRAmj3bg."
+    },
+    {
+      "id": "CS-0015",
+      "node_id": "CodeTask-6SjSzoc2tRAmj3bg",
+      "category": "maintainability",
+      "description": "[S2_02_Din&Dep] Números mágicos repetidos en varios nodos: ['321', '322', '339', '33901', '3390101']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0016",
+      "node_id": "CodeTask-7lh12aT9AnDfJenj",
+      "category": "maintainability",
+      "description": "[S7_03_Sector_CF] Números mágicos repetidos en varios nodos: ['1000', '400', '600']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0017",
+      "node_id": "CodeTask-7lh12aT9AnDfJenj",
+      "category": "reproducibility",
+      "description": "[S7_03_Sector_CF] Variables macro dinámicas: ['Codigo', 'Entrada', 'Sector'].",
+      "severity": "warning",
+      "line_hint": "&Codigo",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0018",
+      "node_id": "CodeTask-7nH3fwOy4hErZFqh",
+      "category": "maintainability",
+      "description": "[Bonos_Ext] Números mágicos repetidos en varios nodos: ['321', '322', '36912', '5101', '5102']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0019",
+      "node_id": "CodeTask-9OqX3kaymboJVh4I",
+      "category": "maintainability",
+      "description": "[S2_12_Reajustes] Números mágicos repetidos en varios nodos: ['3390101', '3390102', '341', '342', '51022']",
+      "severity": "warning",
+      "line_hint": "3390101",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0020",
+      "node_id": "CodeTask-a5fupJ8fUrKfjLpj",
+      "category": "maintainability",
+      "description": "[S2_13_Inicio_2] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "s.BD_CTSI AS\r SELECT *\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/BD_CTSI_CIERRE.sas7bdat';\r RUN;\r /*COMPRIME",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-a5fupJ8fUrKfjLpj."
+    },
+    {
+      "id": "CS-0021",
+      "node_id": "CodeTask-a5fupJ8fUrKfjLpj",
+      "category": "quality",
+      "description": "[S2_13_Inicio_2] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "EATE TABLE tablas.BD_CTSI AS\r SELECT *\r FROM '/sasdata/BCCH/GEM_DCNI",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-a5fupJ8fUrKfjLpj."
+    },
+    {
+      "id": "CS-0022",
+      "node_id": "CodeTask-a5fupJ8fUrKfjLpj",
+      "category": "maintainability",
+      "description": "[S2_13_Inicio_2] Números mágicos repetidos en varios nodos: ['0015', '0071', '321', '331', '332']",
+      "severity": "warning",
+      "line_hint": "0015",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0023",
+      "node_id": "CodeTask-ajjSEkh77FcmV2ov",
+      "category": "maintainability",
+      "description": "[S5_AjBonos] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0024",
+      "node_id": "CodeTask-ajjSEkh77FcmV2ov",
+      "category": "reproducibility",
+      "description": "[S5_AjBonos] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0025",
+      "node_id": "CodeTask-b4yKCgjI7DEeqndl",
+      "category": "maintainability",
+      "description": "[S9_00_Traspaso Info] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "DA_HOLDING AS SELECT \t* FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/holding_c.sas7bdat\"  WHERE AÑO>=&ANIO; QUIT",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-b4yKCgjI7DEeqndl."
+    },
+    {
+      "id": "CS-0026",
+      "node_id": "CodeTask-b4yKCgjI7DEeqndl",
+      "category": "quality",
+      "description": "[S9_00_Traspaso Info] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "CREATE TABLE DEUDA_HOLDING AS SELECT \t* FROM \"/sasdata/BCCH/GEM_DCNI/",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-b4yKCgjI7DEeqndl."
+    },
+    {
+      "id": "CS-0027",
+      "node_id": "CodeTask-b4yKCgjI7DEeqndl",
+      "category": "maintainability",
+      "description": "[S9_00_Traspaso Info] Números mágicos repetidos en varios nodos: ['0071', '1000', '321', '322', '332']",
+      "severity": "warning",
+      "line_hint": "0071",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0028",
+      "node_id": "CodeTask-b4yKCgjI7DEeqndl",
+      "category": "reproducibility",
+      "description": "[S9_00_Traspaso Info] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0029",
+      "node_id": "CodeTask-bilvsdL51BAnsUEr",
+      "category": "reproducibility",
+      "description": "[V2_1_res] Variables macro dinámicas: ['ANIO', 'Sector'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0030",
+      "node_id": "CodeTask-c5JoNhJJnZiM91gN",
+      "category": "quality",
+      "description": "[S2_05_Ptmos] PROC SQL sin QUIT explícito",
+      "severity": "info",
+      "line_hint": "I DATA=AF7_AJUSTE FORCE;RUN;\r PROC SQL; DROP TABLE WORK.AF42_TOTAL,A",
+      "recommendation": "Refactorizar patrón 'no_proc_quit' en nodo CodeTask-c5JoNhJJnZiM91gN."
+    },
+    {
+      "id": "CS-0031",
+      "node_id": "CodeTask-c5JoNhJJnZiM91gN",
+      "category": "maintainability",
+      "description": "[S2_05_Ptmos] Números mágicos repetidos en varios nodos: ['321', '322', '331', '3321', '33211']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0032",
+      "node_id": "CodeTask-Dn53X4xCKNDMzlYP",
+      "category": "reproducibility",
+      "description": "[S8_wt_graph_OF] Variables macro dinámicas: ['C_WTW'].",
+      "severity": "warning",
+      "line_hint": "&C_WTW",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0033",
+      "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
+      "category": "maintainability",
+      "description": "[S1_d] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "tesis*/\r libname GOBGENER v9 \"/sasdata/BCCH/GEM_DCNI/02_CNSI/14_SI_GOB/4_GOBIERNOGENERAL\";\r \r PROC SQL;/*año debe ser",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-dYzl6IKuUE5lnGRx."
+    },
+    {
+      "id": "CS-0034",
+      "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
+      "category": "quality",
+      "description": "[S1_d] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "/\r CREATE TABLE EJEC_CGR AS \r SELECT *\r FROM GOBGENER.EJECUCION WHER",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-dYzl6IKuUE5lnGRx."
+    },
+    {
+      "id": "CS-0035",
+      "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
+      "category": "maintainability",
+      "description": "[S1_d] Números mágicos repetidos en varios nodos: ['5101']",
+      "severity": "warning",
+      "line_hint": "5101",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0036",
+      "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
+      "category": "reproducibility",
+      "description": "[S1_d] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0037",
+      "node_id": "CodeTask-ECZCZZvMxTO7sdpQ",
+      "category": "maintainability",
+      "description": "[S3_03_HH_dividendos] Números mágicos repetidos en varios nodos: ['511']",
+      "severity": "warning",
+      "line_hint": "511",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0038",
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "category": "maintainability",
+      "description": "[S2_06_Bonos] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "'0430' AS PROC\r       FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/base_af3_total_v2.sas7bdat\" t1\r       WHER",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-eEgfNiAdcXrWGWaj."
+    },
+    {
+      "id": "CS-0039",
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "category": "quality",
+      "description": "[S2_06_Bonos] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "CREATE TABLE t_aj_mdo_af31 AS SELECT * FROM '/sasdata/BCCH/GEM_DCNI/",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-eEgfNiAdcXrWGWaj."
+    },
+    {
+      "id": "CS-0040",
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "category": "maintainability",
+      "description": "[S2_06_Bonos] Números mágicos repetidos en varios nodos: ['321', '322', '331', '332', '3321']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0041",
+      "node_id": "CodeTask-eF7cHe3ofCVn7nWp",
+      "category": "maintainability",
+      "description": "[S2_14_Final] Números mágicos repetidos en varios nodos: ['341', '342', '511']",
+      "severity": "warning",
+      "line_hint": "341",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0042",
+      "node_id": "CodeTask-eHcgu5CrdT7hHfZQ",
+      "category": "maintainability",
+      "description": "[S7_06_SF - SubSector] Números mágicos repetidos en varios nodos: ['100', '1000']",
+      "severity": "warning",
+      "line_hint": "100",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0043",
+      "node_id": "CodeTask-EiTHWvhqkY9b3Los",
+      "category": "maintainability",
+      "description": "[S2_03_Reservas&Capital] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "DATO\r FROM TABLAS.BD_CTSI t1,\"/sasdata/BCCH/GEM_DCNI/02_CNSI/08_SI_EMP/36907_37_HOLDING/ratio_inv_hc_c.sas7bdat\" T2 \r WH",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-EiTHWvhqkY9b3Los."
+    },
+    {
+      "id": "CS-0044",
+      "node_id": "CodeTask-EiTHWvhqkY9b3Los",
+      "category": "maintainability",
+      "description": "[S2_03_Reservas&Capital] Números mágicos repetidos en varios nodos: ['321', '352', '36907', '412', '5101']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0045",
+      "node_id": "CodeTask-em3EefKlkASf9L3q",
+      "category": "reproducibility",
+      "description": "[V2_1_Anual] Variables macro dinámicas: ['Sector'].",
+      "severity": "warning",
+      "line_hint": "&Sector",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0046",
+      "node_id": "CodeTask-FqwyEcVSHGBw3z1q",
+      "category": "maintainability",
+      "description": "[S6_05_SaldosNeg] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0047",
+      "node_id": "CodeTask-fuWrePKSkcUXvfZF",
+      "category": "maintainability",
+      "description": "[S2_10_CCom] Números mágicos repetidos en varios nodos: ['0009', '321', '322', '352', '411']",
+      "severity": "warning",
+      "line_hint": "0009",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0048",
+      "node_id": "CodeTask-H2hhzkdf4aoXG9Pw",
+      "category": "quality",
+      "description": "[S3_02_Bench] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "proc sql;\r \tinsert into bench select * from outt;\r quit;\r \r proc del",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-H2hhzkdf4aoXG9Pw."
+    },
+    {
+      "id": "CS-0049",
+      "node_id": "CodeTask-H2hhzkdf4aoXG9Pw",
+      "category": "quality",
+      "description": "[S3_02_Bench] IF sin ELSE puede producir missing values implícitos en DATA step",
+      "severity": "warning",
+      "line_hint": "vaciones con restricción*/\r \t if noa = 12 then\r \t \tmna = sum(AT[,4] - AT[,2] + 1);\r \t else if noa = 4 then\r \t \tm",
+      "recommendation": "Refactorizar patrón 'implicit_missing' en nodo CodeTask-H2hhzkdf4aoXG9Pw."
+    },
+    {
+      "id": "CS-0050",
+      "node_id": "CodeTask-H2hhzkdf4aoXG9Pw",
+      "category": "reproducibility",
+      "description": "[S3_02_Bench] Variables macro dinámicas: ['rho'].",
+      "severity": "warning",
+      "line_hint": "&rho",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0051",
+      "node_id": "CodeTask-ie1zFOWtqc6EvbAr",
+      "category": "maintainability",
+      "description": "[V2_2_I] Números mágicos repetidos en varios nodos: ['400']",
+      "severity": "warning",
+      "line_hint": "400",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0052",
+      "node_id": "CodeTask-ie1zFOWtqc6EvbAr",
+      "category": "reproducibility",
+      "description": "[V2_2_I] Variables macro dinámicas: ['Codigo', 'Entrada', 'Sector'].",
+      "severity": "warning",
+      "line_hint": "&Codigo",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0053",
+      "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
+      "category": "maintainability",
+      "description": "[S1_b] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "count(tipo_ffmm) as c\r \tfrom \"/sasdata/BCCH/GEM_DCNI/02_CNSI/12_SI_FI/33901_FFMM/IDENTIFICA_FFMM.sas7bdat\"\r \tgroup by ru",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-ifAGwBWSiFAQtKqB."
+    },
+    {
+      "id": "CS-0054",
+      "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
+      "category": "quality",
+      "description": "[S1_b] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "reate table data_fm_NAC as \r \tselect *\r \tfrom \"/sasdata/BCCH/GEM_DCN",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-ifAGwBWSiFAQtKqB."
+    },
+    {
+      "id": "CS-0055",
+      "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
+      "category": "maintainability",
+      "description": "[S1_b] Números mágicos repetidos en varios nodos: ['3390101', '3390102']",
+      "severity": "warning",
+      "line_hint": "3390101",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0056",
+      "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
+      "category": "reproducibility",
+      "description": "[S1_b] Variables macro dinámicas: ['anio'].",
+      "severity": "warning",
+      "line_hint": "&anio",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0057",
+      "node_id": "CodeTask-Ix7ilK7RK3FKfDEH",
+      "category": "maintainability",
+      "description": "[S6_04_pnf] Números mágicos repetidos en varios nodos: ['341', '342', '511']",
+      "severity": "warning",
+      "line_hint": "341",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0058",
+      "node_id": "CodeTask-jo2ncH7bTsseLYP8",
+      "category": "maintainability",
+      "description": "[S2_07_Cuotas_Fondos] Números mágicos repetidos en varios nodos: ['321', '33211', '33212', '33221', '33222']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0059",
+      "node_id": "CodeTask-jPjrJizeiaHvjreh",
+      "category": "quality",
+      "description": "[S7_01_SNF] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "C SQL; CREATE TABLE VAR_IP AS SELECT * FROM CNF_VAR WHERE N_SCN_N1='",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-jPjrJizeiaHvjreh."
+    },
+    {
+      "id": "CS-0060",
+      "node_id": "CodeTask-jPjrJizeiaHvjreh",
+      "category": "maintainability",
+      "description": "[S7_01_SNF] Números mágicos repetidos en varios nodos: ['100', '1000', '3322', '33221', '33222']",
+      "severity": "warning",
+      "line_hint": "100",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0061",
+      "node_id": "CodeTask-jQdpbNMiLHrmwvzY",
+      "category": "maintainability",
+      "description": "[Salida_Producción] Números mágicos repetidos en varios nodos: ['321', '322', '361']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0062",
+      "node_id": "CodeTask-jQdpbNMiLHrmwvzY",
+      "category": "reproducibility",
+      "description": "[Salida_Producción] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0063",
+      "node_id": "CodeTask-KbgIzRrZ11b3kVse",
+      "category": "maintainability",
+      "description": "[S2_02_Din&Dep] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "UENTE, '0119a' AS PROC\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/t_aj_cd_321_6_af32.sas7bdat' T1;\r QUIT;\r",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-KbgIzRrZ11b3kVse."
+    },
+    {
+      "id": "CS-0064",
+      "node_id": "CodeTask-KbgIzRrZ11b3kVse",
+      "category": "quality",
+      "description": "[S2_02_Din&Dep] PROC SQL sin QUIT explícito",
+      "severity": "info",
+      "line_hint": "RK.AF29_361_321 force;\r run;\r PROC SQL;\r DROP TABLE WORK.AF29_34_361",
+      "recommendation": "Refactorizar patrón 'no_proc_quit' en nodo CodeTask-KbgIzRrZ11b3kVse."
+    },
+    {
+      "id": "CS-0065",
+      "node_id": "CodeTask-KbgIzRrZ11b3kVse",
+      "category": "maintainability",
+      "description": "[S2_02_Din&Dep] Números mágicos repetidos en varios nodos: ['321', '322', '339', '33901', '3390101']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0066",
+      "node_id": "CodeTask-KbHRFnaoSR2Bq6wI",
+      "category": "quality",
+      "description": "[S7_02_Hogares] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "CREATE TABLE WORK.CNF_HH AS \r SELECT * FROM WORK.CNF_HH_ OUTER UNION",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-KbHRFnaoSR2Bq6wI."
+    },
+    {
+      "id": "CS-0067",
+      "node_id": "CodeTask-KbHRFnaoSR2Bq6wI",
+      "category": "maintainability",
+      "description": "[S7_02_Hogares] Números mágicos repetidos en varios nodos: ['100', '1000', '321', '334', '335']",
+      "severity": "warning",
+      "line_hint": "100",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0068",
+      "node_id": "CodeTask-kVJViJGgbJOLVelr",
+      "category": "quality",
+      "description": "[S7_06_SF] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "CREATE TABLE WORK.CNF_SF AS \r SELECT * FROM WORK.CNF_SF_ OUTER UNION",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-kVJViJGgbJOLVelr."
+    },
+    {
+      "id": "CS-0069",
+      "node_id": "CodeTask-kVJViJGgbJOLVelr",
+      "category": "maintainability",
+      "description": "[S7_06_SF] Números mágicos repetidos en varios nodos: ['100', '1000', '800']",
+      "severity": "warning",
+      "line_hint": "100",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0070",
+      "node_id": "CodeTask-KZWptJSqYlZ3fYLu",
+      "category": "quality",
+      "description": "[S7_04_CargaFin] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "REATE TABLE WORK.CARGA_FIN AS SELECT * FROM WORK.CARGA_FIN_ OUTER UN",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-KZWptJSqYlZ3fYLu."
+    },
+    {
+      "id": "CS-0071",
+      "node_id": "CodeTask-KZWptJSqYlZ3fYLu",
+      "category": "maintainability",
+      "description": "[S7_04_CargaFin] Números mágicos repetidos en varios nodos: ['100', '1000', '500']",
+      "severity": "warning",
+      "line_hint": "100",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0072",
+      "node_id": "CodeTask-LbbQOdnOflsfHI1p",
+      "category": "maintainability",
+      "description": "[A1] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "PIB*/\r proc import datafile=\"/sasdata/BCCH/GEM/DCNI/GRSINTESIS/SINTESIS/Sintesis_cierre/CONTROLES/PIB.xlsx\"\r dbms=XLSX o",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-LbbQOdnOflsfHI1p."
+    },
+    {
+      "id": "CS-0073",
+      "node_id": "CodeTask-LbbQOdnOflsfHI1p",
+      "category": "quality",
+      "description": "[A1] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "CREATE TABLE CNF_TOTALES AS\r SELECT * FROM CNF OUTER UNION CORR SEL",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-LbbQOdnOflsfHI1p."
+    },
+    {
+      "id": "CS-0074",
+      "node_id": "CodeTask-LbbQOdnOflsfHI1p",
+      "category": "maintainability",
+      "description": "[A1] Números mágicos repetidos en varios nodos: ['0071', '100', '1000', '3390101', '3390102']",
+      "severity": "warning",
+      "line_hint": "0071",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0075",
+      "node_id": "CodeTask-LbbQOdnOflsfHI1p",
+      "category": "reproducibility",
+      "description": "[A1] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0076",
+      "node_id": "CodeTask-Lf2OAAam1xLYVxj4",
+      "category": "maintainability",
+      "description": "[S8_wtw] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0077",
+      "node_id": "CodeTask-Lf2OAAam1xLYVxj4",
+      "category": "reproducibility",
+      "description": "[S8_wtw] Variables macro dinámicas: ['ANIO', 'C_WTW'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0078",
+      "node_id": "CodeTask-lVG5feJnCetjgbtL",
+      "category": "maintainability",
+      "description": "[Datos_BdP] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "T5.C_Cuenta_SCN; QUIT;  data \"/sasdata/BCCH/GEM_DCNI/99_DCNI_DBP/Transferencias_RM.sas7bdat\"; set Entrega_D7_RM;run;",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-lVG5feJnCetjgbtL."
+    },
+    {
+      "id": "CS-0079",
+      "node_id": "CodeTask-lVG5feJnCetjgbtL",
+      "category": "reproducibility",
+      "description": "[Datos_BdP] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0080",
+      "node_id": "CodeTask-m47i4alOB19ERHFp",
+      "category": "quality",
+      "description": "[S6_02_pfin] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "REATE TABLE WORK.P_BF_BI_ AS  SELECT * FROM WORK.P_BF OUTER UNION CO",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-m47i4alOB19ERHFp."
+    },
+    {
+      "id": "CS-0081",
+      "node_id": "CodeTask-m47i4alOB19ERHFp",
+      "category": "maintainability",
+      "description": "[S6_02_pfin] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0082",
+      "node_id": "CodeTask-M7Kq8x8xCBjt8NWW",
+      "category": "maintainability",
+      "description": "[S4_Salidas - Copy] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "BLE ratio AS\r SELECT *\r FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/08_SI_EMP/36907_37_HOLDING/ratio_pat_hc_c.sas7bdat\" ;\r quit",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-M7Kq8x8xCBjt8NWW."
+    },
+    {
+      "id": "CS-0083",
+      "node_id": "CodeTask-M7Kq8x8xCBjt8NWW",
+      "category": "quality",
+      "description": "[S4_Salidas - Copy] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "ces*/\r CREATE TABLE ratio AS\r SELECT *\r FROM \"/sasdata/BCCH/GEM_DCNI",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-M7Kq8x8xCBjt8NWW."
+    },
+    {
+      "id": "CS-0084",
+      "node_id": "CodeTask-M7Kq8x8xCBjt8NWW",
+      "category": "maintainability",
+      "description": "[S4_Salidas - Copy] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0085",
+      "node_id": "CodeTask-M7Kq8x8xCBjt8NWW",
+      "category": "reproducibility",
+      "description": "[S4_Salidas - Copy] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0086",
+      "node_id": "CodeTask-mCE2amv2UM7gUEki",
+      "category": "quality",
+      "description": "[S7_05_Gobierno] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "CREATE TABLE WORK.CNF_GOB AS  SELECT * FROM WORK.CNF_GOB_ OUTER UNIO",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-mCE2amv2UM7gUEki."
+    },
+    {
+      "id": "CS-0087",
+      "node_id": "CodeTask-mCE2amv2UM7gUEki",
+      "category": "maintainability",
+      "description": "[S7_05_Gobierno] Números mágicos repetidos en varios nodos: ['100', '1000']",
+      "severity": "warning",
+      "line_hint": "100",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0088",
+      "node_id": "CodeTask-MkeeAoZmCaYLJwXL",
+      "category": "maintainability",
+      "description": "[S4_Salidas] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0089",
+      "node_id": "CodeTask-MkeeAoZmCaYLJwXL",
+      "category": "reproducibility",
+      "description": "[S4_Salidas] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0090",
+      "node_id": "CodeTask-moKZZAfdPtMvO2Za",
+      "category": "maintainability",
+      "description": "[S2_04_HH&Dep] Números mágicos repetidos en varios nodos: ['0015', '321', '36912', '51021', '51022']",
+      "severity": "warning",
+      "line_hint": "0015",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0091",
+      "node_id": "CodeTask-Ns4cmh4hITlllpAk",
+      "category": "maintainability",
+      "description": "[V2_1G] Números mágicos repetidos en varios nodos: ['100', '400']",
+      "severity": "warning",
+      "line_hint": "100",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0092",
+      "node_id": "CodeTask-Ns4cmh4hITlllpAk",
+      "category": "reproducibility",
+      "description": "[V2_1G] Variables macro dinámicas: ['Cuenta', 'Sector'].",
+      "severity": "warning",
+      "line_hint": "&Cuenta",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0093",
+      "node_id": "CodeTask-OBQXqokTpv23CnGn",
+      "category": "maintainability",
+      "description": "[S6_03_AjConc] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0094",
+      "node_id": "CodeTask-OBQXqokTpv23CnGn",
+      "category": "reproducibility",
+      "description": "[S6_03_AjConc] Variables macro dinámicas: ['ANIO', 'TRIM'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0095",
+      "node_id": "CodeTask-PctehnQmgLccQ4yN",
+      "category": "maintainability",
+      "description": "[Program] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "p TEMP;\r PROC HTTP URL = \"https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-PctehnQmgLccQ4yN."
+    },
+    {
+      "id": "CS-0096",
+      "node_id": "CodeTask-PctehnQmgLccQ4yN",
+      "category": "maintainability",
+      "description": "[Program] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0097",
+      "node_id": "CodeTask-PctehnQmgLccQ4yN",
+      "category": "reproducibility",
+      "description": "[Program] Variables macro dinámicas: ['password', 'user'].",
+      "severity": "warning",
+      "line_hint": "&password",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0098",
+      "node_id": "CodeTask-PrxMUTlg9rE9nnWS",
+      "category": "quality",
+      "description": "[S5_Cuadros] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "c sql; create table Exc_ah as select * from SALIDA_CEI_1 where C_Cue",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-PrxMUTlg9rE9nnWS."
+    },
+    {
+      "id": "CS-0099",
+      "node_id": "CodeTask-PrxMUTlg9rE9nnWS",
+      "category": "maintainability",
+      "description": "[S5_Cuadros] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0100",
+      "node_id": "CodeTask-PrxMUTlg9rE9nnWS",
+      "category": "reproducibility",
+      "description": "[S5_Cuadros] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0101",
+      "node_id": "CodeTask-PTl7dbnx3tB9LNaa",
+      "category": "maintainability",
+      "description": "[S8_wtw - Copy] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0102",
+      "node_id": "CodeTask-PTl7dbnx3tB9LNaa",
+      "category": "reproducibility",
+      "description": "[S8_wtw - Copy] Variables macro dinámicas: ['ANIO', 'C_WTW', 'TRIM'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0103",
+      "node_id": "CodeTask-PV6f6Wo5zpk123T2",
+      "category": "maintainability",
+      "description": "[S2_11_CNF] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "'0736' AS PROC\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/bd_ci_full_cierre.sas7bdat' t1\r    WHERE (T1.C_CUEN",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-PV6f6Wo5zpk123T2."
+    },
+    {
+      "id": "CS-0104",
+      "node_id": "CodeTask-PV6f6Wo5zpk123T2",
+      "category": "quality",
+      "description": "[S2_11_CNF] PROC SQL sin QUIT explícito",
+      "severity": "info",
+      "line_hint": "ATA=WORK.SALDOS_2 FORCE;RUN;\r PROC SQL; DROP TABLE WORK.SALDOS_2;",
+      "recommendation": "Refactorizar patrón 'no_proc_quit' en nodo CodeTask-PV6f6Wo5zpk123T2."
+    },
+    {
+      "id": "CS-0105",
+      "node_id": "CodeTask-PV6f6Wo5zpk123T2",
+      "category": "maintainability",
+      "description": "[S2_11_CNF] Números mágicos repetidos en varios nodos: ['0009', '100', '321', '322', '331']",
+      "severity": "warning",
+      "line_hint": "0009",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0106",
+      "node_id": "CodeTask-q9OPgdkf3WcKIpbW",
+      "category": "reproducibility",
+      "description": "[S6_03_AjConcB] Variables macro dinámicas: ['ANIO', 'TRIM'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0107",
+      "node_id": "CodeTask-R47QCuhcMSIJeuMG",
+      "category": "quality",
+      "description": "[S6_01_b9] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "CREATE TABLE  WORK.B9_HH AS\r SELECT * FROM  WORK.B9_HH_1 OUTER UNIO",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-R47QCuhcMSIJeuMG."
+    },
+    {
+      "id": "CS-0108",
+      "node_id": "CodeTask-R47QCuhcMSIJeuMG",
+      "category": "quality",
+      "description": "[S6_01_b9] PROC SQL sin QUIT explícito",
+      "severity": "info",
+      "line_hint": "GOPTIONS RESET = SYMBOL;\r \r PROC SQL;\r DROP TABLE WORK.B9,WORK.B9_",
+      "recommendation": "Refactorizar patrón 'no_proc_quit' en nodo CodeTask-R47QCuhcMSIJeuMG."
+    },
+    {
+      "id": "CS-0109",
+      "node_id": "CodeTask-R47QCuhcMSIJeuMG",
+      "category": "maintainability",
+      "description": "[S6_01_b9] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0110",
+      "node_id": "CodeTask-rRgEeqwSRMAQaeHB",
+      "category": "maintainability",
+      "description": "[S3_01_HH_cierre] Números mágicos repetidos en varios nodos: ['600']",
+      "severity": "warning",
+      "line_hint": "600",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0111",
+      "node_id": "CodeTask-rVgcAFrUWf36VVj6",
+      "category": "maintainability",
+      "description": "[S1] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "p TEMP;\r PROC HTTP URL = \"https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-rVgcAFrUWf36VVj6."
+    },
+    {
+      "id": "CS-0112",
+      "node_id": "CodeTask-rVgcAFrUWf36VVj6",
+      "category": "maintainability",
+      "description": "[S1] Números mágicos repetidos en varios nodos: ['1000', '321', '36912', '51021', '511']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0113",
+      "node_id": "CodeTask-rVgcAFrUWf36VVj6",
+      "category": "reproducibility",
+      "description": "[S1] Variables macro dinámicas: ['ANIO', 'TRIM', 'password', 'user'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0114",
+      "node_id": "CodeTask-ryd9Qv5seQRPtvOD",
+      "category": "maintainability",
+      "description": "[S9_01_Traspaso Info_anterior] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0115",
+      "node_id": "CodeTask-ryd9Qv5seQRPtvOD",
+      "category": "reproducibility",
+      "description": "[S9_01_Traspaso Info_anterior] Variables macro dinámicas: ['ANIO', 'TRIM'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0116",
+      "node_id": "CodeTask-s2iKVLUIFegPxhYS",
+      "category": "maintainability",
+      "description": "[S2_08_Derivados] Números mágicos repetidos en varios nodos: ['321', '331', '33901', '3390101', '3390102']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0117",
+      "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
+      "category": "maintainability",
+      "description": "[S7_00_Panorama] Números mágicos repetidos en varios nodos: ['100', '500', '600']",
+      "severity": "warning",
+      "line_hint": "100",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0118",
+      "node_id": "CodeTask-sGAwObcilp5c3zVx",
+      "category": "reproducibility",
+      "description": "[S7_06_SF - SubSector_Zoom] Variables macro dinámicas: ['Sector'].",
+      "severity": "warning",
+      "line_hint": "&Sector",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0119",
+      "node_id": "CodeTask-SGvXxdgboVasDeiV",
+      "category": "maintainability",
+      "description": "[S2_07_Cuotas_Fondos] Números mágicos repetidos en varios nodos: ['321', '33211', '33212', '33221', '33222']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0120",
+      "node_id": "CodeTask-sQvjLjeo2WC15iXs",
+      "category": "maintainability",
+      "description": "[Program] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "table fff as select *\r FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/base_af3_total_v2.sas7bdat\" t1\r where año",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-sQvjLjeo2WC15iXs."
+    },
+    {
+      "id": "CS-0121",
+      "node_id": "CodeTask-sQvjLjeo2WC15iXs",
+      "category": "quality",
+      "description": "[Program] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "proc sql; create table fff as select *\r FROM \"/sasdata/BCCH/GEM_DCNI",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-sQvjLjeo2WC15iXs."
+    },
+    {
+      "id": "CS-0122",
+      "node_id": "CodeTask-TkgG8t5JCMJVDoVb",
+      "category": "maintainability",
+      "description": "[V2_2_NF] Números mágicos repetidos en varios nodos: ['400']",
+      "severity": "warning",
+      "line_hint": "400",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0123",
+      "node_id": "CodeTask-TkgG8t5JCMJVDoVb",
+      "category": "reproducibility",
+      "description": "[V2_2_NF] Variables macro dinámicas: ['Cuenta', 'Entrada', 'Inst_nf', 'Sector'].",
+      "severity": "warning",
+      "line_hint": "&Cuenta",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0124",
+      "node_id": "CodeTask-TYjddV77Ba6raW6K",
+      "category": "maintainability",
+      "description": "[S2_09_Capital_Cierre] Números mágicos repetidos en varios nodos: ['321', '322', '331', '334', '33901']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0125",
+      "node_id": "CodeTask-uEJMdbfEYJHVR2af",
+      "category": "maintainability",
+      "description": "[S2_11_CNF] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "'0736' AS PROC\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/bd_ci_full_cierre.sas7bdat' t1\r    WHERE (T1.C_CUEN",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-uEJMdbfEYJHVR2af."
+    },
+    {
+      "id": "CS-0126",
+      "node_id": "CodeTask-uEJMdbfEYJHVR2af",
+      "category": "quality",
+      "description": "[S2_11_CNF] PROC SQL sin QUIT explícito",
+      "severity": "info",
+      "line_hint": "ATA=WORK.SALDOS_2 FORCE;RUN;\r PROC SQL; DROP TABLE WORK.SALDOS_2;",
+      "recommendation": "Refactorizar patrón 'no_proc_quit' en nodo CodeTask-uEJMdbfEYJHVR2af."
+    },
+    {
+      "id": "CS-0127",
+      "node_id": "CodeTask-uEJMdbfEYJHVR2af",
+      "category": "maintainability",
+      "description": "[S2_11_CNF] Números mágicos repetidos en varios nodos: ['0009', '100', '321', '322', '331']",
+      "severity": "warning",
+      "line_hint": "0009",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0128",
+      "node_id": "CodeTask-uRMT7rfFsM7wFmZJ",
+      "category": "maintainability",
+      "description": "[S1_01_RevDCV] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "MAT COMMA14.3 AS DATO \r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/t_aj_cd_321_6_AF32.sas7bdat'  T1 \r GROUP",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-uRMT7rfFsM7wFmZJ."
+    },
+    {
+      "id": "CS-0129",
+      "node_id": "CodeTask-v2KL58W1Ordii4kk",
+      "category": "maintainability",
+      "description": "[S7_03_Sector_CF _CA] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0130",
+      "node_id": "CodeTask-v2KL58W1Ordii4kk",
+      "category": "reproducibility",
+      "description": "[S7_03_Sector_CF _CA] Variables macro dinámicas: ['Codigo', 'Entrada', 'Sector'].",
+      "severity": "warning",
+      "line_hint": "&Codigo",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0131",
+      "node_id": "CodeTask-VGRo6vNwmbm39953",
+      "category": "maintainability",
+      "description": "[S2_10_CCom] Números mágicos repetidos en varios nodos: ['0009', '321', '322', '352', '411']",
+      "severity": "warning",
+      "line_hint": "0009",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0132",
+      "node_id": "CodeTask-vLMl6RS3eEI64niZ",
+      "category": "maintainability",
+      "description": "[Program] Números mágicos repetidos en varios nodos: ['1000']",
+      "severity": "warning",
+      "line_hint": "1000",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0133",
+      "node_id": "CodeTask-vLMl6RS3eEI64niZ",
+      "category": "reproducibility",
+      "description": "[Program] Variables macro dinámicas: ['ANIO'].",
+      "severity": "warning",
+      "line_hint": "&ANIO",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0134",
+      "node_id": "CodeTask-vXwkDE8f2OcjOwky",
+      "category": "quality",
+      "description": "[S2_05_Ptmos] PROC SQL sin QUIT explícito",
+      "severity": "info",
+      "line_hint": "I DATA=AF7_AJUSTE FORCE;RUN;\r PROC SQL; DROP TABLE WORK.AF42_TOTAL,A",
+      "recommendation": "Refactorizar patrón 'no_proc_quit' en nodo CodeTask-vXwkDE8f2OcjOwky."
+    },
+    {
+      "id": "CS-0135",
+      "node_id": "CodeTask-vXwkDE8f2OcjOwky",
+      "category": "maintainability",
+      "description": "[S2_05_Ptmos] Números mágicos repetidos en varios nodos: ['321', '322', '331', '3321', '33211']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0136",
+      "node_id": "CodeTask-X1NjQIiqHvgmq4z5",
+      "category": "maintainability",
+      "description": "[S2_09_Capital_Cierre] Números mágicos repetidos en varios nodos: ['321', '322', '331', '334', '33901']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0137",
+      "node_id": "CodeTask-XkoygblbmDJ46M1C",
+      "category": "maintainability",
+      "description": "[Autoexec] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "﻿libname tablas v9 \"/sasdata/BCCH/GEM_DCNI/02_CNSI/01_SINTESIS\";",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-XkoygblbmDJ46M1C."
+    },
+    {
+      "id": "CS-0138",
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "category": "maintainability",
+      "description": "[S2_06_Bonos] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "'0430' AS PROC\r       FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/base_af3_total_v2.sas7bdat\" t1\r       WHER",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-yh5u6Xv3BMVagLtW."
+    },
+    {
+      "id": "CS-0139",
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "category": "quality",
+      "description": "[S2_06_Bonos] SELECT * — columnas implícitas dificultan mantenimiento",
+      "severity": "info",
+      "line_hint": "CREATE TABLE t_aj_mdo_af31 AS SELECT * FROM '/sasdata/BCCH/GEM_DCNI/",
+      "recommendation": "Refactorizar patrón 'select_star' en nodo CodeTask-yh5u6Xv3BMVagLtW."
+    },
+    {
+      "id": "CS-0140",
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "category": "maintainability",
+      "description": "[S2_06_Bonos] Números mágicos repetidos en varios nodos: ['321', '322', '331', '332', '3321']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0141",
+      "node_id": "CodeTask-YoYrhsTHidYHYT2P",
+      "category": "maintainability",
+      "description": "[S2_08_Derivados] Números mágicos repetidos en varios nodos: ['321', '331', '33901', '3390101', '3390102']",
+      "severity": "warning",
+      "line_hint": "321",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    },
+    {
+      "id": "CS-0142",
+      "node_id": "CodeTask-ziOqjdQngJ3iTiRS",
+      "category": "reproducibility",
+      "description": "[S8_wt_graph] Variables macro dinámicas: ['C_WTW'].",
+      "severity": "warning",
+      "line_hint": "&C_WTW",
+      "recommendation": "Declarar como parámetros/constantes en la celda de configuración del notebook (Papermill-compatible)."
+    },
+    {
+      "id": "CS-0143",
+      "node_id": "CodeTask-zVjjleFBA72oSeFU",
+      "category": "maintainability",
+      "description": "[S2_04_HH&Dep] Números mágicos repetidos en varios nodos: ['0015', '321', '36912', '51021', '51022']",
+      "severity": "warning",
+      "line_hint": "0015",
+      "recommendation": "Extraer como constantes nombradas en la celda de configuración del notebook."
+    }
+  ]
+}

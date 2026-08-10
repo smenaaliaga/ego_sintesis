@@ -1,0 +1,497 @@
+{
+ "generated_at": "2026-08-07T17:21:04.463490+00:00",
+ "librefs": [
+  {
+   "libref": "DCNIDATA",
+   "source": "flow_summary_library",
+   "engine_hint": "",
+   "node_count": 4,
+   "table_count": 8,
+   "tables": [
+    {
+     "table": "AHORRO_PRE_0",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-b4yKCgjI7DEeqndl"
+     ]
+    },
+    {
+     "table": "AHORRO_PRE_1",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-b4yKCgjI7DEeqndl"
+     ]
+    },
+    {
+     "table": "DEUDA_HOGARES",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-b4yKCgjI7DEeqndl"
+     ]
+    },
+    {
+     "table": "DEUDA_HOLDING",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-b4yKCgjI7DEeqndl"
+     ]
+    },
+    {
+     "table": "FBCF_SF",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-GT6PneNaAuUXLt8o"
+     ]
+    },
+    {
+     "table": "SALDOS_WTW_SI",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-vLMl6RS3eEI64niZ"
+     ]
+    },
+    {
+     "table": "SALIDA_WTW_RESUMEN",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-b4yKCgjI7DEeqndl"
+     ]
+    },
+    {
+     "table": "SALIDA_WTW_RESUMEN_ANT",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-ryd9Qv5seQRPtvOD"
+     ]
+    }
+   ]
+  },
+  {
+   "libref": "GOBGENER",
+   "source": "flow_summary_library",
+   "engine_hint": "",
+   "node_count": 1,
+   "table_count": 2,
+   "tables": [
+    {
+     "table": "CR18_T_SCN_2",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-dYzl6IKuUE5lnGRx"
+     ]
+    },
+    {
+     "table": "EJECUCION",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-dYzl6IKuUE5lnGRx"
+     ]
+    }
+   ]
+  },
+  {
+   "libref": "LIB",
+   "source": "flow_summary_library",
+   "engine_hint": "",
+   "node_count": 3,
+   "table_count": 1,
+   "tables": [
+    {
+     "table": "SERIES_OBS",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-6NFJPkCu6mSpiJT9",
+      "CodeTask-PctehnQmgLccQ4yN",
+      "CodeTask-rVgcAFrUWf36VVj6"
+     ]
+    }
+   ]
+  },
+  {
+   "libref": "TABLAS",
+   "source": "flow_summary_library",
+   "engine_hint": "",
+   "node_count": 62,
+   "table_count": 34,
+   "tables": [
+    {
+     "table": "ACC_COT",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-LbbQOdnOflsfHI1p"
+     ]
+    },
+    {
+     "table": "AJUSTE_BONOS",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-PV6f6Wo5zpk123T2",
+      "CodeTask-ajjSEkh77FcmV2ov",
+      "CodeTask-rVgcAFrUWf36VVj6",
+      "CodeTask-uEJMdbfEYJHVR2af"
+     ]
+    },
+    {
+     "table": "AJ_TCORR",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-PV6f6Wo5zpk123T2",
+      "CodeTask-uEJMdbfEYJHVR2af"
+     ]
+    },
+    {
+     "table": "AJ_VARIOS",
+     "access": "both",
+     "node_ids": [
+      "CodeTask-1luvy2zX48vyTm18",
+      "CodeTask-a5fupJ8fUrKfjLpj",
+      "CodeTask-rVgcAFrUWf36VVj6"
+     ]
+    },
+    {
+     "table": "BD_CTSI",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-1MZt2MbPkdLUOvbC",
+      "CodeTask-1luvy2zX48vyTm18",
+      "CodeTask-2Qnp37e99kvQSM9m",
+      "CodeTask-2S7FV1OytGj5U2Fw",
+      "CodeTask-6SjSzoc2tRAmj3bg",
+      "CodeTask-7lh12aT9AnDfJenj",
+      "CodeTask-9OqX3kaymboJVh4I",
+      "CodeTask-ECZCZZvMxTO7sdpQ",
+      "CodeTask-EiTHWvhqkY9b3Los",
+      "CodeTask-FqwyEcVSHGBw3z1q",
+      "CodeTask-GT6PneNaAuUXLt8o",
+      "CodeTask-Ix7ilK7RK3FKfDEH",
+      "CodeTask-KZWptJSqYlZ3fYLu",
+      "CodeTask-KbHRFnaoSR2Bq6wI",
+      "CodeTask-KbgIzRrZ11b3kVse",
+      "CodeTask-LbbQOdnOflsfHI1p",
+      "CodeTask-Lf2OAAam1xLYVxj4",
+      "CodeTask-M7Kq8x8xCBjt8NWW",
+      "CodeTask-MkeeAoZmCaYLJwXL",
+      "CodeTask-OBQXqokTpv23CnGn"
+     ]
+    },
+    {
+     "table": "BD_CTSI_AJPTMOS_CP",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-1luvy2zX48vyTm18",
+      "CodeTask-a5fupJ8fUrKfjLpj"
+     ]
+    },
+    {
+     "table": "BD_CTSI_R",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-2Qnp37e99kvQSM9m",
+      "CodeTask-PTl7dbnx3tB9LNaa",
+      "CodeTask-ryd9Qv5seQRPtvOD"
+     ]
+    },
+    {
+     "table": "BONOS_EXT_PRECIO",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-7nH3fwOy4hErZFqh",
+      "CodeTask-eEgfNiAdcXrWGWaj",
+      "CodeTask-yh5u6Xv3BMVagLtW"
+     ]
+    },
+    {
+     "table": "CNT",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-PV6f6Wo5zpk123T2",
+      "CodeTask-PctehnQmgLccQ4yN",
+      "CodeTask-rVgcAFrUWf36VVj6",
+      "CodeTask-uEJMdbfEYJHVR2af"
+     ]
+    },
+    {
+     "table": "CODIGOS",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-LbbQOdnOflsfHI1p"
+     ]
+    },
+    {
+     "table": "C_FAME",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-LbbQOdnOflsfHI1p"
+     ]
+    },
+    {
+     "table": "DEP_HH_FM",
+     "access": "both",
+     "node_ids": [
+      "CodeTask-9OqX3kaymboJVh4I",
+      "CodeTask-a5fupJ8fUrKfjLpj",
+      "CodeTask-ifAGwBWSiFAQtKqB"
+     ]
+    },
+    {
+     "table": "FBCF_SF",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-1luvy2zX48vyTm18",
+      "CodeTask-a5fupJ8fUrKfjLpj",
+      "CodeTask-rVgcAFrUWf36VVj6"
+     ]
+    },
+    {
+     "table": "FILTROS",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-7lh12aT9AnDfJenj"
+     ]
+    },
+    {
+     "table": "INFO_ADICIONAL",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-LbbQOdnOflsfHI1p"
+     ]
+    },
+    {
+     "table": "PIB",
+     "access": "both",
+     "node_ids": [
+      "CodeTask-OBQXqokTpv23CnGn",
+      "CodeTask-jPjrJizeiaHvjreh",
+      "CodeTask-rVgcAFrUWf36VVj6"
+     ]
+    },
+    {
+     "table": "REAJUSTES",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-9OqX3kaymboJVh4I",
+      "CodeTask-a5fupJ8fUrKfjLpj"
+     ]
+    },
+    {
+     "table": "RP_HH",
+     "access": "both",
+     "node_ids": [
+      "CodeTask-1luvy2zX48vyTm18",
+      "CodeTask-ECZCZZvMxTO7sdpQ",
+      "CodeTask-a5fupJ8fUrKfjLpj",
+      "CodeTask-rVgcAFrUWf36VVj6"
+     ]
+    },
+    {
+     "table": "SALIDA_WTW_RESUMEN",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-LbbQOdnOflsfHI1p"
+     ]
+    },
+    {
+     "table": "SIFMI",
+     "access": "both",
+     "node_ids": [
+      "CodeTask-1luvy2zX48vyTm18",
+      "CodeTask-a5fupJ8fUrKfjLpj",
+      "CodeTask-rVgcAFrUWf36VVj6"
+     ]
+    },
+    {
+     "table": "TIEMPO",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-2Qnp37e99kvQSM9m",
+      "CodeTask-7lh12aT9AnDfJenj",
+      "CodeTask-KbHRFnaoSR2Bq6wI",
+      "CodeTask-LbbQOdnOflsfHI1p",
+      "CodeTask-OBQXqokTpv23CnGn",
+      "CodeTask-R47QCuhcMSIJeuMG",
+      "CodeTask-eHcgu5CrdT7hHfZQ",
+      "CodeTask-jPjrJizeiaHvjreh",
+      "CodeTask-kVJViJGgbJOLVelr",
+      "CodeTask-mCE2amv2UM7gUEki",
+      "CodeTask-q9OPgdkf3WcKIpbW",
+      "CodeTask-sDGqIvcGbhZj7g4p"
+     ]
+    },
+    {
+     "table": "T_AJUSTE_CONCILIACION",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-VGRo6vNwmbm39953",
+      "CodeTask-fuWrePKSkcUXvfZF"
+     ]
+    },
+    {
+     "table": "T_CCAST",
+     "access": "both",
+     "node_ids": [
+      "CodeTask-PV6f6Wo5zpk123T2",
+      "CodeTask-rVgcAFrUWf36VVj6",
+      "CodeTask-uEJMdbfEYJHVR2af"
+     ]
+    },
+    {
+     "table": "T_CONTRAPARTIDAS",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-2S7FV1OytGj5U2Fw",
+      "CodeTask-9OqX3kaymboJVh4I",
+      "CodeTask-FqwyEcVSHGBw3z1q",
+      "CodeTask-KbHRFnaoSR2Bq6wI",
+      "CodeTask-Lf2OAAam1xLYVxj4",
+      "CodeTask-M7Kq8x8xCBjt8NWW",
+      "CodeTask-MkeeAoZmCaYLJwXL",
+      "CodeTask-PTl7dbnx3tB9LNaa",
+      "CodeTask-PV6f6Wo5zpk123T2",
+      "CodeTask-TYjddV77Ba6raW6K",
+      "CodeTask-VGRo6vNwmbm39953",
+      "CodeTask-X1NjQIiqHvgmq4z5",
+      "CodeTask-ajjSEkh77FcmV2ov",
+      "CodeTask-b4yKCgjI7DEeqndl",
+      "CodeTask-eEgfNiAdcXrWGWaj",
+      "CodeTask-eHcgu5CrdT7hHfZQ",
+      "CodeTask-fuWrePKSkcUXvfZF",
+      "CodeTask-jPjrJizeiaHvjreh",
+      "CodeTask-kVJViJGgbJOLVelr",
+      "CodeTask-m47i4alOB19ERHFp"
+     ]
+    },
+    {
+     "table": "T_CUENTA",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-2S7FV1OytGj5U2Fw",
+      "CodeTask-M7Kq8x8xCBjt8NWW",
+      "CodeTask-MkeeAoZmCaYLJwXL",
+      "CodeTask-PrxMUTlg9rE9nnWS",
+      "CodeTask-R47QCuhcMSIJeuMG",
+      "CodeTask-b4yKCgjI7DEeqndl",
+      "CodeTask-jQdpbNMiLHrmwvzY",
+      "CodeTask-lVG5feJnCetjgbtL",
+      "CodeTask-ryd9Qv5seQRPtvOD"
+     ]
+    },
+    {
+     "table": "T_CUENTA_CEI",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-PrxMUTlg9rE9nnWS"
+     ]
+    },
+    {
+     "table": "T_EST_DCV_AF32_PROMEDIOS",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-eEgfNiAdcXrWGWaj",
+      "CodeTask-yh5u6Xv3BMVagLtW"
+     ]
+    },
+    {
+     "table": "T_INSTRUMENTOS",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-2Qnp37e99kvQSM9m",
+      "CodeTask-2S7FV1OytGj5U2Fw",
+      "CodeTask-7lh12aT9AnDfJenj",
+      "CodeTask-FqwyEcVSHGBw3z1q",
+      "CodeTask-GT6PneNaAuUXLt8o",
+      "CodeTask-KZWptJSqYlZ3fYLu",
+      "CodeTask-KbHRFnaoSR2Bq6wI",
+      "CodeTask-Lf2OAAam1xLYVxj4",
+      "CodeTask-M7Kq8x8xCBjt8NWW",
+      "CodeTask-MkeeAoZmCaYLJwXL",
+      "CodeTask-OBQXqokTpv23CnGn",
+      "CodeTask-PTl7dbnx3tB9LNaa",
+      "CodeTask-PV6f6Wo5zpk123T2",
+      "CodeTask-PrxMUTlg9rE9nnWS",
+      "CodeTask-R47QCuhcMSIJeuMG",
+      "CodeTask-b4yKCgjI7DEeqndl",
+      "CodeTask-eHcgu5CrdT7hHfZQ",
+      "CodeTask-jPjrJizeiaHvjreh",
+      "CodeTask-jQdpbNMiLHrmwvzY",
+      "CodeTask-kVJViJGgbJOLVelr"
+     ]
+    },
+    {
+     "table": "T_INST_NF",
+     "access": "write",
+     "node_ids": [
+      "Query-H6bd6GULUeGKQkjU"
+     ]
+    },
+    {
+     "table": "T_SECTORIZACION",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-2Qnp37e99kvQSM9m",
+      "CodeTask-2S7FV1OytGj5U2Fw",
+      "CodeTask-7lh12aT9AnDfJenj",
+      "CodeTask-9OqX3kaymboJVh4I",
+      "CodeTask-ECZCZZvMxTO7sdpQ",
+      "CodeTask-FqwyEcVSHGBw3z1q",
+      "CodeTask-GT6PneNaAuUXLt8o",
+      "CodeTask-KZWptJSqYlZ3fYLu",
+      "CodeTask-KbHRFnaoSR2Bq6wI",
+      "CodeTask-Lf2OAAam1xLYVxj4",
+      "CodeTask-M7Kq8x8xCBjt8NWW",
+      "CodeTask-MkeeAoZmCaYLJwXL",
+      "CodeTask-OBQXqokTpv23CnGn",
+      "CodeTask-PTl7dbnx3tB9LNaa",
+      "CodeTask-PV6f6Wo5zpk123T2",
+      "CodeTask-PrxMUTlg9rE9nnWS",
+      "CodeTask-R47QCuhcMSIJeuMG",
+      "CodeTask-TYjddV77Ba6raW6K",
+      "CodeTask-VGRo6vNwmbm39953",
+      "CodeTask-X1NjQIiqHvgmq4z5"
+     ]
+    },
+    {
+     "table": "T_SECTORIZACION_N2",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-ajjSEkh77FcmV2ov"
+     ]
+    },
+    {
+     "table": "T_SECTORIZACION_N3",
+     "access": "read",
+     "node_ids": [
+      "CodeTask-ajjSEkh77FcmV2ov"
+     ]
+    },
+    {
+     "table": "T_TK_GG_EPU",
+     "access": "write",
+     "node_ids": [
+      "CodeTask-PV6f6Wo5zpk123T2",
+      "CodeTask-dYzl6IKuUE5lnGRx",
+      "CodeTask-uEJMdbfEYJHVR2af"
+     ]
+    },
+    {
+     "table": "UR_SF_CR18",
+     "access": "both",
+     "node_ids": [
+      "CodeTask-PV6f6Wo5zpk123T2",
+      "CodeTask-rVgcAFrUWf36VVj6",
+      "CodeTask-uEJMdbfEYJHVR2af"
+     ]
+    }
+   ]
+  }
+ ],
+ "unverified_prefixes": [],
+ "connect_to_statements": [],
+ "detection_notes": [
+  "librefs detectados desde el código (LIBNAME + referencias calificadas), no desde metadata de nodos",
+  "los comentarios (/* */ y * ... ;) se ignoran: su prosa no declara librefs ni tablas",
+  "el contenido de los strings se ignora: una ruta o un hostname citado no declara un libref",
+  "en contrapartida, un LIBREF.TABLA que solo exista dentro de código generado (CALL EXECUTE, %STR) no se detecta",
+  "se excluyen WORK, formatos numéricos, extensiones de archivo y los calificadores que no son librefs: aliases de FROM/JOIN (incluida la lista por comas del join implícito) y nombres de tabla del propio nodo",
+  "unverified_prefixes: prefijos sin LIBNAME y con poca evidencia — confirmar con el usuario en el bloque B4b"
+ ]
+}

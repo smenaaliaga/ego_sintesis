@@ -1,0 +1,68 @@
+{
+  "id": "CodeTask-ECZCZZvMxTO7sdpQ",
+  "label": "S3_03_HH_dividendos",
+  "node_type": "PROC_SQL",
+  "pfd_id": "PFD-Xo33OSMWhvsM3DGl",
+  "pfd_label": "Hogares cierre anual",
+  "inputs": [
+    "TABLAS.BD_CTSI",
+    "WORK.D42_DELTA",
+    "WORK.D42_HH"
+  ],
+  "outputs": [
+    "TABLAS.RP_HH",
+    "WORK.D42_DELTA",
+    "WORK.D42_HH"
+  ],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL",
+      "PROC DATASETS"
+    ],
+    "classification": "transform",
+    "complexity": "medium",
+    "migration_priority": "high"
+  },
+  "code_lines": [
+    "﻿/*CIERRE ANUAL DE DIVIDENDOS PARA CUADRAR CTA FINANCIERA Y NO FINANCIERA*/\r",
+    "/*EXTRAE DIVIDENDOS DE HOGARES PARA RESTAR CON BENCH*/\r",
+    "PROC SQL;\r",
+    "CREATE TABLE WORK.D42_HH AS \r",
+    "   SELECT  T1.MONEDA,t1.'AÑO'n, T1.TRIM,\r",
+    "    \t   T2.C_SI_SCN_N1 AS SECTOR,\r",
+    "\t\t\tT1.C_CUENTA,\r",
+    "\t\t\tT1.C_ENTRADA,\t\t\t\r",
+    "\t\t   SUM(T1.DATO) AS DATO,\r",
+    "\t\t\tT1.C_SCN,\r",
+    "           T1.N_SCN\r",
+    "FROM TABLAS.BD_CTSI t1, TABLAS.T_SECTORIZACION T2\r",
+    "   WHERE (T1.SECTOR=T2.C_SI) AND (T1.C_ENTRADA='H' AND T1.C_SCN='D.42' AND T2.C_SI_SCN_N1='S.14') \r",
+    "\tGROUP BY T1.MONEDA,t1.'AÑO'n, T1.TRIM,T2.C_SI_SCN_N1,\r",
+    "\t\t     T1.C_CUENTA,\t\r",
+    "\t          T1.C_ENTRADA, \r",
+    "\t          t1.C_SCN,t1.N_SCN;\r",
+    "QUIT;\r",
+    "/*RESTA PARA GENERARA DELTA A IMPUTA EN DIV DE HOGARES*/\r",
+    "PROC SQL;\r",
+    "CREATE TABLE WORK.D42_DELTA AS \r",
+    "   SELECT  T1.MONEDA,t1.'AÑO'n, T1.TRIM,\r",
+    "    \t   511 AS SECTOR,\r",
+    "\t\t   '53' AS C_CAGENTE,\r",
+    "\t\t\tT1.C_CUENTA,\r",
+    "\t\t\tT1.C_ENTRADA,\t\t\t\r",
+    "\t\t   (T2.DATO-T1.DATO) AS DATO,\r",
+    "\t\t\tT1.C_SCN,\r",
+    "           T1.N_SCN,\r",
+    "\t\t   'DI_RP_H' AS FUENTE,\r",
+    "\t\t   TODAY() FORMAT=DATE7. AS FECHA\r",
+    "FROM WORK.D42_HH t1, WORK.BENCH T2\r",
+    "   WHERE (t1.'AÑO'n=t2.'AÑO'n AND T1.TRIM=T2.TRIM);\r",
+    "QUIT;\r",
+    "/*IMPUTA AJUSTE EN TABLA DE DIV HH*/\r",
+    "PROC DATASETS;\r",
+    "APPEND BASE=TABLAS.RP_HH DATA=WORK.D42_DELTA  FORCE;RUN;\r",
+    "PROC SQL; DROP TABLE WORK.D42_HH;QUIT;\r",
+    ""
+  ]
+}

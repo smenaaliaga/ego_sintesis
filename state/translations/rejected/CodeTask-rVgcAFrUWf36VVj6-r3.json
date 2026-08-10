@@ -1,0 +1,25 @@
+{
+  "node_id": "CodeTask-rVgcAFrUWf36VVj6",
+  "etapa": "r",
+  "intento": 3,
+  "motivos": [
+    "incomplete_translation: traducción incompleta: el nodo SAS crea 27 tablas y el Python solo nombra 0 (0%). Faltan: af32_36_6, af32_51_6, aj_d443_cr18, aj_varios, ajuste_bonos, bonos_rf_ext, bonos_rf_ext_bi, cnt, fbcf_sf, pib, resp, rp_auxfin, rp_hh, rp_hh_av, rp_hh_sum (y 12 más). Traducí el nodo COMPLETO, de punta a punta: cada PROC SQL / DATA step del fuente tiene que estar. Si algo no se puede resolver con la información disponible, esa celda va con raise NotImplementedError y el motivo en warnings — nunca se omite en silencio"
+  ],
+  "translation": {
+    "node_id": "CodeTask-rVgcAFrUWf36VVj6",
+    "node_label": "",
+    "strategy": "pandas",
+    "imports": [],
+    "cells": [
+      "# %LET periodo/año/trimestre ya existen como ANIO, TRIM (macro_params) — celda parameters del notebook",
+      "",
+      "# Preámbulo: sin datos, solo comentario de sección"
+    ],
+    "traceability": {
+      "sas_construct": "",
+      "business_rule": ""
+    },
+    "confidence": "low",
+    "warnings": []
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
+  "node_label": "S1_d",
+  "strategy": "sql_pushdown",
+  "imports": [
+    "from sqlalchemy import text"
+  ],
+  "cells": [
+    "work_conn.execute(text(\"DROP TABLE IF EXISTS #ejec_cgr\"))\n# año debe ser mayor o igual a 2005 en cierre de año y el corriente en coyuntura\n# año interpolado como entero (no :param) para que la #tmp sobreviva\nsql_ejec_cgr = f\"\"\"\nSELECT *\nINTO #ejec_cgr\nFROM GOBGENER.dbo.EJECUCION\nWHERE AÑO >= {int(ANIO)}\n\"\"\"\nwork_conn.execute(text(sql_ejec_cgr))\n",
+    "work_conn.execute(text(\"DROP TABLE IF EXISTS #tk_ejec\"))\n# obtiene transferencias de capital a empresas para imputar en la síntesis\nsql_tk_ejec = \"\"\"\nSELECT t1.AÑO,\n       (CASE WHEN t1.MES IN (1,2,3) THEN 1\n             WHEN t1.MES IN (4,5,6) THEN 2\n             WHEN t1.MES IN (7,8,9) THEN 3\n             ELSE 4 END) AS TRIM,\n       5101 AS C_SI,\n       'D.9' AS C_INSTRUMENTO_SCN,\n       'Capital' AS C_CUENTA,\n       'H' AS C_ENTRADA,\n       SUM(t1.DEVENG / 1000000.0) AS Dato\nINTO #tk_ejec\nFROM #ejec_cgr t1\nLEFT JOIN GOBGENER.dbo.CR18_T_SCN_2 t2\n    ON t1.C_PARTIDA = t2.C_PARTIDA AND t1.C_CAPITULO = t2.C_CAPITULO AND t1.C_PROGRAMA = t2.C_PROGRAMA\n   AND t1.C_ENTIDAD = t2.ENTIDAD AND t1.C_TIPO_CUENTA = t2.T_CUENTA AND t1.C_CUENTA = t2.C_CUENTA\n   AND t1.C_ITEM = t2.C_ITEM AND t1.C_ASIGNACION = t2.C_ASIGNACION AND t1.C_ANALITICO = t2.C_ANALITICO\nWHERE t1.C_CUENTA IN ('05','13','24','33')\n  AND (t2.OBS IS NULL OR t2.OBS NOT IN ('CR18_difcoy','CR18_difact'))\n  AND t1.C_ENTIDAD NOT IN (5601, 10201)\n  AND (t2.C_SCN IS NULL OR t2.C_SCN NOT IN ('TC'))\n  AND t1.MONEDA = 'P'\n  AND t2.C_SCN IN ('D91','D92','D93','D99')\n  AND t1.C_TIPO_CUENTA = 'G'\n  AND t2.C_CAGENTE IN ('S11','S11_EPU','tkemppúb')\n  AND t2.N_CUENTA = 'capital'\nGROUP BY t1.AÑO,\n         (CASE WHEN t1.MES IN (1,2,3) THEN 1\n               WHEN t1.MES IN (4,5,6) THEN 2\n               WHEN t1.MES IN (7,8,9) THEN 3\n               ELSE 4 END)\n\"\"\"\nwork_conn.execute(text(sql_tk_ejec))\ntk_ejec = pd.read_sql(text(\"SELECT * FROM #tk_ejec\"), work_conn)\n_log(\"tk_ejec\", tk_ejec)\n",
+    "# ELIMINA DATOS DE AÑO DE COYUNTURA EN TABLA PRINCIPAL\nwith engine.begin() as conn:\n    res = conn.execute(text(\"DELETE FROM TABLAS.dbo.T_TK_GG_EPU WHERE AÑO >= :anio\"), {\"anio\": int(ANIO)})\n    _log(\"DELETE TABLAS.dbo.T_TK_GG_EPU\", res.rowcount)\n\n# DELETE from TK_EJEC where AÑO<&ANIO (se aplica sobre la #tmp de sesión)\nres = work_conn.execute(text(\"DELETE FROM #tk_ejec WHERE AÑO < :anio\"), {\"anio\": int(ANIO)})\n_log(\"DELETE #tk_ejec\", res.rowcount)\n",
+    "# ANEXA TK DE COYUNTURA A TABLA PRINCIPAL (PROC APPEND FORCE): server-side, sin pasar por pandas\ncols_tk_gg_epu = \"AÑO, TRIM, C_SI, C_INSTRUMENTO_SCN, C_CUENTA, C_ENTRADA, Dato\"\nsql_append_tk_gg_epu = f\"\"\"\nINSERT INTO TABLAS.dbo.T_TK_GG_EPU ({cols_tk_gg_epu})\nSELECT {cols_tk_gg_epu}\nFROM #tk_ejec\n\"\"\"\nres = work_conn.execute(text(sql_append_tk_gg_epu))\n_log(\"APPEND TABLAS.dbo.T_TK_GG_EPU\", res.rowcount)\n",
+    "# delete EJEC_CGR, TK_EJEC (limpieza de temporales de sesión)\nfor t in [\"#ejec_cgr\", \"#tk_ejec\"]:\n    work_conn.execute(text(f\"DROP TABLE IF EXISTS {t}\"))\n"
+  ],
+  "traceability": {
+    "sas_construct": "PROC SQL CREATE TABLE con LEFT JOIN de 9 condiciones + GROUP BY + DELETE/APPEND idempotente por año",
+    "business_rule": "Calcula transferencias de capital (D.9) desde gobierno general a empresas públicas por trimestre y las reemplaza en la tabla histórica para el año de coyuntura en curso"
+  },
+  "confidence": "medium",
+  "warnings": [
+    "temp_table_strategy=session_sql: EJEC_CGR y TK_EJEC se materializan como #tmp por work_conn; ANIO va interpolado como entero literal en el SELECT INTO (no :param) porque un bind pasa por sp_prepexec y la #tmp no sobrevive",
+    "t2.OBS NOT IN (...) y t2.C_SCN NOT IN ('TC') se tradujeron como (IS NULL OR NOT IN ...) porque tras el LEFT JOIN las filas sin match en CR18_T_SCN_2 quedan NULL en SQL Server y NULL NOT IN (...) es UNKNOWN (se descartarían) mientras en SAS el missing sí pasaba el filtro NOT IN",
+    "El resto de condiciones del WHERE (t2.C_SCN IN (...), t2.C_CAGENTE IN (...), t2.N_CUENTA = 'capital') son de tipo IN/= positivo: con t2 NULL evalúan a UNKNOWN igual que en SAS (missing no cumple un IN positivo), así que no requieren ajuste — se mantienen como INNER-like de facto, igual que el comportamiento original del SAS con esas comparaciones",
+    "DELETE FROM TABLAS.dbo.T_TK_GG_EPU y DELETE FROM #tk_ejec usan bind :anio (no interpolación) porque son statements sobre tablas ya existentes, no un SELECT INTO — cumple la regla de excepción de binds",
+    "El APPEND a TABLAS.dbo.T_TK_GG_EPU acumula: re-ejecutar sin el DELETE previo por año duplicaría, igual que el SAS original; el DELETE por año lo hace idempotente para ese ANIO específico",
+    "COMMAX12.2 (formato de despliegue SAS) no tiene equivalente de almacenamiento en SQL/pandas: se omite el formateo visual y Dato queda como numérico sin redondeo de presentación",
+    "Se asume Dato con NULLs cuando SUM no tiene filas por grupo no aplica (GROUP BY siempre produce filas con al menos 1 registro), no se requirió COALESCE adicional en el agregado"
+  ]
+}

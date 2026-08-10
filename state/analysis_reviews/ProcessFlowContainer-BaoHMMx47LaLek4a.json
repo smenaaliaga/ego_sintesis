@@ -1,0 +1,18 @@
+{
+  "pfd_id": "ProcessFlowContainer-BaoHMMx47LaLek4a",
+  "pfd_label": "Análisis_varios",
+  "reviews": [
+    {
+      "node_id": "CodeTask-7lh12aT9AnDfJenj",
+      "note": "Crea tabla FINANCIERA con múltiples joins y transformación de periodos mediante concatenación de strings; riesgo principal: sintaxis dinámica con quoted identifiers ('AÑO'n), dependencia de tablas externas TABLAS.BD_CTSI, TABLAS.T_Sectorizacion, TABLAS.T_Instrumentos, y lógica CASE imbricada para mapeo de C_CUENTA; genera gráficos con templates SAS (sgrender) que requieren contexto de variables globales (&Sector, &Codigo, &Entrada)."
+    },
+    {
+      "node_id": "CodeTask-v2KL58W1Ordii4kk",
+      "note": "Procesa tabla FINANCIERA_CA con LEFT JOINs adicionales a TABLAS.T_Contrapartidas e incluye lógica CASE condicional que reasigna S.99 a S.11; riesgo: múltiples consultas SQL sobre tablas temporales anidadas, dependencia de macros SAS globales para filtros dinámicos (&Sector, &Codigo, &Entrada), y templates de visualización que requieren control de sesión de ODS."
+    },
+    {
+      "node_id": "CodeTask-KZWptJSqYlZ3fYLu",
+      "note": "Calcula carga financiera trimestral mediante múltiples PROC SQL con joins e OUTER UNION CORR; riesgo crítico: condición WHERE con sintaxis SAS (T1.C_Cuenta=('YG') sin IN), cálculo de promedios y ratios complejos (DATO/T2.DATO)*100, dependencia de tablas TABLAS.BD_CTSI y TABLAS.T_Sectorizacion con filtros hardcodeados en C_SCN, y generación de gráficos PROC GPLOT legacy con estilos y ejes personalizados."
+    }
+  ]
+}

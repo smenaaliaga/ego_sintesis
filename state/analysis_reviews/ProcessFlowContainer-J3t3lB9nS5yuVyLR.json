@@ -1,0 +1,30 @@
+{
+  "pfd_id": "ProcessFlowContainer-J3t3lB9nS5yuVyLR",
+  "pfd_label": "Varios",
+  "reviews": [
+    {
+      "node_id": "CodeTask-PctehnQmgLccQ4yN",
+      "note": "Extracción de nueve series macroeconómicas desde APIs REST del Banco Central mediante PROC HTTP con credenciales dinámicas y parsing de JSON. Riesgos: URLs con macros &user y &password no definidas en código visible; manejo de formato xlnum. para conversión de valores; hardcoding de URLs no parametrizadas; transformación de fechas con SUBSTR y múltiples conversiones implícitas que pueden fallar con formatos inesperados."
+    },
+    {
+      "node_id": "CodeTask-lVG5feJnCetjgbtL",
+      "note": "Creación de tabla de salida mediante LEFT JOINs sobre cuatro tablas de referencia (Sectorizacion, Instrumentos, Cuenta) con agregación por GROUP BY y filtrado con macro &ANIO no definida. Riesgos: referencia a tabla TABLAS.BD_CTSI cuya procedencia no está en el flujo; macro &ANIO sin valor por defecto; LEFT JOINs sobre claves que podrían no existir causando NULLs silenciosos; escritura a ruta física hardcodeada en SAS7BDAT."
+    },
+    {
+      "node_id": "CodeTask-GT6PneNaAuUXLt8o",
+      "note": "Selección de capital fijo del sector financiero mediante JOINs sobre tablas de dimensiones (Sectorizacion, Instrumentos) con filtro de código SCN 'P.51'. Riesgos: dependencia de tabla TABLAS.BD_CTSI sin origen claro; LEFT JOINs potencialmente redundantes; escritura a librería META (DCNIDATA) que requiere configuración de sesión SAS específica; columna 'FUENTE' incluida en SELECT pero no en GROUP BY (violación SQL estándar que SAS puede permitir con comportamiento impredecible)."
+    },
+    {
+      "node_id": "CodeTask-2S7FV1OytGj5U2Fw",
+      "note": "Generación de tabla SALIDA_WTW_7II con 24 columnas provenientes de cinco JOINs (incluyendo contrapartidas y jerarquías N0/N1 de instrumentos) filtrada por AÑO>=2014 con commented-out condiciones adicionales. Riesgos: filtro incompleto con lógica comentada sugiere cambios no versionados; LEFT JOINs complejos en cascada sobre claves potencialmente débiles; GROUP BY exhaustivo con 24 columnas aumenta riesgo de combinaciones vacías; macro &ANIO ausente; tabla BD_CTSI no traceable."
+    },
+    {
+      "node_id": "CodeTask-3nmOBIFhUk8bJDyw",
+      "note": "Bloque de código en su mayoría comentado (PROC TEMPLATE, SGRENDER para gráficos) con una única instrucción activa (sgrender sobre CNF_Anual_graph) sin datos de entrada definidos. Riesgos: plantillas ODS gráficas no reproducibles sin datos WORK intermedios; variables dinámicas hardcodeadas (colores, títulos); código muerto dificulta mantenibilidad; falta claro qué dataset genera la gráfica o si existe."
+    },
+    {
+      "node_id": "CodeTask-jQdpbNMiLHrmwvzY",
+      "note": "Creación de tabla SALIDA_CP_F para producción del sector seleccionado (S.122, S.124) con filtro de sectores hardcodeado (321,322,361,362) y macro &ANIO. Riesgos: cinco JOINs anidados sobre tablas de dimensión sin validación; filtros de negocio (C_CUENTA='Producción', FUENTE='CI') no parametrizados; macro &ANIO indefinida; GROUP BY de 20 columnas; tabla BD_CTSI nuevamente sin origen trazable en el flujo."
+    }
+  ]
+}

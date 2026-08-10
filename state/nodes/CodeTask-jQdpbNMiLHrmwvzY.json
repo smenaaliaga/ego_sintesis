@@ -1,0 +1,41 @@
+{
+  "id": "CodeTask-jQdpbNMiLHrmwvzY",
+  "label": "Salida_Producción",
+  "node_type": "PROC_SQL",
+  "pfd_id": "ProcessFlowContainer-J3t3lB9nS5yuVyLR",
+  "pfd_label": "Varios",
+  "inputs": [
+    "TABLAS.BD_CTSI",
+    "TABLAS.T_CUENTA",
+    "TABLAS.T_INSTRUMENTOS",
+    "TABLAS.T_SECTORIZACION"
+  ],
+  "outputs": [
+    "WORK.SALIDA_CP_F"
+  ],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL"
+    ],
+    "classification": "load",
+    "complexity": "medium",
+    "migration_priority": "high"
+  },
+  "code_lines": [
+    "﻿PROC SQL;\r",
+    "CREATE TABLE SALIDA_CP_F AS\r",
+    "SELECT T1.AÑO, T1.SECTOR,T2.N_SI,T2.C_SI_publ,T2.N_SI_publ,T2.C_SI_SCN,T2.N_SI_SCN,T1.C_SCN AS C_INSTRUMENTO_SCN,T4.N_SCN AS N_INSTRUMENTO_SCN,\r",
+    "\t\tT1.C_CUENTA, T1.C_ENTRADA, SUM(T1.DATO) AS DATO, \r",
+    "\t\tT2.C_SI_SCN_N1, T2.N_SI_SCN_N1, T4.C_SCN_N1 AS C_INSTRUMENTO_SCN_N1,T4.N_SCN_N1 AS N_INSTRUMENTO_SCN_N1,T5.C_Cuenta_SCN, T5.N_Cuenta_SCN,\r",
+    "\t\tT1.FUENTE,T4.C_SCN_N0,T4.N_SCN_N0\r",
+    "FROM TABLAS.BD_CTSI T1 \r",
+    "LEFT JOIN TABLAS.T_Sectorizacion T2 ON (T1.SECTOR=T2.C_SI) \r",
+    "LEFT JOIN TABLAS.T_Instrumentos T4 ON (T1.C_SCN=T4.C_SCN) \r",
+    "LEFT JOIN TABLAS.T_Cuenta T5 ON (T1.C_CUENTA=T5.C_CUENTA)\r",
+    "WHERE \tT1.AÑO>=&ANIO AND T1.C_CUENTA='Producción' and t1.Fuente='CI' and T2.C_SI_SCN in ('S.122','S.124') and t1.sector in (321,322,361,362)\r",
+    "GROUP BY  T1.AÑO, T1.SECTOR,T2.N_SI,T2.C_SI_publ,T2.N_SI_publ,T2.C_SI_SCN,T2.N_SI_SCN,T1.C_SCN,T4.N_SCN,T1.C_CUENTA, T1.C_ENTRADA,T2.C_SI_SCN_N1, T2.N_SI_SCN_N1, T4.C_SCN_N1,T4.N_SCN_N1,T5.C_Cuenta_SCN, T5.N_Cuenta_SCN,\r",
+    "\t\tT1.FUENTE, T4.C_SCN_N0,T4.N_SCN_N0;\r",
+    "QUIT;"
+  ]
+}

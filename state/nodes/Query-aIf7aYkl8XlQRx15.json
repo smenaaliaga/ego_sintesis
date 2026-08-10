@@ -1,0 +1,34 @@
+{
+  "id": "Query-aIf7aYkl8XlQRx15",
+  "label": "Query Builder 4",
+  "node_type": "QUERY",
+  "pfd_id": "PFD-5ljUKZBVNXa8kUqw",
+  "pfd_label": "Salidas",
+  "inputs": [
+    "WORK.RATIO"
+  ],
+  "outputs": [
+    "WORK.QUERY_FOR_RATIO"
+  ],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL"
+    ],
+    "code_source": "eg_log",
+    "code_from_last_run": true,
+    "query_preview": true,
+    "requires_manual_review": true,
+    "classification": "transform",
+    "complexity": "low",
+    "migration_priority": "high"
+  },
+  "code_lines": [
+    "PROC SQL;",
+    "   CREATE TABLE WORK.QUERY_FOR_RATIO AS",
+    "   SELECT DISTINCT t1.'AÑO'n,",
+    "          t1.TRIM",
+    "      FROM WORK.RATIO t1;",
+    "QUIT;"
+  ]
+}

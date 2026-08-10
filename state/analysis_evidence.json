@@ -1,0 +1,1671 @@
+{
+  "generated_at": "2026-08-07T17:20:59.017499+00:00",
+  "total_nodes": 84,
+  "duplicated_code_blocks": [
+    {
+      "fragment": "SYMBOL1 INTERPOL=JOIN HEIGHT=10PT VALUE=NONE LINE=1 WIDTH=2 CV = BLACK",
+      "node_count": 3,
+      "node_ids": [
+        "CodeTask-Ns4cmh4hITlllpAk",
+        "CodeTask-TkgG8t5JCMJVDoVb",
+        "CodeTask-ie1zFOWtqc6EvbAr"
+      ]
+    },
+    {
+      "fragment": "VLINE PERIODO / RESPONSE=ANTERIOR LEGENDLABEL=\"ANTERIOR\" LINEATTRS=(COLOR=BLACK THICKNESS=3)",
+      "node_count": 3,
+      "node_ids": [
+        "CodeTask-Ns4cmh4hITlllpAk",
+        "CodeTask-TkgG8t5JCMJVDoVb",
+        "CodeTask-ie1zFOWtqc6EvbAr"
+      ]
+    },
+    {
+      "fragment": "VLINE PERIODO / RESPONSE=NUEVA LEGENDLABEL=\"NUEVA\" LINEATTRS=(COLOR=RED THICKNESS=2 PATTERN=20)",
+      "node_count": 3,
+      "node_ids": [
+        "CodeTask-Ns4cmh4hITlllpAk",
+        "CodeTask-TkgG8t5JCMJVDoVb",
+        "CodeTask-ie1zFOWtqc6EvbAr"
+      ]
+    },
+    {
+      "fragment": "VBAR PERIODO / RESPONSE=DELTA LEGENDLABEL=\"DELTA\" Y2AXIS FILLTYPE=SOLID FILLATTRS=(COLOR=SILVER) BARWIDTH=.7 TRANSPARENCY=0.5 BASELINEATTRS=(THICKNESS=.3) NOZEROBARS",
+      "node_count": 3,
+      "node_ids": [
+        "CodeTask-Ns4cmh4hITlllpAk",
+        "CodeTask-TkgG8t5JCMJVDoVb",
+        "CodeTask-ie1zFOWtqc6EvbAr"
+      ]
+    },
+    {
+      "fragment": "XAXIS DISCRETEORDER=UNFORMATTED DISPLAY=(NOLABEL) FITPOLICY=ROTATETHIN",
+      "node_count": 3,
+      "node_ids": [
+        "CodeTask-Ns4cmh4hITlllpAk",
+        "CodeTask-TkgG8t5JCMJVDoVb",
+        "CodeTask-ie1zFOWtqc6EvbAr"
+      ]
+    },
+    {
+      "fragment": "SYMBOL2 INTERPOL=JOIN HEIGHT=10PT FONT=MARKER VALUE=NONE LINE=3 WIDTH=3 CI=CX000080 CV = _STYLE_",
+      "node_count": 3,
+      "node_ids": [
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-R47QCuhcMSIJeuMG",
+        "CodeTask-mCE2amv2UM7gUEki"
+      ]
+    },
+    {
+      "fragment": "LEGEND1 FRAME CBORDER=WHITE POSITION = (TOP CENTER INSIDE) LABEL=(FONT='CALIBRI' COLOR=WHITE ) MODE=PROTECT",
+      "node_count": 3,
+      "node_ids": [
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-R47QCuhcMSIJeuMG",
+        "CodeTask-mCE2amv2UM7gUEki"
+      ]
+    },
+    {
+      "fragment": "UPDATE SALDOS_SI SET N_SI_C_AGENTE='SOCIEDADES NO FINANCIERAS' WHERE C_SI_C_AGENTE='S.99'",
+      "node_count": 3,
+      "node_ids": [
+        "CodeTask-Lf2OAAam1xLYVxj4",
+        "CodeTask-PTl7dbnx3tB9LNaa",
+        "CodeTask-vLMl6RS3eEI64niZ"
+      ]
+    }
+  ],
+  "repeated_expressions": [
+    {
+      "expression": "CASE WHEN T1.C_ENTRADA='D' THEN T1.DATO*-1 ELSE T1.DATO END",
+      "node_count": 25,
+      "node_ids": [
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-Ix7ilK7RK3FKfDEH",
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-LbbQOdnOflsfHI1p",
+        "CodeTask-Ns4cmh4hITlllpAk",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-PrxMUTlg9rE9nnWS",
+        "CodeTask-R47QCuhcMSIJeuMG",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-kVJViJGgbJOLVelr",
+        "CodeTask-mCE2amv2UM7gUEki",
+        "CodeTask-moKZZAfdPtMvO2Za",
+        "CodeTask-s2iKVLUIFegPxhYS",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW",
+        "CodeTask-zVjjleFBA72oSeFU"
+      ]
+    },
+    {
+      "expression": "CASE WHEN T1.C_ENTRADA='H' THEN T1.DATO*-1 ELSE T1.DATO END",
+      "node_count": 16,
+      "node_ids": [
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-R47QCuhcMSIJeuMG",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-eHcgu5CrdT7hHfZQ",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-jPjrJizeiaHvjreh",
+        "CodeTask-kVJViJGgbJOLVelr",
+        "CodeTask-mCE2amv2UM7gUEki",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "expression": "CASE WHEN T1.C_CUENTA='REC PRECIO REAJ' THEN 'REC PRECIO' ELSE T1.C_CUENTA END",
+      "node_count": 8,
+      "node_ids": [
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-s2iKVLUIFegPxhYS",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "expression": "CASE WHEN T1.SECTOR=51022 THEN '53' ELSE LEFT(PUT(T2.C_SI_PUBL,CHAR4.)) END",
+      "node_count": 6,
+      "node_ids": [
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-uEJMdbfEYJHVR2af"
+      ]
+    },
+    {
+      "expression": "CASE WHEN T1.C_CUENTA='BCE INICIO' THEN T1.DATO*-1 ELSE T1.DATO END",
+      "node_count": 5,
+      "node_ids": [
+        "CodeTask-1MZt2MbPkdLUOvbC",
+        "CodeTask-EiTHWvhqkY9b3Los",
+        "CodeTask-ajjSEkh77FcmV2ov",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "expression": "CASE WHEN T4.C_SCN_N1 CONTAINS 'AF.52' THEN 'CUOTAS DE FONDOS' WHEN T4.C_SCN_N1 IN ('AF.612') THEN 'FONDOS DE PENSIONES' ELSE T4.N_SCN_N0 END",
+      "node_count": 5,
+      "node_ids": [
+        "CodeTask-FqwyEcVSHGBw3z1q",
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-eHcgu5CrdT7hHfZQ",
+        "CodeTask-kVJViJGgbJOLVelr",
+        "CodeTask-mCE2amv2UM7gUEki"
+      ]
+    }
+  ],
+  "repeated_magic_numbers": [
+    {
+      "value": "511",
+      "node_count": 27,
+      "node_ids": [
+        "CodeTask-1MZt2MbPkdLUOvbC",
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-9OqX3kaymboJVh4I",
+        "CodeTask-ECZCZZvMxTO7sdpQ",
+        "CodeTask-EiTHWvhqkY9b3Los",
+        "CodeTask-Ix7ilK7RK3FKfDEH",
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-b4yKCgjI7DEeqndl",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-eF7cHe3ofCVn7nWp",
+        "CodeTask-fuWrePKSkcUXvfZF"
+      ]
+    },
+    {
+      "value": "321",
+      "node_count": 27,
+      "node_ids": [
+        "CodeTask-1MZt2MbPkdLUOvbC",
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-7nH3fwOy4hErZFqh",
+        "CodeTask-EiTHWvhqkY9b3Los",
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-b4yKCgjI7DEeqndl",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-jQdpbNMiLHrmwvzY",
+        "CodeTask-jo2ncH7bTsseLYP8"
+      ]
+    },
+    {
+      "value": "1000",
+      "node_count": 24,
+      "node_ids": [
+        "CodeTask-7lh12aT9AnDfJenj",
+        "CodeTask-FqwyEcVSHGBw3z1q",
+        "CodeTask-KZWptJSqYlZ3fYLu",
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-LbbQOdnOflsfHI1p",
+        "CodeTask-Lf2OAAam1xLYVxj4",
+        "CodeTask-M7Kq8x8xCBjt8NWW",
+        "CodeTask-MkeeAoZmCaYLJwXL",
+        "CodeTask-OBQXqokTpv23CnGn",
+        "CodeTask-PTl7dbnx3tB9LNaa",
+        "CodeTask-PctehnQmgLccQ4yN",
+        "CodeTask-PrxMUTlg9rE9nnWS",
+        "CodeTask-R47QCuhcMSIJeuMG",
+        "CodeTask-ajjSEkh77FcmV2ov",
+        "CodeTask-b4yKCgjI7DEeqndl",
+        "CodeTask-eHcgu5CrdT7hHfZQ",
+        "CodeTask-jPjrJizeiaHvjreh",
+        "CodeTask-kVJViJGgbJOLVelr",
+        "CodeTask-m47i4alOB19ERHFp",
+        "CodeTask-mCE2amv2UM7gUEki"
+      ]
+    },
+    {
+      "value": "51022",
+      "node_count": 23,
+      "node_ids": [
+        "CodeTask-1MZt2MbPkdLUOvbC",
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-9OqX3kaymboJVh4I",
+        "CodeTask-EiTHWvhqkY9b3Los",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-moKZZAfdPtMvO2Za",
+        "CodeTask-s2iKVLUIFegPxhYS",
+        "CodeTask-uEJMdbfEYJHVR2af"
+      ]
+    },
+    {
+      "value": "51021",
+      "node_count": 22,
+      "node_ids": [
+        "CodeTask-1MZt2MbPkdLUOvbC",
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-7nH3fwOy4hErZFqh",
+        "CodeTask-EiTHWvhqkY9b3Los",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-moKZZAfdPtMvO2Za",
+        "CodeTask-rVgcAFrUWf36VVj6",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky"
+      ]
+    },
+    {
+      "value": "5101",
+      "node_count": 20,
+      "node_ids": [
+        "CodeTask-1MZt2MbPkdLUOvbC",
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-7nH3fwOy4hErZFqh",
+        "CodeTask-EiTHWvhqkY9b3Los",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-dYzl6IKuUE5lnGRx",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "3390101",
+      "node_count": 20,
+      "node_ids": [
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-9OqX3kaymboJVh4I",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-LbbQOdnOflsfHI1p",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-ifAGwBWSiFAQtKqB",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-s2iKVLUIFegPxhYS",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "3390102",
+      "node_count": 20,
+      "node_ids": [
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-9OqX3kaymboJVh4I",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-LbbQOdnOflsfHI1p",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-ifAGwBWSiFAQtKqB",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-s2iKVLUIFegPxhYS",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "339011",
+      "node_count": 17,
+      "node_ids": [
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-s2iKVLUIFegPxhYS",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "341",
+      "node_count": 17,
+      "node_ids": [
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-9OqX3kaymboJVh4I",
+        "CodeTask-Ix7ilK7RK3FKfDEH",
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-LbbQOdnOflsfHI1p",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-b4yKCgjI7DEeqndl",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-eF7cHe3ofCVn7nWp",
+        "CodeTask-s2iKVLUIFegPxhYS",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "412",
+      "node_count": 16,
+      "node_ids": [
+        "CodeTask-1MZt2MbPkdLUOvbC",
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-EiTHWvhqkY9b3Los",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky"
+      ]
+    },
+    {
+      "value": "334",
+      "node_count": 15,
+      "node_ids": [
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-b4yKCgjI7DEeqndl",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "33901",
+      "node_count": 15,
+      "node_ids": [
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-s2iKVLUIFegPxhYS",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "322",
+      "node_count": 15,
+      "node_ids": [
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-7nH3fwOy4hErZFqh",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-b4yKCgjI7DEeqndl",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-jQdpbNMiLHrmwvzY",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "352",
+      "node_count": 14,
+      "node_ids": [
+        "CodeTask-1MZt2MbPkdLUOvbC",
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-EiTHWvhqkY9b3Los",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "411",
+      "node_count": 14,
+      "node_ids": [
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-KbHRFnaoSR2Bq6wI",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-VGRo6vNwmbm39953",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-fuWrePKSkcUXvfZF",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "331",
+      "node_count": 13,
+      "node_ids": [
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-YoYrhsTHidYHYT2P",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-s2iKVLUIFegPxhYS",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    },
+    {
+      "value": "361",
+      "node_count": 13,
+      "node_ids": [
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-jQdpbNMiLHrmwvzY",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky"
+      ]
+    },
+    {
+      "value": "36912",
+      "node_count": 12,
+      "node_ids": [
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-6SjSzoc2tRAmj3bg",
+        "CodeTask-7nH3fwOy4hErZFqh",
+        "CodeTask-KbgIzRrZ11b3kVse",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-moKZZAfdPtMvO2Za",
+        "CodeTask-rVgcAFrUWf36VVj6",
+        "CodeTask-yh5u6Xv3BMVagLtW",
+        "CodeTask-zVjjleFBA72oSeFU"
+      ]
+    },
+    {
+      "value": "36904",
+      "node_count": 12,
+      "node_ids": [
+        "CodeTask-1luvy2zX48vyTm18",
+        "CodeTask-PV6f6Wo5zpk123T2",
+        "CodeTask-SGvXxdgboVasDeiV",
+        "CodeTask-TYjddV77Ba6raW6K",
+        "CodeTask-X1NjQIiqHvgmq4z5",
+        "CodeTask-a5fupJ8fUrKfjLpj",
+        "CodeTask-c5JoNhJJnZiM91gN",
+        "CodeTask-eEgfNiAdcXrWGWaj",
+        "CodeTask-jo2ncH7bTsseLYP8",
+        "CodeTask-uEJMdbfEYJHVR2af",
+        "CodeTask-vXwkDE8f2OcjOwky",
+        "CodeTask-yh5u6Xv3BMVagLtW"
+      ]
+    }
+  ],
+  "macro_variables": [
+    {
+      "variable": "ANIO",
+      "node_count": 18,
+      "node_ids_sample": [
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-LbbQOdnOflsfHI1p",
+        "CodeTask-Lf2OAAam1xLYVxj4",
+        "CodeTask-M7Kq8x8xCBjt8NWW",
+        "CodeTask-MkeeAoZmCaYLJwXL",
+        "CodeTask-OBQXqokTpv23CnGn",
+        "CodeTask-PTl7dbnx3tB9LNaa",
+        "CodeTask-PrxMUTlg9rE9nnWS",
+        "CodeTask-ajjSEkh77FcmV2ov",
+        "CodeTask-b4yKCgjI7DEeqndl",
+        "CodeTask-bilvsdL51BAnsUEr",
+        "CodeTask-dYzl6IKuUE5lnGRx",
+        "CodeTask-jQdpbNMiLHrmwvzY",
+        "CodeTask-lVG5feJnCetjgbtL",
+        "CodeTask-q9OPgdkf3WcKIpbW",
+        "CodeTask-rVgcAFrUWf36VVj6",
+        "CodeTask-ryd9Qv5seQRPtvOD",
+        "CodeTask-vLMl6RS3eEI64niZ"
+      ]
+    },
+    {
+      "variable": "Sector",
+      "node_count": 9,
+      "node_ids_sample": [
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-7lh12aT9AnDfJenj",
+        "CodeTask-Ns4cmh4hITlllpAk",
+        "CodeTask-TkgG8t5JCMJVDoVb",
+        "CodeTask-bilvsdL51BAnsUEr",
+        "CodeTask-em3EefKlkASf9L3q",
+        "CodeTask-ie1zFOWtqc6EvbAr",
+        "CodeTask-sGAwObcilp5c3zVx",
+        "CodeTask-v2KL58W1Ordii4kk"
+      ]
+    },
+    {
+      "variable": "TRIM",
+      "node_count": 6,
+      "node_ids_sample": [
+        "CodeTask-2Qnp37e99kvQSM9m",
+        "CodeTask-OBQXqokTpv23CnGn",
+        "CodeTask-PTl7dbnx3tB9LNaa",
+        "CodeTask-q9OPgdkf3WcKIpbW",
+        "CodeTask-rVgcAFrUWf36VVj6",
+        "CodeTask-ryd9Qv5seQRPtvOD"
+      ]
+    },
+    {
+      "variable": "Entrada",
+      "node_count": 4,
+      "node_ids_sample": [
+        "CodeTask-7lh12aT9AnDfJenj",
+        "CodeTask-TkgG8t5JCMJVDoVb",
+        "CodeTask-ie1zFOWtqc6EvbAr",
+        "CodeTask-v2KL58W1Ordii4kk"
+      ]
+    },
+    {
+      "variable": "C_WTW",
+      "node_count": 4,
+      "node_ids_sample": [
+        "CodeTask-Dn53X4xCKNDMzlYP",
+        "CodeTask-Lf2OAAam1xLYVxj4",
+        "CodeTask-PTl7dbnx3tB9LNaa",
+        "CodeTask-ziOqjdQngJ3iTiRS"
+      ]
+    },
+    {
+      "variable": "user",
+      "node_count": 3,
+      "node_ids_sample": [
+        "CodeTask-6NFJPkCu6mSpiJT9",
+        "CodeTask-PctehnQmgLccQ4yN",
+        "CodeTask-rVgcAFrUWf36VVj6"
+      ]
+    },
+    {
+      "variable": "password",
+      "node_count": 3,
+      "node_ids_sample": [
+        "CodeTask-6NFJPkCu6mSpiJT9",
+        "CodeTask-PctehnQmgLccQ4yN",
+        "CodeTask-rVgcAFrUWf36VVj6"
+      ]
+    },
+    {
+      "variable": "Codigo",
+      "node_count": 3,
+      "node_ids_sample": [
+        "CodeTask-7lh12aT9AnDfJenj",
+        "CodeTask-ie1zFOWtqc6EvbAr",
+        "CodeTask-v2KL58W1Ordii4kk"
+      ]
+    },
+    {
+      "variable": "Cuenta",
+      "node_count": 2,
+      "node_ids_sample": [
+        "CodeTask-Ns4cmh4hITlllpAk",
+        "CodeTask-TkgG8t5JCMJVDoVb"
+      ]
+    },
+    {
+      "variable": "rho",
+      "node_count": 1,
+      "node_ids_sample": [
+        "CodeTask-H2hhzkdf4aoXG9Pw"
+      ]
+    },
+    {
+      "variable": "anio",
+      "node_count": 1,
+      "node_ids_sample": [
+        "CodeTask-ifAGwBWSiFAQtKqB"
+      ]
+    },
+    {
+      "variable": "Inst_nf",
+      "node_count": 1,
+      "node_ids_sample": [
+        "CodeTask-TkgG8t5JCMJVDoVb"
+      ]
+    }
+  ],
+  "db_dependencies": [
+    {
+      "libref": "DCNIDATA",
+      "verified_db": false,
+      "engine": "",
+      "table_count": 8,
+      "node_count": 4,
+      "tables": [
+        {
+          "table": "AHORRO_PRE_0",
+          "node_ids": [
+            "CodeTask-b4yKCgjI7DEeqndl"
+          ]
+        },
+        {
+          "table": "AHORRO_PRE_1",
+          "node_ids": [
+            "CodeTask-b4yKCgjI7DEeqndl"
+          ]
+        },
+        {
+          "table": "DEUDA_HOGARES",
+          "node_ids": [
+            "CodeTask-b4yKCgjI7DEeqndl"
+          ]
+        },
+        {
+          "table": "DEUDA_HOLDING",
+          "node_ids": [
+            "CodeTask-b4yKCgjI7DEeqndl"
+          ]
+        },
+        {
+          "table": "FBCF_SF",
+          "node_ids": [
+            "CodeTask-GT6PneNaAuUXLt8o"
+          ]
+        },
+        {
+          "table": "SALDOS_WTW_SI",
+          "node_ids": [
+            "CodeTask-vLMl6RS3eEI64niZ"
+          ]
+        },
+        {
+          "table": "SALIDA_WTW_RESUMEN",
+          "node_ids": [
+            "CodeTask-b4yKCgjI7DEeqndl"
+          ]
+        },
+        {
+          "table": "SALIDA_WTW_RESUMEN_ANT",
+          "node_ids": [
+            "CodeTask-ryd9Qv5seQRPtvOD"
+          ]
+        }
+      ]
+    },
+    {
+      "libref": "GOBGENER",
+      "verified_db": false,
+      "engine": "",
+      "table_count": 2,
+      "node_count": 1,
+      "tables": [
+        {
+          "table": "CR18_T_SCN_2",
+          "node_ids": [
+            "CodeTask-dYzl6IKuUE5lnGRx"
+          ]
+        },
+        {
+          "table": "EJECUCION",
+          "node_ids": [
+            "CodeTask-dYzl6IKuUE5lnGRx"
+          ]
+        }
+      ]
+    },
+    {
+      "libref": "LIB",
+      "verified_db": false,
+      "engine": "",
+      "table_count": 1,
+      "node_count": 3,
+      "tables": [
+        {
+          "table": "SERIES_OBS",
+          "node_ids": [
+            "CodeTask-6NFJPkCu6mSpiJT9",
+            "CodeTask-PctehnQmgLccQ4yN",
+            "CodeTask-rVgcAFrUWf36VVj6"
+          ]
+        }
+      ]
+    },
+    {
+      "libref": "TABLAS",
+      "verified_db": false,
+      "engine": "",
+      "table_count": 34,
+      "node_count": 62,
+      "tables": [
+        {
+          "table": "ACC_COT",
+          "node_ids": [
+            "CodeTask-LbbQOdnOflsfHI1p"
+          ]
+        },
+        {
+          "table": "AJUSTE_BONOS",
+          "node_ids": [
+            "CodeTask-PV6f6Wo5zpk123T2",
+            "CodeTask-ajjSEkh77FcmV2ov",
+            "CodeTask-rVgcAFrUWf36VVj6",
+            "CodeTask-uEJMdbfEYJHVR2af"
+          ]
+        },
+        {
+          "table": "AJ_TCORR",
+          "node_ids": [
+            "CodeTask-PV6f6Wo5zpk123T2",
+            "CodeTask-uEJMdbfEYJHVR2af"
+          ]
+        },
+        {
+          "table": "AJ_VARIOS",
+          "node_ids": [
+            "CodeTask-1luvy2zX48vyTm18",
+            "CodeTask-a5fupJ8fUrKfjLpj",
+            "CodeTask-rVgcAFrUWf36VVj6"
+          ]
+        },
+        {
+          "table": "BD_CTSI",
+          "node_ids": [
+            "CodeTask-1MZt2MbPkdLUOvbC",
+            "CodeTask-1luvy2zX48vyTm18",
+            "CodeTask-2Qnp37e99kvQSM9m",
+            "CodeTask-2S7FV1OytGj5U2Fw",
+            "CodeTask-6SjSzoc2tRAmj3bg",
+            "CodeTask-7lh12aT9AnDfJenj",
+            "CodeTask-9OqX3kaymboJVh4I",
+            "CodeTask-ECZCZZvMxTO7sdpQ",
+            "CodeTask-EiTHWvhqkY9b3Los",
+            "CodeTask-FqwyEcVSHGBw3z1q",
+            "CodeTask-GT6PneNaAuUXLt8o",
+            "CodeTask-Ix7ilK7RK3FKfDEH",
+            "CodeTask-KZWptJSqYlZ3fYLu",
+            "CodeTask-KbHRFnaoSR2Bq6wI",
+            "CodeTask-KbgIzRrZ11b3kVse",
+            "CodeTask-LbbQOdnOflsfHI1p",
+            "CodeTask-Lf2OAAam1xLYVxj4",
+            "CodeTask-M7Kq8x8xCBjt8NWW",
+            "CodeTask-MkeeAoZmCaYLJwXL",
+            "CodeTask-OBQXqokTpv23CnGn"
+          ]
+        },
+        {
+          "table": "BD_CTSI_AJPTMOS_CP",
+          "node_ids": [
+            "CodeTask-1luvy2zX48vyTm18",
+            "CodeTask-a5fupJ8fUrKfjLpj"
+          ]
+        },
+        {
+          "table": "BD_CTSI_R",
+          "node_ids": [
+            "CodeTask-2Qnp37e99kvQSM9m",
+            "CodeTask-PTl7dbnx3tB9LNaa",
+            "CodeTask-ryd9Qv5seQRPtvOD"
+          ]
+        },
+        {
+          "table": "BONOS_EXT_PRECIO",
+          "node_ids": [
+            "CodeTask-7nH3fwOy4hErZFqh",
+            "CodeTask-eEgfNiAdcXrWGWaj",
+            "CodeTask-yh5u6Xv3BMVagLtW"
+          ]
+        },
+        {
+          "table": "CNT",
+          "node_ids": [
+            "CodeTask-PV6f6Wo5zpk123T2",
+            "CodeTask-PctehnQmgLccQ4yN",
+            "CodeTask-rVgcAFrUWf36VVj6",
+            "CodeTask-uEJMdbfEYJHVR2af"
+          ]
+        },
+        {
+          "table": "CODIGOS",
+          "node_ids": [
+            "CodeTask-LbbQOdnOflsfHI1p"
+          ]
+        },
+        {
+          "table": "C_FAME",
+          "node_ids": [
+            "CodeTask-LbbQOdnOflsfHI1p"
+          ]
+        },
+        {
+          "table": "DEP_HH_FM",
+          "node_ids": [
+            "CodeTask-9OqX3kaymboJVh4I",
+            "CodeTask-a5fupJ8fUrKfjLpj",
+            "CodeTask-ifAGwBWSiFAQtKqB"
+          ]
+        },
+        {
+          "table": "FBCF_SF",
+          "node_ids": [
+            "CodeTask-1luvy2zX48vyTm18",
+            "CodeTask-a5fupJ8fUrKfjLpj",
+            "CodeTask-rVgcAFrUWf36VVj6"
+          ]
+        },
+        {
+          "table": "FILTROS",
+          "node_ids": [
+            "CodeTask-7lh12aT9AnDfJenj"
+          ]
+        },
+        {
+          "table": "INFO_ADICIONAL",
+          "node_ids": [
+            "CodeTask-LbbQOdnOflsfHI1p"
+          ]
+        },
+        {
+          "table": "PIB",
+          "node_ids": [
+            "CodeTask-OBQXqokTpv23CnGn",
+            "CodeTask-jPjrJizeiaHvjreh",
+            "CodeTask-rVgcAFrUWf36VVj6"
+          ]
+        },
+        {
+          "table": "REAJUSTES",
+          "node_ids": [
+            "CodeTask-9OqX3kaymboJVh4I",
+            "CodeTask-a5fupJ8fUrKfjLpj"
+          ]
+        },
+        {
+          "table": "RP_HH",
+          "node_ids": [
+            "CodeTask-1luvy2zX48vyTm18",
+            "CodeTask-ECZCZZvMxTO7sdpQ",
+            "CodeTask-a5fupJ8fUrKfjLpj",
+            "CodeTask-rVgcAFrUWf36VVj6"
+          ]
+        },
+        {
+          "table": "SALIDA_WTW_RESUMEN",
+          "node_ids": [
+            "CodeTask-LbbQOdnOflsfHI1p"
+          ]
+        },
+        {
+          "table": "SIFMI",
+          "node_ids": [
+            "CodeTask-1luvy2zX48vyTm18",
+            "CodeTask-a5fupJ8fUrKfjLpj",
+            "CodeTask-rVgcAFrUWf36VVj6"
+          ]
+        },
+        {
+          "table": "TIEMPO",
+          "node_ids": [
+            "CodeTask-2Qnp37e99kvQSM9m",
+            "CodeTask-7lh12aT9AnDfJenj",
+            "CodeTask-KbHRFnaoSR2Bq6wI",
+            "CodeTask-LbbQOdnOflsfHI1p",
+            "CodeTask-OBQXqokTpv23CnGn",
+            "CodeTask-R47QCuhcMSIJeuMG",
+            "CodeTask-eHcgu5CrdT7hHfZQ",
+            "CodeTask-jPjrJizeiaHvjreh",
+            "CodeTask-kVJViJGgbJOLVelr",
+            "CodeTask-mCE2amv2UM7gUEki",
+            "CodeTask-q9OPgdkf3WcKIpbW",
+            "CodeTask-sDGqIvcGbhZj7g4p"
+          ]
+        },
+        {
+          "table": "T_AJUSTE_CONCILIACION",
+          "node_ids": [
+            "CodeTask-VGRo6vNwmbm39953",
+            "CodeTask-fuWrePKSkcUXvfZF"
+          ]
+        },
+        {
+          "table": "T_CCAST",
+          "node_ids": [
+            "CodeTask-PV6f6Wo5zpk123T2",
+            "CodeTask-rVgcAFrUWf36VVj6",
+            "CodeTask-uEJMdbfEYJHVR2af"
+          ]
+        },
+        {
+          "table": "T_CONTRAPARTIDAS",
+          "node_ids": [
+            "CodeTask-2S7FV1OytGj5U2Fw",
+            "CodeTask-9OqX3kaymboJVh4I",
+            "CodeTask-FqwyEcVSHGBw3z1q",
+            "CodeTask-KbHRFnaoSR2Bq6wI",
+            "CodeTask-Lf2OAAam1xLYVxj4",
+            "CodeTask-M7Kq8x8xCBjt8NWW",
+            "CodeTask-MkeeAoZmCaYLJwXL",
+            "CodeTask-PTl7dbnx3tB9LNaa",
+            "CodeTask-PV6f6Wo5zpk123T2",
+            "CodeTask-TYjddV77Ba6raW6K",
+            "CodeTask-VGRo6vNwmbm39953",
+            "CodeTask-X1NjQIiqHvgmq4z5",
+            "CodeTask-ajjSEkh77FcmV2ov",
+            "CodeTask-b4yKCgjI7DEeqndl",
+            "CodeTask-eEgfNiAdcXrWGWaj",
+            "CodeTask-eHcgu5CrdT7hHfZQ",
+            "CodeTask-fuWrePKSkcUXvfZF",
+            "CodeTask-jPjrJizeiaHvjreh",
+            "CodeTask-kVJViJGgbJOLVelr",
+            "CodeTask-m47i4alOB19ERHFp"
+          ]
+        },
+        {
+          "table": "T_CUENTA",
+          "node_ids": [
+            "CodeTask-2S7FV1OytGj5U2Fw",
+            "CodeTask-M7Kq8x8xCBjt8NWW",
+            "CodeTask-MkeeAoZmCaYLJwXL",
+            "CodeTask-PrxMUTlg9rE9nnWS",
+            "CodeTask-R47QCuhcMSIJeuMG",
+            "CodeTask-b4yKCgjI7DEeqndl",
+            "CodeTask-jQdpbNMiLHrmwvzY",
+            "CodeTask-lVG5feJnCetjgbtL",
+            "CodeTask-ryd9Qv5seQRPtvOD"
+          ]
+        },
+        {
+          "table": "T_CUENTA_CEI",
+          "node_ids": [
+            "CodeTask-PrxMUTlg9rE9nnWS"
+          ]
+        },
+        {
+          "table": "T_EST_DCV_AF32_PROMEDIOS",
+          "node_ids": [
+            "CodeTask-eEgfNiAdcXrWGWaj",
+            "CodeTask-yh5u6Xv3BMVagLtW"
+          ]
+        },
+        {
+          "table": "T_INSTRUMENTOS",
+          "node_ids": [
+            "CodeTask-2Qnp37e99kvQSM9m",
+            "CodeTask-2S7FV1OytGj5U2Fw",
+            "CodeTask-7lh12aT9AnDfJenj",
+            "CodeTask-FqwyEcVSHGBw3z1q",
+            "CodeTask-GT6PneNaAuUXLt8o",
+            "CodeTask-KZWptJSqYlZ3fYLu",
+            "CodeTask-KbHRFnaoSR2Bq6wI",
+            "CodeTask-Lf2OAAam1xLYVxj4",
+            "CodeTask-M7Kq8x8xCBjt8NWW",
+            "CodeTask-MkeeAoZmCaYLJwXL",
+            "CodeTask-OBQXqokTpv23CnGn",
+            "CodeTask-PTl7dbnx3tB9LNaa",
+            "CodeTask-PV6f6Wo5zpk123T2",
+            "CodeTask-PrxMUTlg9rE9nnWS",
+            "CodeTask-R47QCuhcMSIJeuMG",
+            "CodeTask-b4yKCgjI7DEeqndl",
+            "CodeTask-eHcgu5CrdT7hHfZQ",
+            "CodeTask-jPjrJizeiaHvjreh",
+            "CodeTask-jQdpbNMiLHrmwvzY",
+            "CodeTask-kVJViJGgbJOLVelr"
+          ]
+        },
+        {
+          "table": "T_INST_NF",
+          "node_ids": [
+            "Query-H6bd6GULUeGKQkjU"
+          ]
+        },
+        {
+          "table": "T_SECTORIZACION",
+          "node_ids": [
+            "CodeTask-2Qnp37e99kvQSM9m",
+            "CodeTask-2S7FV1OytGj5U2Fw",
+            "CodeTask-7lh12aT9AnDfJenj",
+            "CodeTask-9OqX3kaymboJVh4I",
+            "CodeTask-ECZCZZvMxTO7sdpQ",
+            "CodeTask-FqwyEcVSHGBw3z1q",
+            "CodeTask-GT6PneNaAuUXLt8o",
+            "CodeTask-KZWptJSqYlZ3fYLu",
+            "CodeTask-KbHRFnaoSR2Bq6wI",
+            "CodeTask-Lf2OAAam1xLYVxj4",
+            "CodeTask-M7Kq8x8xCBjt8NWW",
+            "CodeTask-MkeeAoZmCaYLJwXL",
+            "CodeTask-OBQXqokTpv23CnGn",
+            "CodeTask-PTl7dbnx3tB9LNaa",
+            "CodeTask-PV6f6Wo5zpk123T2",
+            "CodeTask-PrxMUTlg9rE9nnWS",
+            "CodeTask-R47QCuhcMSIJeuMG",
+            "CodeTask-TYjddV77Ba6raW6K",
+            "CodeTask-VGRo6vNwmbm39953",
+            "CodeTask-X1NjQIiqHvgmq4z5"
+          ]
+        },
+        {
+          "table": "T_SECTORIZACION_N2",
+          "node_ids": [
+            "CodeTask-ajjSEkh77FcmV2ov"
+          ]
+        },
+        {
+          "table": "T_SECTORIZACION_N3",
+          "node_ids": [
+            "CodeTask-ajjSEkh77FcmV2ov"
+          ]
+        },
+        {
+          "table": "T_TK_GG_EPU",
+          "node_ids": [
+            "CodeTask-PV6f6Wo5zpk123T2",
+            "CodeTask-dYzl6IKuUE5lnGRx",
+            "CodeTask-uEJMdbfEYJHVR2af"
+          ]
+        },
+        {
+          "table": "UR_SF_CR18",
+          "node_ids": [
+            "CodeTask-PV6f6Wo5zpk123T2",
+            "CodeTask-rVgcAFrUWf36VVj6",
+            "CodeTask-uEJMdbfEYJHVR2af"
+          ]
+        }
+      ]
+    }
+  ],
+  "proc_inventory": {
+    "DATA_STEP": 24,
+    "IMPORT": 2,
+    "OTHER": 2,
+    "PROC_OTHER": 3,
+    "PROC_SQL": 46,
+    "QUERY": 7
+  },
+  "top_complex_nodes": [
+    {
+      "node_id": "CodeTask-PV6f6Wo5zpk123T2",
+      "label": "S2_11_CNF",
+      "loc": 3556,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-uEJMdbfEYJHVR2af",
+      "label": "S2_11_CNF",
+      "loc": 3556,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-c5JoNhJJnZiM91gN",
+      "label": "S2_05_Ptmos",
+      "loc": 2311,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-vXwkDE8f2OcjOwky",
+      "label": "S2_05_Ptmos",
+      "loc": 2311,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "label": "S2_06_Bonos",
+      "loc": 2168,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "label": "S2_06_Bonos",
+      "loc": 2167,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-6SjSzoc2tRAmj3bg",
+      "label": "S2_02_Din&Dep",
+      "loc": 1527,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-KbgIzRrZ11b3kVse",
+      "label": "S2_02_Din&Dep",
+      "loc": 1527,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-LbbQOdnOflsfHI1p",
+      "label": "A1",
+      "loc": 1479,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-TYjddV77Ba6raW6K",
+      "label": "S2_09_Capital_Cierre",
+      "loc": 1359,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-X1NjQIiqHvgmq4z5",
+      "label": "S2_09_Capital_Cierre",
+      "loc": 1359,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-a5fupJ8fUrKfjLpj",
+      "label": "S2_13_Inicio_2",
+      "loc": 811,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-uRMT7rfFsM7wFmZJ",
+      "label": "S1_01_RevDCV",
+      "loc": 793,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-mCE2amv2UM7gUEki",
+      "label": "S7_05_Gobierno",
+      "loc": 734,
+      "complexity": "high",
+      "priority": "critical"
+    },
+    {
+      "node_id": "CodeTask-fuWrePKSkcUXvfZF",
+      "label": "S2_10_CCom",
+      "loc": 607,
+      "complexity": "high",
+      "priority": "critical"
+    }
+  ],
+  "security_hits": [],
+  "hardcoded_paths_dates": [
+    {
+      "id": "CS-0001",
+      "node_id": "CodeTask-1luvy2zX48vyTm18",
+      "category": "maintainability",
+      "description": "[S2_01_Inicio] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "s.BD_CTSI AS\r SELECT *\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/BD_CTSI_CIERRE.sas7bdat';\r RUN;\r /*COMPRIME",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-1luvy2zX48vyTm18."
+    },
+    {
+      "id": "CS-0005",
+      "node_id": "CodeTask-1MZt2MbPkdLUOvbC",
+      "category": "maintainability",
+      "description": "[S2_03_Reservas&Capital] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "DATO FROM TABLAS.BD_CTSI t1,\"/sasdata/BCCH/GEM_DCNI/02_CNSI/08_SI_EMP/36907_37_HOLDING/ratio_inv_hc_c.sas7bdat\" T2  WHER",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-1MZt2MbPkdLUOvbC."
+    },
+    {
+      "id": "CS-0010",
+      "node_id": "CodeTask-6NFJPkCu6mSpiJT9",
+      "category": "maintainability",
+      "description": "[Program] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "pesos*/\r PROC HTTP URL = \"https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-6NFJPkCu6mSpiJT9."
+    },
+    {
+      "id": "CS-0013",
+      "node_id": "CodeTask-6SjSzoc2tRAmj3bg",
+      "category": "maintainability",
+      "description": "[S2_02_Din&Dep] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "UENTE, '0119a' AS PROC\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/t_aj_cd_321_6_af32.sas7bdat' T1;\r QUIT;\r",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-6SjSzoc2tRAmj3bg."
+    },
+    {
+      "id": "CS-0020",
+      "node_id": "CodeTask-a5fupJ8fUrKfjLpj",
+      "category": "maintainability",
+      "description": "[S2_13_Inicio_2] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "s.BD_CTSI AS\r SELECT *\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/BD_CTSI_CIERRE.sas7bdat';\r RUN;\r /*COMPRIME",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-a5fupJ8fUrKfjLpj."
+    },
+    {
+      "id": "CS-0025",
+      "node_id": "CodeTask-b4yKCgjI7DEeqndl",
+      "category": "maintainability",
+      "description": "[S9_00_Traspaso Info] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "DA_HOLDING AS SELECT \t* FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/holding_c.sas7bdat\"  WHERE AÑO>=&ANIO; QUIT",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-b4yKCgjI7DEeqndl."
+    },
+    {
+      "id": "CS-0033",
+      "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
+      "category": "maintainability",
+      "description": "[S1_d] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "tesis*/\r libname GOBGENER v9 \"/sasdata/BCCH/GEM_DCNI/02_CNSI/14_SI_GOB/4_GOBIERNOGENERAL\";\r \r PROC SQL;/*año debe ser",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-dYzl6IKuUE5lnGRx."
+    },
+    {
+      "id": "CS-0038",
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "category": "maintainability",
+      "description": "[S2_06_Bonos] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "'0430' AS PROC\r       FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/base_af3_total_v2.sas7bdat\" t1\r       WHER",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-eEgfNiAdcXrWGWaj."
+    },
+    {
+      "id": "CS-0043",
+      "node_id": "CodeTask-EiTHWvhqkY9b3Los",
+      "category": "maintainability",
+      "description": "[S2_03_Reservas&Capital] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "DATO\r FROM TABLAS.BD_CTSI t1,\"/sasdata/BCCH/GEM_DCNI/02_CNSI/08_SI_EMP/36907_37_HOLDING/ratio_inv_hc_c.sas7bdat\" T2 \r WH",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-EiTHWvhqkY9b3Los."
+    },
+    {
+      "id": "CS-0053",
+      "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
+      "category": "maintainability",
+      "description": "[S1_b] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "count(tipo_ffmm) as c\r \tfrom \"/sasdata/BCCH/GEM_DCNI/02_CNSI/12_SI_FI/33901_FFMM/IDENTIFICA_FFMM.sas7bdat\"\r \tgroup by ru",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-ifAGwBWSiFAQtKqB."
+    },
+    {
+      "id": "CS-0063",
+      "node_id": "CodeTask-KbgIzRrZ11b3kVse",
+      "category": "maintainability",
+      "description": "[S2_02_Din&Dep] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "UENTE, '0119a' AS PROC\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/t_aj_cd_321_6_af32.sas7bdat' T1;\r QUIT;\r",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-KbgIzRrZ11b3kVse."
+    },
+    {
+      "id": "CS-0072",
+      "node_id": "CodeTask-LbbQOdnOflsfHI1p",
+      "category": "maintainability",
+      "description": "[A1] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "PIB*/\r proc import datafile=\"/sasdata/BCCH/GEM/DCNI/GRSINTESIS/SINTESIS/Sintesis_cierre/CONTROLES/PIB.xlsx\"\r dbms=XLSX o",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-LbbQOdnOflsfHI1p."
+    },
+    {
+      "id": "CS-0078",
+      "node_id": "CodeTask-lVG5feJnCetjgbtL",
+      "category": "maintainability",
+      "description": "[Datos_BdP] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "T5.C_Cuenta_SCN; QUIT;  data \"/sasdata/BCCH/GEM_DCNI/99_DCNI_DBP/Transferencias_RM.sas7bdat\"; set Entrega_D7_RM;run;",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-lVG5feJnCetjgbtL."
+    },
+    {
+      "id": "CS-0082",
+      "node_id": "CodeTask-M7Kq8x8xCBjt8NWW",
+      "category": "maintainability",
+      "description": "[S4_Salidas - Copy] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "BLE ratio AS\r SELECT *\r FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/08_SI_EMP/36907_37_HOLDING/ratio_pat_hc_c.sas7bdat\" ;\r quit",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-M7Kq8x8xCBjt8NWW."
+    },
+    {
+      "id": "CS-0095",
+      "node_id": "CodeTask-PctehnQmgLccQ4yN",
+      "category": "maintainability",
+      "description": "[Program] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "p TEMP;\r PROC HTTP URL = \"https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-PctehnQmgLccQ4yN."
+    },
+    {
+      "id": "CS-0103",
+      "node_id": "CodeTask-PV6f6Wo5zpk123T2",
+      "category": "maintainability",
+      "description": "[S2_11_CNF] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "'0736' AS PROC\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/bd_ci_full_cierre.sas7bdat' t1\r    WHERE (T1.C_CUEN",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-PV6f6Wo5zpk123T2."
+    },
+    {
+      "id": "CS-0111",
+      "node_id": "CodeTask-rVgcAFrUWf36VVj6",
+      "category": "maintainability",
+      "description": "[S1] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "p TEMP;\r PROC HTTP URL = \"https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-rVgcAFrUWf36VVj6."
+    },
+    {
+      "id": "CS-0120",
+      "node_id": "CodeTask-sQvjLjeo2WC15iXs",
+      "category": "maintainability",
+      "description": "[Program] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "table fff as select *\r FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/base_af3_total_v2.sas7bdat\" t1\r where año",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-sQvjLjeo2WC15iXs."
+    },
+    {
+      "id": "CS-0125",
+      "node_id": "CodeTask-uEJMdbfEYJHVR2af",
+      "category": "maintainability",
+      "description": "[S2_11_CNF] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "'0736' AS PROC\r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/bd_ci_full_cierre.sas7bdat' t1\r    WHERE (T1.C_CUEN",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-uEJMdbfEYJHVR2af."
+    },
+    {
+      "id": "CS-0128",
+      "node_id": "CodeTask-uRMT7rfFsM7wFmZJ",
+      "category": "maintainability",
+      "description": "[S1_01_RevDCV] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "MAT COMMA14.3 AS DATO \r FROM '/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/t_aj_cd_321_6_AF32.sas7bdat'  T1 \r GROUP",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-uRMT7rfFsM7wFmZJ."
+    },
+    {
+      "id": "CS-0137",
+      "node_id": "CodeTask-XkoygblbmDJ46M1C",
+      "category": "maintainability",
+      "description": "[Autoexec] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "﻿libname tablas v9 \"/sasdata/BCCH/GEM_DCNI/02_CNSI/01_SINTESIS\";",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-XkoygblbmDJ46M1C."
+    },
+    {
+      "id": "CS-0138",
+      "node_id": "CodeTask-yh5u6Xv3BMVagLtW",
+      "category": "maintainability",
+      "description": "[S2_06_Bonos] Ruta de archivo hardcodeada",
+      "severity": "error",
+      "line_hint": "'0430' AS PROC\r       FROM \"/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/base_af3_total_v2.sas7bdat\" t1\r       WHER",
+      "recommendation": "Refactorizar patrón 'hardcoded_path' en nodo CodeTask-yh5u6Xv3BMVagLtW."
+    }
+  ],
+  "smells_by_category": {
+    "maintainability": [
+      "CS-0001",
+      "CS-0004",
+      "CS-0005",
+      "CS-0006",
+      "CS-0008",
+      "CS-0010",
+      "CS-0013",
+      "CS-0015",
+      "CS-0016",
+      "CS-0018",
+      "CS-0019",
+      "CS-0020",
+      "CS-0022",
+      "CS-0023",
+      "CS-0025",
+      "CS-0027",
+      "CS-0031",
+      "CS-0033",
+      "CS-0035",
+      "CS-0037",
+      "CS-0038",
+      "CS-0040",
+      "CS-0041",
+      "CS-0042",
+      "CS-0043",
+      "CS-0044",
+      "CS-0046",
+      "CS-0047",
+      "CS-0051",
+      "CS-0053",
+      "CS-0055",
+      "CS-0057",
+      "CS-0058",
+      "CS-0060",
+      "CS-0061",
+      "CS-0063",
+      "CS-0065",
+      "CS-0067",
+      "CS-0069",
+      "CS-0071",
+      "CS-0072",
+      "CS-0074",
+      "CS-0076",
+      "CS-0078",
+      "CS-0081",
+      "CS-0082",
+      "CS-0084",
+      "CS-0087",
+      "CS-0088",
+      "CS-0090",
+      "CS-0091",
+      "CS-0093",
+      "CS-0095",
+      "CS-0096",
+      "CS-0099",
+      "CS-0101",
+      "CS-0103",
+      "CS-0105",
+      "CS-0109",
+      "CS-0110",
+      "CS-0111",
+      "CS-0112",
+      "CS-0114",
+      "CS-0116",
+      "CS-0117",
+      "CS-0119",
+      "CS-0120",
+      "CS-0122",
+      "CS-0124",
+      "CS-0125",
+      "CS-0127",
+      "CS-0128",
+      "CS-0129",
+      "CS-0131",
+      "CS-0132",
+      "CS-0135",
+      "CS-0136",
+      "CS-0137",
+      "CS-0138",
+      "CS-0140",
+      "CS-0141",
+      "CS-0143"
+    ],
+    "quality": [
+      "CS-0002",
+      "CS-0003",
+      "CS-0007",
+      "CS-0011",
+      "CS-0014",
+      "CS-0021",
+      "CS-0026",
+      "CS-0030",
+      "CS-0034",
+      "CS-0039",
+      "CS-0048",
+      "CS-0049",
+      "CS-0054",
+      "CS-0059",
+      "CS-0064",
+      "CS-0066",
+      "CS-0068",
+      "CS-0070",
+      "CS-0073",
+      "CS-0080",
+      "CS-0083",
+      "CS-0086",
+      "CS-0098",
+      "CS-0104",
+      "CS-0107",
+      "CS-0108",
+      "CS-0121",
+      "CS-0126",
+      "CS-0134",
+      "CS-0139"
+    ],
+    "reproducibility": [
+      "CS-0009",
+      "CS-0012",
+      "CS-0017",
+      "CS-0024",
+      "CS-0028",
+      "CS-0029",
+      "CS-0032",
+      "CS-0036",
+      "CS-0045",
+      "CS-0050",
+      "CS-0052",
+      "CS-0056",
+      "CS-0062",
+      "CS-0075",
+      "CS-0077",
+      "CS-0079",
+      "CS-0085",
+      "CS-0089",
+      "CS-0092",
+      "CS-0094",
+      "CS-0097",
+      "CS-0100",
+      "CS-0102",
+      "CS-0106",
+      "CS-0113",
+      "CS-0115",
+      "CS-0118",
+      "CS-0123",
+      "CS-0130",
+      "CS-0133",
+      "CS-0142"
+    ]
+  }
+}

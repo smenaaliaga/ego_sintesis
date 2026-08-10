@@ -1,0 +1,22 @@
+{
+  "pfd_id": "PFD-I32F27oZ8ICuby6y",
+  "pfd_label": "Controles y ajustes iniciales",
+  "reviews": [
+    {
+      "node_id": "CodeTask-rVgcAFrUWf36VVj6",
+      "note": "Importa y pivota datos SIFMI, intereses y agregados macroeconómicos desde Excel y API REST del Banco Central. Riesgos: múltiples PROC SQL con UNION ALL sin validación de valores nulos en campos clave (AÑO, DATO), asignación de constantes hardcodeadas por sector, dependencia de archivos en rutas absolutas /samba, y limpieza de tablas temporales sin conteo de filas."
+    },
+    {
+      "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
+      "note": "Calcula transferencias de capital desde gobierno a empresas usando PROC SQL con JOIN implícito en WHERE (LEFT JOIN con 9 condiciones) y variables macro (&ANIO, &TRIM, &ANIO). Riesgos: lógica de eliminación/anexión de datos de coyuntura basada en macro sin validar si existen datos previos, dependencia de biblioteca SAS externa y filtros complejos que pueden silenciar registros."
+    },
+    {
+      "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
+      "note": "Calcula porcentajes de depósitos de hogares en fondos de inversión mediante múltiples PROC SQL con divisiones y joins complejos, imputando valores para años faltantes (2003-2005) copiando datos de 2006. Riesgos: lógica de imputación determinística sin justificación, posible división por cero si dato de denominador es nulo, transformaciones de MES a TRIM sin control de meses inválidos, y múltiples copias de tablas intermedias."
+    },
+    {
+      "node_id": "CodeTask-7nH3fwOy4hErZFqh",
+      "note": "Importa bonos externos de Excel y calcula precios implícitos por división (Valor Mercado/Valor Par) con transformación de sector 36→36912. Riesgos: cálculo de Precio con posible división por cero (SUM(Valor_par) puede ser nulo), cambios de mapeo de CNSI a Sector sin auditoría, actualización de Precio a 1 si es nulo (línea UPDATE) enmascara problemas de datos, y descartes sin conteo."
+    }
+  ]
+}

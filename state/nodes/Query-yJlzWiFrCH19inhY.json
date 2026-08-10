@@ -1,0 +1,65 @@
+{
+  "id": "Query-yJlzWiFrCH19inhY",
+  "label": "Query Builder 1",
+  "node_type": "QUERY",
+  "pfd_id": "PFD-5ljUKZBVNXa8kUqw",
+  "pfd_label": "Salidas",
+  "inputs": [
+    "WORK.SALIDA_WTW"
+  ],
+  "outputs": [
+    "WORK.QUERY_FOR_SALIDA_WTW"
+  ],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL"
+    ],
+    "code_source": "eg_log",
+    "code_from_last_run": true,
+    "query_preview": true,
+    "requires_manual_review": true,
+    "classification": "transform",
+    "complexity": "low",
+    "migration_priority": "high"
+  },
+  "code_lines": [
+    "PROC SQL;",
+    "   CREATE TABLE WORK.QUERY_FOR_SALIDA_WTW AS",
+    "   SELECT t1.MONEDA,",
+    "          t1.'AÑO'n,",
+    "          t1.TRIM,",
+    "          t1.SECTOR,",
+    "          t1.N_SI,",
+    "          t1.C_SI_publ,",
+    "          t1.N_SI_publ,",
+    "          t1.C_SI_SCN,",
+    "          t1.N_SI_SCN,",
+    "          t1.C_INSTRUMENTO_SCN,",
+    "          t1.N_INSTRUMENTO_SCN,",
+    "          t1.C_SI_C_AGENTE,",
+    "          t1.N_SI_C_AGENTE,",
+    "          t1.C_SI_publ_C_AGENTE,",
+    "          t1.N_SI_publ_C_AGENTE,",
+    "          t1.C_SI_SCN_C_AGENTE,",
+    "          t1.N_SI_SCN_C_AGENTE,",
+    "          t1.C_CUENTA,",
+    "          t1.C_ENTRADA,",
+    "          t1.DATO,",
+    "          t1.C_SI_SCN_N1,",
+    "          t1.N_SI_SCN_N1,",
+    "          t1.C_INSTRUMENTO_SCN_N1,",
+    "          t1.N_INSTRUMENTO_SCN_N1,",
+    "          t1.C_Cuenta_SCN,",
+    "          t1.N_Cuenta_SCN,",
+    "          t1.FUENTE,",
+    "          t1.PROC,",
+    "          t1.C_SCN_N0,",
+    "          t1.N_SCN_N0,",
+    "          t1.C_CAG_N0,",
+    "          t1.N_CAG_N0",
+    "      FROM WORK.SALIDA_WTW t1",
+    "      WHERE t1.'AÑO'n >= 2005;",
+    "QUIT;"
+  ]
+}

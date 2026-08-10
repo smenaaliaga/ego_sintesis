@@ -1,0 +1,54 @@
+{
+  "pfd_id": "PFD-FzVr69cJ7GUTkjGn",
+  "pfd_label": "Síntesis_Final",
+  "reviews": [
+    {
+      "node_id": "CodeTask-a5fupJ8fUrKfjLpj",
+      "note": "Carga tabla principal desde presíntesis y realiza múltiples UPDATE/DELETE de contragentes y cuentas; riesgo: transformaciones de códigos de sector manualmente codificadas difíciles de mantener, múltiples PROC SQL anidados sin validación de cambios aplicados, y dependencias de tablas lookup externas (como ratios y DCV) que pueden cambiar de ubicación."
+    },
+    {
+      "node_id": "CodeTask-KbgIzRrZ11b3kVse",
+      "note": "Reconcilia dinero y depósitos entre sectores respetando datos específicos del origen; riesgo: lógica condicional compleja con LEFT/INPUT conversiones de variables, múltiples SUM con CASE anidados que requieren validación de pesos y signos, y transformaciones implícitas de moneda/cuenta (Rec Precio Reaj a Rec Precio)."
+    },
+    {
+      "node_id": "CodeTask-EiTHWvhqkY9b3Los",
+      "note": "Imputa reservas de fondos de pensiones y patrimonio de holdings con ratios de distribución (20%, 45%, 33%) desde tablas externas; riesgo: cálculos de distribución porcentual codificados en SQL sin documentación clara, joins con archivos SAS de ratios que deben existir en rutas específicas, y ausencia de validaciones de sumas totales."
+    },
+    {
+      "node_id": "CodeTask-moKZZAfdPtMvO2Za",
+      "note": "Construye activo y pasivo de hogares imputando desde contrapartidas y realiza ajustes de patrimonio de empresas por sector; riesgo: lógica de reclasificación de contragentes con cálculos de proporciones (1/3) sin documentación de criterio, múltiples DELETE statements sin criterios de reversibilidad, y transformaciones de sector 36912 con fragmentación de montos."
+    },
+    {
+      "node_id": "CodeTask-vXwkDE8f2OcjOwky",
+      "note": "Imputa préstamos de corto y largo plazo entre sectores con conciliación de diferenciales; riesgo: múltiples reconciliaciones booleanas (respeta dato de X, ajusta en Y) con cálculos de 2/3 y 1/3 sin validación de residuos, cambios de instrumento (AF.41 a AF.42) condicionales a múltiples criterios, y derivaciones de AF.71 para ajuste de conciliación."
+    },
+    {
+      "node_id": "CodeTask-eEgfNiAdcXrWGWaj",
+      "note": "Ajusta bonos de corto y largo plazo a valor de mercado usando DCV y aplica reclasificaciones de AF.31 a AF.32; riesgo: joins complejos con tabla DCV externa (/sasdata/BCCH/.../base_af3_total_v2.sas7bdat) que requiere manipulación de sectores con INPUT/LEFT/PUT, cálculos de delta entre CI y DCV sin validación de completitud, y múltiples CASE WHEN anidados para manejo de moneda/precio."
+    },
+    {
+      "node_id": "CodeTask-jo2ncH7bTsseLYP8",
+      "note": "Reclasifica cuotas de fondos mutuos e inversión en AF.521/AF.522 por contrapartida y mercado; riesgo: reglas de asignación a categorías money market/no money market codificadas por sector sin tabla de referencia centralizada, múltiples actualizaciones condicionales de instrumento, y creación de tablas temporales con lógica de agrupación que consume memoria."
+    },
+    {
+      "node_id": "CodeTask-YoYrhsTHidYHYT2P",
+      "note": "Genera activos netos de derivados eliminando pasivos y reconciliando activo/pasivo entre sectores; riesgo: elimina transacciones de flujo de pasivos sin trazabilidad de contraasiento, múltiples operaciones de negación de datos (*-1) susceptibles a errores de signo, y dependencia de tabla T_AJUSTE_CONCILIACION para ponderación de imputaciones."
+    },
+    {
+      "node_id": "CodeTask-X1NjQIiqHvgmq4z5",
+      "note": "Concilia patrimonio de hogares, empresas, bancos, seguros y auxiliares usando ratios de participación; riesgo: cálculos de proporciones del patrimonio (0.036281, 55%, 45%) sin validación de consistencia metodológica, asignación de inversiones AF.5 en sectores no medidos (36) con ajustes en tres sectores diferentes, y múltiples operaciones de SELECT/DELETE que modifican balances sin auditabilidad."
+    },
+    {
+      "node_id": "CodeTask-VGRo6vNwmbm39953",
+      "note": "Compresión inicial, actualizaciones condicionales por sector/subclasificación, e imputaciones complejas mediante 11 bloques PROC SQL con CASE anidados e INPUT/PUT para conversiones de tipos. Riesgos: alias implícitos en cálculos (CALCULATED), joins sin clave declarada explícita con T_SECTORIZACION y T_CONTRAPARTIDAS, dependencia de tabla T_AJUSTE_CONCILIACION con validación de período (AÑO/TRIM), y múltiples apends con FORCE que asumen compatibilidad de estructura."
+    },
+    {
+      "node_id": "CodeTask-PV6f6Wo5zpk123T2",
+      "note": "Imputa créditos comerciales entre sectores respetando origen de datos y realiza apertura de créditos entre bancos; riesgo: uso de tablas lookup T_SECTORIZACION y T_CONTRAPARTIDAS sin validación de integridad referencial, multiplicación de montos por tasas de conciliación (T_AJUSTE_CONCILIACION) que pueden variar por trim, y generación de activo neto de errores/omisiones con múltiples negaciones de datos."
+    },
+    {
+      "node_id": "CodeTask-eF7cHe3ofCVn7nWp",
+      "note": "Imputa reajustes de fondos de pensiones en contribuciones sociales y ajuste patrimonial (D.61, D.8) de hogares; riesgo: transformaciones de reajustes de instrumentos AF.29/AF.42 en conceptos de cuenta de distribución sin documentación de mapeo, creación de registros por reclasificación de CASE WHEN sin validación de no duplicación, y ausencia de reconciliación final de totales de cuentas nacionales."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "CodeTask-2S7FV1OytGj5U2Fw",
+  "label": "Program 1",
+  "node_type": "PROC_SQL",
+  "pfd_id": "ProcessFlowContainer-J3t3lB9nS5yuVyLR",
+  "pfd_label": "Varios",
+  "inputs": [
+    "TABLAS.BD_CTSI",
+    "TABLAS.T_CONTRAPARTIDAS",
+    "TABLAS.T_CUENTA",
+    "TABLAS.T_INSTRUMENTOS",
+    "TABLAS.T_SECTORIZACION"
+  ],
+  "outputs": [
+    "WORK.SALIDA_WTW_7II"
+  ],
+  "libraries": [],
+  "metadata": {
+    "sas_constructs": [
+      "PROC SQL"
+    ],
+    "classification": "transform",
+    "complexity": "medium",
+    "migration_priority": "medium"
+  },
+  "code_lines": [
+    "﻿/*SALIDA PARA FOMULARIO 7II OECD*/",
+    "PROC SQL;",
+    "CREATE TABLE SALIDA_WTW_7II AS",
+    "SELECT T1.AÑO, T1.TRIM, T1.SECTOR,T2.N_SI,T2.C_SI_publ,T2.N_SI_publ,T2.C_SI_SCN,T2.N_SI_SCN,T1.C_SCN AS C_INSTRUMENTO_SCN,T4.N_SCN AS N_INSTRUMENTO_SCN,T3.C_SI AS C_SI_C_AGENTE,T3.N_SI AS N_SI_C_AGENTE,T3.C_SI_publ AS C_SI_publ_C_AGENTE,",
+    "\t\tT3.N_SI_publ AS N_SI_publ_C_AGENTE, T3.C_SI_SCN AS C_SI_SCN_C_AGENTE, T3.N_SI_SCN AS N_SI_SCN_C_AGENTE, T1.C_CUENTA, T1.C_ENTRADA, SUM(T1.DATO) AS DATO, ",
+    "\t\tT2.C_SI_SCN_N1, T2.N_SI_SCN_N1, T4.C_SCN_N1 AS C_INSTRUMENTO_SCN_N1,T4.N_SCN_N1 AS N_INSTRUMENTO_SCN_N1,T5.C_Cuenta_SCN, T5.N_Cuenta_SCN,",
+    "\t\tT1.FUENTE,T1.PROC, T4.C_SCN_N0,T4.N_SCN_N0,T3.C_SI_SCN_N0 AS C_CAG_N0, T3.N_SI_SCN_N0 AS N_CAG_N0",
+    "FROM TABLAS.BD_CTSI T1 ",
+    "LEFT JOIN TABLAS.T_Sectorizacion T2 ON (T1.SECTOR=T2.C_SI) ",
+    "LEFT JOIN TABLAS.T_Contrapartidas T3 ON (T1.C_CAGENTE=T3.C_CAGENTE) ",
+    "LEFT JOIN TABLAS.T_Instrumentos T4 ON (T1.C_SCN=T4.C_SCN) ",
+    "LEFT JOIN TABLAS.T_Cuenta T5 ON (T1.C_CUENTA=T5.C_CUENTA)",
+    "WHERE \tT1.AÑO>=2014 /*AND T2.C_SI_SCN_N1=('S.12') AND T2.C_SI_SCN NOT IN ('S.121','S.122','S.123','S.124','S.12')*/",
+    "GROUP BY T1.AÑO, T1.TRIM, T1.SECTOR,T2.N_SI,T2.C_SI_publ,T2.N_SI_publ,T2.C_SI_SCN,T2.N_SI_SCN,T1.C_SCN,T4.N_SCN,T3.C_SI,T3.N_SI,T3.C_SI_publ,",
+    "\t\tT3.N_SI_publ, T3.C_SI_SCN, T3.N_SI_SCN, T1.C_CUENTA, T1.C_ENTRADA,T2.C_SI_SCN_N1, T2.N_SI_SCN_N1, T4.C_SCN_N1,T4.N_SCN_N1,T5.C_Cuenta_SCN, T5.N_Cuenta_SCN,",
+    "\t\tT1.FUENTE,T1.PROC, T4.C_SCN_N0,T4.N_SCN_N0,T3.C_SI_SCN_N0, T3.N_SI_SCN_N0;",
+    "QUIT;"
+  ]
+}

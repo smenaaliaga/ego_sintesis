@@ -1,0 +1,101 @@
+# Configuración del proyecto Síntesis_M_CR18.
+# Completar db.default_server antes de la corrida real (fase 7 lo necesita
+# para verify_tables; sin él, conectar falla con error explícito).
+
+db:
+  # Servidor SQL Server donde viven las librerías (TABLAS/DCNIDATA/etc.).
+  # p. ej.: "srvdatos.midominio.local"
+  default_server: "PLATDAT"
+  default_port: 1433
+  default_driver: "ODBC Driver 17 for SQL Server"
+  trust_server_certificate: false
+
+llm:
+  # Claude servido por Azure AI Foundry. La key va en .env / entorno
+  # (ANTHROPIC_FOUNDRY_API_KEY), nunca acá.
+  provider: "foundry"
+  # Default de las tareas mecánicas (matching, improvements, docs): salida
+  # corta, estructurada, y con un humano que la revisa igual.
+  model: "claude-haiku-4-5"
+  # El <resource> de https://<resource>.services.ai.azure.com — solo el nombre,
+  # no la URL: el SDK arma el endpoint.
+  foundry_resource: "bc-pibot"
+  # Modelo fuerte donde la salida es larga, la entrada ambigua, o el error es
+  # caro Y SILENCIOSO. La corrida de julio con haiku-para-todo dejó 12 nodos
+  # traducidos entre el 1% y el 54% de sus tablas de salida, todos registrados
+  # como `ok`: el modelo no truncaba (nunca pasó de 31k tokens de salida contra
+  # un tope de 64k) — abreviaba, y eso ningún stop_reason lo reporta.
+  # `verify` sube con `translation` a propósito: es lo único que detecta deriva
+  # semántica, y en Haiku producía hallazgos que se contradicen dentro del
+  # mismo párrafo. Un verificador débil gasta presupuesto y da falsa calma.
+  # Requiere que claude-sonnet-5 esté desplegado en el recurso bc-pibot.
+  models_by_task:
+    translation: "claude-sonnet-5"
+    verify: "claude-sonnet-5"
+    mismatch_diagnosis: "claude-sonnet-5"
+  # Explícito, no heredado: en Sonnet 5 omitir `thinking` corre adaptive igual,
+  # pero escribirlo deja la palanca a la vista y hace que cambiar el modelo no
+  # cambie el comportamiento en silencio. Las tareas que siguen en Haiku 4.5 NO
+  # llevan clave: ese modelo usa otra forma de thinking y rechaza "adaptive".
+  thinking_by_task:
+    translation: adaptive
+    verify: adaptive
+    mismatch_diagnosis: adaptive
+  # Traducir SAS es trabajo de código: "xhigh" es el nivel recomendado para eso.
+  # El verificador va un escalón abajo — compara dos textos contra una lista de
+  # reglas, no construye. Haiku 4.5 devuelve error si recibe `effort`, así que
+  # tampoco lleva clave.
+  effort_by_task:
+    translation: xhigh
+    verify: high
+    mismatch_diagnosis: high
+  # Llamadas al LLM en paralelo: análisis por Process Flow (fase 2, 17 llamadas
+  # acá) y traducción por nodo (fase 6). Con 1 (default) los 27 nodos pendientes
+  # son ~1,5 h; con 4, ~30 min. La primera llamada de cada fase va sola
+  # (calienta el prompt cache) y lo que queda en disco no depende de este
+  # número: los notebooks salen byte-idénticos con cualquier valor.
+  max_workers: 4
+  # Techo de salida por tarea; el tope no se factura (se paga por token
+  # generado). 128000 es el máximo de Sonnet 5 — y hace falta el margen: en
+  # Sonnet 5 omitir `thinking` corre *adaptive* (en Haiku 4.5 corría sin
+  # pensar), y los tokens de pensamiento cuentan contra este número junto con
+  # el código. Con nodos partidos en tramos de 40k de SAS, cada tramo entra
+  # holgado. El contexto de 1M de Sonnet 5 es nativo: no lleva header ni flag.
+  max_tokens_by_task:
+    translation: 128000
+    verify: 32000
+    # Con thinking adaptive, el default de 16000 se comparte entre pensar y
+    # responder: al que piensa se le da aire aunque su respuesta sea corta.
+    mismatch_diagnosis: 32000
+  # El tope cuenta TODA llamada del nodo, y un nodo partido en tramos gasta una
+  # por tramo. S2_11_CNF son 194.784 chars de SAS: con max_code_chars=20000 son
+  # ~10 tramos, así que el default de 10 se agotaba en la primera pasada, antes
+  # de que el reintento pudiera correr — caía en `node_budget_exhausted` sin
+  # haber reintentado nada. 30 deja dos pasadas completas más margen. Va de la
+  # mano con translation.max_code_chars: bajar el chars sin subir esto empeora
+  # el problema.
+  max_calls_per_node: 30
+
+translation:
+  # Techo de SAS por prompt; arriba de esto el nodo se parte entre bloques
+  # PROC/DATA. El default (40000) dejaba a los nodos grandes devolviendo
+  # traducciones incompletas: S2_11_CNF cubrió 62% de sus 210 tablas de salida
+  # y S2_06_Bonos 27% de sus 114 — bajo el piso de 70% del gate. No es techo de
+  # tokens (el máximo de salida medido fue 42.852 contra 128.000 disponibles):
+  # es que un tramo de 40k pide demasiadas tablas por respuesta. Tramos más
+  # chicos, más llamadas, cada una completable.
+  max_code_chars: 20000
+
+audit:
+  # Nota: la API del Banco Central (si3.bcentral.cl / SieteRestWS) la consultan
+  # 3 nodos vía PROC HTTP: CodeTask-rVgcAFrUWf36VVj6 (S1), -PctehnQmgLccQ4yN y
+  # -6NFJPkCu6mSpiJT9 (Program). Series F032.PIB.*, F033.* y F051.* →
+  # tablas.PIB / tablas.CNT. Ya no se declara acá: la auditoría infiere los
+  # endpoints y tablas destino del propio SAS, y la regla de deriva (leer de la
+  # tabla en vez de llamar a la API que la puebla) corre sola.
+  env_secret_markers: ["os.environ", "dotenv"]
+  runtime_df_checks: []
+
+parser:
+  extra_db_engines: []
+  ignore_db_engines: []

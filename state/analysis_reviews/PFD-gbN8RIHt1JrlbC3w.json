@@ -1,0 +1,10 @@
+{
+  "pfd_id": "PFD-gbN8RIHt1JrlbC3w",
+  "pfd_label": "Cuadros",
+  "reviews": [
+    {
+      "node_id": "CodeTask-PrxMUTlg9rE9nnWS",
+      "note": "Macro dinámica &ANIO en WHERE sin validación; joins múltiples (LEFT JOIN × 4) con riesgo de duplicate rows si las PK no están aseguradas en T_Sectorizacion, T_Instrumentos, T_Cuenta; operaciones UPDATE/DELETE iterativas sobre SALIDA_CEI_1 y tablas derivadas con lógica acumulativa (SET antes de DROP) requiere replicar estado temporal; PROC TABULATE con ORDER=FORMATTED/UNFORMATTED en múltiples dimensiones necesita verificar definición de formatos SAS; operaciones de string (substr, CONTAINS) en Python requieren equivalente con pandas/numpy; multiplicación condicional en CASE puede generar NULL si datos faltantes."
+    }
+  ]
+}
