@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T20:07:37.405792+00:00",
+  "generated_at": "2026-08-11T15:00:56.379455+00:00",
   "total_nodes": 84,
   "nodes": [
     {
@@ -83,10 +83,9 @@
         "native_task": false,
         "requires_manual_review": false
       },
-      "placement": "ambiguous",
+      "placement": "hybrid",
       "placement_reasons": [
         "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL",
-        "librefs sin confirmar como BD o ruta: ['LIB']",
         "mezcla tablas BD con archivos",
         "sin referencias a datos; utilitario — traduce a Python plano"
       ],
@@ -185,9 +184,9 @@
           "index": 10,
           "offset": 6092,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -230,9 +229,9 @@
           "index": 15,
           "offset": 6891,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -248,9 +247,9 @@
           "index": 17,
           "offset": 7678,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -266,9 +265,9 @@
           "index": 19,
           "offset": 8443,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -284,9 +283,9 @@
           "index": 21,
           "offset": 9215,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -302,9 +301,9 @@
           "index": 23,
           "offset": 9952,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -320,9 +319,9 @@
           "index": 25,
           "offset": 10680,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -338,9 +337,9 @@
           "index": 27,
           "offset": 11424,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -356,9 +355,9 @@
           "index": 29,
           "offset": 12153,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -374,9 +373,9 @@
           "index": 31,
           "offset": 12892,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -536,9 +535,9 @@
           "index": 49,
           "offset": 17562,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -563,9 +562,9 @@
           "index": 52,
           "offset": 18346,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -635,18 +634,18 @@
           "index": 60,
           "offset": 20221,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
           "index": 61,
           "offset": 20919,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -1740,9 +1739,9 @@
           "index": 1,
           "offset": 72,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -2536,9 +2535,9 @@
           "index": 1,
           "offset": 70,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -7852,10 +7851,9 @@
         "native_task": false,
         "requires_manual_review": false
       },
-      "placement": "ambiguous",
+      "placement": "sql_pushdown",
       "placement_reasons": [
         "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL",
-        "librefs sin confirmar como BD o ruta: ['LIB']",
         "sin referencias a datos; utilitario — traduce a Python plano"
       ],
       "placement_segments": [
@@ -7881,9 +7879,9 @@
           "index": 2,
           "offset": 481,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -7899,9 +7897,9 @@
           "index": 4,
           "offset": 1239,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -7917,9 +7915,9 @@
           "index": 6,
           "offset": 2004,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -7935,9 +7933,9 @@
           "index": 8,
           "offset": 2776,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -7953,9 +7951,9 @@
           "index": 10,
           "offset": 3513,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -7971,9 +7969,9 @@
           "index": 12,
           "offset": 4241,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -7989,9 +7987,9 @@
           "index": 14,
           "offset": 4985,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -8007,9 +8005,9 @@
           "index": 16,
           "offset": 5714,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -8025,9 +8023,9 @@
           "index": 18,
           "offset": 6453,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -8107,10 +8105,9 @@
         "native_task": false,
         "requires_manual_review": false
       },
-      "placement": "ambiguous",
+      "placement": "hybrid",
       "placement_reasons": [
         "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL",
-        "librefs sin confirmar como BD o ruta: ['LIB']",
         "mezcla tablas BD con archivos",
         "sin referencias a datos; utilitario — traduce a Python plano"
       ],
@@ -8137,9 +8134,9 @@
           "index": 2,
           "offset": 340,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -8155,9 +8152,9 @@
           "index": 4,
           "offset": 943,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -8173,9 +8170,9 @@
           "index": 6,
           "offset": 1546,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -8191,9 +8188,9 @@
           "index": 8,
           "offset": 2166,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -8254,9 +8251,9 @@
           "index": 15,
           "offset": 3091,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -14366,9 +14363,9 @@
           "index": 1,
           "offset": 50,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -14429,18 +14426,18 @@
           "index": 8,
           "offset": 1438,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
           "index": 9,
           "offset": 1587,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {

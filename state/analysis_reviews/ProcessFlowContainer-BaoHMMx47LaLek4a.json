@@ -4,15 +4,15 @@
   "reviews": [
     {
       "node_id": "CodeTask-7lh12aT9AnDfJenj",
-      "note": "Extrae y transforma datos de cuentas financieras con múltiples JOINs a tablas maestras (Sectorizacion, Instrumentos) y lógica CASE para reclasificación de cuentas. Riesgo: cálculos con CALCULATED en WHERE/GROUP BY y divisiones implícitas (DATO/1000); posibles NULL en LEFT JOINs a tablas de catálogos sin validación previa."
+      "note": "Extrae y transforma datos de BD_CTSI con múltiples JOINs LEFT (T_Sectorizacion, T_Instrumentos) y reclasificación de cuentas vía CASE; riesgo: nombres de columnas dinámicos con quoted identifiers ('AÑO'n), conversiones de formato con SUBSTR/PUT sin validación de nulos, y dependencia de datos maestros en TABLAS que pueden cambiar estructura."
     },
     {
       "node_id": "CodeTask-v2KL58W1Ordii4kk",
-      "note": "Replica análisis anterior incorporando tabla de Contrapartidas con conversión hardcodeada (S.99→S.11) en CASE WHEN. Riesgo: CASE anidados complejos en SELECT difíciles de traducir directamente; dependencia de variables macro (&Sector, &Codigo, &Entrada) cuyo alcance y validación es crítica."
+      "note": "Repite flujo similar al anterior agregando JOIN adicional con T_Contrapartidas y lógica condicional para mapeo S.99 → S.11; riesgo: CASE anidado para C_SI_SCN con valores hardcodeados ('S.99'), múltiples LEFT JOINs con potencial de NULLs no gestionados, y reutilización de variables macro (&Sector, &Codigo, &Entrada) sin validación de existencia."
     },
     {
       "node_id": "CodeTask-KZWptJSqYlZ3fYLu",
-      "note": "Calcula cargas financieras (intereses pagados/percibidos como porcentaje) y spread del sector financiero mediante tres JOINs y ratio entre tablas (DATO/T2.DATO)*100. Riesgo: OUTER UNION CORR y divisiones por saldo promedio sin control de división por cero; sintaxis heredada (GPLOT, SYMBOL, AXIS) y macros SAS internas (%_sas_pushchartsize) requieren reimplementación gráfica completa."
+      "note": "Calcula ratios de carga financiera (intereses/saldo promedio) con cuatro tablas intermedias (INT, SALDOS, SALDOS_AVG, CARGA_FIN_); riesgo: OUTER UNION CORR de CARGA_FIN_ y SFIN puede producir duplicados o misalineaciones si esquemas difieren, WHERE con condición IN negativa ('S.13','S.2') sin documentación de exclusiones, y filtros por C_SCN hardcodeados dificultan portabilidad."
     }
   ]
 }

@@ -4,15 +4,15 @@
   "reviews": [
     {
       "node_id": "CodeTask-XkoygblbmDJ46M1C",
-      "note": "Libname estática que define la ruta base del catálogo de tablas SAS v9 — Riesgo: la ruta '/sasdata/BCCH/GEM_DCNI/02_CNSI/01_SINTESIS' debe mapearse a variable de entorno Python o configuración; verificar disponibilidad en ambiente destino."
+      "note": "Libname de inicialización que expone ruta absoluta del servidor SAS (/sasdata/...) — riesgo: rutas hardcodeadas no portables a Python; requiere mapeo a variables de entorno o configuración externalizada."
     },
     {
       "node_id": "CodeTask-6NFJPkCu6mSpiJT9",
-      "note": "Extrae 4 series JSON de API del Banco Central (activo/pasivo en pesos/USD), parsea fechas mediante SUBSTR + INPUT, une con tabla estática de tipos de cambio, normaliza trimestres y convierte montos a pesos — Riesgos: credenciales &user &password en URL requiere inyección de variables globales; parseo manual de fecha es frágil; JOIN implícito por año-trimestre-moneda puede generar nulls silenciosos; tabla MONEDAS_MENSUAL.sas7bdat debe exportarse como CSV/Parquet."
+      "note": "Extrae 4 series JSON de API REST del Banco Central, parsea fechas con SUBSTR + INPUT (SAS-específico), ejecuta 4 PROC HTTP + 4 PROC SQL similares, realiza UPDATE de trimestres con reglas hardcodeadas (4→2, 7→3, 10→4), JOIN con TC_CIERRE sin especificar clave de moneda (PESOS vs USD), y conversión condicional — riesgo crítico: manejo de strings SAS con INPUT(), conversión implícita, LEFT JOIN con filtrado posterior, y ausencia de validación de valores NULL en divisor Valor."
     },
     {
       "node_id": "CodeTask-2mdU6L71g42MYPd6",
-      "note": "Define 4 templates ODS Graphics (proc template) con colores, ejes duales y leyendas para gráficos de barras apiladas, líneas y combinadas — Riesgo: ODS Graphics no tiene equivalente directo en Python (matplotlib/plotly requieren reescritura manual de paletas, tipografías y layout); los parámetros dinámicos (TITLE, VAR, GRUPO) deben mapearse a variables de contexto en lugar de macros SAS."
+      "note": "Define 4 plantillas gráficas ODS GRAPH con paletas de colores hexadecimales SAS y macros dinámicas (VAR, VAR2, VAR3, GRUPO, TITLE, etc.) — riesgo: sintaxis PROC TEMPLATE y atributos gráficos (datacolors, barchartparm, seriesplot) sin equivalente directo en Matplotlib/Seaborn; requiere reescritura completa de lógica de visualización."
     }
   ]
 }

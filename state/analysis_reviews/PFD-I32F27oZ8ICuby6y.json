@@ -4,19 +4,19 @@
   "reviews": [
     {
       "node_id": "CodeTask-rVgcAFrUWf36VVj6",
-      "note": "Importa SIFMI desde Excel y ejecuta múltiples PROC SQL CON UNION ALL que expanden una única tabla en 12 registros por row. Riesgo: transformación manual de UNION ALL a pandas.concat() requiere cuidado con tipos de datos; las macros &ANIO, &TRIM y TODAY() deben reemplazarse; limpieza de tablas temporales con DROP TABLE al final."
+      "note": "Importa y pivotea archivo SIFMI (intereses pagados/recibidos por sectores) con múltiples UNION ALL y luego descarga 9 series macro desde API REST del Banco Central; riesgo: transformación de fechas con SUBSTR y INPUT difícil de mantener en Python, URLs con placeholders &user &password exponen credenciales, libname JSON automap requiere validación manual de estructura."
     },
     {
       "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
-      "note": "Calcula transferencias de capital desde gobierno a empresas usando PROC SQL con LEFT JOIN y lectura de libname externo (GOBGENER). Riesgo: la macro &ANIO aparece en cláusula WHERE; la lógica de agrupación con CASE WHEN para trimestres debe validarse; DELETE condicional sobre tabla persistente (tablas.t_tk_gg_epu) requiere transacción."
+      "note": "Calcula transferencias de capital desde gobierno a empresas usando join implícito en WHERE con múltiples condiciones (8 campos) contra tabla de mapeo SCN_2 de Gobgener; riesgo: lógica de join no explícita fragmenta la consulta, variable &ANIO macro requerida antes de ejecución, formato COMMAX12.2 puede truncar valores."
     },
     {
       "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
-      "note": "Calcula porcentaje de depósitos en fondos mutuos para hogares mediante importación Excel, PROC SQL con agregaciones y generación de años faltantes por interpolación. Riesgo: lógica de imputación (copiar 2006T1 a 2003–2005, T2–T4) es manual y frágil; múltiples PROC SQL con SUBSTR() y transformaciones de trim; append condicional con macro &ANIO."
+      "note": "Calcula porcentaje de depósitos de hogares en fondos mutuos mediante series históricas (2003-2025) con imputación backfill de 2006 a años faltantes, genera 4 copias de período base con TRIM 1-4; riesgo: lógica de imputación repetitiva proclive a errores, dependencia de actualización mensual/trimestral de archivo Excel externo no versionado, variable &anio requiere sincronización de borrados/anexos."
     },
     {
       "node_id": "CodeTask-7nH3fwOy4hErZFqh",
-      "note": "Importa bonos externos desde Excel, calcula precios implícitos por sector y trimestre (Mercado Externo, Recompras) y genera balance de inicio desplazando trim y año. Riesgo: cálculo de Precio como razón (Valor_Mercado / Valor_par) puede generar divisiones por cero o valores faltantes sin validación; UPDATE SET para valores faltantes (Precio=1); transformación de sector 36→36912 ocurre al final."
+      "note": "Importa bonos externos desde Excel y calcula precios implícitos pivotando con ratios Valor_Mercado/Valor_Par, genera duplicados para Balance de Inicio con lógica de desfase trimestral (TRIM+1); riesgo: lectura de dos hojas (DATA, DATA_EST) del mismo archivo con consolidación manual en SAS sin garantía de sincronía, fórmula de precio vulnerable a valores_par nulos, mapeo Sector 36→36912 hardcodeado."
     }
   ]
 }

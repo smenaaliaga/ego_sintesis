@@ -4,27 +4,27 @@
   "reviews": [
     {
       "node_id": "CodeTask-PctehnQmgLccQ4yN",
-      "note": "Ingesta de 9 series de API con transformación de fechas y unidades (multiplicación por 1000) y combina resultados en tabla CNT. Riesgo: autenticación dinámica en URLs (&user, &password macrovariables), parsing de fecha por substring propenso a fallas con formatos inesperados, reinicialización repetida de libname JSON sin verificar errores, y conversión xlnum. que puede fallar silenciosamente."
+      "note": "Ingesta de 9 series trimestrales desde APIs REST del Banco Central con manejo de FILENAME dinámico. Riesgo: las URLs contienen macros de usuario/contraseña que requieren resolución en tiempo de ejecución; importación JSON con AUTOMAP puede generar estructuras variables según respuesta del servidor; lógica de substring/INPUT para parseo de fechas es frágil si formato cambia."
     },
     {
       "node_id": "CodeTask-lVG5feJnCetjgbtL",
-      "note": "Genera salida de transferencias RM con múltiples LEFT JOINs sobre tablas de referencia (Sectorizacion, Instrumentos, Cuenta) y filtros implícitos por SCN. Riesgo: macrovariable &ANIO sin default definido, JOINs sin ON ambiguos pueden causar duplicados silenciosos, supuesto que T2.C_SI_SCN='S.2' tenga registros únicos no validado."
+      "note": "Genera reporte de Transferencias RM mediante LEFT JOINs cuádruples entre tablas de dimensión (Sectorizacion, Instrumentos, Cuenta) sobre tabla maestra BD_CTSI con filtro de año macro &ANIO. Riesgo: macro sin valor por defecto; JOINs implícitos sin explícitos ON pueden fallar si columnas no existen; dependencia de tabla TABLAS.BD_CTSI que debe ser pre-poblada."
     },
     {
       "node_id": "CodeTask-GT6PneNaAuUXLt8o",
-      "note": "Extrae FBCF sector financiero (P.51, S.12) con GROUP BY sobre múltiples dimensiones y luego persiste en librería META DCNIDATA. Riesgo: filtro C_SI_SCN_N1='S.12' aplicado solo en WHERE pero no en GROUP BY explícitamente (podría haber rollups silenciosos), acceso a librería META no validado, dependencia de jerarquías de tablas de referencia sin verificación."
+      "note": "Segmenta datos de FBCF por sector financiero (S.12) con agregación por múltiples dimensiones y salida a librería META/DCNIDATA. Riesgo: filtro hardcodeado en WHERE (C_SCN='P.51', C_SI_SCN_N1='S.12') no es parametrizable; JOINs LEFT pueden dejar valores nulos si no coinciden IDs de tabla de referencias; dependencia de DCNIDATA es una librería de metadatos."
     },
     {
       "node_id": "CodeTask-2S7FV1OytGj5U2Fw",
-      "note": "Genera tabla SALIDA_WTW_7II con 5 LEFT JOINs y GROUP BY de 21 dimensiones para formulario OECD 7II (datos desde 2014). Riesgo: número extremo de columnas en SELECT sin validar que todos los T3/T4 campos existan, commented-out línea de WHERE hace que no filtren sectores/SCN esperados, T3 (Contrapartidas) podría no hacer match en C_CAGENTE generando NULLs masivos."
+      "note": "Construye tabla SALIDA_WTW_7II para formulario OECD con JOINs quíntuples que incluyen tabla T_Contrapartidas (ausente de otros procesos) y anidamiento de variables de clasificación multinivel (N0, N1). Riesgo: WHERE con año macro hardcodeado (&ANIO>=2014) sin parámetro; conversión de jerarquías contables requiere que todas las tablas de lookup posean keys consistentes; GROUP BY de 17+ campos es propenso a errores si faltan columnas."
     },
     {
       "node_id": "CodeTask-3nmOBIFhUk8bJDyw",
-      "note": "Código mayormente comentado con fragmentos de templates SGPLOT/SGRENDER para gráficos. Riesgo: referencias a datasets no creados en flujo (BD_INC_YD, CNF_Anual_graph, fbcf_snf, BD_ICA_C1), sintaxis obsoleta con quoted names ('AÑO'n), y if no hay datos en esos datasets los renders fallarán sin depuración evidente."
+      "note": "Contiene código comentado/parcialmente ejecutable: define templates PROC SGPLOT con variables dinámicas y llama SGRENDER sobre tablas que no se generan en el flujo (BD_INC_YD, CNF_Anual_graph, fbcf_snf, BD_ICA_C1). Riesgo: referencias a tablas WORK inexistentes provocarán errores; macros dinámicas en templates (VAR, VARLABEL, TITLE) requieren sincronización exacta; código comentado oscurece la lógica actual."
     },
     {
       "node_id": "CodeTask-jQdpbNMiLHrmwvzY",
-      "note": "Genera salida de producción con filtros complejos (C_CUENTA='Producción', FUENTE='CI', 4 sectores específicos) y 4 LEFT JOINs. Riesgo: macrovariable &ANIO sin default, filtro sector IN (321,322,361,362) codificado sin documentación, supuesto que combinación de filtros genera datos únicos no verificado, ausencia de UNION ALL si se espera combinar con otras series."
+      "note": "Genera SALIDA_CP_F filtrando producción por fuente='CI' y sectores hardcodeados (321,322,361,362) con JOINs cuádruples y agregación por 17 campos. Riesgo: filtros WHERE contienen valores fijos sin documentación de lógica de negocio (¿por qué esos sectores específicos?); macro &ANIO sin valor por defecto; JOIN con T_Instrumentos puede fallar si C_SCN no existe en tabla de referencias; agregación masiva sin validación de duplicados antes."
     }
   ]
 }

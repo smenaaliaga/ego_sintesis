@@ -1,6 +1,6 @@
 # Node Translation Audit
 
-Generated at: 2026-08-10T20:25:36.680716+00:00
+Generated at: 2026-08-11T15:35:05.857446+00:00
 
 - Nodes total: 84
 - Nodes in scope: 4 (ignored by user: 3, deferred to a later batch: 77)

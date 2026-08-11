@@ -4,15 +4,15 @@
   "reviews": [
     {
       "node_id": "CodeTask-b4yKCgjI7DEeqndl",
-      "note": "Extrae y consolida múltiples flujos de datos financieros (deuda hipotecaria, previsional, bancaria de hogares, crédito no bancario) mediante PROC SQL con LEFT JOINs sobre 5 tablas de dimensiones, realizando interpolaciones con contiene-en ('contains') y cálculos condicionales complejos; riesgos: macro &ANIO sin validación, rutas hardcodeadas de archivos .sas7bdat, operaciones de DELETE/APPEND cíclicas sin manejo de duplicados, cambio de estructura de tablas entre 2022/2017 requiere lógica condicional explícita en Python."
+      "note": "Agrega e inserta múltiples cubos de datos en librería metaconectada (SALIDA_WTW_RESUMEN, DEUDA_HOLDING, AHORRO_PRE, DEUDA_HOGARES, OCNB). Riesgos: macro &ANIO dinámico en WHERE, JOINs implícitos entre tablas de metabase sin validación de cardinalidad, path hardcodeados a sas7bdat, DELETE+APPEND puede causar duplicados si falla a mitad de transacción."
     },
     {
       "node_id": "CodeTask-vLMl6RS3eEI64niZ",
-      "note": "Genera tabla de saldos consolidados (Saldos_SI) con JOIN cuádruple y transformaciones de categorías anidadas en CASE WHEN sobre códigos SCN/SI; actualiza descriptores mediante UPDATE condicional post-creación; riesgos: lógica de recategorización ad hoc hardcodeada (ej. 'S.123','S.124' → 'S.123+4'), ausencia de validación de joins, formato COMMA14 SAS específico, tabla intermedia nunca se persiste explícitamente en DCNIDATA pese a estructura de DROP comentada."
+      "note": "Crea tabla Saldos_SI con lógica CASE anidada para recodificación de SCN e instituciones (S.123+4, 'OFIs+Auxiliares'), JOINs múltiples LEFT que pueden generar filas nulas si lookup no coincide exactamente, UPDATE posterior que rompe inmutabilidad. Riesgo: formatos CHAR4 y PUT() son específicos SAS, condiciones IN/NOT IN en SCN pueden cambiar si catalogo se actualiza."
     },
     {
       "node_id": "CodeTask-ryd9Qv5seQRPtvOD",
-      "note": "Replica estructura idéntica de S9_00 pero lee desde tabla con sufijo dinámico BD_CTSI_R&ANIO&TRIM, generando resumen histórico de período anterior; riesgos: macro nested (&ANIO&TRIM) construye nombre de tabla en tiempo de ejecución sin validación de existencia, WHERE comentado oculta lógica de filtrado, dependencia de nomenclatura exacta de fuente de datos, riesgo alto de fallos silenciosos si tabla no existe."
+      "note": "Genera SALIDA_WTW_RESUMEN_ANT desde tabla paramétrica BD_CTSI_R&ANIO&TRIM donde el nombre de tabla se construye dinámicamente con macros. Riesgo crítico: macro &ANIO&TRIM sin validación produce 'table not found' si período no existe, GROUP BY sobre CALCULATED MONEDA pero la lógica de moneda es hardcodeada como 'P', no existe WHERE de filtro comentado lo que carga todo histórico innecesariamente."
     }
   ]
 }

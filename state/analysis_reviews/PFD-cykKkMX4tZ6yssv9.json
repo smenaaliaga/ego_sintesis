@@ -4,7 +4,7 @@
   "reviews": [
     {
       "node_id": "CodeTask-ajjSEkh77FcmV2ov",
-      "note": "Calcula ajuste de bonos integrando múltiples tablas de referencia (BD_CTSI, T_Sectorizacion, T_Contrapartidas, T_Sectorizacion_N2/N3) con CASE statements para remapeo de clasificaciones, LEFT JOINs implícitos por contrapartida, y macros de año que requieren parameterización en Python; riesgo alto en validación de joins nulos y traducción de formatos SAS (NUMX5., PUT) a pandas/polars."
+      "note": "Ajuste de bonos mediante PROC SQL con múltiples JOINs LEFT y CASE statements condicionales: riesgo crítico en la macro &ANIO no resuelta en línea 3, referencias a formato NUMX5. sin definición, e imputación de valores negativos basada en divisiones DELTA_PRECIO sin validación de ceros; además, APPEND FORCE sobre tabla TABLAS.AJUSTE_BONOS puede generar duplicados si el control de transaccionalidad no es explícito en BD."
     }
   ]
 }

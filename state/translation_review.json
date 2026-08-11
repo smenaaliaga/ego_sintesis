@@ -9,24 +9,29 @@
     },
     {
       "node_id": "CodeTask-dYzl6IKuUE5lnGRx",
-      "verdict": "approve",
-      "issues": [],
-      "confidence": "high",
-      "revised": true
+      "verdict": "unverified",
+      "issues": [
+        {
+          "kind": "other",
+          "detail": "verificador falló: validation_retries_exhausted"
+        }
+      ],
+      "confidence": "medium",
+      "revised": false
     },
     {
       "node_id": "CodeTask-ifAGwBWSiFAQtKqB",
       "verdict": "approve",
       "issues": [],
-      "confidence": "low",
-      "revised": false
+      "confidence": "medium",
+      "revised": true
     },
     {
       "node_id": "CodeTask-rVgcAFrUWf36VVj6",
       "verdict": "approve",
       "issues": [],
       "confidence": "medium",
-      "revised": false
+      "revised": true
     }
   ]
 }

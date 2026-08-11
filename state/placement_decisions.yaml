@@ -11,6 +11,9 @@ decisions:
 - node_id: CodeTask-2S7FV1OytGj5U2Fw
   placement: sql_pushdown
   reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-6NFJPkCu6mSpiJT9
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: LIB'
 - node_id: CodeTask-6SjSzoc2tRAmj3bg
   placement: hybrid
   reason: 'prefijos confirmados como BD: TABLAS'
@@ -65,6 +68,9 @@ decisions:
 - node_id: CodeTask-PV6f6Wo5zpk123T2
   placement: hybrid
   reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-PctehnQmgLccQ4yN
+  placement: sql_pushdown
+  reason: 'prefijos confirmados como BD: LIB, TABLAS'
 - node_id: CodeTask-PrxMUTlg9rE9nnWS
   placement: sql_pushdown
   reason: 'prefijos confirmados como BD: TABLAS'
@@ -140,6 +146,9 @@ decisions:
 - node_id: CodeTask-rRgEeqwSRMAQaeHB
   placement: hybrid
   reason: 'prefijos confirmados como BD: TABLAS'
+- node_id: CodeTask-rVgcAFrUWf36VVj6
+  placement: hybrid
+  reason: 'prefijos confirmados como BD: LIB, TABLAS'
 - node_id: CodeTask-s2iKVLUIFegPxhYS
   placement: sql_pushdown
   reason: 'prefijos confirmados como BD: TABLAS'
@@ -166,9 +175,37 @@ decisions:
   reason: 'prefijos confirmados como BD: TABLAS'
 confirmed_prefixes:
 - GOBGENER
+- LIB
 - TABLAS
 noise_prefixes: []
 execution_target: sql
 temp_table_strategy: ''
 temp_table_overrides: []
 excel_prefixes: []
+dataset_file_strategy: db_table
+dataset_file_tables:
+- path: /sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/BD_CTSI_CIERRE.sas7bdat
+  table: TABLAS.BD_CTSI_CIERRE
+  access: read
+  node_ids:
+  - CodeTask-rVgcAFrUWf36VVj6
+- path: /sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/HSS/BASE_DEUDA_EMV.sas7bdat
+  table: TABLAS.BASE_DEUDA_EMV
+  access: read
+  node_ids:
+  - CodeTask-rVgcAFrUWf36VVj6
+- path: /sasdata/BCCH/GEM_DCNI/02_CNSI/12_SI_FI/33901_FFMM/CARTERA_INV_EXTERNA.sas7bdat
+  table: TABLAS.CARTERA_INV_EXTERNA
+  access: read
+  node_ids:
+  - CodeTask-ifAGwBWSiFAQtKqB
+- path: /sasdata/BCCH/GEM_DCNI/02_CNSI/12_SI_FI/33901_FFMM/CARTERA_INV_NACIONAL.sas7bdat
+  table: TABLAS.CARTERA_INV_NACIONAL
+  access: read
+  node_ids:
+  - CodeTask-ifAGwBWSiFAQtKqB
+- path: /sasdata/BCCH/GEM_DCNI/02_CNSI/12_SI_FI/33901_FFMM/IDENTIFICA_FFMM.sas7bdat
+  table: TABLAS.IDENTIFICA_FFMM
+  access: read
+  node_ids:
+  - CodeTask-ifAGwBWSiFAQtKqB

@@ -1,28 +1,27 @@
 improvements:
 - id: M-001
   category: maintainability
-  title: Eliminar rutas hardcodeadas mediante variables macro o configuración centralizada
-  description: 'Se detectaron 38 rutas de archivo hardcodeadas distribuidas en 17
-    nodos críticos (CodeTask-1luvy2zX48vyTm18, CodeTask-6SjSzoc2tRAmj3bg, CodeTask-PV6f6Wo5zpk123T2,
-    CodeTask-uEJMdbfEYJHVR2af, CodeTask-b4yKCgjI7DEeqndl, CodeTask-dYzl6IKuUE5lnGRx,
-    CodeTask-eEgfNiAdcXrWGWaj, CodeTask-EiTHWvhqkY9b3Los, CodeTask-ifAGwBWSiFAQtKqB,
-    CodeTask-KbgIzRrZ11b3kVse, CodeTask-LbbQOdnOflsfHI1p, CodeTask-lVG5feJnCetjgbtL,
-    CodeTask-M7Kq8x8xCBjt8NWW, CodeTask-rVgcAFrUWf36VVj6, CodeTask-PctehnQmgLccQ4yN,
+  title: Centralizar rutas de archivos hardcodeadas en macro variables
+  description: 'Se detectan 38 rutas hardcodeadas distribuidas en 23 nodos (CodeTask-1luvy2zX48vyTm18,
+    CodeTask-1MZt2MbPkdLUOvbC, CodeTask-6SjSzoc2tRAmj3bg, CodeTask-a5fupJ8fUrKfjLpj,
+    CodeTask-b4yKCgjI7DEeqndl, CodeTask-dYzl6IKuUE5lnGRx, CodeTask-eEgfNiAdcXrWGWaj,
+    CodeTask-EiTHWvhqkY9b3Los, CodeTask-ifAGwBWSiFAQtKqB, CodeTask-KbgIzRrZ11b3kVse,
+    CodeTask-LbbQOdnOflsfHI1p, CodeTask-lVG5feJnCetjgbtL, CodeTask-M7Kq8x8xCBjt8NWW,
+    CodeTask-PctehnQmgLccQ4yN, CodeTask-PV6f6Wo5zpk123T2, CodeTask-rVgcAFrUWf36VVj6,
+    CodeTask-sQvjLjeo2WC15iXs, CodeTask-uEJMdbfEYJHVR2af, CodeTask-uRMT7rfFsM7wFmZJ,
     CodeTask-XkoygblbmDJ46M1C, CodeTask-yh5u6Xv3BMVagLtW). Ejemplos: ''/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/BD_CTSI_CIERRE.sas7bdat'',
     ''/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/DCVRES/t_aj_cd_321_6_af32.sas7bdat''.
-    Esta práctica dificulta mantenimiento, portabilidad y auditoría.'
-  justification: 'Las rutas hardcodeadas impiden adaptar el código a cambios de infraestructura,
-    generan inconsistencias si se replican scripts y complican la trazabilidad. Según
-    análisis: 38 ocurrencias catalogadas como ''error'' en 17 nodos. Refactorizar
-    a macro variables (ej. &SASDATA_PATH, &DCV_PATH) mejora mantenibilidad y reproducibilidad.'
+    Esto impide cambios rápidos de entorno (desarrollo, prueba, producción).'
+  justification: La evidencia muestra rutas absolutas repetidas 38 veces. La lógica
+    de negocio está acoplada a rutas físicas, bloqueando portabilidad y aumentando
+    riesgo de errores en migraciones.
   impact: high
-  effort: high
-  risk: medium
+  effort: medium
+  risk: low
   recommendation: approve
   affected_nodes:
   - CodeTask-1luvy2zX48vyTm18
   - CodeTask-1MZt2MbPkdLUOvbC
-  - CodeTask-6NFJPkCu6mSpiJT9
   - CodeTask-6SjSzoc2tRAmj3bg
   - CodeTask-a5fupJ8fUrKfjLpj
   - CodeTask-b4yKCgjI7DEeqndl
@@ -37,7 +36,9 @@ improvements:
   - CodeTask-PctehnQmgLccQ4yN
   - CodeTask-PV6f6Wo5zpk123T2
   - CodeTask-rVgcAFrUWf36VVj6
+  - CodeTask-sQvjLjeo2WC15iXs
   - CodeTask-uEJMdbfEYJHVR2af
+  - CodeTask-uRMT7rfFsM7wFmZJ
   - CodeTask-XkoygblbmDJ46M1C
   - CodeTask-yh5u6Xv3BMVagLtW
   status: proposed
@@ -45,51 +46,16 @@ improvements:
   postponed_reason: ''
 - id: M-002
   category: maintainability
-  title: Refactorizar bloques duplicados de código SAS (SYMBOL, VLINE, VBAR, LEGEND,
-    UPDATE statements)
-  description: 'Se identificaron 8 fragmentos de código idénticos o muy similares
-    replicados en 3+ nodos: 1) ''SYMBOL1 INTERPOL=JOIN...'' (3 nodos: CodeTask-Ns4cmh4hITlllpAk,
-    CodeTask-TkgG8t5JCMJVDoVb, CodeTask-ie1zFOWtqc6EvbAr), 2) ''VLINE PERIODO / RESPONSE=ANTERIOR...''
-    (3 nodos), 3) ''SYMBOL2 INTERPOL=JOIN...'' (CodeTask-KbHRFnaoSR2Bq6wI, CodeTask-R47QCuhcMSIJeuMG,
-    CodeTask-mCE2amv2UM7gUEki), 4) ''LEGEND1 FRAME...'' (3 nodos), 5) ''UPDATE SALDOS_SI
-    SET N_SI_C_AGENTE...'' (CodeTask-Lf2OAAam1xLYVxj4, CodeTask-PTl7dbnx3tB9LNaa,
-    CodeTask-vLMl6RS3eEI64niZ). Esta duplicación incrementa complejidad de mantenimiento
-    y riesgo de inconsistencias.'
-  justification: 'Refactorizar en macros SAS (%MACRO graph_config(), %MACRO update_saldos())
-    o en programas compartidos reduce LOC, facilita cambios centralizados y mejora
-    quality. Análisis: 8 bloques duplicados = 8 puntos de sincronización manual.'
-  impact: medium
-  effort: medium
-  risk: low
-  recommendation: approve
-  affected_nodes:
-  - CodeTask-Ns4cmh4hITlllpAk
-  - CodeTask-TkgG8t5JCMJVDoVb
-  - CodeTask-ie1zFOWtqc6EvbAr
-  - CodeTask-KbHRFnaoSR2Bq6wI
-  - CodeTask-R47QCuhcMSIJeuMG
-  - CodeTask-mCE2amv2UM7gUEki
-  - CodeTask-Lf2OAAam1xLYVxj4
-  - CodeTask-PTl7dbnx3tB9LNaa
-  - CodeTask-vLMl6RS3eEI64niZ
-  status: proposed
-  user_comment: ''
-  postponed_reason: ''
-- id: M-003
-  category: quality
-  title: Encapsular números mágicos y expresiones CASE repetidas en variables o funciones
-  description: 'Se encontraron 2 patrones críticos de calidad: 1) Expresión CASE ''CASE
-    WHEN T1.C_ENTRADA=\''D\'' THEN T1.DATO*-1 ELSE T1.DATO END'' repetida 25 veces
-    en nodos: CodeTask-2Qnp37e99kvQSM9m, CodeTask-6SjSzoc2tRAmj3bg, CodeTask-KbHRFnaoSR2Bq6wI,
-    CodeTask-c5JoNhJJnZiM91gN, CodeTask-eEgfNiAdcXrWGWaj, CodeTask-vXwkDE8f2OcjOwky,
-    CodeTask-yh5u6Xv3BMVagLtW (y 18 más). 2) Números mágicos sin etiqueta (511, 321,
-    1000, 51022, 51021, 5101, 3390101, 3390102, 339011, 341, 412, 334, 33901, 322,
-    352, 411, 331, 361, 36912, 36904) distribuidos en 12-27 nodos cada uno. Ambos
-    introducen inconsistencias y dificultan auditoría.'
-  justification: 'Crear variables de cálculo (%LET SIGN_ADJUSTMENT_D = ...) y constantes
-    denominadas (%LET SECTOR_CODIGO_HOLDING = 51022) centraliza definiciones, simplifica
-    testing y mejora legibilidad. Análisis: 25 CASE repetidas = 25 puntos de fallo;
-    20 números mágicos con alta dispersión = riesgo de desviación.'
+  title: Refactorizar expresiones CASE repetidas en funciones reutilizables
+  description: 'La expresión ''CASE WHEN T1.C_ENTRADA=''D'' THEN T1.DATO*-1 ELSE T1.DATO
+    END'' aparece 25 veces en nodos: CodeTask-2Qnp37e99kvQSM9m, CodeTask-6SjSzoc2tRAmj3bg,
+    CodeTask-Ix7ilK7RK3FKfDEH, CodeTask-KbHRFnaoSR2Bq6wI, CodeTask-KbgIzRrZ11b3kVse,
+    CodeTask-LbbQOdnOflsfHI1p, CodeTask-Ns4cmh4hITlllpAk, CodeTask-PV6f6Wo5zpk123T2
+    (y 17 más). Similar para ''CASE WHEN T1.C_ENTRADA=''H''...'' (16 repeticiones).
+    Esta duplicación genera código mantenciones divergentes.'
+  justification: El análisis evidencia 2 patrones CASE críticos con 25 y 16 repeticiones
+    respectivamente. Cada cambio en lógica de negocio requiere editar múltiples nodos,
+    aumentando riesgo de inconsistencias.
   impact: high
   effort: medium
   risk: medium
@@ -123,27 +89,64 @@ improvements:
   status: proposed
   user_comment: ''
   postponed_reason: ''
-- id: M-004
-  category: reproducibility
-  title: Centralizar y validar variables macro (ANIO, Sector, TRIM) con valores por
-    defecto y documentación
-  description: 'Se detectaron 11 variables macro utilizadas sin validación clara:
-    ANIO (18 nodos), Sector (9 nodos), TRIM (6 nodos), Entrada (4), C_WTW (4), user
-    (3), password (3), Codigo (3), Cuenta (2), rho (1), anio (1). Ejemplo: &ANIO usado
-    en CodeTask-2Qnp37e99kvQSM9m, CodeTask-LbbQOdnOflsfHI1p, ..., CodeTask-vLMl6RS3eEI64niZ
-    sin validación de rango. Esto introduce variabilidad y dificulta reproducción
-    de runs anteriores.'
-  justification: 'Implementar %LET con valores por defecto en autoexec, validación
-    explícita (ej. %IF &ANIO < 2000 OR &ANIO > %SYSFUNC(YEAR(%TODAY())) %THEN %ABORT;)
-    y logging de parámetros garantiza auditoría y reproducibilidad. Análisis: 11 macros
-    en 62 nodos = alto riesgo de propagación de errores.'
-  impact: high
+- id: M-003
+  category: maintainability
+  title: Extraer números mágicos a constantes con nombres significativos
+  description: 'Se detectan 15 constantes numéricas hardcodeadas con alta repetición:
+    511 (27 nodos), 321 (27 nodos), 1000 (24 nodos), 51022 (23 nodos), 51021 (22 nodos),
+    5101 (20 nodos), 3390101 (20 nodos), 3390102 (20 nodos), 339011 (17 nodos), 341
+    (17 nodos), 412 (16 nodos), 334 (15 nodos), 33901 (15 nodos), 322 (15 nodos),
+    352 (14 nodos). Ejemplo: CodeTask-1MZt2MbPkdLUOvbC contiene tanto 511 como 321
+    y 51022. Sin documentación clara del significado empresarial.'
+  justification: Los números mágicos rompen la semántica del código. No hay trazabilidad
+    del significado (¿sectores?, ¿códigos de cuenta?). Una revisión de clasificación
+    requerida cambios simultáneos en 20-27 nodos, imposible de garantizar consistencia.
+  impact: medium
   effort: medium
-  risk: low
+  risk: medium
+  recommendation: approve
+  affected_nodes:
+  - CodeTask-1MZt2MbPkdLUOvbC
+  - CodeTask-1luvy2zX48vyTm18
+  - CodeTask-6SjSzoc2tRAmj3bg
+  - CodeTask-9OqX3kaymboJVh4I
+  - CodeTask-ECZCZZvMxTO7sdpQ
+  - CodeTask-EiTHWvhqkY9b3Los
+  - CodeTask-Ix7ilK7RK3FKfDEH
+  - CodeTask-KbHRFnaoSR2Bq6wI
+  - CodeTask-KbgIzRrZ11b3kVse
+  - CodeTask-PV6f6Wo5zpk123T2
+  - CodeTask-SGvXxdgboVasDeiV
+  - CodeTask-TYjddV77Ba6raW6K
+  - CodeTask-VGRo6vNwmbm39953
+  - CodeTask-X1NjQIiqHvgmq4z5
+  - CodeTask-a5fupJ8fUrKfjLpj
+  - CodeTask-b4yKCgjI7DEeqndl
+  - CodeTask-c5JoNhJJnZiM91gN
+  - CodeTask-eEgfNiAdcXrWGWaj
+  - CodeTask-eF7cHe3ofCVn7nWp
+  - CodeTask-fuWrePKSkcUXvfZF
+  status: proposed
+  user_comment: ''
+  postponed_reason: ''
+- id: M-004
+  category: maintainability
+  title: Centralizar y documentar macro variables de configuración
+  description: 'Se detectan 12 macro variables distribuidas: ANIO (18 nodos), Sector
+    (9 nodos), TRIM (6 nodos), Entrada (4 nodos), C_WTW (4 nodos), user (3 nodos),
+    password (3 nodos), Codigo (3 nodos), Cuenta (2 nodos), rho (1 nodo), anio (1
+    nodo), Inst_nf (1 nodo). Inconsistencia de nomenclatura (ANIO vs anio). No existe
+    punto central de definición. Los nodos como CodeTask-rVgcAFrUWf36VVj6 contienen
+    variables de autenticación sin ofuscación aparente.'
+  justification: La dispersión de macro variables impide auditoría centralizada de
+    cambios y gestión de secretos. Variables de credenciales (user, password) en código
+    requieren separación inmediata. Inconsistencias de nombrado generan errores silenciosos.
+  impact: high
+  effort: high
+  risk: high
   recommendation: approve
   affected_nodes:
   - CodeTask-2Qnp37e99kvQSM9m
-  - CodeTask-7lh12aT9AnDfJenj
   - CodeTask-LbbQOdnOflsfHI1p
   - CodeTask-Lf2OAAam1xLYVxj4
   - CodeTask-M7Kq8x8xCBjt8NWW
@@ -165,22 +168,117 @@ improvements:
   user_comment: ''
   postponed_reason: ''
 - id: M-005
-  category: reproducibility
-  title: 'Documentar y verificar dependencias de BD: 62 tablas en 4 librefs (DCNIDATA,
-    GOBGENER, LIB, TABLAS) sin validación'
-  description: 'El análisis detectó dependencias en 4 librerías sin verificación de
-    accesibilidad: DCNIDATA (8 tablas, 4 nodos), GOBGENER (2 tablas, 1 nodo), LIB
-    (1 tabla SERIES_OBS, 3 nodos), TABLAS (34 tablas, 62 nodos). Ejemplos: BD_CTSI
-    usado en 20 nodos críticos (CodeTask-1MZt2MbPkdLUOvbC, CodeTask-KbHRFnaoSR2Bq6wI,
-    CodeTask-b4yKCgjI7DEeqndl, etc.), T_CONTRAPARTIDAS en 18 nodos. Sin verificación
-    de existencia/permisos, fallos aleatorios pueden interrumpir cadenas de proceso.'
-  justification: 'Implementar PROC SQL checks al inicio (SELECT * FROM DICTIONARY.TABLES
-    WHERE LIBNAME=''TABLAS'' AND MEMNAME=''BD_CTSI''), generar matriz de dependencias
-    y documentar tabla-by-table en Wiki/README. Análisis: 62 tablas en 84 nodos totales
-    = 74% dependencia de datos externos sin control.'
+  category: maintainability
+  title: Eliminar bloques de código duplicado en scripts de visualización
+  description: 'Se detectan 8 bloques duplicados en 3 nodos (CodeTask-Ns4cmh4hITlllpAk,
+    CodeTask-TkgG8t5JCMJVDoVb, CodeTask-ie1zFOWtqc6EvbAr): SYMBOL1 INTERPOL=JOIN,
+    VLINE PERIODO/RESPONSE=ANTERIOR, VLINE PERIODO/RESPONSE=NUEVA, VBAR PERIODO/RESPONSE=DELTA,
+    XAXIS DISCRETEORDER=UNFORMATTED, y 3 bloques más con SYMBOL2, LEGEND1. Configuración
+    idéntica en gráficos repetidos.'
+  justification: Bloques de código gráfico duplicados imposibilitan cambios consistentes
+    de estilos. Un cambio en formato de eje o leyenda requiere editar 3 nodos simultáneamente,
+    generando riesgo de inconsistencias visuales.
+  impact: medium
+  effort: low
+  risk: low
+  recommendation: approve
+  affected_nodes:
+  - CodeTask-Ns4cmh4hITlllpAk
+  - CodeTask-TkgG8t5JCMJVDoVb
+  - CodeTask-ie1zFOWtqc6EvbAr
+  - CodeTask-KbHRFnaoSR2Bq6wI
+  - CodeTask-R47QCuhcMSIJeuMG
+  - CodeTask-mCE2amv2UM7gUEki
+  status: proposed
+  user_comment: ''
+  postponed_reason: ''
+- id: Q-001
+  category: quality
+  title: Crear tabla de consulta (lookup table) para mapeos CASE repetidos
+  description: 'Más allá de la refactorización de expresiones CASE (M-002), la lógica
+    de mapeo ''C_ENTRADA=''D''→multiplicar por -1'' y ''C_CUENTA=''REC PRECIO REAJ''→''REC
+    PRECIO'''' (8 nodos: CodeTask-6SjSzoc2tRAmj3bg, CodeTask-KbgIzRrZ11b3kVse, CodeTask-SGvXxdgboVasDeiV,
+    CodeTask-YoYrhsTHidYHYT2P, CodeTask-eEgfNiAdcXrWGWaj, CodeTask-jo2ncH7bTsseLYP8,
+    CodeTask-s2iKVLUIFegPxhYS, CodeTask-yh5u6Xv3BMVagLtW) debe residir en tabla de
+    datos centralizada, permitiendo auditabilidad y versioning.'
+  justification: Reglas de negocio codificadas en CASE statements son frágiles y no
+    versionables. Migrar a tabla de lookup permite auditoría de cambios, pruebas independientes
+    y reutilización en múltiples contextos (reportes, dashboards).
   impact: high
   effort: medium
+  risk: low
+  recommendation: approve
+  affected_nodes:
+  - CodeTask-6SjSzoc2tRAmj3bg
+  - CodeTask-KbgIzRrZ11b3kVse
+  - CodeTask-SGvXxdgboVasDeiV
+  - CodeTask-YoYrhsTHidYHYT2P
+  - CodeTask-eEgfNiAdcXrWGWaj
+  - CodeTask-jo2ncH7bTsseLYP8
+  - CodeTask-s2iKVLUIFegPxhYS
+  - CodeTask-yh5u6Xv3BMVagLtW
+  status: proposed
+  user_comment: ''
+  postponed_reason: ''
+- id: Q-002
+  category: quality
+  title: Documentar y estandarizar expresión CASE WHEN T4.C_SCN_N1 CONTAINS 'AF.52'
+  description: 'La expresión ''CASE WHEN T4.C_SCN_N1 CONTAINS ''AF.52'' THEN ''CUOTAS
+    DE FONDOS''...'' aparece en 5 nodos (CodeTask-FqwyEcVSHGBw3z1q, CodeTask-KbHRFnaoSR2Bq6wI,
+    CodeTask-eHcgu5CrdT7hHfZQ, CodeTask-kVJViJGgbJOLVelr, CodeTask-mCE2amv2UM7gUEki).
+    La lógica de clasificación de instrumentos financieros no está documentada: ¿qué
+    significa ''AF.52''? ¿existe versión de catálogo?'
+  justification: Clasificadores de instrumentos son datos maestros empresariales.
+    Codificarlos impide versioning y comparabilidad con sistemas externos. Se requiere
+    tabla de referencia.
+  impact: medium
+  effort: medium
   risk: medium
+  recommendation: approve
+  affected_nodes:
+  - CodeTask-FqwyEcVSHGBw3z1q
+  - CodeTask-KbHRFnaoSR2Bq6wI
+  - CodeTask-eHcgu5CrdT7hHfZQ
+  - CodeTask-kVJViJGgbJOLVelr
+  - CodeTask-mCE2amv2UM7gUEki
+  status: proposed
+  user_comment: ''
+  postponed_reason: ''
+- id: R-001
+  category: reproducibility
+  title: Documentar y verificar dependencias de base de datos DCNIDATA
+  description: 'Se detectan 8 tablas en libref DCNIDATA sin verificación DB (verified_db=false,
+    engine=''''): AHORRO_PRE_0, AHORRO_PRE_1, DEUDA_HOGARES, DEUDA_HOLDING, FBCF_SF,
+    SALDOS_WTW_SI, SALIDA_WTW_RESUMEN, SALIDA_WTW_RESUMEN_ANT. Solo CodeTask-b4yKCgjI7DEeqndl
+    y CodeTask-GT6PneNaAuUXLt8o las referencian. Sin información de schema, no hay
+    garantía de compatibilidad en entornos diferentes.'
+  justification: Las tablas DCNIDATA no tienen engine registrado ni verificación.
+    Esto impide reproducción en otros entornos (prueba, análisis). Cambios en estructura
+    de tabla rompen silenciosamente el pipeline.
+  impact: high
+  effort: medium
+  risk: high
+  recommendation: approve
+  affected_nodes:
+  - CodeTask-b4yKCgjI7DEeqndl
+  - CodeTask-GT6PneNaAuUXLt8o
+  status: proposed
+  user_comment: ''
+  postponed_reason: ''
+- id: R-002
+  category: reproducibility
+  title: Centralizar y documentar catálogos de tabla TABLAS (34 tablas críticas)
+  description: 'El libref TABLAS contiene 34 tablas distribuidas en 62 nodos sin verificación
+    centralizada (verified_db=false). Tablas críticas: BD_CTSI (20 nodos), T_SECTORIZACION
+    (19 nodos), T_CONTRAPARTIDAS (18 nodos), T_INSTRUMENTOS (20 nodos), T_CUENTA (9
+    nodos), etc. No hay evidencia de versionado o cambios históricos. Ejemplo: BD_CTSI
+    se usa en 20 nodos diferentes sin garantía de consistencia de schema.'
+  justification: TABLAS es el hub de datos maestros. Sin verificación centralizada,
+    cambios en estructura (agregar/renombrar columnas) rompen silenciosamente múltiples
+    nodos. Se requiere layer de abstracción.
+  impact: high
+  effort: high
+  risk: high
   recommendation: approve
   affected_nodes:
   - CodeTask-1MZt2MbPkdLUOvbC
@@ -190,7 +288,6 @@ improvements:
   - CodeTask-6SjSzoc2tRAmj3bg
   - CodeTask-7lh12aT9AnDfJenj
   - CodeTask-9OqX3kaymboJVh4I
-  - CodeTask-b4yKCgjI7DEeqndl
   - CodeTask-ECZCZZvMxTO7sdpQ
   - CodeTask-EiTHWvhqkY9b3Los
   - CodeTask-FqwyEcVSHGBw3z1q
@@ -203,20 +300,39 @@ improvements:
   - CodeTask-Lf2OAAam1xLYVxj4
   - CodeTask-M7Kq8x8xCBjt8NWW
   - CodeTask-MkeeAoZmCaYLJwXL
+  - CodeTask-OBQXqokTpv23CnGn
+  status: proposed
+  user_comment: ''
+  postponed_reason: ''
+- id: R-003
+  category: reproducibility
+  title: Auditar y documentar acceso a URLs hardcodeadas en PROC HTTP
+  description: 'Se detectan 3 nodos (CodeTask-6NFJPkCu6mSpiJT9, CodeTask-PctehnQmgLccQ4yN,
+    CodeTask-rVgcAFrUWf36VVj6) con URLs: ''https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=&user%bquote(&)pass=&password%bquote''.
+    Las credenciales están parametrizadas pero la URL es fija. Sin documentación de
+    versión de API, cambios en endpoint rompen silenciosamente los nodos.'
+  justification: Dependencias de API externa requieren versionado y monitoreo. URLs
+    hardcodeadas + credenciales en variables de macro generan riesgo de exposición.
+    Se requiere archivo de configuración centralizado con URLs por entorno.
+  impact: high
+  effort: medium
+  risk: high
+  recommendation: approve
+  affected_nodes:
+  - CodeTask-6NFJPkCu6mSpiJT9
+  - CodeTask-PctehnQmgLccQ4yN
+  - CodeTask-rVgcAFrUWf36VVj6
   status: proposed
   user_comment: ''
   postponed_reason: ''
 category_scan_summary:
-  maintainability: Se detectaron 83 code smells de maintainability, principalmente
-    rutas hardcodeadas (38 instancias en nodos como CodeTask-1luvy2zX48vyTm18, CodeTask-6SjSzoc2tRAmj3bg,
-    CodeTask-PV6f6Wo5zpk123T2, CodeTask-uEJMdbfEYJHVR2af, entre otros) y duplicación
-    significativa de fragmentos SAS (8 bloques duplicados en 3+ nodos). Se requieren
-    2 mejoras correlativas.
-  quality: Se identificaron 30 code smells de quality, incluyendo expresiones CASE
-    repetidas 25 veces (en CodeTask-2Qnp37e99kvQSM9m, CodeTask-KbHRFnaoSR2Bq6wI y
-    23 nodos más) y números mágicos sin encapsular (27 ocurrencias de '511', '321',
-    '1000', '51022', etc.). Se propone 1 ficha de mejora.
-  reproducibility: Se hallaron 30 code smells de reproducibility, derivados de variables
-    macro sin validación (ANIO con 18 usos, Sector con 9, TRIM con 6 en nodos críticos)
-    y dependencias de BD no verificadas (DCNIDATA, GOBGENER, TABLAS con 62 tablas
-    en total). Se requiere 1 ficha de consolidación.
+  maintainability: Se detectan 84 smells de mantenibilidad. Predominan rutas hardcodeadas
+    (38 instancias en 23 nodos) que imposibilitan reutilización en diferentes entornos.
+    Las mejoras se enfocan en centralizar configuraciones y refactorizar patrones
+    de acceso a datos.
+  quality: Se detectan 30 smells de calidad. La duplicación masiva de código (5 bloques
+    de 3 nodos cada uno, 6 expresiones CASE con 5-25 repeticiones) y números mágicos
+    (15 constantes con 12-27 repeticiones) comprometen la confiabilidad y testabilidad.
+  reproducibility: Se detectan 31 smells de reproducibilidad. Las dependencias de
+    base de datos no verificadas (8 tablas en DCNIDATA, 34 en TABLAS) y variables
+    de macro sin centralización (12 variables entre 1-18 nodos) generan fragilidad.

@@ -2,7 +2,7 @@
   "project_name": "Síntesis_M_CR18",
   "egp_file": "D:\\Projects\\Migraciones-SAS\\Síntesis_M_CR18\\input\\egp\\Síntesis_M_CR18.egp",
   "output_strategy": "notebook-flow",
-  "generated_at": "2026-08-10T20:19:19.478502+00:00",
+  "generated_at": "2026-08-11T15:26:41.012361+00:00",
   "targets": [
     {
       "node_id": "CodeTask-XkoygblbmDJ46M1C",
@@ -20,7 +20,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
@@ -33,8 +35,8 @@
       "node_type": "PROC_SQL",
       "pfd_id": "ProcessFlowContainer-Yr37BlnpqddYkIrH",
       "pfd_label": "Autoexec",
-      "strategy": "pandas",
-      "placement": "ambiguous",
+      "strategy": "hybrid",
+      "placement": "hybrid",
       "notebook_path": "output/NB-01_autoexec.ipynb",
       "input_datasets": [
         "LIB.SERIES_OBS",
@@ -63,7 +65,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "R-003"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-XkoygblbmDJ46M1C"
@@ -94,9 +98,9 @@
           "index": 2,
           "offset": 340,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -112,9 +116,9 @@
           "index": 4,
           "offset": 943,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -130,9 +134,9 @@
           "index": 6,
           "offset": 1546,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -148,9 +152,9 @@
           "index": 8,
           "offset": 2166,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -211,9 +215,9 @@
           "index": 15,
           "offset": 3091,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -252,7 +256,8 @@
             "sin referencias a datos; utilitario — traduce a Python plano"
           ]
         }
-      ]
+      ],
+      "temp_table_strategy": "session_sql"
     },
     {
       "node_id": "CodeTask-2mdU6L71g42MYPd6",
@@ -286,13 +291,15 @@
       "node_type": "IMPORT",
       "pfd_id": "PFD-I32F27oZ8ICuby6y",
       "pfd_label": "Controles y ajustes iniciales",
-      "strategy": "pandas",
-      "placement": "ambiguous",
+      "strategy": "hybrid",
+      "placement": "hybrid",
       "notebook_path": "output/NB-02_controles_y_ajustes_iniciales.ipynb",
       "input_datasets": [
         "LIB.SERIES_OBS",
         "TABLAS.AJUSTE_BONOS",
         "TABLAS.AJ_VARIOS",
+        "TABLAS.BASE_DEUDA_EMV",
+        "TABLAS.BD_CTSI_CIERRE",
         "TABLAS.RP_HH",
         "TABLAS.SIFMI",
         "WORK.AF32_36_6",
@@ -362,7 +369,9 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
-        "M-004"
+        "M-001",
+        "M-004",
+        "R-003"
       ],
       "preprocess_steps": [],
       "dependencies": [],
@@ -427,6 +436,16 @@
         }
       ],
       "notes": "",
+      "dataset_file_tables": [
+        {
+          "path": "/sasdata/BCCH/GEM_DCNI/02_CNSI/02_PRE_SINTESIS/BD_CTSI_CIERRE.sas7bdat",
+          "table": "TABLAS.BD_CTSI_CIERRE"
+        },
+        {
+          "path": "/sasdata/BCCH/GEM_DCNI/02_CNSI/05_DCV/Data/HSS/BASE_DEUDA_EMV.sas7bdat",
+          "table": "TABLAS.BASE_DEUDA_EMV"
+        }
+      ],
       "placement_segments": [
         {
           "index": 0,
@@ -522,9 +541,9 @@
           "index": 10,
           "offset": 6092,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -567,9 +586,9 @@
           "index": 15,
           "offset": 6891,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -585,9 +604,9 @@
           "index": 17,
           "offset": 7678,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -603,9 +622,9 @@
           "index": 19,
           "offset": 8443,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -621,9 +640,9 @@
           "index": 21,
           "offset": 9215,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -639,9 +658,9 @@
           "index": 23,
           "offset": 9952,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -657,9 +676,9 @@
           "index": 25,
           "offset": 10680,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -675,9 +694,9 @@
           "index": 27,
           "offset": 11424,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -693,9 +712,9 @@
           "index": 29,
           "offset": 12153,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -711,9 +730,9 @@
           "index": 31,
           "offset": 12892,
           "kind": "proc sql",
-          "placement": "ambiguous",
+          "placement": "sql_pushdown",
           "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -873,9 +892,9 @@
           "index": 49,
           "offset": 17562,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -900,9 +919,9 @@
           "index": 52,
           "offset": 18346,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -972,18 +991,18 @@
           "index": 60,
           "offset": 20221,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
           "index": 61,
           "offset": 20919,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -1004,6 +1023,13 @@
             "sin referencias a datos; utilitario — traduce a Python plano"
           ]
         }
+      ],
+      "temp_table_strategy": "session_sql",
+      "created_tables": [
+        "TABLAS.CNT",
+        "TABLAS.PIB",
+        "TABLAS.SIFMI",
+        "TABLAS.T_CCAST"
       ]
     },
     {
@@ -1035,6 +1061,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
+        "M-001",
         "M-004"
       ],
       "preprocess_steps": [],
@@ -1058,7 +1085,10 @@
       "placement": "hybrid",
       "notebook_path": "output/NB-02_controles_y_ajustes_iniciales.ipynb",
       "input_datasets": [
+        "TABLAS.CARTERA_INV_EXTERNA",
+        "TABLAS.CARTERA_INV_NACIONAL",
         "TABLAS.DEP_HH_FM",
+        "TABLAS.IDENTIFICA_FFMM",
         "WORK.BASE_DATOS",
         "WORK.DATA_DEP_RUN",
         "WORK.DATA_FM",
@@ -1106,7 +1136,9 @@
         "TABLAS.DEP_HH_FM"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-dYzl6IKuUE5lnGRx",
@@ -1127,6 +1159,20 @@
         }
       ],
       "notes": "",
+      "dataset_file_tables": [
+        {
+          "path": "/sasdata/BCCH/GEM_DCNI/02_CNSI/12_SI_FI/33901_FFMM/CARTERA_INV_EXTERNA.sas7bdat",
+          "table": "TABLAS.CARTERA_INV_EXTERNA"
+        },
+        {
+          "path": "/sasdata/BCCH/GEM_DCNI/02_CNSI/12_SI_FI/33901_FFMM/CARTERA_INV_NACIONAL.sas7bdat",
+          "table": "TABLAS.CARTERA_INV_NACIONAL"
+        },
+        {
+          "path": "/sasdata/BCCH/GEM_DCNI/02_CNSI/12_SI_FI/33901_FFMM/IDENTIFICA_FFMM.sas7bdat",
+          "table": "TABLAS.IDENTIFICA_FFMM"
+        }
+      ],
       "placement_segments": [
         {
           "index": 0,
@@ -1141,9 +1187,9 @@
           "index": 1,
           "offset": 50,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -1204,18 +1250,18 @@
           "index": 8,
           "offset": 1438,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
           "index": 9,
           "offset": 1587,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -1643,7 +1689,10 @@
           ]
         }
       ],
-      "temp_table_strategy": "session_sql"
+      "temp_table_strategy": "session_sql",
+      "created_tables": [
+        "TABLAS.BONOS_EXT_PRECIO"
+      ]
     },
     {
       "node_id": "CodeTask-uRMT7rfFsM7wFmZJ",
@@ -1671,7 +1720,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
@@ -2608,7 +2659,9 @@
       "output_files": [],
       "output_tables": [],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-uRMT7rfFsM7wFmZJ"
@@ -2665,7 +2718,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
@@ -2685,9 +2740,9 @@
           "index": 1,
           "offset": 72,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -3574,7 +3629,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-1luvy2zX48vyTm18"
@@ -5339,7 +5396,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-1luvy2zX48vyTm18",
@@ -6376,7 +6435,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-1MZt2MbPkdLUOvbC",
@@ -9903,7 +9964,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-1MZt2MbPkdLUOvbC",
@@ -14741,7 +14804,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
@@ -14761,9 +14826,9 @@
           "index": 1,
           "offset": 70,
           "kind": "proc sql",
-          "placement": "hybrid",
+          "placement": "sql_pushdown",
           "reasons": [
-            "mezcla tablas BD con archivos"
+            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
           ]
         },
         {
@@ -15902,7 +15967,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-a5fupJ8fUrKfjLpj"
@@ -17667,7 +17734,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-KbgIzRrZ11b3kVse",
@@ -18704,7 +18773,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-EiTHWvhqkY9b3Los",
@@ -22231,7 +22302,9 @@
         "TABLAS.BD_CTSI"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001"
+      ],
       "preprocess_steps": [],
       "dependencies": [
         "CodeTask-EiTHWvhqkY9b3Los",
@@ -27349,7 +27422,10 @@
       "macro_params": [],
       "file_imports": [],
       "notes": "",
-      "temp_table_strategy": "session_sql"
+      "temp_table_strategy": "session_sql",
+      "created_tables": [
+        "TABLAS.T_INST_NF"
+      ]
     },
     {
       "node_id": "Query-yJlzWiFrCH19inhY",
@@ -27437,6 +27513,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
+        "M-001",
         "M-004"
       ],
       "preprocess_steps": [],
@@ -30427,9 +30504,7 @@
         "TABLAS.FILTROS"
       ],
       "reference_csv": null,
-      "approved_improvements": [
-        "M-004"
-      ],
+      "approved_improvements": [],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [
@@ -30567,7 +30642,10 @@
           ]
         }
       ],
-      "temp_table_strategy": "session_sql"
+      "temp_table_strategy": "session_sql",
+      "created_tables": [
+        "TABLAS.FILTROS"
+      ]
     },
     {
       "node_id": "CodeTask-v2KL58W1Ordii4kk",
@@ -31532,6 +31610,7 @@
       ],
       "reference_csv": null,
       "approved_improvements": [
+        "M-001",
         "M-004"
       ],
       "preprocess_steps": [],
@@ -32052,6 +32131,9 @@
             "librefs sin confirmar como BD o ruta: ['DCNIDATA']"
           ]
         }
+      ],
+      "created_tables": [
+        "DCNIDATA.SALIDA_WTW_RESUMEN_ANT"
       ]
     },
     {
@@ -32060,8 +32142,8 @@
       "node_type": "PROC_SQL",
       "pfd_id": "ProcessFlowContainer-J3t3lB9nS5yuVyLR",
       "pfd_label": "Varios",
-      "strategy": "pandas",
-      "placement": "ambiguous",
+      "strategy": "sql_pushdown",
+      "placement": "sql_pushdown",
       "notebook_path": "output/NB-14_varios.ipynb",
       "input_datasets": [
         "LIB.SERIES_OBS",
@@ -32095,230 +32177,16 @@
         "TABLAS.CNT"
       ],
       "reference_csv": null,
-      "approved_improvements": [],
+      "approved_improvements": [
+        "M-001",
+        "R-003"
+      ],
       "preprocess_steps": [],
       "dependencies": [],
       "macro_params": [],
       "file_imports": [],
       "notes": "",
-      "placement_segments": [
-        {
-          "index": 0,
-          "offset": 0,
-          "kind": "preambulo",
-          "placement": "utility",
-          "reasons": [
-            "sin referencias a datos; utilitario — traduce a Python plano"
-          ]
-        },
-        {
-          "index": 1,
-          "offset": 217,
-          "kind": "proc http",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 2,
-          "offset": 481,
-          "kind": "proc sql",
-          "placement": "ambiguous",
-          "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
-          ]
-        },
-        {
-          "index": 3,
-          "offset": 974,
-          "kind": "proc http",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 4,
-          "offset": 1239,
-          "kind": "proc sql",
-          "placement": "ambiguous",
-          "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
-          ]
-        },
-        {
-          "index": 5,
-          "offset": 1740,
-          "kind": "proc http",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 6,
-          "offset": 2004,
-          "kind": "proc sql",
-          "placement": "ambiguous",
-          "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
-          ]
-        },
-        {
-          "index": 7,
-          "offset": 2511,
-          "kind": "proc http",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 8,
-          "offset": 2776,
-          "kind": "proc sql",
-          "placement": "ambiguous",
-          "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
-          ]
-        },
-        {
-          "index": 9,
-          "offset": 3249,
-          "kind": "proc http",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 10,
-          "offset": 3513,
-          "kind": "proc sql",
-          "placement": "ambiguous",
-          "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
-          ]
-        },
-        {
-          "index": 11,
-          "offset": 3977,
-          "kind": "proc http",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 12,
-          "offset": 4241,
-          "kind": "proc sql",
-          "placement": "ambiguous",
-          "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
-          ]
-        },
-        {
-          "index": 13,
-          "offset": 4721,
-          "kind": "proc http",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 14,
-          "offset": 4985,
-          "kind": "proc sql",
-          "placement": "ambiguous",
-          "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
-          ]
-        },
-        {
-          "index": 15,
-          "offset": 5450,
-          "kind": "proc http",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 16,
-          "offset": 5714,
-          "kind": "proc sql",
-          "placement": "ambiguous",
-          "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
-          ]
-        },
-        {
-          "index": 17,
-          "offset": 6189,
-          "kind": "proc http",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 18,
-          "offset": 6453,
-          "kind": "proc sql",
-          "placement": "ambiguous",
-          "reasons": [
-            "librefs sin confirmar como BD o ruta: ['LIB']"
-          ]
-        },
-        {
-          "index": 19,
-          "offset": 6913,
-          "kind": "data",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 20,
-          "offset": 7014,
-          "kind": "proc sql",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 21,
-          "offset": 7073,
-          "kind": "proc sql",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 22,
-          "offset": 7132,
-          "kind": "proc sql",
-          "placement": "sql_pushdown",
-          "reasons": [
-            "entradas y salidas en BD (WORK = tabla temporal), lógica expresable en SQL"
-          ]
-        },
-        {
-          "index": 23,
-          "offset": 7194,
-          "kind": "proc sql",
-          "placement": "utility",
-          "reasons": [
-            "sin referencias a datos; utilitario — traduce a Python plano"
-          ]
-        }
-      ]
+      "temp_table_strategy": "session_sql"
     },
     {
       "node_id": "CodeTask-lVG5feJnCetjgbtL",
@@ -32345,6 +32213,7 @@
       "output_tables": [],
       "reference_csv": null,
       "approved_improvements": [
+        "M-001",
         "M-004"
       ],
       "preprocess_steps": [],
@@ -32450,6 +32319,9 @@
             "librefs sin confirmar como BD o ruta: ['DCNIDATA']"
           ]
         }
+      ],
+      "created_tables": [
+        "DCNIDATA.FBCF_SF"
       ]
     },
     {
@@ -32575,12 +32447,9 @@
     "Plan generado por build_translation_plan.py; el agente debe revisar strategy/notes y el usuario aprobar.",
     "strategy derivada del placement efectivo (clasificador + overrides de la entrevista B4b); utility → Python plano.",
     "output_tables = salidas calificadas no-WORK del nodo (vista v2); input/output_datasets = vista v2 del parser por nodo.",
-    "placement ambiguous sin resolver en CodeTask-6NFJPkCu6mSpiJT9 → strategy pandas (supuesto visible; resolver el prefijo en la entrevista B4b o fijar translation.ambiguous_strategy) — OJO: si el libref resulta ser una base, esto baja la(s) tabla(s) del servidor enteras a memoria",
-    "placement ambiguous sin resolver en CodeTask-rVgcAFrUWf36VVj6 → strategy pandas (supuesto visible; resolver el prefijo en la entrevista B4b o fijar translation.ambiguous_strategy) — OJO: si el libref resulta ser una base, esto baja la(s) tabla(s) del servidor enteras a memoria",
     "placement ambiguous sin resolver en CodeTask-b4yKCgjI7DEeqndl → strategy pandas (supuesto visible; resolver el prefijo en la entrevista B4b o fijar translation.ambiguous_strategy) — OJO: si el libref resulta ser una base, esto baja la(s) tabla(s) del servidor enteras a memoria",
     "placement ambiguous sin resolver en CodeTask-vLMl6RS3eEI64niZ → strategy pandas (supuesto visible; resolver el prefijo en la entrevista B4b o fijar translation.ambiguous_strategy) — OJO: si el libref resulta ser una base, esto baja la(s) tabla(s) del servidor enteras a memoria",
     "placement ambiguous sin resolver en CodeTask-ryd9Qv5seQRPtvOD → strategy pandas (supuesto visible; resolver el prefijo en la entrevista B4b o fijar translation.ambiguous_strategy) — OJO: si el libref resulta ser una base, esto baja la(s) tabla(s) del servidor enteras a memoria",
-    "placement ambiguous sin resolver en CodeTask-PctehnQmgLccQ4yN → strategy pandas (supuesto visible; resolver el prefijo en la entrevista B4b o fijar translation.ambiguous_strategy) — OJO: si el libref resulta ser una base, esto baja la(s) tabla(s) del servidor enteras a memoria",
     "placement ambiguous sin resolver en CodeTask-GT6PneNaAuUXLt8o → strategy pandas (supuesto visible; resolver el prefijo en la entrevista B4b o fijar translation.ambiguous_strategy) — OJO: si el libref resulta ser una base, esto baja la(s) tabla(s) del servidor enteras a memoria",
     "&ANIO sin valor declarado → la celda 'parameters' lo deja en None (declararlo en project_config.yaml → run.macro_params o en la entrevista B4)",
     "&C_WTW sin valor declarado → la celda 'parameters' lo deja en None (declararlo en project_config.yaml → run.macro_params o en la entrevista B4)",

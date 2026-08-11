@@ -4,27 +4,27 @@
   "reviews": [
     {
       "node_id": "CodeTask-Lf2OAAam1xLYVxj4",
-      "note": "Crea tabla principal de saldos agregados por múltiples dimensiones con lógica de negocio en CASE anidados y acceso a cuatro tablas de referencia (Sectorizacion, Instrumentos, Contrapartidas); riesgo: macros dinámicas (&ANIO), UPDATEs post-CREATE complejos, y normalizaciones boilerplate en SQL que requieren conversión a operaciones DataFrames en pandas."
+      "note": "Nodo principal que construye Saldos_SI con PROC SQL: múltiples LEFT JOINs de tablas de referencia (Sectorizacion, Instrumentos, Contrapartidas) con lógica condicional compleja (CASE anidados), macro variables (&ANIO, &C_WTW) y divisiones de escala. Riesgo: dependencia de estructura de tablas DBMS (TABLAS.BD_CTSI), nombres normalizados con sintaxis SAS ('AÑO'n, PUT/CHAR), y lógica de agrupación con calculated columns que requieren validación de índices y tipos."
     },
     {
       "node_id": "Query-VQ29h8krzaqVLkki",
-      "note": "Consulta DISTINCT simple que extrae valores únicos de N_SCN_wtw desde SALDOS_SI; bajo riesgo, migración directa a pandas.unique()."
+      "note": "Consulta simple DISTINCT sobre WORK.Saldos_SI para extraer valores únicos de N_SCN_wtw. Riesgo: depende de que Saldos_SI esté completamente construida; si hay nulls o caracteres especiales en el clasificador, la conversión a lista de tuplas en Python puede requerir normalización."
     },
     {
       "node_id": "Query-BLk9lewZ7zj2cQFo",
-      "note": "Consulta DISTINCT simple que extrae valores únicos de N_SI_C_AGENTE desde SALDOS_SI; bajo riesgo, migración directa a pandas.unique()."
+      "note": "Consulta DISTINCT de N_SI_C_AGENTE desde Saldos_SI para listar emisores/acreedores únicos. Riesgo: valores pueden incluir combinaciones con espacios y caracteres especiales SAS; la posterior alimentación a listboxes/dropdowns requiere garantizar encodificación UTF-8."
     },
     {
       "node_id": "CodeTask-ziOqjdQngJ3iTiRS",
-      "note": "Genera tabla de selección filtrada, ordena datos y renderiza gráfico con PROC SGRENDER usando template dinámico; riesgos: dependencia de template externo (template_chart4), output gráfico ODS, y macros en título dinámico (&C_WTW)."
+      "note": "Nodo de visualización: crea gráfico de barras por instrumento usando PROC SGRENDER con template externo (template_chart4). Riesgo: referencia a template SAS no versionado, filtros condicionales sobre macro &C_WTW con lógica if-then de entrada (D/H según si es 'Préstamos'), y ODS graphics requieren traducción a bibliotecas Python (matplotlib/plotly) con adaptación de estilos y etiquetas."
     },
     {
       "node_id": "CodeTask-PTl7dbnx3tB9LNaa",
-      "note": "Duplica lógica de creación de Saldos_SI pero con tabla fuente parametrizada (BD_CTSI_R&ANIO&TRIM) sin fecha mínima; riesgos: macros concatenadas en nombre de tabla, lógica CASE idéntica pero sin UPDATEs de normalización completos, y PROC TABULATE con formato condicional que requiere mapeo a herramienta de reporting Python."
+      "note": "Duplica lógica del primer nodo pero con tabla fuente dinámica (BD_CTSI_R&ANIO&TRIM) y sin chequeos WTW ni UPDATEs posteriores. Riesgo: nombres de tabla construidos con macros, dificulta rastreo de dependencias; no recalcula 'Fondos de mutuos' pero sí normaliza 'Sociedades no financieras', inconsistencia respecto al original."
     },
     {
       "node_id": "CodeTask-Dn53X4xCKNDMzlYP",
-      "note": "Similar a ziOqjdQngJ3iTiRS pero filtra por cuenta='Financiera' en vez de 'Bce Final'; riesgo: idéntica dependencia de template, ODS gráfico, y marco dinámico, con agregación similar pero en rama diferente del negocio."
+      "note": "Segundo gráfico similar a S8_wt_graph pero filtra por C_CUENTA='Financiera' en lugar de 'Bce Final'. Riesgo: mismo riesgo de template externo y macro condicional (&C_WTW); los filtros WHERE bifurcados según tipo de instrumento pueden generar conjuntos vacíos si la macro no coincide con valores reales."
     }
   ]
 }

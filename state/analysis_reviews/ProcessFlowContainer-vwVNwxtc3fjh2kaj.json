@@ -4,31 +4,31 @@
   "reviews": [
     {
       "node_id": "CodeTask-vKSNOED9VpSvBnYB",
-      "note": "Respalda la tabla base de cuentas nacionales antes de procesamiento: depende de macro dinámicas (TABLAS.BD_CTSI_R&ANIO&TRIM) y requiere validación de la tabla fuente existente."
+      "note": "Genera respaldo de la base BD_CTSI usando macros dinámicas (&ANIO&TRIM) para el nombre de dataset. Riesgo: las macros no se resuelven en Python; requiere parametrización explícita."
     },
     {
       "node_id": "CodeTask-2Qnp37e99kvQSM9m",
-      "note": "Núcleo de transformación: múltiples joins implícitos entre tablas de dimensiones (Sectorizacion, Instrumentos), lógica de recodificación de agentes con 12 UPDATES secuenciales, y cálculos de PIB con CALCULATED fields—requiere verificación de integridad referencial y dependencia de referencia temporal (TABLAS.tiempo)."
+      "note": "Procesa JOIN implícitos entre cuatro tablas (BD_CTSI, T_Sectorizacion, T_Instrumentos, tiempo) con múltiples UPDATE/DELETE y transformaciones de datos. Riesgo: CONTAINS, SUBSTR, CASE con lógica compleja; joins por claves múltiples; macros &Sector; formato COMMA14."
     },
     {
       "node_id": "CodeTask-em3EefKlkASf9L3q",
-      "note": "Genera reportes tabulares anuales sin lógica de transformación: depende completamente de V_DELTA_SC creada en nodo anterior, usar PROC TABULATE requiere datos pre-agregados validados."
+      "note": "Genera reportes tabulares anuales (PROC TABULATE) sobre cambios entre versiones. Riesgo: depende de V_DELTA_SC del nodo anterior; formato COMMA14; macros &Sector; lógica de WHERE con CONTAINS."
     },
     {
       "node_id": "CodeTask-bilvsdL51BAnsUEr",
-      "note": "Reacomoda datos a escala de PIB y recodifica categorías de ingreso: múltiples UPDATEs condicionales con lógica de negocio (Ingreso empresarial, disponible, deuda), cambios de signo por entrada (D/H)—requiere revisión de impacto de transformaciones y correlación con nodo anterior."
+      "note": "Transforma datos a porcentajes del PIB y genera tabla COMPARA_RES con múltiples UPDATE condicionales y normalizaciones de sectores/cuentas. Riesgo: UPDATE condicionales complejos; SUBSTR; lógica de imputación (multiplicación por -1 según condiciones); columna calculada con SUBSTR."
     },
     {
       "node_id": "CodeTask-Ns4cmh4hITlllpAk",
-      "note": "Calcula variaciones anuales de ingreso disponible en hogares y genera gráficos por cuenta con PROC GBARLINE y SGPLOT: depende de V_DELTA_SC y COMPARA_SC_PIBF, manejo de macros de parámetros (&Sector, &Cuenta, &Entrada, &Codigo) requiere escape especial en traducción."
+      "note": "Calcula índices trimestrales de ingreso disponible (YD_TRIM, YD_VA, YD_VA_D) con JOINs auto-referenciados y lógica de variación anual. Riesgo: YD_MOD suma 1 a AÑO para cálculo desfasado; formatos COMMA14.2; macros &Cuenta y &Sector; DROP TABLE de dependencias."
     },
     {
       "node_id": "CodeTask-ie1zFOWtqc6EvbAr",
-      "note": "Análisis detallado por instrumento financiero: depende de COMPARA y COMPARA_SC_PIBF, múltiples PROC GBARLINE y SGPLOT con lógica de filtros parametrizados (&Codigo, &Entrada)—requiere verificación de coherencia de vistas SQL temporales."
+      "note": "Crea tablas resumen por instrumento y gráficos (GBARLINE, SGPLOT) comparando versiones anterior/nueva/delta. Riesgo: procesos gráficos SAS-específicos; WHERE con múltiples condiciones y exclusiones (NOT IN); macros &Codigo, &Entrada; formatos COMMA14.1; vistas temporales."
     },
     {
       "node_id": "CodeTask-TkgG8t5JCMJVDoVb",
-      "note": "Análisis de cuentas no financieras por instrumento: similar al nodo anterior pero filtra by (&Inst_nf, &Cuenta), genera gráficos con parametrización—dependencia de datos previos y riesgo de incompatibilidad de macros entre sesiones."
+      "note": "Genera tablas y gráficos de cuentas no financieras por instrumento y contragente. Riesgo: similar a nodo anterior; macros &Cuenta, &Entrada, &Inst_nf; PROC GBARLINE y SGPLOT con formatos y estilos SAS; gestión de vistas temporales (WORK.SORTTempTableSorted)."
     }
   ]
 }

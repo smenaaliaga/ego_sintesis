@@ -4,31 +4,31 @@
   "reviews": [
     {
       "node_id": "CodeTask-jPjrJizeiaHvjreh",
-      "note": "Calcula cuenta de distribución del ingreso de empresas (SNF) mediante PROC SQL con múltiples JOINs a tablas de dimensiones (sectorizacion, instrumentos) y recodificación de clasificaciones SAS (N_SCN) con lógica anidada de CASE WHEN; riesgo: queries complejas con variables derivadas calculadas que dependen de formato de entrada exacto ('AÑO'n con comillas) y relaciones implícitas entre fuentes de datos que pueden no trasladarse directamente a pandas groupby."
+      "note": "Manipulación de signos contables y cálculo de CNF para empresas (S.11): Toma datos de tabla BD_CTSI con joins implícitos complejos, casos anidados con patrones de texto en códigos C_SCN, y reclasificaciones de rentas; riesgo alto en joins a T_Sectorizacion y referencias circulares a T_MAX al final del flujo."
     },
     {
       "node_id": "CodeTask-KbHRFnaoSR2Bq6wI",
-      "note": "Procesa estado de ingresos y gasto de hogares (S.14) agregando componentes de YD, ahorro y consumo trimestral con operaciones de variación anual (LAG4) y cálculo de incidencias de rentas; riesgo: cálculo de variaciones relativas (SUM(t1.DATO)/SUM(t2.DATO)*100-100) requiere correspondencia exacta de períodos entre tablas T y T1, macros dinámicas en PROC SGRENDER con templates no legibles en Python."
+      "note": "Extrae y transforma CNF de hogares (S.14): Combina múltiples OUTER UNION CORR con cálculos de variaciones anuales y tablas intermedias de YD e incidencias; requiere validación de joins LEFT a TIEMPO y PIB_ACUM que no se validan previamente."
     },
     {
       "node_id": "CodeTask-mCE2amv2UM7gUEki",
-      "note": "Produce cuenta nacional de gobierno (S.13) incluyendo YD, gasto en consumo colectivo, ahorro bruto e inversión con comparativas contra baseline DIPRES y cálculo de deuda separada en implícita y CNSI; riesgo: variable derivada 'tipo' combina condicionales sobre fuente y sector con formato específico SAS, PROC GPLOT genera gráficos cuya migración a Python requiere replicación de formatos de ejes y leyendas, desencadenamiento de tablas ad-hoc con DROP múltiple."
+      "note": "Calcula CNF del gobierno (S.13) con descomposición de gasto en consumo e incidencias: Usa tablas PTMO_G y T_MAX sin definición previa visible, casos CASE anidados con comparativas DIPRES y efectos de valor de mercado en bonos; riesgo en lógica de reconciliación de deuda."
     },
     {
       "node_id": "CodeTask-kVJViJGgbJOLVelr",
-      "note": "Analiza estado de ingresos y gasto del sector financiero (S.12) con recodificación de clasificaciones (D.41r→D.41) y cálculo de incidencias de rentas de propiedad; riesgo: UPDATE statement post-creación de tabla para estandarizar códigos, OUTER UNION CORR en SAS sin equivalente directo en pandas (requiere concat con manejo de columnas faltantes), templates gráficos con parámetros dinámicos."
+      "note": "Procesa CNF del sector financiero (S.12) con clasificación por instrumentos y contrapartidas: Múltiples transformaciones y reclasificaciones de códigos C_SCN_N0, acumulaciones a PIB con joins a TIEMPO y PIB_ACUM; depende de tablas de dimensiones no reenumeradas (T_Instrumentos, T_Contrapartidas)."
     },
     {
       "node_id": "CodeTask-eHcgu5CrdT7hHfZQ",
-      "note": "Desglosa posición financiera neta y deuda del sector financiero por subsector (S.121, S.122, etc.) con variables derivadas condicionales sobre atributo público; riesgo: variable parametrizada &Sector en PROC SGRENDER no migrable automáticamente, referencias a tablas de trabajo creadas en nodos anteriores (RFN_PIB_SF_SubS) que requieren asegurar persistencia en sesión Python, condicionales sobre C_SI_PUBL en lógica de clasificación de mercado."
+      "note": "Desglosa posición financiera neta y flujos del sector financiero por sub-sectores: Agrega datos de RFN_SF_SubS y CF_PIB_SF_SubS, genera gráficos dinámicos por componentes; depende de tablas intermedias de nodo anterior (RFN_SF, RFN_PIB_SF) que podrían tener registros duplicados o no consolidados."
     },
     {
       "node_id": "CodeTask-sGAwObcilp5c3zVx",
-      "note": "Genera visualizaciones por subsector de sector financiero con zoom sobre RFN, flujos y deuda por instrumento y origen mediante PROC SGRENDER con macro variable &Sector inyectada en títulos; riesgo: lógica parametrizada requiere ejecución iterativa para cada subsector (no incluida en código base), dependencia crítica de tabla CF_PIB_SF_SubS creada en nodo anterior, referencias a variables no definidas explícitamente en DATA step."
+      "note": "Crea gráficos de zoom por sub-sector del SF con macro variable &Sector no definida: Filtra RFN_PIB_SF_SubS y CF_PIB_SF_SubS con WHERE dinámico, sin validación de existencia de registros o parámetros requeridos; riesgo de ejecución sin contexto en ODS."
     },
     {
       "node_id": "CodeTask-sDGqIvcGbhZj7g4p",
-      "note": "Consolida indicadores agregados de panorama macroeconómico mediante DATA step que apila horizontalmente tablas de sectores (S.11, S.13, S.12, S.14) y genera cuatro gráficos comparativos de PTMO neto, FBC, ahorro y posición financiera neta nacional; riesgo: recodificación de C_SCN mediante UPDATE statement, uso de variables globales pn_sectores que requieren asegurar persistencia entre nodos, DROP sin verificación previa de existencia de tablas puede generar errores si ejecución es no secuencial."
+      "note": "Consolida panorama nacional combinando ratios de todos los sectores en tabla bd_sectores: Integra CNF_ANUAL, CNF_G_ANUAL, CNF_SF_ANUAL y CNF_ANUAL_HH con reclasificaciones; riesgo de inconsistencia en mapeos de C_SCN='B.8' y referencias a tablas que pudieron ser dropeadas en pasos previos."
     }
   ]
 }

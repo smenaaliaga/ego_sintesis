@@ -11,6 +11,17 @@ connections:
   - CR18_T_SCN_2
   - EJECUCION
   assumed: false
+- alias: LIB
+  server: ''
+  port: 1433
+  database: LIB
+  schema_name: dbo
+  auth_method: active_directory_integrated
+  driver: ODBC Driver 17 for SQL Server
+  role: both
+  tables:
+  - SERIES_OBS
+  assumed: false
 - alias: TABLAS
   server: ''
   port: 1433
@@ -24,16 +35,21 @@ connections:
   - AJUSTE_BONOS
   - AJ_TCORR
   - AJ_VARIOS
+  - BASE_DEUDA_EMV
   - BD_CTSI
   - BD_CTSI_AJPTMOS_CP
+  - BD_CTSI_CIERRE
   - BD_CTSI_R
   - BONOS_EXT_PRECIO
+  - CARTERA_INV_EXTERNA
+  - CARTERA_INV_NACIONAL
   - CNT
   - CODIGOS
   - C_FAME
   - DEP_HH_FM
   - FBCF_SF
   - FILTROS
+  - IDENTIFICA_FFMM
   - INFO_ADICIONAL
   - PIB
   - REAJUSTES

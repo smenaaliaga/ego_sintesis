@@ -4,27 +4,27 @@
   "reviews": [
     {
       "node_id": "CodeTask-R47QCuhcMSIJeuMG",
-      "note": "Genera tabla B9 con datos de capacidad/necesidad de financiamiento por sector e instrumento. Riesgo: múltiples PROC SQL y PROC TABULATE concatenados; conversión de formatos SAS (CHAR4, CHAR1) y funciones de fecha (substr/PUT) requieren traducción a Python; joins implícitos en la cláusula WHERE comparando T4.C_SCN_N1='B.9' y lógica condicional CASE sobre C_ENTRADA."
+      "note": "Extrae datos B9 (capacidad/necesidad de financiamiento) con múltiples PROC SQL secuenciales en misma tabla, joins implícitos sobre tablas de dimensión (sectores, instrumentos, contrapartes), y genera tablas cruzadas y gráficos — riesgo: lógica de sobrescritura de tabla B9, referencias a variables nombradas con comillas ('AÑO'n), conversión de formatos SAS (CHAR4., CHAR1.) y macros de variables de entorno (&ANIO, &TRIM)."
     },
     {
       "node_id": "CodeTask-m47i4alOB19ERHFp",
-      "note": "Valida consistencia de balance (BF=BI+OF+RP+RV) mediante tres queries PROC SQL que calculan diferencias ponderadas por entrada de datos. Riesgo: lógica de cálculos diferenciados con CASE WHEN (invirtiendo signo para 'Bce Final') y joins LEFT en cascada; la columna C_Cuenta contiene valores textuales hardcodeados que pueden variar; OUTER UNION CORR no tiene equivalente directo en pandas."
+      "note": "Calcula consistencias de balance (BF=BI+OF+RP+RV) y D=H mediante tres PROC SQL independientes que filtran y agrupan por categorías complejas — riesgo: lógica condicional en CASE WHEN para recodificación de categorías, joins LEFT en cascada con cuatro tablas (Sectorizacion, Instrumentos, Contrapartidas), y cálculos de diferencias mediante OUTER UNION CORR que requiere esquema de resultado coerente."
     },
     {
       "node_id": "CodeTask-OBQXqokTpv23CnGn",
-      "note": "Calcula ratios de ajuste de conciliación (AF71/AF9 a PIB) con agregación trimestral y genera gráficos de barras. Riesgo: macros SAS no resuelta (&ANIO, &TRIM); conversión de PROC GCHART a Python (matplotlib/plotly); filtro dinámico en WHERE (T3.DATO<>.) requiere manejo de valores nulos; ratio porcentual con PERCENT.2 formato."
+      "note": "Genera ratios de ajuste de conciliación (AF.71) a PIB trimestral mediante PROC SQL con joins a tabla Tiempo para acumulación, seguido de gráficos (PROC GCHART) — riesgo: filtro dinámico &ANIO, &TRIM en DELETE statement, manejo de valores NULL en PIB (T3.DATO<>.), y formateo SAS de PERCENT.2 para ratios."
     },
     {
       "node_id": "CodeTask-q9OPgdkf3WcKIpbW",
-      "note": "Extiende análisis de conciliación a nivel acumulado anual, filtrando períodos posteriores mediante macros. Riesgo: dependencia de tabla AF71 generada en nodo anterior (acoplamiento); macros dinámicas &ANIO y &TRIM sin definición; drop tables al final requiere control de dependencias; PROC GCHART con referencias (LREF, CREF) complejas."
+      "note": "Agrupa ratios trimestrales de AF71 en acumulados anuales mediante join a tabla Tiempo y dos DELETE condicionales — riesgo: dependencia explícita de tabla AF71 creada en nodo anterior, manejo de macrovariables &ANIO y &TRIM en WHERE dinámicos, y transformación de RATIO a RATIO_Z (porcentaje acumulado)."
     },
     {
       "node_id": "CodeTask-Ix7ilK7RK3FKfDEH",
-      "note": "Valida consistencias de macromagnitudes: FBC vs ahorro, PIB por tres enfoques, y D8 vs D6 del sector financiero. Riesgo: múltiples vistas temporales con IDs calculados ('FBC', 'TEST', 'PIB_ORIGEN', etc.); uniones múltiples de datasets (DATA PIB; SET ...) sin clave explícita; operaciones condicionales de signo (DATO*-1) según ID sin garantía de orden; drop tables al final referencia tablas no existentes."
+      "note": "Ejecuta cinco pruebas de consistencia independientes (FBC vs Ahorro, PIB por tres enfoques, D8 vs D.6/AF.612) con uniones de tablas temporales mediante DATA STEP y PROC SQL — riesgo: lógica de combinación de datasets con SET en orden específico, múltiples CASE WHEN complejos para imputación de signos, y cascadas de DROP/UPDATE en tablas intermedias que pueden no existir."
     },
     {
       "node_id": "CodeTask-FqwyEcVSHGBw3z1q",
-      "note": "Genera saldos de instrumentos financieros por sector y contrapartida, identificando saldos negativos anómalos. Riesgo: lógica CASE compleja con CONTAINS y IN para clasificación de instrumentos (AF.52, AF.612); agregaciones en cascada (primero con contrapartida, luego sin ella); filtro exclusión de B.90 hardcodeado; formato COMMA14 sin decimales vs tabla anterior con decimales."
+      "note": "Agrega saldos finales de instrumentos financieros por sector, instrumento y contraparte con lógica condicional CONTAINS para recodificación (AF.52='Cuotas de fondos') — riesgo: filtro sobre campo C_SCN_N1 con operador CONTAINS en SAS, joins LEFT triple (Sectorizacion, Instrumentos, Contrapartidas), y formato COMMA14. sin decimales en agregación de miles de millones."
     }
   ]
 }

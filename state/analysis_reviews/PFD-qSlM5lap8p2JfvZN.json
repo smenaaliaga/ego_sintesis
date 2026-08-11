@@ -4,11 +4,11 @@
   "reviews": [
     {
       "node_id": "CodeTask-uRMT7rfFsM7wFmZJ",
-      "note": "Validación de balances (BF=BI+OF+RP+RV) en 9 tablas SAS7BDAT mediante PROC SQL repetitivos con CASE WHEN para inversión de signos según cuenta; riesgo: hardcoding de rutas absolutas y valores literales ('Bce Final', 'Bce Inicio') sin parametrización, filtrado por AÑO>2002 inconsistente, y dependencia de jerarquía de columnas (Trimestre vs TRIM) entre fuentes."
+      "note": "Realiza validaciones de consistencia contable en 9 tablas SAS binarias con cálculos condicionados en CASE WHEN y agrupaciones complejas por año/trimestre/sector/instrumento. Riesgos: acceso directo a rutas SAS7BDAT (requiere conexión BD), dependencia de columnas denominadas idénticamente en múltiples tablas (Trimestre vs TRIM vs Entrada), formatos SAS (COMMA14.3) no traducibles a Python sin librerías especializadas, y lógica de período fiscal codificada (IF TRIM IN 1,2,3)."
     },
     {
       "node_id": "CodeTask-sQvjLjeo2WC15iXs",
-      "note": "Extracción simple de datos de año 2025 de tabla consolidada base_af3_total_v2.sas7bdat; riesgo bajo pero requiere verificación de existencia de registros para 2025 y compatibilidad de ruta de red con entorno destino."
+      "note": "Filtra y carga tabla SAS binaria (base_af3_total_v2.sas7bdat) para año 2025 con condición WHERE simple. Riesgo: ruta de archivo absoluta con dependencia de montaje de disco/BD remoto, sin validación de existencia de año en datos fuente, posible fallo silencioso si no hay registros 2025."
     }
   ]
 }
